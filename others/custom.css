@@ -1,0 +1,30 @@
+.container {
+    width:99% !important;
+    border-radius: 4px;
+}
+
+.cell {
+    margin: 7px !important; 
+    border: 0.5px solid rgb(220,220,220) ;
+    box-shadow:5px 2px 1px rgb(204,232,207);
+}
+
+.CodeMirror  {
+    font-family: "courier new";
+    font-size: 13pt;
+    line-height: 1.4;
+}
+
+div.text_cell_render {
+    font-family: "courier new";
+    font-size: 15pt;
+    font-weight: 500;
+    line-height: 117%;
+}
+
+div.output_text pre{
+    font-family: "courier new" !important;
+    font-size: 12pt;
+    font-weight: 600;
+    line-height: 120%;
+}
