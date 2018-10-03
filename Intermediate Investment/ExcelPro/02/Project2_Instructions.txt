@@ -1,0 +1,29 @@
+Q2:
+CELL S3: =SQRT(O3^2*$J$9+P3^2*$K$10+Q3^2*$L$11+2*O3*P3*$K$9+2*O3*Q3*$L$9+2*P3*Q3*$L$10)
+drag and apply the same formula to other cells S4:S66
+CELL T3: =O3*$H$9+P3*$H$10+Q3*$H$11
+drag and apply the same formula to other cells T4:T66
+
+Q3:
+CELL G45: input arbitrary w1, e.g., 0.1
+CELL G46: input arbitrary w2, e.g., 0.2
+CELL G47: input arbitrary w3, e.g., 0.7
+CELL G48: =sum(G45:G47)
+CELL I51: set one of target E(rp), e.g., 0.005
+CELL G51: =SQRT(G45^2*J9+G46^2*K10+G47^2*L11+2*G45*G46*K9+2*G45*G47*L9+2*G46*G47*L10)
+CELL H51: =G45*H9+G46*H10+G47*H11
+Solver: Min G51; Changing G45:G47; subject to the constraint G48=1 and the constraint H51=I51
+Copy and paste G51 as value into G31
+CELL I51: set another target E(rp), 0.010
+.... repeat the above procedure ....
+
+Q4:
+Solver: Min G51, Changing G45:G47: subject to one constraint G48=1 only. Remove the constraint H51=I51.
+Copy G51:H51 and paste as value into G58:H58
+
+Q5:
+CELL H73: input risk-free rate: 0.004
+CELL G77: =(H51-H73)/G51
+Solver: Max G77; Changing G45:G47; subject to one constraint G48=1 only.
+Copy G51:H51 and paste as value into G74:H74
+CELL G75: type in 0.18 (This just extends the optimal CAL to the right, making it look better).

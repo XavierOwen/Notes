@@ -1,0 +1,19 @@
+﻿Equity Analysis
+Two paragraphs on the trading strategy
+- Macro
+- Risk
+
+about 3 stocks in the portfolio in different industries.
+
+Price level and change (performance)
+
+A measure of historical return, like 5 years.
+
+A measure of security's risk - the standard deviation of returns, like 5 years of monthly data.
+Data can be obtained from the Microsoft Investor site or Yahoo
+
+The betas of each security (in excelpro 1, the disney, T-Bill data, and S&P data)
+
+Don't use the price data but return rate data, calculated by using the 30-days-later price and today's price
+
+MOnthly rate is just yearly rate divided by 12.
