@@ -7,6 +7,6 @@ Using Macros are banned in `.md`  file, so the notes are originally taken in iPy
 jupyter nbconvert --to markdown notebook_name.ipynb
 ```
 
-
-
 I'll try to avoid using macros in the future
+
+- [Models and Pricing of Financial Derivatives](.\Models and Pricing of Financial Derivatives)
