@@ -18,4 +18,4 @@ jupyter nbconvert --to markdown notebook_name.ipynb
 
 I'll try to avoid using macros in the future
 
-The `.css` file is the `others` folder one I'm currently using, feel free to try
+The `.css` file in the `others` folder is the one I'm currently using, feel free to try
