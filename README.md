@@ -19,3 +19,10 @@ jupyter nbconvert --to markdown notebook_name.ipynb
 I'll try to avoid using macros in the future
 
 The `.css` file in the `others` folder is the one I'm currently using, feel free to try
+
+---
+Update, 181022
+
+Just found that using Macro is possible in `.md` actually, little adjustment required thought. My goal is now to have them all perfectly rendered in Typora.
+
+:heart: Typora
