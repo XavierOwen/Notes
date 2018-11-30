@@ -112,7 +112,7 @@ And later to ensure that the <u>state trajectories</u> of the control system are
 
 $\eg{1}$ Car moving on a horizontal line.
 
-- $x\in \RR$: the car's position
+- $x\in \RR​$: the car's position
 - $u\in U \subseteq \SB{-1,1}$: the control input, or the acceleration
 
 Thus, the dynamics of the car are $\ddot x = u$ and we have the state $\d{\binom{x}{\dot x} \in \RR^2}$. Now, suppose that we want to "park" the car at the origin, in **minimal** time. To capture this objective using the cost functional, we could let $L\equiv 1$ as a constant running cost, and $K\equiv 0$ for there's no terminal cost, and a fixed final state $\d{\binom{0}{0}}$.
@@ -360,7 +360,7 @@ Since $0$ is a minimum of $g$, similarly we have $g'\Pare{0} = 0$. In terms of $
 $$
 g'\Pare\alpha = \nabla f\Pare{x\Pare{\alpha}}\cdot x'\Pare\alpha \bspace\Rightarrow\bspace g'\Pare0 = \nabla f\Pare{x^*}\cdot x'\Pare0=0 \labeltag{19}
 $$
-$\Rmk$ It's the inner product of two vectors is zero (perpendicular?). And more about $x'\Pare0$:
+$\Rmk$ It's the inner product of two vectors is zero (perpendicular?). And more about $x'\Pare0​$:
 
 - $x'\Pare0$ defines a linear approximation of $x\Pare\cdot$ at $x^*$, using the Tylor expansion: $x\Pare\alpha = x^*+ x'\Pare{0}\alpha + o\Pare\alpha$
 - $x'\Pare0$ is a *tangent vector* to $D$ at $x^*$, geometrically, and specifies the infinitesimal direction of the curve $x\Pare\alpha$.
