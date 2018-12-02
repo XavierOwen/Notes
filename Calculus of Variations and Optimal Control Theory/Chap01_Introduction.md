@@ -35,7 +35,6 @@ $$
 \newcommand{\Pare}[1]{\left( #1 \right)}
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\norm}[1]{\left\| #1 \right\|}
-\newcommand{\refs}[1]{\tag{#1}\label{#1}}
 \newcommand{\given}[1]{\left. #1 \right|}
 \newcommand{\using}[1]{\stackrel{\mathrm{#1}}{=}}
 \newcommand{\asim}{\overset{\text{a}}{\sim}}
@@ -381,3 +380,55 @@ Remember this holds for all $\alpha$ close enough to $0$. Then, letting $\alpha 
 $$
 0 = \given{\dfrac{\dd}{\dd \alpha}}_{\alpha = 0} h_i\Pare{x \Pare\alpha} = \nabla h_i\Pare{x^*} \cdot x'\Pare 0, \bspace i = 1,2,\dots,m
 $$
+
+Since for an arbitray $\CcC^1$ curve $x\Pare\cdot$ in $D$ with $x\Pare 0 = x^*$, its tangent vector $x'\Pare 0$ must satisfy $\nabla h_i\Pare{x^*} \cdot x'\Pare 0 = 0$ for each $i$.
+
+$\Rmk$ Actually, it's also true that every vector $d \in \RR^n$ satisfying
+
+$$
+\nabla \Pare{x^*} \cdot d = 0, \bspace i = 1,2,\dots,m \labeltag{20}
+$$
+
+is a tangent vector to $D$ at $x^*$ corresponding to some curve. The proof of this relies on $x^*$ being a regular point of $D$.
+
+Thus, **the tangent vectors to $D$ at $x^*$ are exactly the vectors $d$ for which $\eqref{20}$ holds**.
+
+And this is the characterization of the tangent space $T_{x^*}D$. And it's clear that **$T_{x^*}D$ is a *subspace*  of $\RR^n$**. Also, if $d$ is a tangent vector, then so is $-d$.
+
+---
+
+Go back to $\eqref{19}$, which says that $g'\Pare0 = \nabla f\Pare{x^*}\cdot x'\Pare0=0$ for all $d \in T_{x^*}D$, thus we now rewrite this condition as:
+
+$$
+\nabla f\Pare{x^*} \cdot d = 0 \bspace \forall d s.t. \nabla h_i\Pare x^* \cdot d = 0, \bspace i = 1,\dots ,m \labeltag{21}
+$$
+
+And we can make $\eqref{21}$ more explicit by eliminate $d$ in the conditoin. We first have a claim:
+
+*Claim*: The gradient of $f$ at $x^*$ is a linear comination of the gradients of the constraint functions $h_1,\dots,h_m$ at $x^*$, namely:
+
+$$
+\nabla f\Pare x^* \in \text{span}\CB{\nabla h_i \Pare x^* , i=1,\dots,m}.\labeltag{22}
+$$
+
+$\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component *orthogonal* to $\text{span}\CB{\nabla h_i \Pare x^*$, $i.e.$,
+
+$$
+\exists d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \labeltag{23}
+$$
+
+and $\nabla f\Pare{x^*}$ can be written in the form
+
+$$
+\nabla f\Pare x^* = d - \sum_{i=1}^{m} \lambda_i^* \nabla h_i\Pare x^* \labeltag{24}
+$$
+
+for some $\lambda_1^*,\dots,\lambda_m^* \in \RR$. Taking the inner product with $d$ on both sides of $\eqref{23}$ and $\eqref{24}$, we have
+
+$$
+\nabla f\Pare x^* \cdot d = d\cdot d \neq 0
+$$
+
+which is a contracdiction with $\eqref{21}$.
+
+---
