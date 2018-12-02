@@ -373,3 +373,11 @@ $\Rmk$ It's the inner product of two vectors is zero (perpendicular?). And more 
 Then we need an explicit characterization of the tangent space $T_{x^*}D$. First, we'll take a look at surface $D$, as is defined in $\eqref{18}$, and since the points $x\Pare\alpha$ lie in $D$ by construction, we have $h_i\Pare{x\Pare\alpha}=0$ for all $\alpha$ and all $i \in \CB{1,\dots,m}$. Differentiating this formula gives
 
 $$
+0 = \dfrac{\dd}{\dd \alpha}h_i\Pare{x\Pare\alpha} = \nabla h_i\Pare{x\Pare\alpha} \cdot x'\Pare\alpha, \bspace i = 1,2,\dots,m
+$$
+
+Remember this holds for all $\alpha$ close enough to $0$. Then, letting $\alpha = 0$ and since $x\Pare 0 = x^*$, we obtain:
+
+$$
+0 = \given{\dfrac{\dd}{\dd \alpha}}_{\alpha = 0} h_i\Pare{x \Pare\alpha} = \nabla h_i\Pare{x^*} \cdot x'\Pare 0, \bspace i = 1,2,\dots,m
+$$
