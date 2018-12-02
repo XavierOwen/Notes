@@ -4,7 +4,7 @@ Xavier at 181030
 
 ## Optimal Control Problem
 
-*Control system*, which **generates possible behaviors**﻿, presents by ODEs of the form:
+*Control system*, which **generates possible behaviors**, presents by ODEs of the form:
 $$
 % bbox
 % \bbox[#EEF, 5px, border: 2px solid #880015]{E=mc^2}
@@ -360,7 +360,7 @@ Since $0$ is a minimum of $g$, similarly we have $g'\Pare{0} = 0$. In terms of $
 $$
 g'\Pare\alpha = \nabla f\Pare{x\Pare{\alpha}}\cdot x'\Pare\alpha \bspace\Rightarrow\bspace g'\Pare0 = \nabla f\Pare{x^*}\cdot x'\Pare0=0 \labeltag{19}
 $$
-$\Rmk$ It's the inner product of two vectors is zero (perpendicular?). And more about $x'\Pare0​$:
+$\Rmk$ It's the inner product of two vectors is zero (perpendicular?). And more about $x'\Pare0$:
 
 - $x'\Pare0$ defines a linear approximation of $x\Pare\cdot$ at $x^*$, using the Tylor expansion: $x\Pare\alpha = x^*+ x'\Pare{0}\alpha + o\Pare\alpha$
 - $x'\Pare0$ is a *tangent vector* to $D$ at $x^*$, geometrically, and specifies the infinitesimal direction of the curve $x\Pare\alpha$.
@@ -368,3 +368,8 @@ $\Rmk$ It's the inner product of two vectors is zero (perpendicular?). And more 
 
 ![1540884160126](assets/1540884160126.png)
 
+---
+
+Then we need an explicit characterization of the tangent space $T_{x^*}D$. First, we'll take a look at surface $D$, as is defined in $\eqref{18}$, and since the points $x\Pare\alpha$ lie in $D$ by construction, we have $h_i\Pare{x\Pare\alpha}=0$ for all $\alpha$ and all $i \in \CB{1,\dots,m}$. Differentiating this formula gives
+
+$$
