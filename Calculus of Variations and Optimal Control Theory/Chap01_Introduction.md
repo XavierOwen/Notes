@@ -391,9 +391,9 @@ $$
 
 is a tangent vector to $D$ at $x^*$ corresponding to some curve. The proof of this relies on $x^*$ being a regular point of $D$.
 
-Thus, **the tangent vectors to $D$ at $x^*$ are exactly the vectors $d$ for which $\eqref{20}$ holds**.
+Thus, *the tangent vectors to $D$ at $x^*$ are exactly the vectors $d$ for which $\eqref{20}$ holds*.
 
-And this is the characterization of the tangent space $T_{x^*}D$. And it's clear that **$T_{x^*}D$ is a *subspace*  of $\RR^n$**. Also, if $d$ is a tangent vector, then so is $-d$.
+And this is the characterization of the tangent space $T_{x^*}D$. And it's clear that *$T_{x^*}D$ is a **subspace**  of $\RR^n$*. Also, if $d$ is a tangent vector, then so is $-d$.
 
 ---
 
@@ -411,7 +411,7 @@ $$
 \nabla f\Pare x^* \in \text{span}\CB{\nabla h_i \Pare x^* , i=1,\dots,m}.\labeltag{22}
 $$
 
-$\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component *orthogonal* to $\text{span}\CB{\nabla h_i \Pare x^*$, $i.e.$,
+$\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component **orthogonal** to $\text{span}\CB{\nabla h_i \Pare x^*$, $i.e.$,
 
 $$
 \exists d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \labeltag{23}
