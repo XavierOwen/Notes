@@ -16,6 +16,7 @@ $$
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\plim}{plim}
+\DeclareMathOperator*{\span}{span}
 \newcommand{\space}{\;\;}
 \newcommand{\bspace}{\;\;\;}
 \newcommand{\Bspace}{\;\;\;\;}
@@ -23,12 +24,11 @@ $$
 \newcommand{\BBspace}{\;\;\;\;\;\;}
 \newcommand{\QQQ}{\boxed{?\:}}
 \newcommand{\void}{\left.\right.}
-\newcommand{\myEmphy}[2][#880015]{\color{#1}{#2}}
-\newcommand{\myEmphyQ}{\color{#880015}}
-\newcommand{\myBox}[2][9px, border:2px solid #880015]{\bbox[#1]{#2}}
-\newcommand{\myBoxQ}{\bbox[9px, border:2px solid #880015]}
-\newcommand{\ffrac}[2]{\displaystyle{\frac{#1}{#2}}}
+\newcommand{\myEmphy}[1][#880015]{\color{#1}}
+\newcommand{\myBox}[1][9px, border:2px solid #880015]{\bbox[#1]}
+% \newcommand{\ffrac}[2]{\displaystyle{\frac{#1}{#2}}}
 \newcommand{\d}[1]{\displaystyle{#1}}
+\newcommand{\refs}[1]{\tag{#1}\label{#1}}
 \newcommand{\Tran}[1]{{#1}^{\mathrm{T}}}
 \newcommand{\CB}[1]{\left\{ #1 \right\}}
 \newcommand{\SB}[1]{\left[ #1 \right]}
@@ -38,6 +38,15 @@ $$
 \newcommand{\given}[1]{\left. #1 \right|}
 \newcommand{\using}[1]{\stackrel{\mathrm{#1}}{=}}
 \newcommand{\asim}{\overset{\text{a}}{\sim}}
+\newcommand{\tinyText}[1]{\tiny{\text{#1}}}
+\newcommand{\scriptsizeText}[1]{\scriptsize{\text{#1}}}
+\newcommand{\footnotesizeText}[1]{\footnotesize{\text{#1}}}
+\newcommand{\smallText}[1]{\small{\text{#1}}}
+\newcommand{\largeText}[1]{\large{\text{#1}}}
+\newcommand{\LargeText}[1]{\Large{\text{#1}}}
+\newcommand{\LARGEText}[1]{\LARGE{\text{#1}}}
+\newcommand{\hugeText}[1]{\huge{\text{#1}}}
+\newcommand{\HugeText}[1]{\Huge{\text{#1}}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\EE}{\mathbb{E}}
 \newcommand{\II}{\mathbb{I}}
@@ -67,25 +76,15 @@ $$
 \newcommand{\wp}{\text{with probability}\space}
 \newcommand{\FSD}{\text{FSD}}
 \newcommand{\SSD}{\text{SSD}}
-\newcommand{\tinyText}[1]{\tiny{\text{#1}}}
-\newcommand{\scriptsizeText}[1]{\scriptsize{\text{#1}}}
-\newcommand{\footnotesizeText}[1]{\footnotesize{\text{#1}}}
-\newcommand{\smallText}[1]{\small{\text{#1}}}
-\newcommand{\largeText}[1]{\large{\text{#1}}}
-\newcommand{\LargeText}[1]{\Large{\text{#1}}}
-\newcommand{\LARGEText}[1]{\LARGE{\text{#1}}}
-\newcommand{\hugeText}[1]{\huge{\text{#1}}}
-\newcommand{\HugeText}[1]{\Huge{\text{#1}}}
-\newcommand{\labeltag}[1]{\tag{#1}\label{#1}}
-\newcommand{\eg}[1]{\myEmphyQ{\largeText{Example.#1}}\;}
-\newcommand{\ex}[1]{\myEmphyQ{\largeText{Exercise.#1}}\;}
-\newcommand{\lma}[1]{\myEmphyQ{\largeText{Lemma.#1}}\;}
-\newcommand{\pf}{\myEmphyQ{\largeText{Proof}}\;}
-\newcommand{\rmk}[1]{\myEmphyQ{\largeText{Remark.#1}}\;}
-\newcommand{\Rmk}{\myEmphyQ{\largeText{Remark}}\;}
-\newcommand{\theorem}[1]{\myEmphyQ{\largeText{Theorem.#1}}\;}
-\newcommand{\QED}{\myEmphyQ{\blacksquare}}
-\dot{x} = f\Pare{t,x,u},\bspace x\Pare{t_0} = x_0 \labeltag{1}
+\newcommand{\eg}[1]{\myEmphy{\largeText{Example.#1}}\;}
+\newcommand{\ex}[1]{\myEmphy{\largeText{Exercise.#1}}\;}
+\newcommand{\lma}[1]{\myEmphy{\largeText{Lemma.#1}}\;}
+\newcommand{\pf}{\myEmphy{\largeText{Proof}}\;}
+\newcommand{\rmk}[1]{\myEmphy{\largeText{Remark.#1}}\;}
+\newcommand{\Rmk}{\myEmphy{\largeText{Remark}}\;}
+\newcommand{\tom}[1]{\myEmphy{\largeText{Theorem.#1}}\;}
+\newcommand{\QED}{\myEmphy{\blacksquare}}
+\dot{x} = f\Pare{t,x,u},\bspace x\Pare{t_0} = x_0 \refs{1}
 $$
 - $x$: *state* taking values in $\RR^n$, and $x_0$ is the *initial state*.
 - $u$: *control input*, taking values in some *control set* $U \in \RR^m$
@@ -94,7 +93,7 @@ $$
 
 *Cost functional*, which **associates a cost with each possible behavior**. With initial data $\Pare{t_0,x_0}$, the behaviors are parameterized by control functions $u$. And then cost functional assigns a cost value to each admissible control. It's presented by an integral of the form:
 $$
-J\Pare{u}:=\int_{t_0}^{t_f} L\Pare{t,x\Pare{t},u\Pare{t}}\;\dd t + K\Pare{t_f,x_f} \labeltag{2}
+J\Pare{u}:=\int_{t_0}^{t_f} L\Pare{t,x\Pare{t},u\Pare{t}}\;\dd t + K\Pare{t_f,x_f} \refs{2}
 $$
 - $L$ is the *running cost*
 - $K$ is the *terminal cost*
@@ -130,7 +129,7 @@ Consider a function $f:\RR^n\rightarrow \RR$. Let $D \subseteq\RR^n$. Denote the
 
 A point $x^*\in D$ is a *local minimum* of $f$ over $D$ if $\exists\; \epsilon > 0$ $s.t.$ $\forall\; x\in D$, $\abs{x-x^*}<\epsilon$, we have
 $$
-f\Pare{x^*} \leq f\Pare{x}\labeltag{3}
+f\Pare{x^*} \leq f\Pare{x}\refs{3}
 $$
 
 Thus, $x^*$ is a local minimum if in some ball around it, $f$ does not attain a value smaller than $f\Pare{x^*}$. Note that this refers only to points in $D$.
@@ -154,27 +153,27 @@ Suppose that $f$ is a $\CcC^1$, **continuous differentiable**, function and $x^*
 
 Consider a new function of $\alpha$ for a fixed $d$,
 $$
-g\Pare{\alpha} :=f\Pare{x^*+\alpha d}\labeltag{4}
+g\Pare{\alpha} :=f\Pare{x^*+\alpha d}\refs{4}
 $$
 whose domain is some interval containing $0$.
 
 Since $x^*$ is a minimum of $f$, $0$ is also a minimum of $g$. This is how we transfer a function of a **vector** to a function of a **scalar variable**. In particular, we have the **first-order Taylor expansion** for $g$ around $\alpha = 0$:
 $$
-g\Pare{\alpha} = g\Pare{0} + g'\Pare{0}\cdot\alpha + o\Pare{\alpha}\labeltag{5}
+g\Pare{\alpha} = g\Pare{0} + g'\Pare{0}\cdot\alpha + o\Pare{\alpha}\refs{5}
 $$
 where $o\Pare{\alpha}$ represents "higher-order terms" which go to $0$ faster than $\alpha$ as $\alpha$ approaches $0$, $i.e.$,
 $$
-\lim_{\alpha\to 0}\dfrac{o\Pare{\alpha}}{\alpha} = 0\labeltag{6}
+\lim_{\alpha\to 0}\dfrac{o\Pare{\alpha}}{\alpha} = 0\refs{6}
 $$
 $\Rmk$ Here we show that
 $$
-g'\Pare{0} = 0\labeltag{7}
+g'\Pare{0} = 0\refs{7}
 $$
 later we will translate this result in terms of $f$.
 
 $\pf$ Suppose that $g'\Pare{0} \neq 0$. From $\eqref{6}$, we know $\exists \;\epsilon > 0$ small enough $s.t.$ for $\abs{\alpha}<\epsilon$, $\abs{\dfrac{o\Pare{\alpha}}{\alpha}}<\abs{g'\Pare 0}$. We write $\abs\alpha < \epsilon \Rightarrow \abs{o\Pare\alpha}< \abs{g'\Pare0 \alpha}$. Thus for these values of $\alpha$, using $\eqref5$, we see that
 $$
-g\Pare\alpha - g\Pare0 < g'\Pare 0\alpha + \abs{g'\Pare0\alpha}\labeltag{8}
+g\Pare\alpha - g\Pare0 < g'\Pare 0\alpha + \abs{g'\Pare0\alpha}\refs{8}
 $$
 So if we restrict $\alpha$ to have the opposite sign to $g'\Pare{0}$, then the right-hand side of $\eqref{8}$ becomes $0$ and we obtain $g\Pare\alpha<g\Pare0$, however this contradicts the fact that $g$ has a minimum at $0$. $\QED$
 
@@ -182,15 +181,15 @@ So if we restrict $\alpha$ to have the opposite sign to $g'\Pare{0}$, then the r
 
 Now that we have $g'\Pare0 = 0$, what about $f$? First we need to find the relationship between $f$ and $g'$. Using chain rule from vector calculus, we have
 $$
-g'\Pare\alpha = \nabla f\Pare{x^*+\alpha d}\cdot d\labeltag{9}
+g'\Pare\alpha = \nabla f\Pare{x^*+\alpha d}\cdot d\refs{9}
 $$
 where $\nabla f:=\Tran{\Pare{f_{x_{1}},\dots,f_{x_n}}}$, the *gradient* of $f$, and the $\cdot$ in $\eqref9$ denotes the inner product. Also note that $f_{x_i} := \dfrac{\partial f}{\partial x_i}$. Setting $\alpha=0$ in $\eqref9$, we have
 $$
-g'\Pare0=\nabla f\Pare{x^*}\cdot d = 0\labeltag{10}
+g'\Pare0=\nabla f\Pare{x^*}\cdot d = 0\refs{10}
 $$
 Since $d$ was **arbitrary**, we conclude that
 $$
-\myBoxQ{\nabla f\Pare{x^*} = 0}\labeltag{11}
+\myBox{\nabla f\Pare{x^*} = 0}\refs{11}
 $$
 And this is the **first-order necessary condition for optimality**. Here $x^*$ is called a *stationary point*.
 
@@ -198,17 +197,17 @@ And this is the **first-order necessary condition for optimality**. Here $x^*$ i
 
 Suppose that $f$ is a $\CcC^2$ function, **twice continuously differentiable**. And assume $x^*$ is a **local minimum**. Similarly, we write
 $$
-g\Pare\alpha = g\Pare0+g'\Pare0\alpha+\dfrac{1}{2}g''\Pare0\alpha^2 + o\Pare{\alpha^2}\labeltag{12}
+g\Pare\alpha = g\Pare0+g'\Pare0\alpha+\dfrac{1}{2}g''\Pare0\alpha^2 + o\Pare{\alpha^2}\refs{12}
 $$
 where
 $$
-\lim_{\alpha\to 0}\dfrac{o\Pare{\alpha^2}}{\alpha^2} = 0\labeltag{13}
+\lim_{\alpha\to 0}\dfrac{o\Pare{\alpha^2}}{\alpha^2} = 0\refs{13}
 $$
 By the first-order necessary condition, we have $g'\Pare{0} = 0$. Then,
 
 $\Rmk$ Here we have
 $$
-g''\Pare 0 \geq 0\labeltag{14}
+g''\Pare 0 \geq 0\refs{14}
 $$
 before writing the condition in terms of $f$.
 
@@ -220,7 +219,7 @@ And now to move to $f$, we first find their relationship.
 
 Since $\d{g'\Pare\alpha = \nabla f\Pare{x^*+\alpha d}\cdot d = \sum_{i=1}^n f_{x_i}\Pare{x^*+\alpha d}d_i}$, we differentiate both sides with respect to $\alpha$ and obtain
 $$
-g''\Pare{0} =\sum_{i,j=1}^n f_{x_ix_j}\Pare{x^*}d_id_j = \Tran d \nabla^2f\Pare{x^*}d\labeltag{15}
+g''\Pare{0} =\sum_{i,j=1}^n f_{x_ix_j}\Pare{x^*}d_id_j = \Tran d \nabla^2f\Pare{x^*}d\refs{15}
 $$
 where $\nabla^2 f:= \begin{pmatrix} f_{x_1x_1} & \cdots & f_{x_1x_n}\\
 \vdots & \ddots & \vdots \\
@@ -253,7 +252,7 @@ $\pf$ Still we take an arbitrary vector $d\in \RR^n$ and let $g\Pare\alpha = f\P
 
 we have
 $$
-f\Pare{x^*+\alpha d} = f\Pare{x^*} +\dfrac{\alpha^2}{2}\Tran d\nabla^2 f\Pare{x^*}d + o\Pare{\alpha^2}\labeltag{17}
+f\Pare{x^*+\alpha d} = f\Pare{x^*} +\dfrac{\alpha^2}{2}\Tran d\nabla^2 f\Pare{x^*}d + o\Pare{\alpha^2}\refs{17}
 $$
 Note that $\dfrac{\Tran d\nabla^2 f\Pare{x^*}d}{2}$ is still a number thus from $\eqref{13}$, $\exist \; \epsilon>0$ small enough $s.t.$
 $$
@@ -332,7 +331,7 @@ Particularly, if $D$ is a **convex set** and $f$ is a **convex function**, then 
 
 Now suppose that $D$ is a surface in $\RR^n$ defined by constraints: *equality constraints*
 $$
-h_1\Pare{x}=h_2\Pare{x} = \cdots = h_m\Pare{x} = 0 \labeltag{18}
+h_1\Pare{x}=h_2\Pare{x} = \cdots = h_m\Pare{x} = 0 \refs{18}
 $$
 where 
 
@@ -343,7 +342,7 @@ where
 #### First-Order necessary condition (Lagrange multipliers)
 
 1. Let $x^∗ \in D$ be a local minimum of $f$ over $D$. 
-2. Assume $x^*$ to be a *regular point* of $D$: where the gradients (vector) $\nabla h_i$, $i=1,2,\dots,m$ are **linearly independent**
+2. Assume $x^*$ to be a *regular point* of $D$: where the gradients (vector) $\nabla h_i$, $i=1,2,\dots,m$ are **linearly independent**.
 
 As a constraint optimization problem, we can't use the line segments $x^*+\alpha d$, but a curve that go through $x^*$. Here's how the arbitrary curves are found:
 
@@ -353,12 +352,13 @@ As a constraint optimization problem, we can't use the line segments $x^*+\alpha
 
 Now with $x\Pare\alpha$, consider function $g\Pare\alpha := f\Pare{x\Pare\alpha}$.
 
-$\Rmk$ If without the equality constraints, $\eqref{4}$ can be seen as an special case of $g\Pare\alpha = f\Pare{x\Pare\alpha}$.
+$\Rmk$ If without the equality constraints, $\eqref{4}$ can be seen as an special case of this more general construction.
 
 Since $0$ is a minimum of $g$, similarly we have $g'\Pare{0} = 0$. In terms of $f$, we write 
 $$
-g'\Pare\alpha = \nabla f\Pare{x\Pare{\alpha}}\cdot x'\Pare\alpha \bspace\Rightarrow\bspace g'\Pare0 = \nabla f\Pare{x^*}\cdot x'\Pare0=0 \labeltag{19}
+g'\Pare\alpha = \nabla f\Pare{x\Pare{\alpha}}\cdot x'\Pare\alpha \bspace\Rightarrow\bspace g'\Pare0 = \nabla f\Pare{x^*}\cdot x'\Pare0=0 \refs{19}
 $$
+
 $\Rmk$ It's the inner product of two vectors is zero (perpendicular?). And more about $x'\Pare0$:
 
 - $x'\Pare0$ defines a linear approximation of $x\Pare\cdot$ at $x^*$, using the Tylor expansion: $x\Pare\alpha = x^*+ x'\Pare{0}\alpha + o\Pare\alpha$
@@ -372,7 +372,7 @@ $\Rmk$ It's the inner product of two vectors is zero (perpendicular?). And more 
 Then we need an explicit characterization of the tangent space $T_{x^*}D$. First, we'll take a look at surface $D$, as is defined in $\eqref{18}$, and since the points $x\Pare\alpha$ lie in $D$ by construction, we have $h_i\Pare{x\Pare\alpha}=0$ for all $\alpha$ and all $i \in \CB{1,\dots,m}$. Differentiating this formula gives
 
 $$
-0 = \dfrac{\dd}{\dd \alpha}h_i\Pare{x\Pare\alpha} = \nabla h_i\Pare{x\Pare\alpha} \cdot x'\Pare\alpha, \bspace i = 1,2,\dots,m
+0 = \myBox{\dfrac{\dd}{\dd \alpha}h_i\Pare{x\Pare\alpha} = \nabla h_i\Pare{x\Pare\alpha} \cdot x'\Pare\alpha}, \bspace i = 1,2,\dots,m
 $$
 
 Remember this holds for all $\alpha$ close enough to $0$. Then, letting $\alpha = 0$ and since $x\Pare 0 = x^*$, we obtain:
@@ -386,21 +386,21 @@ Since for an arbitray $\CcC^1$ curve $x\Pare\cdot$ in $D$ with $x\Pare 0 = x^*$,
 $\Rmk$ Actually, it's also true that every vector $d \in \RR^n$ satisfying
 
 $$
-\nabla \Pare{x^*} \cdot d = 0, \bspace i = 1,2,\dots,m \labeltag{20}
+\nabla \Pare{x^*} \cdot d = 0, \bspace i = 1,2,\dots,m \refs{20}
 $$
 
 is a tangent vector to $D$ at $x^*$ corresponding to some curve. The proof of this relies on $x^*$ being a regular point of $D$.
 
-Thus, *the tangent vectors to $D$ at $x^*$ are exactly the vectors $d$ for which $\eqref{20}$ holds*.
+Thus, *the tangent vectors to $D$ at* $x^*$ *are exactly the vectors $d$ for which $\eqref{20}$ holds*.
 
-And this is the characterization of the tangent space $T_{x^*}D$. And it's clear that *$T_{x^*}D$ is a **subspace**  of $\RR^n$*. Also, if $d$ is a tangent vector, then so is $-d$.
+And this is the characterization of the tangent space $T_{x^*}D$. And it's clear that $T_{x^*}D$ *is a **subspace** of $\RR^n$*. Also, if $d$ is a tangent vector, then so is $-d$.
 
 ---
 
 Go back to $\eqref{19}$, which says that $g'\Pare0 = \nabla f\Pare{x^*}\cdot x'\Pare0=0$ for all $d \in T_{x^*}D$, thus we now rewrite this condition as:
 
 $$
-\nabla f\Pare{x^*} \cdot d = 0 \bspace \forall d s.t. \nabla h_i\Pare x^* \cdot d = 0, \bspace i = 1,\dots ,m \labeltag{21}
+\nabla f\Pare{x^*} \cdot d = 0 \bspace \forall d s.t. \nabla h_i\Pare x^* \cdot d = 0, \bspace i = 1,\dots ,m \refs{21}
 $$
 
 And we can make $\eqref{21}$ more explicit by eliminate $d$ in the conditoin. We first have a claim:
@@ -408,27 +408,33 @@ And we can make $\eqref{21}$ more explicit by eliminate $d$ in the conditoin. We
 *Claim*: The gradient of $f$ at $x^*$ is a linear comination of the gradients of the constraint functions $h_1,\dots,h_m$ at $x^*$, namely:
 
 $$
-\nabla f\Pare x^* \in \text{span}\CB{\nabla h_i \Pare x^* , i=1,\dots,m}.\labeltag{22}
+\nabla f\Pare x^* \in \span \CB{\nabla h_i \Pare x^* , i=1,\dots,m}.\refs{22}
 $$
 
 $\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component **orthogonal** to $\text{span}\CB{\nabla h_i \Pare x^*$, $i.e.$,
 
 $$
-\exists d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \labeltag{23}
+\exists d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \refs{23}
 $$
 
 and $\nabla f\Pare{x^*}$ can be written in the form
 
 $$
-\nabla f\Pare x^* = d - \sum_{i=1}^{m} \lambda_i^* \nabla h_i\Pare x^* \labeltag{24}
+\nabla f\Pare x^* = d - \sum_{i=1}^{m} \lambda_i^* \nabla h_i\Pare x^* \refs{24}
 $$
 
 for some $\lambda_1^*,\dots,\lambda_m^* \in \RR$. Taking the inner product with $d$ on both sides of $\eqref{23}$ and $\eqref{24}$, we have
 
 $$
-\nabla f\Pare x^* \cdot d = d\cdot d \neq 0
+\nabla f\Pare {x^*} \cdot d = d\cdot d \neq 0
 $$
 
-which is a contracdiction with $\eqref{21}$.
+which is a *contracdiction* with $\eqref{21}$.
 
 ---
+
+Think the problem *geometrically*, we mean that $\nabla f\Pare x^*$ is **normal** to $D$ at $x^*$.
+
+![1543803719809](assets/1543803719809.png)
+
+Above figure shows the conditoin in $\RR^3$ with two constraints. Also note another special condition, when there's only one constraints for the surface, say $h_1\Pare x=0$, then $D$ is a two-dimensional surface and $\nabla f\Pare {x^*}$ must be proportional to $\nabla h_1\Pare x^*$, the normal direction to $D$ at $x^*$. Then we the second constraint $h_2\Pare x = 0$ is added, $D$ becomes a curve and $\nabla f\Pare{x^*}$ is allowed to live in the plane spanned by $\nabla h_1\Pare{x^*}$ and $\nabla h_2\Pare{x^*}$, $i.e.$, the normal plane to $D$ at $x^*$.
