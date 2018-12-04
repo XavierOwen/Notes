@@ -102,7 +102,7 @@ $$
 
 
 
-*Optimal control problem*: to find a control $u$ that **minimize** $J\Pare u$ over all admissible controls (or at least over nearby controls).
+*Optimal control problem*: to find a control $u​$ that **minimize** $J\Pare u​$ over all admissible controls (or at least over nearby controls).
 
 And later to ensure that the <u>state trajectories</u> of the control system are **well defined**, certain regularity properties should be imposed on the function $f$ and on the admissible controls $u$.
 
@@ -411,7 +411,7 @@ $$
 \nabla f\Pare x^* \in \span \CB{\nabla h_i \Pare x^* , i=1,\dots,m}.\refs{22}
 $$
 
-$\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component **orthogonal** to $\text{span}\CB{\nabla h_i \Pa{x^*}$, $i.e.$,
+$\pf​$ Indeed, if this is not true, then $\nabla f\Pare x^*​$ has a component **orthogonal** to \text{span}\CB{\nabla h_i \Pa{x^*}, i.e.,
 
 $$
 \exists d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \refs{23}
@@ -437,7 +437,7 @@ Think the problem *geometrically*, we mean that $\nabla f\Pare x^*$ is **normal*
 
 ![1543803719809](assets/1543803719809.png)
 
-Above figure shows the conditoin in $\RR^3$ with two constraints. Also note another special condition, when there's only one constraints for the surface, say $h_1\Pare x=0$, then $D$ is a two-dimensional surface and $\nabla f\Pare {x^*}$ must be proportional to $\nabla h_1\Pare x^*$, the normal direction to $D$ at $x^*$. Then we the second constraint $h_2\Pare x = 0$ is added, $D$ becomes a curve and $\nabla f\Pare{x^*}$ is allowed to live in the plane spanned by $\nabla h_1\Pare{x^*}$ and $\nabla h_2\Pare{x^*}$, $i.e.$, the normal plane to $D$ at $x^*$.
+Above figure shows the condition in $\RR^3$ with two constraints. Also note another special condition, when there's only one constraints for the surface, say $h_1\Pare x=0$, then $D$ is a two-dimensional surface and $\nabla f\Pare {x^*}$ must be proportional to $\nabla h_1\Pare x^*$, the normal direction to $D$ at $x^*$. Then we the second constraint $h_2\Pare x = 0$ is added, $D$ becomes a curve and $\nabla f\Pare{x^*}$ is allowed to live in the plane spanned by $\nabla h_1\Pare{x^*}$ and $\nabla h_2\Pare{x^*}$, $i.e.$, the normal plane to $D$ at $x^*$.
 
 Generally, we would think that *unless* $\nabla f\Pare{x^*}$ *is **normal** to* $D$*, there are curves in* $D$ *passing through* $x^*$ *whose tangent vectors at* $x^*$ *make both positive and negative inner products with* $\nabla f\Pare{x^*}$*, hence in particular,* $f$ *can be decreased by moving away from* $x^*$ *while staying in* $D$.
 
