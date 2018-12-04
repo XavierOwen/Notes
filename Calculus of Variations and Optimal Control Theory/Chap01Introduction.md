@@ -91,7 +91,7 @@ $$
 - $t$: *time*, $t_0$ is the *initial time*. 
 - Both $x$ and $u$ are **functions** of $t$, which is often suppressed.
 
-*Cost functional*, which **associates a cost with each possible behavior**. With initial data $\Pare{t_0,x_0}​$, the behaviors are parameterized by control functions $u​$. And then cost functional assigns a cost value to each admissible control. It's presented by an integral of the form:
+*Cost functional*, which **associates a cost with each possible behavior**. With initial data $\Pare{t_0,x_0}$, the behaviors are parameterized by control functions $u$. And then cost functional assigns a cost value to each admissible control. It's presented by an integral of the form:
 $$
 J\Pare{u}:=\int_{t_0}^{t_f} L\Pare{t,x\Pare{t},u\Pare{t}}\;\dd t + K\Pare{t_f,x_f} \refs{2}
 $$
@@ -128,6 +128,7 @@ And we can also view the optimal control problem as that of choosing the best pa
 Consider a function $f:\RR^n\rightarrow \RR$. Let $D \subseteq\RR^n$. Denote the standard Euclidean norm on $\RR^n$ as $\abs{\;\cdot\;}$.
 
 A point $x^*\in D$ is a *local minimum* of $f$ over $D$ if $\exists\; \epsilon > 0$ $s.t.$ $\forall\; x\in D$, $\abs{x-x^*}<\epsilon$, we have
+
 $$
 f\Pare{x^*} \leq f\Pare{x}\refs{3}
 $$
@@ -152,63 +153,85 @@ The situation where all points $x$ sufficiently near $x^*$ in $\RR^n$ are in $D$
 Suppose that $f$ is a $\CcC^1$, **continuous differentiable**, function and $x^*$ is its local minimum. $d\in \RR^n$ is an arbitrary vector. As in the unconstrained case, we have $x^*+\alpha d \in D$, $\forall\; \alpha \in \RR$ close enough to $0$.
 
 Consider a new function of $\alpha$ for a fixed $d$,
+
 $$
 g\Pare{\alpha} :=f\Pare{x^*+\alpha d}\refs{4}
 $$
+
 whose domain is some interval containing $0$.
 
 Since $x^*$ is a minimum of $f$, $0$ is also a minimum of $g$. This is how we transfer a function of a **vector** to a function of a **scalar variable**. In particular, we have the **first-order Taylor expansion** for $g$ around $\alpha = 0$:
+
 $$
 g\Pare{\alpha} = g\Pare{0} + g'\Pare{0}\cdot\alpha + o\Pare{\alpha}\refs{5}
 $$
+
 where $o\Pare{\alpha}$ represents "higher-order terms" which go to $0$ faster than $\alpha$ as $\alpha$ approaches $0$, $i.e.$,
+
 $$
 \lim_{\alpha\to 0}\dfrac{o\Pare{\alpha}}{\alpha} = 0\refs{6}
 $$
+
 $\Rmk$ Here we show that
+
 $$
 g'\Pare{0} = 0\refs{7}
 $$
+
 later we will translate this result in terms of $f$.
 
 $\pf$ Suppose that $g'\Pare{0} \neq 0$. From $\eqref{6}$, we know $\exists \;\epsilon > 0$ small enough $s.t.$ for $\abs{\alpha}<\epsilon$, $\abs{\dfrac{o\Pare{\alpha}}{\alpha}}<\abs{g'\Pare 0}$. We write $\abs\alpha < \epsilon \Rightarrow \abs{o\Pare\alpha}< \abs{g'\Pare0 \alpha}$. Thus for these values of $\alpha$, using $\eqref5$, we see that
+
 $$
 g\Pare\alpha - g\Pare0 < g'\Pare 0\alpha + \abs{g'\Pare0\alpha}\refs{8}
 $$
+
 So if we restrict $\alpha$ to have the opposite sign to $g'\Pare{0}$, then the right-hand side of $\eqref{8}$ becomes $0$ and we obtain $g\Pare\alpha<g\Pare0$, however this contradicts the fact that $g$ has a minimum at $0$. $\QED$
 
 ---
 
 Now that we have $g'\Pare0 = 0$, what about $f$? First we need to find the relationship between $f$ and $g'$. Using chain rule from vector calculus, we have
+
 $$
 g'\Pare\alpha = \nabla f\Pare{x^*+\alpha d}\cdot d\refs{9}
 $$
+
 where $\nabla f:=\Tran{\Pare{f_{x_{1}},\dots,f_{x_n}}}$, the *gradient* of $f$, and the $\cdot$ in $\eqref9$ denotes the inner product. Also note that $f_{x_i} := \dfrac{\partial f}{\partial x_i}$. Setting $\alpha=0$ in $\eqref9$, we have
+
 $$
 g'\Pare0=\nabla f\Pare{x^*}\cdot d = 0\refs{10}
 $$
+
 Since $d$ was **arbitrary**, we conclude that
+
 $$
 \myBox{\nabla f\Pare{x^*} = 0}\refs{11}
 $$
+
 And this is the **first-order necessary condition for optimality**. Here $x^*$ is called a *stationary point*.
 
 #### Second-Order conditions for optimality
 
 Suppose that $f$ is a $\CcC^2$ function, **twice continuously differentiable**. And assume $x^*$ is a **local minimum**. Similarly, we write
+
 $$
 g\Pare\alpha = g\Pare0+g'\Pare0\alpha+\dfrac{1}{2}g''\Pare0\alpha^2 + o\Pare{\alpha^2}\refs{12}
 $$
+
 where
+
 $$
 \lim_{\alpha\to 0}\dfrac{o\Pare{\alpha^2}}{\alpha^2} = 0\refs{13}
 $$
-By the first-order necessary condition, we have $g'\Pare{0} = 0$. Then,
+
+y the first-order necessary condition, we have $g'\Pare{0} = 0$. Then,
 
 $\Rmk$ Here we have
+
 $$
 g''\Pare 0 \geq 0\refs{14}
 $$
+
 before writing the condition in terms of $f$.
 
 $\pf$ Suppose $g''\Pare 0 < 0$. From $\eqref{13}$ we know that $\exists \;\epsilon>0$ $s.t.$ for $\abs{\alpha}<\epsilon$, $\abs{\dfrac{o\Pare{\alpha^2}}{\alpha^2}}<\dfrac{1}{2}\abs{g''\Pare 0}$, thus we have $\abs\alpha < \epsilon \Rightarrow \abs{o\Pare{\alpha^2}}<\dfrac{\abs{g''\Pare0}\alpha^2}{2} = -\dfrac{g''\Pare0\alpha^2}{2}$. So for these $\alpha$, $\Pare{12}$ reduces to $g\Pare\alpha - g\Pare0 < g'\Pare0\alpha = 0$, contradicting the fact that $0$ is a minimum of $g$. $\QED$
@@ -218,6 +241,7 @@ $\pf$ Suppose $g''\Pare 0 < 0$. From $\eqref{13}$ we know that $\exists \;\epsil
 And now to move to $f$, we first find their relationship.
 
 Since $\d{g'\Pare\alpha = \nabla f\Pare{x^*+\alpha d}\cdot d = \sum_{i=1}^n f_{x_i}\Pare{x^*+\alpha d}d_i}$, we differentiate both sides with respect to $\alpha$ and obtain
+
 $$
 g''\Pare{0} =\sum_{i,j=1}^n f_{x_ix_j}\Pare{x^*}d_id_j = \Tran d \nabla^2f\Pare{x^*}d\refs{15}
 $$
@@ -251,24 +275,24 @@ $\pf$ Still we take an arbitrary vector $d\in \RR^n$ and let $g\Pare\alpha = f\P
 - $g''\Pare0 = \Tran d\nabla^2 f\Pare{x^*}d$, as shown in $\eqref{15}$
 
 we have
+
 $$
 f\Pare{x^*+\alpha d} = f\Pare{x^*} +\dfrac{\alpha^2}{2}\Tran d\nabla^2 f\Pare{x^*}d + o\Pare{\alpha^2}\refs{17}
 $$
+
 Note that $\dfrac{\Tran d\nabla^2 f\Pare{x^*}d}{2}$ is still a number thus from $\eqref{13}$, $\exist \; \epsilon>0$ small enough $s.t.$
+
 $$
 \abs\alpha < \epsilon, \alpha\neq 0 \bspace\Rightarrow\bspace \abs{o\Pare{\alpha^2}}<\dfrac{\alpha^2}{2}\Tran d\nabla^2 f\Pare{x^*}d
 $$
+
 And for these values of $\alpha$ we deduce from $\eqref{17}$ that $f\Pare{x^*+\alpha d}>f\Pare{x^*}$.
 
 With this, we then indicate that $x^*$ is a (strict) local minimum. To do so, we need to show that $f\Pare{x^*}$ is the lowest value of $f$ in some **ball** around $x^*$. The difficulty is that the term $o\Pare{\alpha^2}$ and hence the value of $\epsilon$ depend on the direction of $d$.
 
 However, this dependency is **continuous**, since all other term in $\eqref{17}$ are continuous in $d$. So without loss of generality, we now suppose $d$ is of unit length. Since the unit sphere in $\RR^n$ is **compact**, we have the minimum of $\epsilon$ over all such $d$, thanks to the **Weierstrass Theorem**. And this $\epsilon$ is the radius of the ball, where the lowest value of $f$ is archived at $x^*$. $\QED$
 
-
-
 $\Rmk$ The above three proofs, are all with a key thought: $\exist \; \epsilon>0$ small enough $s.t.$ $\abs\alpha < \epsilon, \alpha\neq 0 \bspace\Rightarrow\bspace \abs{o\Pare{\alpha^2}}<\dfrac{\alpha^2}{2}\Tran d\nabla^2 f\Pare{x^*}d$, by the definition of higher-order terms, $\eqref{6}$, $\eqref{13}$.
-
-
 
 #### Feasible directions, global minima, and convex problems
 
@@ -281,9 +305,11 @@ Still we define $g\Pare{\alpha}$ like $\eqref{4}$ for all feasible directions.
 $\Rmk$ For all feasible directions, $g'\Pare{0}\geq 0$.
 
 $\pf$ If not, suppose $g'\Pare0<0$. Note that $\alpha$ is **nonnegative**. So following the same procedure, we have
+
 $$
 g\Pare\alpha - g\Pare0 < g'\Pare 0\alpha + \abs{g'\Pare0\alpha} = 0
 $$
+
 which still contradicts with the fact that $0$ is a minimum of $g$. $\QED$
 
 $\Rmk$ For all feasible directions satisfying $\nabla f\Pare{x^*}\cdot d = 0$, we have $\Tran d\nabla^2 f\Pare{x^*}d \geq0$.
@@ -325,14 +351,14 @@ Particularly, if $D$ is a **convex set** and $f$ is a **convex function**, then 
 - a local minimum is automatically a global one
 - the first-order necessary condition is also a sufficient one
 
-
-
 ### Constrained optimization
 
 Now suppose that $D$ is a surface in $\RR^n$ defined by constraints: *equality constraints*
+
 $$
 h_1\Pare{x}=h_2\Pare{x} = \cdots = h_m\Pare{x} = 0 \refs{18}
 $$
+
 where 
 
 - $h_i$, $i=1,2,\dots,m$ are $\CcC^1$ functions, **continuous differentiable**
@@ -355,6 +381,7 @@ Now with $x\Pare\alpha$, consider function $g\Pare\alpha := f\Pare{x\Pare\alpha}
 $\Rmk$ If without the equality constraints, $\eqref{4}$ can be seen as an special case of this more general construction.
 
 Since $0$ is a minimum of $g$, similarly we have $g'\Pare{0} = 0$. In terms of $f$, we write 
+
 $$
 g'\Pare\alpha = \nabla f\Pare{x\Pare{\alpha}}\cdot x'\Pare\alpha \bspace\Rightarrow\bspace g'\Pare0 = \nabla f\Pare{x^*}\cdot x'\Pare0=0 \refs{19}
 $$
@@ -411,10 +438,10 @@ $$
 \nabla f\Pare x^* \in \span \CB{\nabla h_i \Pare x^* , i=1,\dots,m}.\refs{22}
 $$
 
-$\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component **orthogonal** to $\text{span}\CB{\nabla h_i \Pa{x^*}$, $i.e.$,
+$\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component **orthogonal** to $\span\CB{\nabla h_i \Pare {x^*}}$, i.e.,
 
 $$
-\exists d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \refs{23}
+\exists\; d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \refs{23}
 $$
 
 and $\nabla f\Pare{x^*}$ can be written in the form
@@ -429,7 +456,7 @@ $$
 \nabla f\Pare {x^*} \cdot d = d\cdot d \neq 0
 $$
 
-which is a *contracdiction* with $\eqref{21}$.
+which is a *contradiction* with $\eqref{21}$.
 
 ---
 

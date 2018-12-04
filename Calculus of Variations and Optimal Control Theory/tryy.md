@@ -91,7 +91,7 @@ $$
 - $t$: *time*, $t_0$ is the *initial time*. 
 - Both $x$ and $u$ are **functions** of $t$, which is often suppressed.
 
-*Cost functional*, which **associates a cost with each possible behavior**. With initial data $\Pare{t_0,x_0}​$, the behaviors are parameterized by control functions $u​$. And then cost functional assigns a cost value to each admissible control. It's presented by an integral of the form:
+*Cost functional*, which **associates a cost with each possible behavior**. With initial data $\Pare{t_0,x_0}$, the behaviors are parameterized by control functions $u$. And then cost functional assigns a cost value to each admissible control. It's presented by an integral of the form:
 $$
 J\Pare{u}:=\int_{t_0}^{t_f} L\Pare{t,x\Pare{t},u\Pare{t}}\;\dd t + K\Pare{t_f,x_f} \refs{2}
 $$
@@ -411,7 +411,7 @@ $$
 \nabla f\Pare x^* \in \span \CB{\nabla h_i \Pare x^* , i=1,\dots,m}.\refs{22}
 $$
 
-$\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component **orthogonal** to $\text{span}\CB{\nabla h_i \Pa{x^*}$, $i.e.$,
+$\pf$ Indeed, if this is not true, then $\nabla f\Pare x^*$ has a component **orthogonal** to $\text{span}\CB{\nabla h_i \Pare x^*$, $i.e.$,
 
 $$
 \exists d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \refs{23}
