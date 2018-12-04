@@ -115,7 +115,7 @@ $\eg{1}$ Car moving on a horizontal line.
 
 Thus, the dynamics of the car are $\ddot x = u$ and we have the state $\d{\binom{x}{\dot x} \in \RR^2}$. Now, suppose that we want to "park" the car at the origin, in **minimal** time. To capture this objective using the cost functional, we could let $L\equiv 1$ as a constant running cost, and $K\equiv 0$ for there's no terminal cost, and a fixed final state $\d{\binom{0}{0}}$.
 
-We'll solve this in Chapter04.
+We'll solve this in Chapter 04.
 
 ---
 
@@ -400,7 +400,7 @@ And this is the characterization of the tangent space $T_{x^*}D$. And it's clear
 Go back to $\eqref{19}$, which says that $g'\Pare0 = \nabla f\Pare{x^*}\cdot x'\Pare0=0$ for all $d \in T_{x^*}D$, thus we now rewrite this condition as:
 
 $$
-\nabla f\Pare{x^*} \cdot d = 0 \bspace \forall d s.t. \nabla h_i\Pare x^* \cdot d = 0, \bspace i = 1,\dots ,m \refs{21}
+\nabla f\Pare{x^*} \cdot d = 0 \bspace \forall\; d s.t. \nabla h_i\Pare{x^*} \cdot d = 0, \bspace i = 1,\dots ,m \refs{21}
 $$
 
 And we can make $\eqref{21}$ more explicit by eliminate $d$ in the conditoin. We first have a claim:
@@ -408,19 +408,19 @@ And we can make $\eqref{21}$ more explicit by eliminate $d$ in the conditoin. We
 *Claim*: The gradient of $f$ at $x^*$ is a linear comination of the gradients of the constraint functions $h_1,\dots,h_m$ at $x^*$, namely:
 
 $$
-\nabla f\Pare x^* \in \span \CB{\nabla h_i \Pare x^* , i=1,\dots,m}.\refs{22}
+\nabla f\Pare{x^*} \in \span \CB{\nabla h_i \Pare{x^*}, i=1,\dots,m}.\refs{22}
 $$
 
 $\pf​$ Indeed, if this is not true, then $\nabla f\Pare x^*​$ has a component **orthogonal** to \text{span}\CB{\nabla h_i \Pa{x^*}, i.e.,
 
 $$
-\exists d \neq 0, s.t. \nabla h_i \Pare x^* \cdot d = 0, \bspace i=1,\dots,m \refs{23}
+\exists\; d \neq 0, s.t. \nabla h_i \Pare{x^*} \cdot d = 0, \bspace i=1,\dots,m \refs{23}
 $$
 
 and $\nabla f\Pare{x^*}$ can be written in the form
 
 $$
-\nabla f\Pare x^* = d - \sum_{i=1}^{m} \lambda_i^* \nabla h_i\Pare x^* \refs{24}
+\nabla f\Pare{x^*} = d - \sum_{i=1}^{m} \lambda_i^* \nabla h_i\Pare{x^*} \refs{24}
 $$
 
 for some $\lambda_1^*,\dots,\lambda_m^* \in \RR$. Taking the inner product with $d$ on both sides of $\eqref{23}$ and $\eqref{24}$, we have
@@ -439,10 +439,11 @@ Think the problem *geometrically*, we mean that $\nabla f\Pare x^*$ is **normal*
 
 Above figure shows the condition in $\RR^3$ with two constraints. Also note another special condition, when there's only one constraints for the surface, say $h_1\Pare x=0$, then $D$ is a two-dimensional surface and $\nabla f\Pare {x^*}$ must be proportional to $\nabla h_1\Pare x^*$, the normal direction to $D$ at $x^*$. Then we the second constraint $h_2\Pare x = 0$ is added, $D$ becomes a curve and $\nabla f\Pare{x^*}$ is allowed to live in the plane spanned by $\nabla h_1\Pare{x^*}$ and $\nabla h_2\Pare{x^*}$, $i.e.$, the normal plane to $D$ at $x^*$.
 
-Generally, we would think that *unless* $\nabla f\Pare{x^*}$ *is **normal** to* $D$*, there are curves in* $D$ *passing through* $x^*$ *whose tangent vectors at* $x^*$ *make both positive and negative inner products with* $\nabla f\Pare{x^*}$*, hence in particular,* $f$ *can be decreased by moving away from* $x^*$ *while staying in* $D$.
+Generally, we would think that *unless* $\nabla f\Pare{x^*}$ *is **normal** to* $D$*, there are curves in* $D$ *passing through* $x^*$ *whose tangent vectors at* $x^*$ *make both positive and negative inner products with* $\nabla f\Pare{x^*}$, hence in particular, $f$ *can be decreased by moving away from* $x^*$ *while staying in* $D$.
 
 So now we reach the **first-order necessary condition for constrained optimality** by translating $\eqref{22}$:
 
 $$
 \myBox{\nabla f\Pare{x^*} + \lambda_1^* \nabla h_1\Pare{x^*}+\cdots + \lambda_m \nabla h_m\Pare{x^*} = 0} \refs{25}
 $$
+
