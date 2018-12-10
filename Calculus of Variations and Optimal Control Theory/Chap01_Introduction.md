@@ -344,6 +344,8 @@ where
 1. Let $x^∗ \in D$ be a local minimum of $f$ over $D$. 
 2. Assume $x^*$ to be a *regular point* of $D$: where the gradients (vector) $\nabla h_i$, $i=1,2,\dots,m$ are **linearly independent**.
 
+$\rmk$ **regular point**: **non-singular point**. And a **singular point** is, in the geometric sense, that at this point the tangent space at the variety may not be regularly defined.
+
 As a constraint optimization problem, we can't use the line segments $x^*+\alpha d$, but a curve that go through $x^*$. Here's how the arbitrary curves are found:
 
 1. find a family of points $x\Pare\alpha \in D$, parameterized by $\alpha \in \RR$
@@ -447,3 +449,10 @@ $$
 \myBox{\nabla f\Pare{x^*} + \lambda_1^* \nabla h_1\Pare{x^*}+\cdots + \lambda_m \nabla h_m\Pare{x^*} = 0} \refs{25}
 $$
 
+Here the coefficients $\lambda_i^*$, $i=1,\dots,m$ are called **Lagrange multipliers**.
+
+$\ex{2}$ Give an example where a local minimum $x^*$ is *not* a regular point and the above necessary condition is false.
+
+---
+
+Here's another prove, purely analytic, and shorter, and will be very useful.
