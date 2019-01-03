@@ -790,7 +790,7 @@ If $\alpha\in\R$, $\mathbf{y}=\Pare{y_1,y_2,\dots,y_k}
 
 $$
 \begin{align}
-\mathbf{x}+\mathbf{y}&=\Pare{x_1+y_1,x_2+y_2,\dots,x_k+y_k}\i\R\\
+\mathbf{x}+\mathbf{y}&=\Pare{x_1+y_1,x_2+y_2,\dots,x_k+y_k}\in\R\\
 \alpha\mathbf{x} &= \Pare{\alpha x_1,\alpha x_2,\dots,\alpha x_k}\in\R
 \end{align}
 $$
@@ -817,7 +817,9 @@ The whole structure
 - inner product
 - norm
 
-is called the **euclidean $k$-space**.
+is called the **Euclidean $k$-space**.
+
+
 
 $\tom{1.37}$
 
