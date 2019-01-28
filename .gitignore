@@ -1,4 +1,14 @@
 # specified file
 try.md
+
+# specified file suffix
 .zip
+.jar
+
+# all directory ipynb_checkpoints
+.ipynb_checkpoints
+
+# specified directories
+Algorithms/codes/algs4
 Algorithms/algs4-data/
+np_pd_mpl/AnatomyOfMatplotlib-master
