@@ -6,7 +6,7 @@ try.md
 *.jar
 
 # all directory ipynb_checkpoints
-.ipynb_checkpoints
+/.ipynb_checkpoints/
 
 # specified directories
 Algorithms/codes/algs4
