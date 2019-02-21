@@ -211,8 +211,6 @@ $$
 P_0\Pare{\Pare{1+0.5r}^5-1} = P_0\Pare{1.04^5-1} = 0.2167P_0
 $$
 
-
-
 ---
 
 
@@ -253,6 +251,7 @@ $$
 \hline
 \text{compounding factor}&\text{constant } r&\text{various }r\\[0.7em] \hline
 \text{discrete}&\Pare{1+\tilde r}^n & \prod\Pare{1+r_t\Delta t}\\[0.5em]
+m\text{ times a year} & \Pare{1+\frac{r}{m}}^{mn} & \text{N/A}\\
 \text{continuous}&e^{rt} & \exp\CB{\int_{0}^t r_s\dd s}\\[0.5em]
 \hline
 \end{array}
@@ -327,15 +326,15 @@ f\Pare{0,1,2} &= \frac{1.04^2}{1.05}-1=0.0301
 $$
 $\Rmk$ Generalization
 
-find the $T $th root of $\eqref{1} $ on both side,
+find the $T $th root of $\eqref{1}$ on both side,
 $$
 \implies1+i\Pare{0,T} = \SB{1+i\Pare{0,t}}^{t/T}\SB{1+f\Pare{0,t,T}}^{\frac{T-t}{T}}
 $$
-suppose $t_1,t_2,\dots,t_n$ are arbitrary partition of time horizon $\SB{0,T}$ with $t_0=0$ and $t_n=T$
+suppose $t_1,t_2,\dots,t_n​$ are arbitrary partition of time horizon $\SB{0,T}​$ with $t_0=0​$ and $t_n=T​$
 
 $\implies i\Pare{0,t_1} = f\Pare{0,t_0,t_1}$
 $$
-\implies 1+i\Pare{0,t_n} = \prod_{j=1}^n \SB{1+f\Pare{0,t_{j-1},t_j}}^{\frac{t_j-t_{j-1}}{t_n}}
+\implies \myBox{ 1+i\Pare{0,t_n} = \prod_{j=1}^n \SB{1+f\Pare{0,t_{j-1},t_j}}^{\frac{t_j-t_{j-1}}{t_n}}}
 $$
 
 
