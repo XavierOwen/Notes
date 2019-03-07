@@ -56,6 +56,7 @@ $$
 \newcommand{\CcC}{\mathcal{C}}
 \newcommand{\FcF}{\mathcal{F}}
 \newcommand{\IcI}{\mathcal{I}}
+\newcommand{\NcN}{\mathcal{N}}
 \newcommand{\AsA}{\mathscr{A}}
 \newcommand{\FsF}{\mathscr{F}}
 \newcommand{\IsI}{\mathscr{I}}
@@ -269,7 +270,7 @@ $$
 
 - exposure at default: $\text{EAD}$
 - severity: $\text{SEV}\implies$loss given default: $\text{LGD}=\Exp{\text{SEV}} =1-\text{recovery rate}$
-- default event $D\implies L=\mathbf{1}_D\implies​$ default probability: $\text{DP}=\Exp{L}​$
+- default event $D\implies L=\mathbf{1}_D\implies$ default probability: $\text{DP}=\Exp{L}$
 - Assumption
   - exposure, severity and default event are independent
   - $\text{EAD}$ is deterministic, could be the expectation of some underlying $r.v.$
@@ -526,7 +527,7 @@ $\Rmk$ As for the default risk
 
 
 
-## VAR, expected shortfall and coherent risk measure
+## VaR, expected shortfall and coherent risk measure
 
 ### VaR
 
@@ -540,15 +541,15 @@ $N$: time horizon
 
 $X\%$: confidence level
 
-$\implies V$: the loss level over $N$ days that has a probability of only $\Pare{100-X}\%$ of being exceeded
+$\implies \VaR$: the loss level over $N$ days that has a probability of only $\Pare{100-X}\%$ of being exceeded
 
 or
 
-$V$, the loss corresponding to the $\Pare{100-X}$th percentile of the distribution of the *change in the value of the portfolio* over the next $N$ days
+$\VaR$, the loss corresponding to the $\Pare{100-X}$th percentile of the distribution of the *change in the value of the portfolio* over the next $N$ days
 
 or
 
-$V$, is the $X$th percentile of the distribution of *loss*
+$\VaR$, is the $X$th **percentile** of the distribution of *loss*
 $$
 \myBox{
 \begin{align}
@@ -563,9 +564,9 @@ $$
 
 $\Rmk$
 
-$V$ is the corresponding value in horizontal axis when the cdf reaches $X$ percent, in the distribution graph.
+$\VaR$ is the corresponding value in horizontal axis when the cdf reaches $X$ percent, in the distribution graph.
 
-so even when $V$ is the same, potential loss may be not.
+so even when $\VaR$ is the same, potential loss may be not, and severe loss maybe more likely to happen
 
 <img src="assets/1550736707364.png" width=400>
 
@@ -592,7 +593,7 @@ $\slu$
 
 $X=99$
 
-standard cdf: $\myEmphy{\d{N\Pare{x}=\int_{-\infty}^x\frac{1}{\sqrt{2\pi}} e^{-t^2/2}\;\dd t  }}$
+standard cdf: $\myEmphy{\d{\N{x}=\int_{-\infty}^x\frac{1}{\sqrt{2\pi}} e^{-t^2/2}\;\dd t  }}$
 
 $\implies$ one percentile point: $\mu-\sigma\cdot z=2-2.33\times  10 = -21.3$ million
 
@@ -627,30 +628,230 @@ we see that $\VaR$ is *NOT* uniquely defined, thus we would choose its **midpoin
 ### Expected Shortfall
 
 $\Def$ tail conditional expectation
+
+>If things do get bad, what is the expected loss?
+
 $$
 \myBox{\text{TCE}_\alpha\Pare{\tilde L}=\Exp{\tilde L\mid\tilde L\geq\VaR_\alpha\Pare{\tilde L}}  }
 $$
+
 also named
 
 - expected shortfall
 - conditional $\VaR$
 - tail loss
 
+It's the expected loss during $N$ days, conditional on the loss being greater than the $X$th percentile of the **loss distribution**
+
+$\Rmk$
+
+Here we use $\alpha$, to indicate that we are dealing with the *loss distribution*. Besides,
+$$
+\begin{align}
+\text{TCE}_\alpha\Pare{\tilde L}&=\Exp{\tilde L\mid\tilde L\geq\VaR_\alpha\Pare{\tilde L}} \\
+&= \int_{-\infty}^{\infty} L\times f_{\tilde L\mid\tilde L\geq\VaR_\alpha\Pare{\tilde L}}\Pare{L}\;\dd L = \int_{-\infty}^{\infty} L\; \dd F_{\tilde L\mid\tilde L\geq\VaR_\alpha\Pare{\tilde L}}\Pare{L} \\
+&= \int_{-\infty}^{\infty} L\;\dd \Pare{\frac{P\Pare{\CB{\tilde L < L}\cap \CB{\tilde L\geq\VaR_\alpha\Pare{\tilde L}}}}{P\Pare{\tilde L\geq\VaR_\alpha\Pare{\tilde L}}}} \\
+&= \frac{\d{\int_{-\infty}^{\infty}L f_{\tilde L}\Pare{L} \idctV_{L\geq \VaR_\alpha\Pare{\tilde L}} \;\dd L}}{P\Pare{\tilde L\geq\VaR_\alpha\Pare{\tilde L}}}= \frac{\d{\int_{-\infty}^{\infty}L\times f\Pare{L}\idctV_{L\geq \VaR_\alpha\Pare{\tilde L}}\;\dd L}}{\d{\int_{-\infty}^{\infty} f\Pare{L}\idctV_{L\geq \VaR_\alpha\Pare{\tilde L}}\;\dd L}}\\
+&= \frac{\d{\int_{\VaR_\alpha\Pare{\tilde L}}^{\infty}L\times f\Pare{L}\;\dd L}}{\d{\int_{\VaR_\alpha\Pare{\tilde L}}^{\infty} f\Pare{L}\;\dd L}}\\
+&= \frac{\d{\int_{\VaR_\alpha\Pare{\tilde L}}^\infty  L\times f\Pare{L}\;\dd  L}}{1-\alpha}
+\end{align}
+$$
+
+$\eg{}$
+
+$T=1$
+
+two $\$10$ million loans
+
+default probability: $\text{DP}=1.25\%$
+
+result
+
+- when default, loss between $0\%$ and $100\%$ are equally alike
+- when not default, profit $\$0.2$ million
+- one default, the other profit
+
+$\slu$
+
+<u>single loan</u>
+
+<img src="../../../Department%20of%20Mathematics/Notes/Financial%20Risk%20Management_SUSTech/assets/1550790411319.png">
+
+clearly, one year, $99\%\ \VaR$ is $\$2$ million $\implies$
+$$
+\begin{align}
+\text{TCE}_\alpha\Pare{\tilde L}&=\Exp{\tilde L\mid\tilde L\geq\VaR_\alpha\Pare{\tilde L}}\\
+&= \Exp{\tilde L\mid\tilde L \geq \$2}\\
+&= \frac{\$2+\$10}{2}=\$6
+\end{align}
+$$
+
+<u>consider portfolio of two loans</u>
+
+$\text{DP}=1.25\%+1.25\%=2.5\%$
+
+distribution
+
+- gain, not matter
+- loss, uniformly distributed from $-\$0.2$ million to $\$9.8$ million
+
+thus here we consider from the right side
+
+$\dfrac{1\%}{2.5\%}=0.4\implies 4$th percentile from the right is
+
+$$
+9.8-0.4\cdot\Pare{9.8-\Pare{-0.2}}=5.8 \implies
+$$
+
+similarly we have $\text{TCE}_\alpha\Pare{\tilde L}=\dfrac{\$ 5.8+\$9.8}{2}=\$7.8$
+
+$\Rmk$ about calculation
+
+IF loss is normally distributed, with mean $\mu$ and standard deviation $\sigma$, then we have
+$$
+\myBox{\begin{align}
+\VaR_\alpha &= \mu+\sigma\NcN^{-1}\Pare{\alpha}\\
+\text{TCE}_\alpha &= \mu+\sigma\frac{\exp\CB{-Z^2/2}}{\sqrt{2\pi}\Pare{1-\alpha}}
+\end{align}}
+$$
+here $Z$ is the $\alpha$th percentile point of the standard normal distribution
+
+$\Rmk$
+
+$\VaR$ and $\text{TCE}$ share different property:
+
+- $\VaR$: $5.8>2+2$
+- $\text{TCE}$: $7.8<6+6$
 
 
 
+$\Def$ Coherent risk measures
+
+For these four properties: $\Ppt$
+
+1. **Monotonicity**: return $\downarrow\implies$ risk measure $\nearrow$
+2. **Translation invariance**: portfolio $\uparrow K$ cash $\implies$ risk measure $\searrow K$ 
+3. **Positive homogeneity**: portfolio size factor $\lambda>0 \implies$ risk measure factor $\lambda$
+4. **Subadditivity**: risk measure of portfolio $A$ and risk measure of portfolio $B$ $\geq$ risk measure of $A+B \implies$ diversification strategy
+
+satisfying all four $\implies$ **coherent**
+
+$\Rmk$
+
+- $\VaR$ satisfies the first three, but not always the fourth one
+- Expected shortfall $\text{TCE}$ is **coherent**
+
+$\eg{}$
+
+for each two
+
+- $0.02$ of loss of $\$10$ million
+- $0.98$ of loss of $\$1$ million
+
+$\alpha=97.5$
+
+$\slu$
+$$
+\begin{array}{cc}\hline
+ & 97.5\%\VaR & \text{TCE}_{97.5}\\\hline
+\text{single one} & \$1 & \$8.1  \\
+\text{portfolio} & \$ 11 & \$ 11.144\\\hline
+\end{array}
+$$
+
+
+$\SUM$
+
+all risk measures we've learned till now can all be seen as a **weighted average**:
+$$
+\begin{array}{ccc}\hline
+ & \VaR & \text{TCE}\\\hline
+\text{below }\alpha\text{th} & 0 & 0 \\
+\alpha\text{th} & 100\% & 0\\
+\text{above }\alpha\text{th} & 0 & \text{equal weight}\\ \hline 
+\end{array}
+$$
+weight assigned is a non-decreasing function of $\alpha\implies$ subadditivity
 
 
 
+$\Def$ **Spectral risk measure**
+
+a risk measure, in a weighted average form, of outcomes where worse outcomes are assigned with larger weights
 
 
 
+### Time horizon $H$
+
+an usual assumption is
+$$
+\myBox{
+\begin{align}\text{N-day }\VaR &= \text{1-day }\VaR\times\sqrt{N}\\
+\text{N-day TCE} &= \text{1-day TCE}\times\sqrt{N}
+\end{align}}
+$$
+since loss are assumed to be normally distributed
 
 
 
+### VaR: historical simulation approach
 
+$H$: one day
+
+$\alpha$: $99\%$
+
+$501$ historical data
+
+**Step 1**: collect the data, shown in the picture
+
+<img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551086094532.png" width=400>
+
+**Step 2**: calculate $500$ possible scenarios, the percentage changes of $n$ variables between day $i$ and $i+1$, $i=0,1,\dots,500$
+
+**Step 3**: calculate the possible portfolio value for each scenario, and the possible changes in portfolio value
+
+<img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551086952321.png" width=400>
+
+**Step 4**: estimate the percentile points using the changes in value (data in last column)
+
+for example:
+
+- the $1$-percentile point of the distribution of changes in the portfolio value: the fifth-smallest number
+- the $99$-percentile point of the distribution of loss: the negative of the fifth-smallest number
+- $\myEmphy{\text{N-day }\VaR = \text{1-day }\VaR\times\sqrt{N}}$
+- or even the empirical loss distribution function
+
+$$
+\myEmphy{F\Pare{x} = \frac{1}{n}\sum_i  \idctV_{\SB{0,x}}\Pare{\tilde L_p^{\Pare{i}}}}, \BBspace n=500
+$$
+
+here $L_p^{\Pare{i}}$ is the negative of the numbers in the last column
 
 
 
 ## Economic capital and risk-adjusted return on capital
+
+$\Def$ **credit** $\VaR$
+
+target confidence level: $\alpha$
+$$
+\myBox{q_\alpha=\alpha\text{-quantile of }\tilde L=\inf\CB{q>0\mid P\Pare{\tilde L \leq q}\geq \alpha}}
+$$
+
+
+
+
+
+
+$\Def$
+
+**Economic capital** (**risk capital**) is the amount of capital a ﬁnancial institution needs to absorb losses over a certain time horizon (usually one year) with a certain conﬁdence level
+
+corporation rate $\uparrow\implies$ confidence level $\uparrow\implies$ $\VaR\uparrow\implies$
+$$
+\text{EC}\uparrow=\text{economic capital}=\VaR-\text{EL}
+$$
+<img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551088127491.png" width=400>
+
+
 

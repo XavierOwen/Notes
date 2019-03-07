@@ -856,7 +856,7 @@ $$
 
 $\Pops$
 
-Let $w_t = \dfrac{c_t/B_0}{\Pare{i+i}^t}$, the ratio of the present value of the cash ﬂow at time $t$ to the bond price, then
+Let $w_t = \dfrac{c_t/B_0}{\Pare{1+i}^t}$, the ratio of the present value of the cash ﬂow at time $t$ to the bond price, then
 $$
 \eqref{3}\implies \sum_{t=1}^T w_t=1, \Bspace D=\sum_{t=1}^T tw_t \implies\\
 \myBox{\frac{\dd D}{\dd i} = -\frac{S}{1+i}=-\frac{1}{1+i}\sum_{t=1}^T w_t\Pare{t-D}^2}
