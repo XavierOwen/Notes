@@ -10,7 +10,7 @@ Notes on courses I've taken, welcome.
 - [Intermediate Investment](https://github.com/XavierOwen/Notes/tree/master/Intermediate%20Investment)
 - [Introduction to Numerical Computing](https://github.com/XavierOwen/Notes/tree/master/Intro%20to%20Numerical%20Computing)
 
-Using MathJax Macros are banned in `.md`  file, so the notes are originally taken in iPython Notebook. Convert them using command
+Using MathJax Macros are banned in native `.md`  file, so the notes are originally taken in iPython Notebook. Convert them using command
 
 ```
 jupyter nbconvert --to markdown notebook_name.ipynb
