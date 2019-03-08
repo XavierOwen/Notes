@@ -1,4 +1,4 @@
-# Introduction to Probability Theory
+# Random Variables
 
 $$
 % bbox
@@ -105,219 +105,901 @@ $$
 
 
 
-## Sample Space and Events
+## Random Variables
 
-$\Def$ Sample space, event
+$\Def$ random variable, indicator variable
 
-Suppose an experiment whose outcome is not predictable in advance, only the set of all possible outcomes is known. We call this set: ***sample space***, $S$, of this experiment.
+During an experiment, the quantities of interest, or the real-valued functions defined on the sample space are known as the ***Random Variables***, shortened as $r.v.$. And the value of the outcome variable is determined by the outcome of the experiment, we shall assign probabilities to the possible values of the $r.v.$.
 
-And an ***Event*** is any subset of this sample space, denoted as $E$. The event $E$ **occurs** when the outcome lies in $E$. And following that we can define the Union, Intersection, and the ***null event***, $\varnothing$. We call two sets are ***mutually exclusive*** when their intersection is a null event.
+A special case for this is the ***Indicator Variable***, denoted as $I$ for an event $E$.
 
-Finally we define the ***complement***. For any event $E$ we define the new event $E^c$, referred to as the complement of $E$, to *consists of all outcomes in the sample sapce $S$ that are not in $E$*.
+$$
+I = \begin{cases}
+1 & \text{if } E \text{ occurs} \\
+0 & \text{if } E \text{ doesn't occur}
+\end{cases}
+$$
+
+
+$\eg{}$
+
+independent trials continually performed
+
+each with $m$ possible outcomes
+
+with respectively probabilities $p_1, \dots, p_m$, $\sum p_i = 1$
+
+$X$: the number of trials needed until each outcome has occurred at least once. 
+
+Find $P\CB{X = n}$
+
+$\slu$
+
+Instead solve that directly, we first calculate $P\CB{X > n}$.
+
+$A_i$: the event that outcome $i$ has not yet occurred after the first $n$ trials, $i = 1, \dots, m$.
+$$
+\begin{align}
+P\left\{X > n\right\} &= P\left( \bigcup_{i=1}^{m} A_i \right) \\
+&= \sum_{i=1}^{m} P(A_i) - \underset{i<j}{\sum\sum} P(A_iA_j) \\
+& \;\;\; + \underset{i<j<k}{\sum\sum\sum} P(A_iA_jA_k) - \cdots + (-1)^{m+1}P(A_1 A_2 \cdots A_m)
+\end{align}
+$$
+$P(A_i)$: the probability that each of the first $n$ trials results in a $\text{non-}i$ outcome
+
+Independency $\implies P(A_i) = (1 - p_i)^{n}$
+
+$P(A_iA_j)$ is the probability that the first $n$ trials all result in a $\text{non-}i$ and $\text{non-}j$ outcome
+
+Independency $\implies P(A_iA_j) = (1-p_i - p_j)^{n}$
+
+$\implies$
+$$
+\begin{align}
+P\left\{X>n\right\} = \sum_{i=1}^{n}(1-p_i)^n - \underset{i<j}{\sum\sum} (1-p_i - p_j)^n + \underset{i<j<k}{\sum\sum\sum} (1 - p_i - p_j - p_k)^n - \cdots
+\end{align}
+$$
+$\myEmphy{P\left\{X=n\right\} = P\left\{X>n-1\right\} -P\left\{X>n\right\}}$, and $\myEmphy{(1-a)^{n-1} - (1-a)^ n = a(1-a)^{n-1}} \implies$
+$$
+\begin{align}
+P\left\{X=n\right\} &= \sum_{i=1}^{m} p_i (1-p_i)^{n-1} - \underset{i<j}{\sum\sum} (p_i + p_j) (1-p_i - p_j)^{n-1} \\ 
+&\;\;\;+ \underset{i<j<k}{\sum\sum\sum} (p_i+p_j+p_k)(1 - p_i - p_j - p_k)^n - \cdots
+\end{align}
+$$
+
+---
 
 
 
-## Probability Defined on Events
-$\Def$ Probability
+$\Def$ cdf
 
-Consider an experiment, with sample space $S$, and for each event $E$, we assume that a **number** $P(E)$ is defined and satisfies the following these conditions:
+$X$: $r.v.$
 
-- $0 \leq P(E) \leq 1$
-- $P(S) = 1$
-- For **any sequence** of events $E_1, E_2, \dots$ that are mutually exclusive, that is events for which $E_nE_m = E_n \cap E_m = \varnothing$ when $n \neq m$, then
-$\d{P\left(\bigcup_{n=1}^{\infty}E_n\right) = \sum_{n=1}^{\infty} P(E_n)} $
+$b\in\RR$, $-\infty < b < \infty$
 
-We refer to $P(E)$ as the ***probability*** of the event $E$.
+$\implies F(\cdot)$: $F(b) = P\left\{X \leq b\right\}$
+
+$\Ppt$
+
+- $F(b)$ is non-decreasing function of $b$
+- $\lim\limits_{b \to \infty} F(b) = F(\infty) = 1$
+- $\lim\limits_{b \to -\infty} F(b) = F(-\infty) = 0$
+- $P\left\{a < X \leq b\right\} = F(b) - F(a)$ for all $a < b$
+- $P\left\{X<b\right\}= \lim_{h \to 0^+} P\left\{X \leq b-h\right\} = \lim_{h \to 0^+} F(b-h)\neq F\Pare b$
+
+
+
+## Discrete random variables
+
+$\Def$ Discrete $r.v.$, PMF
+
+A $r.v.$ that can take on at most a **countable** number of possible values is said to be ***discrete***, say $X$. We can define its ***probability mass function*** $p(a)$ as: $p(a) = P\left\{X = a\right\}$.
+
+$\Ppt$
+
+- $\sum_{i=1}^{\infty}p(x_i) = 1$
+- $F(a) = \sum_{x_i \leq a}x_i$
+
+
+
+### The Bernoulli random variable
+
+$\Def$ Bernoulli $r.v.$
+
+For those $r.v.$ with the probability mass function defined as
+
+$$
+\myBox{\begin{cases}
+p(0) = P\left\{X=0\right\} = 1-p\\[0.5em]
+p(1) = P\left\{X=1\right\} = p
+\end{cases}}
+$$
+
+where $0 < p < 1$, namely, the probability of *successful* trial
+
+
+
+### The Binomial random variable
+
+$\Def$ Binomial $r.v.$
+
+$n$ independent trials
+
+each with probability $p$ of success and probability $1-p$ of failure
+
+$X$: the **number of successes**, $i$, that occur in the $n$ trials
+
+$\implies$ $X$ is said to be a ***Binomial*** $r.v.$ with **parameters** $(n,p)$. Its PMF:
+$$
+\myBox{p(i) =P\CB{X=i} \d{\binom{n} {i}}p^i(1-p)^{n-i}}
+$$
+for $i=0,1,\dots,n$, and it's easy to verify that this holds: 
+
+$$
+\sum_{i=0}^{\infty}p(i) = \sum_{i=0}^{n} \binom{n} {i}p^i(1-p)^{n-i} = (p+(1-p))^{n} = 1
+$$
+
+
+### The Geometric random variable
+
+$\Def$ Geometric $r.v.$
+
+$n$ independent trials
+
+each with probability $p$ of success 
+
+$X$: the number of trials required until the first success
+
+$\implies$ $X$ is said to be a ***geometric*** $r.v.$ with parameter $p$. Its PMF:
+$$
+\myBox{p(n) = P\left\{X=n\right\} = (1-p)^{n-1}p}
+$$
+for $n = 1,2,\dots$. And it's easy to verify that
+$$
+\sum\limits_{n=1}^{\infty} p(n) = p\sum\limits_{n=1}^{\infty} (1-p)^{n-1} = 1
+$$
+
+
+### The Poisson Random Variable
+
+$\Def$ Poisson $r.v.$
+
+$X$: $r.v.$, taking on one of the values $i = 0,1,\dots$, with PMF given by
+
+$$
+\myBox{p(i) = P\left\{X=i\right\} = e^{-\lambda} \frac{\lambda^i} {i!}}
+$$
+
+
+And it's easy to verify that
+$$
+\sum\limits_{i=0}^{\infty} p(i) = e^{-\lambda} \sum\limits_{i=0}^{\infty} \frac{\lambda^i} {i!} = e^{-\lambda}e^{\lambda} = 1
+$$
+
+
+$\Ppt$ **Approximate** a *binomial* $r.v.$, with *large* $n$ and *small* $p$.
+$$
+\begin{align}
+P_{\text{binom}}\left\{X=i\right\} &= \binom{n} {i} p^i (1-p)^{n-i} \\
+&= \frac{n!} {(n-i)!i!} \left( \frac{\lambda} {n} \right)^i \left( 1 - \frac{\lambda} {n} \right)^{n-i} \\[0.6em]
+&= \frac{n(n-1)(n-2) \cdots (n-i+1)} {n!} \frac{\lambda^i} {i!} \frac{(1-\lambda/n)^n} {(1-\lambda/n)^i} \\
+\implies P_{\text{binom}}\CB{X=i}& \approx 1 \cdot \frac{\lambda^i} {i!} \cdot \frac{e^{-\lambda}} {1} = P_{\text{poisson}}\left\{X=i\right\}
+\end{align}
+$$
+$\Rmk$
+
+- $0!=1$
+- Poisson distributed $X\implies\EE{X} = \lambda$
+
+
+
+## Continuous random variable
+
+$\Def$ Continuous $r.v.$, PDF, CDF
+
+$X$, $r.v.$, with a **nonnegative** function $f(x)$, on all real $x \in (-\infty, \infty)$
+
+for any set $B$ of real numbers (can be uncountable), $\d{P\left\{X \in B\right\} = \int_{B} f(x) \;\dd{x}}$
+
+$\implies X$ is a ***continuous*** $r.v.$
+
+
+
+$f(x)$: the ***probability density function*** of $X$
+
+***Cumulative distribution function*** $F(\cdot)$: $F(a) = \d{\int_{-\infty}^{a} f(x) \;\dd{x}}$
+
+$\Ppt$ 
+
+- satisfy $P\CB{X \in \left( -\infty, \infty\right)} = \d{\int_{-\infty}^{\infty} f(x)\;\dd{x} = 1}$
+- $P\CB{X = a} = \d{\int_{a}^{a}f(x)\;\dd{x}}=0$, for any *particular value* assumed to $X$
+- $\dfrac{\dd{}} {\dd{a}}F(a) = f(a)$
+
+
+
+### The Uniform Random Variable
+
+$\Def$ Uniform $r.v.$
+
+$X$, $r.v.$, with PDF
+$$
+\myBox{f(x) = \begin{cases}
+\dfrac{1} {\beta - \alpha}, & \text{if } \alpha < x < \beta \\
+0, & \ow
+\end{cases}}
+$$
+$\implies$ $X$ is said to be ***uniformly distributed*** over the interval $(\alpha, \beta)$
+
+
+
+### Exponential Random Variables
+
+$\Def$ Exponential $r.v.$
+
+$X$, $r.v.$, with PDF
+$$
+\myBox{f(x) = \begin{cases}
+\lambda e ^{-\lambda x}, & \text{if }x\geq 0 \\
+0, & \text{if } x<0
+\end{cases}}
+$$
+for some $\lambda > 0$
+
+$\implies $ $X$ is said to be an ***exponential*** $r.v.$ with parameter $\lambda$
+
+
+
+$\Ppt$ CDF
+$$
+F(a) = \begin{cases}
+\d{\int_{0}^{a} \lambda e ^{-\lambda x} \;\dd{x}} = \myEmphy{1 - e^{-\lambda a}}, & \text{if } a\geq 0 \\
+0, & \text{if } a<0
+\end{cases}
+$$
+And also it's easy to verify that $F(\infty) = \d{\int_{0}^{\infty} \lambda e ^{-\lambda x} \;\dd{x} = 1}$
+
+
+
+### Gamma Random Variables
+
+$\Def$ Gamma $r.v.$
+
+$X$, $r.v.$, with PDF
+$$
+\myBox{f(x) = \begin{cases}
+\dfrac{\lambda e ^{-\lambda x} (\lambda x)^{\alpha-1}} {\Gamma(\alpha)}, & \text{if } x\geq 0 \\
+0, & \text{if } x<0
+\end{cases}}
+$$
+for some $\lambda > 0$ and $\alpha > 0$, and here $\myEmphy{\Gamma(\alpha) = \d{\int_{0}^{\infty} e^{-x} x^{\alpha - 1} \; \dd{x}}}$
+
+$\implies$ $X$ is said to be a ***gamma*** $r.v.$ with parameter $\alpha$, $\lambda$
+
+
+
+$\Rmk$ $\Gamma(n) = (n-1)!$ for integral $n$
+
+$\pf$
+$$
+\begin{align}
+\Gamma(n) &= \int_{0}^{\infty} e^{-x} x^{n-1} \;\dd{x} = (n-1)! \\
+&= \int_{0}^{\infty} e^{-x}\; \frac{\dd{x^{n}}} {n}\\
+&= \given{\frac{e^{-x}x^n} {n}}_{0}^{\infty} - \int_{0}^{\infty} -e^{-x} \frac{x^{n}} {n} \;\dd{x}
+\end{align}
+$$
+
+
+### Normal Random Variables
+
+$\Def$ Normal $r.v.$
+
+$X$, $r.v.$, with PDF
+$$
+\myBox{f(x) = \frac{1} {\sqrt{2\pi\sigma^2}} \exp\CB{-\frac{(x-\mu)^2} {2\sigma^2}}}
+$$
+$\implies$ $X$ is a ***normal*** $r.v.$ with parameters $\mu$ and $\sigma^2$
 
 $\Rmk$
 
-This **any sequence** can be limited.
-
-These probabilities have a nice intuitive property, that if our experiment is repeated over and over again, the proportion of time that event $E$ occurs will just be $P(E)$ $wp1$ (with probability $1$).
+$x \in \mathbb{R}$ and $f\Pare x$ is a bell-shaped curve that is **symmetric** around $\mu$
 
 
 
 $\Ppt$
 
-- $1 = P(S) = P(E \cup E^c) = P(E) + P(E^c)$ or $P(E^c) = 1 - P(E)$
-- $P(\varnothing) = 1 - P(S) = 0$
-- $P(E) + P(F) = P(E \cup F) + P(EF)$, and when mutually exclusived, we have $P(E) + P(F) = P(E \cup F)$
-- $(EG \cup FG ) = \cdots = (E \cup F)G $
-- $P(E \cup F \cup G) = P((E\cup F)\cup G) = P(E \cup F) + P(G) - P((E\cup F)G)\\
-  \Rightarrow P(E \cup F \cup G) = P(E) + P(F) + P(G) - P(EF) - P(FG) - P(GF) + P(EFG)$
-- and by **induction** that for any $\mathbf{n}$ events $E_1,E_2, \dots, E_n$, we have
+$X\sim\N{\mu,\sigma^2}$
 
+$\implies Y = \alpha X + \beta \sim \N{\alpha \mu + \beta,\alpha^2 \sigma^2}$, $y\in\RR$
+
+$\pf$
 $$
 \begin{align}
-P(E_1 \cup E_2 \cup \cdots \cup E_n) &= \sum_{i}P(E_i)\sum_{i < j}P(E_iE_j) + \sum_{i<j<k}P(E_iE_jE_k) \\
-&\;\;\; - \sum_{i<j<k<l}P(E_iE_jE_kE_l) + \dots \\
-&\;\;\; + (-1)^{n+1} P(E_1E_2E_3\cdots E_n)
+F_Y(a) &= P(Y \leq a) = P(\alpha X + \beta \leq a)\\[0.6em]
+&= F_X \left( \frac{a-\beta} {\alpha} \right) \\
+&= \int_{-\infty}^{(a - \beta)/\alpha} \frac{1} {\sqrt{2\pi\sigma^2}} \exp\CB{-\frac{(x-\mu)^2} {2\sigma^2}} \;\dd{x} \\
+&\stackrel{ y = \alpha x + \beta} {=} \int_{-\infty}^{a}\frac{1} {\sqrt{2\pi}\sigma\alpha} \exp\CB{-\frac{(y-(\alpha x + \beta))^2} {2\sigma^2\alpha^2}} \;\dd{y}
 \end{align}
-$$
-
-
-
-## Conditional Probabilities
-
-$\Def$ Conditional Probability
-
-***Conditional Probability*** for event $E$ given that event $F$ has occurred is denoted by $P(E\mid F)$, and the formula for this is 
-$$
-\myBox{P(E \mid F) = \ffrac{P(EF)} {P(F)}}
 $$
 $\Rmk$
 
-This is well defined when $P(F)>0$, hence $P(E \mid F)$ is only defined when $P(F)>0$.
+Any normally distributed $r.v.$ $X$ can be transformed into a specific one with parameters $0$ and $1$, by conducting $Z = (X - \mu)/\sigma\sim\N{0,1}$
 
 
 
-## Independent Events
+## Expectation of a Random Variable
+### The Discrete Case
+
+$\Def$ $\Exp{X}$
+
+$X$: discrete $r.v.$
+
+PMF: $p(x)$
+
+$\implies$ ***expected value*** of $X$
+$$
+\myBox{\Exp{X} = \sum_{x:p(x)>0}xp(x)}=\sum_{x:p(x)\geq0}xp(x)
+$$
+$\eg{}$ **Bernoulli** $r.v.$
+
+$\slu$
+$$
+\myBox{\Exp{X} = 0 \cdot (1-p) + 1 \cdot p = \myEmphy{p}}
+$$
+
+
+$\eg{}$ **Binomial** $r.v.$
+
+$\slu$
+$$
+\myBox{\begin{align}
+\Exp{X} &= \sum_{i=\myEmphy0}^{n} i \cdot p(i) = \sum_{i=0}^{n} i \cdot \binom{n} {i} p^i (1-p)^{n-i} \\
+&= \sum_{i=\mathbf{\myEmphy1}}^{n} \frac{n!} {(n-i)!(i-1)!} p^i (1-p)^{n-i} \\
+&= np \sum_{i=\mathbf{\myEmphy1}}^{n} \frac{(n-1)!} {(n-i)!(i-1)!} p^{i-1} (1-p)^{n-i} \\
+&\stackrel{k=i-1}{=} np \sum_{k=\mathbf{\myEmphy0}}^{n-1} \cdot \binom{n-1} {k} p^k (1-p)^{n-1-k} \\
+&= np\left[p+(1-p)\right]^{n-1} = \myEmphy{np}
+\end{align}}
+$$
+
+$\eg{}$ **Geometric** $r.v.$
+
+$\slu$
+$$
+\myBox{\begin{align}
+\Exp{X} &= \sum_{n=1}^{\infty} n \cdot p(1-p)^{n-1} \\
+&\stackrel{q=1-p}{=} p \sum_{n=1}^{\infty}nq^{n-1} \\
+&= p \sum_{n=1}^{\infty} \frac{\dd{}} {\dd{q}}q^{n} \\
+&= p \frac{\dd{}} {\dd{q}} \left( \frac{q} {1-q} \right) =\frac{p} {(1-q)^2} = \myEmphy{\frac{1} {p}}
+\end{align}}
+$$
+$\Rmk$
+
+错位相减法 also works
+
+
+
+$\eg{}$ **Poisson** $r.v.$
+
+$\slu$
+$$
+\myBox{\begin{align}
+\Exp{X} &= \sum_{i=0}^{\infty} i\cdot\frac{e^{-\lambda}\lambda^i} {i!} \\
+&= \lambda e^{-\lambda} \sum_{i=\mathbf{1}}^{\infty} \frac{\lambda^{i-1}} {(i-1)!} \\
+&= \lambda e^{-\lambda} e^{\lambda} = \myEmphy{\lambda}
+\end{align}}
+$$
+
+
+### The Continuous Case
+
+$\Def$ $\Exp{X}$
+
+$X$: continuous $r.v.$
+
+PDF: $f\Pare x$
+
+$\implies$ ***expected value*** of $X$
+$$
+\myBox{\Exp{X} = \d{\int_{-\infty}^{\infty} xf(x) \;\dd{x}}}
+$$
+
+$\eg{}$ **Uniform** $r.v.$
+
+$\slu$
+$$
+\myBox{\begin{align}
+\Exp{X} &= \int_{\alpha}^{\beta} x \cdot \frac{1} {\beta - \alpha} \; \dd{x} \\
+&= \frac{\beta^2 - \alpha^2} {2(\beta - \alpha)} = \myEmphy{\frac{\beta + \alpha} {2}}
+\end{align}}
+$$
+
+$\eg{}$ **Exponential** $r.v.$
+
+$\slu$
+$$
+\myBox{\begin{align}
+\Exp{X} &= \int_{0}^{\infty} x \cdot \lambda e^{-\lambda x} \;\dd{x}  = \int_{0}^{\infty} -x\;\dd{e^{-\lambda x}}\\
+&= \left. -xe^{-\lambda x}\right|_{0}^{\infty} + \int_{0}^{\infty} e^{-\lambda x} \; \dd{x} \\
+&= 0 - \left. \frac{e^{-\lambda x}} {\lambda} \right|_{0}^{\infty} = \myEmphy{\frac{1} {\lambda}}
+\end{align}}
+$$
+
+
+$\eg{}$ **Normal** $r.v.$
+
+$\slu$
+$$
+\myBox{
+\begin{align}
+\Exp{X} &= \frac{1} {\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty} x \cdot \exp\CB{-\frac{(x-\mu)^2} {2\sigma^2}} \;\dd{x} \\
+&\stackrel{y=x-\mu}{=}\frac{1}{\sqrt{2\pi}\sigma}\left( \int_{-\infty}^{\infty} y \exp\CB{-\frac{y^2} {2\sigma^2}} \; \dd{y} + \mu \int_{-\infty}^{\infty} \exp\CB{-\frac{(x-\mu)^2} {2\sigma^2}} \; \dd{x} \right) \\
+&= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty} y \exp\CB{-\frac{y^2} {2\sigma^2}} \; \dd{y} + \mu \int_{-\infty}^{\infty}  f(x) \; \dd{x}\\
+&= 0+\mu\cdot1 = \myEmphy{\mu}
+\end{align}
+}
+$$
+
+
+
+
+### Expectation of a Function of a $r.v.$
+
+$\Pops$
+
+$X$: $r.v.$
+
+$g\Pare\cdot$: real-valued function
+
+PMF: $p\Pare x \implies \Exp{g(X)} = \d{\sum_{x:p(x)>0}} g(x)p(x)$
+
+PDF: $f\Pare x \implies \Exp{g(X)} = \d{\int_{-\infty}^{\infty}} g(x)f(x) \;\dd{x}$
+
+
+
+$\Corlr$
+
+constant $a$ and $b\implies \Exp{aX+b} = a\Exp{X} + b$
+
+
+
+$\Def$ Moment
+
+$X$: $r.v.$
+
+$n \geq 1$
+
+$\implies \Exp{X^n}$: $n\text{-th}$ ***moment*** of $X$
+
+
+
+$\Def$ Variance
+
+$X$: $r.v.$
+
+$\implies \myBox{Var{X} = \Exp{(X - \Exp{X})^2}}$
+
+
+
+$\eg{}$ ***Normal*** $r.v.$
+
+$\slu$
+
+$\d{\myEmphy{\int_{-\infty}^{\infty} e^{-y^2/2} \;\dd{y} = \sqrt{2\pi}}} \implies$
+$$
+\myBox{\begin{align}
+\Var{X} &= \Exp{(X - \mu)^2} \\
+&= \frac{1} {\sqrt{2\pi}\sigma}\int_{-\infty}^{\infty} (x-\mu)^2 \exp\CB{-\frac{(x-\mu)^2} {2\sigma^2}}\;\dd{x} \\
+&\stackrel{y=(x-\mu)/\sigma}{=} \frac{\sigma^2} {\sqrt{2\pi}} \int_{-\infty}^{\infty} y^2 \exp\CB{-\frac{y^2} {2}} \;\dd{y} \\
+&= \frac{\sigma^2} {\sqrt{2\pi}} \int_{-\infty}^{\infty} -y \;\dd{e^{-y^2/2}}\\
+&= \frac{\sigma^2} {\sqrt{2\pi}} \left( \left.-ye^{-y^2/2}\right|_{-\infty}^{\infty} + \int_{-\infty}^{\infty} e^{-y^2/2} \;\dd{y} \right) \\
+&= \frac{\sigma^2} {\sqrt{2\pi}} \cdot \int_{-\infty}^{\infty} e^{-y^2/2} \;\dd{y} \\
+&= \myEmphy{\sigma^2}
+\end{align}}
+$$
+
+
+$\Zrm$
+$$
+\myBox{\Var{X} = \Exp{X^2}-\Pare{\Exp X}^2}
+$$
+$\pf$
+$$
+\begin{align}
+\Var{X} &= \Exp{(X - \mu)^2} \\
+&= \Exp{X^2-2\mu X+\mu^2}\\
+&= \int_{-\infty}^\infty \Pare{x^2-2\mu x+\mu^2}f\Pare x\;\dd x\\
+&=\int_{-\infty}^\infty x^2f\Pare{x}\;\dd x-2\mu\int_{-\infty}^\infty xf\Pare x\;\dd x + \mu^2\int_{-\infty}^\infty f\Pare x\;\dd x\\
+&= \Exp{X^2}-2\mu^2+\mu^2=\Exp{X^2}-\Pare{\Exp X}^2
+\end{align}
+$$
+and the discrete case is similar.
+
+
+
+## Jointly Distributed Random Variables
+###  Joint Distribution Functions
+
+$\Def$ joint CDF, PMF, PDF; marginal CDF, PMF, PDF
+
+$X,Y$: $r.v.$
+
+***joint cumulative probability distribution function***:
+$$
+\myBox{F(a,b) = P\CB{X \leq a, Y \leq b}}
+$$
+$a,b \in \mathbb{R}$
+
+***marginal cumulative probability distribution***:
+$$
+\myBox{\begin{align}
+F_X(a) &= P\CB{X \leq a} = P \CB{X \leq a, Y < \infty} = F(a, \infty)\\
+F_Y(b) &= F(\infty, b)
+\end{align}}
+$$
+Suppose
+
+$X,Y$: discrete $r.v.$
+
+***joint probability mass function***:
+$$
+\myBox{p(x,y) = P\CB{X = x, Y=y}}
+$$
+***marginal probability mass function***:
+$$
+\myBox{p_X(x) = \sum_{y:p(x,y)>0} p(x,y) \;\lvert\; p_Y(y) = \sum_{x:p(x,y)>0} p(x,y)}
+$$
+
+$X,Y$: continuous $r.v.$
+
+***joint probability density function***:
+$$
+\myBox{\d{P\CB{X \in A, Y \in B} = \int_B \int_A f(x,y) \; \dd{x} \; \dd{y}}}
+$$
+***marginal probability density function***:
+$$
+\begin{align}
+P\CB{X\in A} &= P\CB{X \in A, Y \in (-\infty,\infty)} \\
+&= \int_{-\infty}^{\infty} \int_A f(x,y) \;\dd{x} \; \dd{y} \\
+&= \int_A \myEmphy{f_X(x)}\;\dd{x}
+\end{align}\\
+\implies \myBox{f_X(x) = \d{\int_{-\infty}^{\infty} f(x,y) \; \dd{y}}}
+$$
+$f\Pare{x,y}$ exists $\implies$ $X$ and $Y$ are ***jointly continuous***
+
+
+
+$\Rmk$
+$$
+\begin{align}
+\myEmphy{F(a,b)} &\; \myEmphy{=P\CB{X \leq a,Y \leq b}}\\
+&=\d{\int_{-\infty}^{a}\int_{-\infty}^{b} f(x,y) \;\dd{y} \;\dd{x}}\\
+\end{align}\\
+\implies \myBox{\frac{\dd{}^2} {\dd{a}\;\dd{b}}F(a,b) = f(a,b)}
+$$
+
+
+$\Def$ joint expectation
+
+$$
+\myBox{\Exp{g(X,Y)} = \begin{cases}
+\d{\sum_y \sum_x g(x,y) p(x,y)}, & \text{discrete case}\\
+\d{\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} g(x,y) f(x,y) \;\dd{x}\;\dd{y}}, &\text{continuous case}
+\end{cases}}
+$$
+
+
+
+$\Corlr$
+
+$X_i$: $n$ $r.v.$s
+
+$a_i$: n constants
+
+$\implies$ the linear combination:
+$$
+\myBox{\Exp{\sum_{i=1}^{n}a_iX_i} = \sum_{i=1}^{n}a_i\Exp{X_i}}
+$$
+
+
+$\eg{}$
+
+Choose $10$ letters from $A$ to $Z$. Compute the expected number of different types that are contained in a set of $10$ letters.
+
+$\slu$
+
+Break the probability down
+$$
+X_i = \begin{cases}
+1, & \text{if at least one letter } i \text{ is in the set of 10 letters}\\
+0, & \text{otherwise}
+\end{cases}
+$$
+$\implies X = \sum X_i $
+$$
+\begin{align}
+\Exp{X_i} &= P\CB{X_i = 1} \\
+&= 1 - P\CB{\text{no type of letter }i\text{ are in the set of }10} \\
+&= 1 - \left(\frac{25} {26}\right)^{10}
+\end{align}
+$$
+$\implies \Exp{X} = \sum\Exp{X_i} = 26\left[1 - \left(\dfrac{25} {26}\right)^{10}\right]$
+
+
+
+### Independent Random Variables
 
 $\Def$ Independency
 
-$\myEmphy{P(EF) = P(E)P(F)} \implies $Event $E$ and $F$ are ***independent*** $\implies P(E \mid F) = P(E)$
+$X,Y$: $r.v.$
 
-$\Rmk$ Generalization
+$\forall\; a,b$
 
-$n$ events: $E_1, \dots, E_n$
+$P\CB{X \leq a, Y \leq b} = P\CB{X \leq a}\cdot P\CB{Y \leq b} \implies X$ and $Y$ are said to be ***independent***
 
-every subset of $\CB{E_1, \dots, E_n}$: $E_1', \dots, E_r'$, with $r \leq n \implies P(E_1' \dots E_r') = P(E_1')\dots P(E_r')$
+event $E_{X\leq a}$ and $E_{Y\leq b}$ are independent $\implies X$ and $Y$ are said to be ***independent***
 
-$\implies$ These $n$ events are mutually(jointly) independent
+$F$: joint CDF
 
-$\Rmk$ Pairwise independence
+$F(a,b) = F_X (a) \cdot F_Y(b)\implies X$ and $Y$ are ***independent***
 
-***Pairwise independence*** CANNOT ensure independence. And to distinguish these two, we call that ***jointly independent***.
+IF $X,Y$ discrete
 
+$p(x,y) = p_X(x) \cdot p_Y(y) \implies X$ and $Y$ are ***independent***
 
+IF $X,Y$ continuous
 
-$\eg{}$
-
-$r$ players each initially having $n_i$ units, $n_i > 0$, $i = 1, \dots, r$. For each stage two players are chosen to play, with the winner win $1$ unit from the loser. Any player whose fortune drops to $0$ is eliminated and game continues until one single player has all $n \equiv \sum n_i$ units. Assuming that the results of successive games are independent and that each game is equally likely to be won by either of its two players. Find the probability that player $i$ is the victor!
-
-$\slu$
-
-First we suppose there're totally $n$ players with each player initially having only $1$ unit and others are same with before.
-
-Now because this is the same for all players, it follows that each player has the same chance of being the victor. Consequently, each player has player probability $1/n$ of being the victor.
-
-Now suppose these players are divided into $r$ teams, with team $i$ containing $n_i$ players. Then it's easy to see that the probability that the victor is a member of team $i$ is $n_i/n$. And this is same for the previous problem.
+$f(x,y) = f_X(x) \cdot f_Y(y) \implies X$ and $Y$ are ***independent*** 
 
 
 
-$\Def$ independent trails
+$\Pops$
 
-Suppose that a sequence of experiments, each of which results in either a $1$ or a $0$, is to be performed. Let $E_i$, $i \geq 1$ denote the event that the $i\text{-th}$ experiment results in a success. We call this sequence of experiments consists of **independent trials**, if for all $i_1, i_2, \dots, i_n$, this holds
-
+$X,Y$ independent $\implies \forall$ function $h,g$,
 $$
-P\Pare{E_{i_1} E_{i_2} \cdots E_{i_n}} = \prod_{j=1}^{n}P\Pare{E_{i_j}}
+\Exp{g(X)\cdot h(Y)} = \Exp{g(X)} \cdot \Exp{h(Y)}
 $$
 
 
-## Bayes' Formula
+### Covariance and Variance of Sums of Random Variables
 
-$\Lm$
+$\Def$ Covariance
 
-Let $E$ and $F$ be events. We may express $E$ as $E = EF \cup EF^c$ because in order for a point to be in $E$, it must either in both $E$ and $F$ or it must be in $E$ and not in $F$.
+$X,Y$: $r.v.$
 
-And since $EF$ and $EF^c$ are mutually exclusive, we have that
-
+$\implies$ Covariance
 $$
 \myBox{\begin{align}
-P(E) &= P(EF) + P(EF^c) \\
-&= P(E \mid F) P(F) + P(E\mid F^c) P(F^c) \\
-&= P(E \mid F) P(F) + P(E\mid F^c) (1-P(F))
+\Cov{X, Y} &= \Exp{(X - \Exp{X}) \cdot (Y - \Exp{Y})} \\
+&= \Exp{XY - Y\Exp{X} - X\Exp{Y} + \Exp{X}\Exp{Y}} \\
+&= \Exp{XY} - \Exp{X} \Exp{Y}
 \end{align}}
 $$
-which implies that $P(E)$ can be seen as a **weighted average** of 
+$\Corlr$
 
-- the conditional probability of $E$ given that $F$ has occurred
-- the conditional probability of $E$ given that $F$ has not occured.
+$X,Y$ independent $\implies \Cov{X,Y} = 0$
 
-and each is given as much weight as the event on which it is conditioned has of occurring.
+
+
+$\Rmk$
+
+- $\Cov{X,Y}>0 \implies$ $Y$ tends to increase as $X$ does
+- $\Cov{X,Y}<0 \implies$ $Y$ tends to decrease as $X$ increases
+- $\Cov{X,Y}=0 \not\implies X$ and $Y$ are independent
+- $X$ and $Y$ are independent $\implies \Cov{X,Y}=0$
+
+
+
+$\Ppt$
+
+$X,Y,Z$: $r.v.$
+
+$c$: constant
+
+$\implies$ 
+
+- $\Cov{X,X} = \Var{X}\\[0.5em]$
+- $\Cov{X,Y} = \Cov{Y,X}\\[0.5em]$
+- $\Cov{cX,Y} = c \cdot\Cov{X, Y}\\[0.5em]$
+- $\Cov{X,Y+Z} = \Cov{X,Y} + \Cov{X,Z} \implies\d{\Cov{\sum_{i=1}^{n}X_i,\sum_{j=1}^{m}Y_j}=\sum_{i=1}^{n}\sum_{j=1}^{m} \Cov{X_i,Y_j}}$
+
+$\implies$
+$$
+\begin{align}
+\Var{\sum_{i=1}^{n} X_i} &= \Cov{\sum_{i=1}^{n}X_i,\sum_{j=1}^{n}X_j} \\
+&= \sum_{i=1}^{n} \sum_{j=1}^{n} \Cov{X_i, X_j} \\
+&= \sum_{i=1}^{n}\Cov{X_i, X_i} + \sum_{i=1}^{n} \sum_{j \neq i} \Cov{X_i, X_j} \\
+&= \sum_{i=1}^{n}\Var{X_i} + 2 \sum_{i=1}^{n} \sum_{j < i} \Cov{X_i, X_j}
+\end{align}
+$$
+IF $X_i$ are independent
+
+$\implies \d{\Var{\sum_{i=1}^{n}X_i} = \sum_{i=1}^{n} \Var{X_i}}$
 
 
 
 $\eg{}$
 
-First toss with results $H$ or $T$, each with probability $1/2$. Then for result $H$, get $W$ with probability $2/9$ and $B$ with probability $7/9$ and for result $T$, get $W$ with probability $5/11$ and $B$ with probability $6/11$. Now given $W$, what's the conditional probability of $H$?
+$X,Y$: $r.v.$
+
+$0 < X,Y < \infty$
+
+joint PDF: $f(x) = \dfrac{1} {y} \exp\CB{-y-\dfrac{x} {y}}$
+
+Verify and find the covariance.
+
+$\slu$ verification
+$$
+\begin{align}
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,y) \;\dd{y} \;\dd{x} &= \int_{0}^{\infty}\int_{0}^{\infty} \frac{1} {y} \exp\CB{-y-\frac{x} {y}} \;\dd{y} \;\dd{x} \\
+&= \int_{0}^{\infty} e^{-y} \int_{0}^{\infty} \frac{1} {y} \exp\CB{-\frac{x} {y}} \;\dd{x} \;\dd{y}\\
+&= \int_{0}^{\infty} e^{-y} \;\dd{y} = 1
+\end{align}
+$$
+$\slu$ covariance
+
+And for the covariance we need
+
+- $\Exp{X}$
+- $\Exp Y$
+- $\Exp{XY}$
+
+$\underline{\Exp{X}}$
+
+$\myEmphy{f_X(x) = \d{\int_{-\infty}^{\infty} f(x,y) \; \dd{y}}} \implies$
+$$
+\begin{align}
+\Exp{X} &= \int_{-\infty}^{\infty} x f_X\Pare x\;\dd x\\
+&= \myEmphy{\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} x\cdot f(x,y) \;\dd{y} \;\dd{x}} \\
+&= \int_{0}^{\infty} e^{-y} \int_{0}^{\infty} \frac{x} {y} \exp\CB{-\frac{x} {y}} \;\dd{x} \;\dd{y}
+\end{align}
+$$
+exponential $r.v.$: $\dfrac{1}{y}\exp\CB{-x\cdot\dfrac{1}{y}}$, with parameter $1/y$
+
+$\implies \d{\int_{0}^{\infty} \frac{x} {y} \exp\CB{-\frac{x} {y}} \;\dd{x}}$ is its expectation $\implies \myEmphy{\d{\int_{0}^{\infty} \frac{x} {y} \exp\CB{-\frac{x} {y}} \;\dd{x}}=y}$
+
+$\implies \Exp{X} = \d{\int_{0}^{\infty} y e^{-y} \;\dd{y} = 1}$.
+
+$\underline{\Exp{Y}}$
+
+$f_Y(y) = e^{-y} \d{\int_{0}^{\infty} \dfrac{1} {y} \exp\CB{-\dfrac{x} {y}}\;\dd{x}} = e^{-y} \implies \Exp{Y} = 1$
+
+$\underline{\Exp{XY}}$
+$$
+\begin{align}
+\Exp{XY} &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} xy \cdot f(x,y) \;\dd{y} \;\dd{x} \\
+&= \int_{0}^{\infty} y e^{-y} \int_{0}^{\infty} \frac{x} {y} \exp\CB{-\frac{x} {y}} \;\dd{x} \;\dd{y} \\
+&= \int_{0}^{\infty} y^2 e^{-y} \;\dd{y} \\
+&= \int_{0}^{\infty} -y^2 \;\dd{e^{-y}} \\
+&= \left.-y^2 e^{-y}\right|_{0}^{\infty} + \int_{0}^{\infty} 2ye^{-y} \;\dd{y} = 2\Exp{Y} = 2
+\end{align}
+$$
+$\implies \Cov{X,Y} = \Exp{XY} - \Exp{X}\Exp{Y} = 1$
+
+$\SUM$ Methods
+
+- $\d{f_Y\Pare y = \int_{-\infty}^{\infty} f\Pare{x,y} \;\dd x\implies \Exp Y = \int_{-\infty}^{\infty} y f_Y\Pare{y}\;\dd y}$
+- $\d{\Exp Y = \int_{-\infty}^{\infty} y f_Y\Pare{y}\;\dd y=\int_{-\infty}^{\infty} y \int_{-\infty}^{\infty} f\Pare{x,y} \;\dd x\;\dd y = \int_{-\infty}^{\infty} g\Pare x \int_{-\infty}^{\infty} h\Pare{x,y}\;\dd y\;\dd x}$
+
+------
+
+
+
+$\Def$ sample mean
+
+$X_1, X_2, \dots, X_n$: **independent** and **identically distributed** ($i.i.d.$)
+
+$\implies$ ***sample mean***:
+$$
+\myBox{\bar{X} = \frac{1} {n}\sum_{i=1}^{n} {X_i}}
+$$
+
+
+$\Pops$
+
+$X_1, \dots, X_n$: $i.i.d.$
+
+$\mu$: expected value
+
+$\sigma^2$: variance
+
+$\implies$
+
+- $\Exp{\bar{X}} = \mu$
+- $\Var{\bar{X}} = \dfrac{\sigma^2}{n}\\[0.5em]$
+- $\Cov{\bar{X}, X_i - \bar{X}} = 0$, $i = 1,2,\dots,n\\[0.5em]$
+
+---
+
+
+
+$\eg{}$ Variance of a **Binomial** $r.v.$
 
 $\slu$
+
+$X_i$: $n$ independent *Bernoulli* $r.v.$
+
+$\implies X = X_1 +\cdots+X_n$
+
+$\implies \Var{X} = \sum \Var{X_i}$
+
+$\myEmphy{\Var{X_i}} = \Exp{X_i^2} - \left(\Exp{X_i}\right)^2 = \myEmphy{p - p^2} \implies \Var{X} = np(1-p)$
+
+
+
+$\Def$ ***Hyper-geometric*** $r.v.$
+
+$X$: $r.v.$
+
+$N,M,n$: constant
+
+$Np=M\leq N$
 $$
-P(H\mid W) = \frac{P(HW)} {P(W)} = \frac{P(HW)} {P(W\mid H)P(H) + P(W \mid T)P(T)} = \frac{\frac{2} {9} \frac{1} {2}} {\frac{2} {9} \frac{1} {2} + \frac{5} {11}\frac{1} {2}} = \frac{22} {67}
+\myBox{P\CB{X=k} = \frac{\d{\binom{Np} {k}\binom{N-Np} {n-k}}} {\d{\binom{N} {n}}}}
+$$
+$\eg{}$ ***The Hyper-geometric*** $r.v.$
+
+$N$ individuals
+
+$p$ percent (unknown) of individuals are marked and the rest are not
+
+estimate $p$ by
+
+randomly choosing $n$ members and checking their marks
+
+$\slu$
+
+portion of marked sample as the estimator
+
+Let
+$$
+X_i = \begin{cases}
+1, &\text{if the }i\texttt{-th}\text{ person chosen is marked} \\
+0, &\text{otherwise}
+\end{cases}
+$$
+$\implies \hat p=\dfrac{1} {n}\sum_{i=1}^{n} X_i$
+
+$\implies$
+$$
+\Exp{\frac{1} {n}\sum_{i=1}^{n} X_i} = \frac{1} {n}\sum_{i=1}^{n} \Exp{X_i}  = p
 $$
 
-
-***
-
-Here's the generalized method. Suppose that $F_1, F_2, \dots, F_n$ are mutually exclusive events such that $\bigcup_{i=1}^{n}F_i = S$. In other words, exactly one of the events $F_1, F_2, \dots, F_n$ will occur. Then we write: 
-
 $$
-E = \bigcup_{i=1}^{n}EF_i
+\Var{\frac{1} {n}\sum_{i=1}^{n} X_i} = \frac{1} {n^2} \Pare{\sum_{i=1}^{n} \Var{X_i} + 2 \underset{i<j}{\sum\sum} \Cov{X_i, X_j}}
 $$
-and using the fact that events $EF_i$ for $i = 1, 2, \dots, n$ are also mutually exclusive, we obtain that:
 
+$X_i$ is a **Bernoulli** $r.v.\implies\Var{X_i} = p(1-p)$
+
+$\implies$
 $$
 \begin{align}
-P(E) &= \sum_{i=1}^{n} P(EF_i) \\
-&= \sum_{i=1}^{n} P(E \mid F_i) P(F_i)
+\Cov{X_i,X_j} &= \Exp{X_i \cdot X_j} - \Exp{X_i} \cdot \Exp{X_j} \\
+&= P\CB{X_i = 1, X_j = 1} - p^2 \\
+&= \frac{Np} {N} \cdot \frac{Np-1} {N-1} - p^2\\
+\end{align}
+$$
+$\implies$
+$$
+\begin{align}
+\Var{\frac{1} {n}\sum_{i=1}^{n} X_i} &= \frac{1} {n^2} \SB{ np(1-p) + 2\binom{n}{2} \Pare{ \frac{Np} {N} \cdot \frac{Np-1} {N-1} - p^2}} \\
+&= \frac{p(1-p)} {n} - \frac{(n-1)p(1-p)} {n(N-1)} = \frac{p(1-p)(N-n)} {n(N-1)}
 \end{align}
 $$
 
-Then we have the formula, the ***Bayes' formula***:
-$$
-\myBox{P\Pare{F_j\mid E} = \ffrac{P(EF_j)} {P(E)} = \frac{P(E \mid F_j)P(F_j)} {\sum_{i=1}^{n} P(E \mid F_i) P(F_i)}}
-$$
 
-
-## Exercises
-
-$\eg{32}$
-
-Suppose $n$ men throw their hats in the center of the room. Each men then randomly selects a hat. Show that the probability that **none** of these $n$ men selects his own hat is
+$\Rmk$
 $$
-\frac{1} {2!} - \frac{1} {3!} + \frac{1} {4!} - + \cdots \frac{(-1)^n} {n!}
+\lim_{N\to\infty}\Var{\frac{1} {n}\sum_{i=1}^{n} X_i} = \frac{p\Pare{1-p}}{n}
 $$
-$\pf$
+Since
 
-Let $E_i$ denote the event that person $i$ selects his own hat, then we have the final probability equals to
+$N\uparrow \implies X_i \asim$ ***Bernoulli*** $r.v.$, $i.i.d.\implies \sum X_i\asim$ ***binomial*** $r.v.$ with parameter $n$ and $p$
 
-$$
-\begin{align}
-P &= 1 - P(E_1 \cup E_2 \cup \cdots \cup E_n) \\
-&= 1 - \left[ \sum_{i} P(E_{i}) - \sum_{i < j}P(E_iE_j) + \cdots + (-1)^{n+1}P(E_1E_2\cdots E_n) \right] \\
-\end{align}
-$$
-After applying the formula before, the question facing now is what is $P(E_{i_1}\cdots E_{i_{h}})$. Here's how we calculate them
+$\Rmk$ Bring ***Hyper-geometric*** $r.v.$ out
 
-$$
-\begin{align}
-\sum_{i_1 < \cdots < i_h} P(E_{i_1}\cdots E_{i_{h}}) &= \sum_{i_1 < \cdots < i_h} \frac{(n-h)!} {n!} \\
-&= \binom{n} {h} \frac{(n-h)!} {n!} \\
-&= \frac{1} {h!}
-\end{align}
-$$
-The following steps are obvious
+Totally $N$ identities
 
-$\pf$ number series
+$p$ percent with a feature and the rest not
 
-We denote the probability for $n$ men as $P_n$, and it's easy to find that
+select $n$ identities from all $N$ 
 
-$$
-\begin{align}
-P_n &= &\frac{n-1} {n} \frac{1} {n-1} P_{n-2} \\
-&& +\frac{n-1} {n} \frac{n-2} {n-1} \frac{1} {n-2} P_{n-3}\\
-&& \cdots \\
-&& + \frac{n-1} {n} \cdots \frac{1} {2} P_{1}\\
-&= \frac{1} {n} \sum_{i=1}^{n-2}P_i
-\end{align}
-$$
-
-$$
-\begin{align}
-nP_n &= P_1 + P_2 + \cdots + P_{n-2} \\
-nP_n &= (n-1)P_{n-1} + P_{n-2} \\
-n(P_n - P_{n-1}) &= -(P_{n-1} - P_{n-2})
-\end{align}
-$$
-
+$X$: the number of identities with that feature
