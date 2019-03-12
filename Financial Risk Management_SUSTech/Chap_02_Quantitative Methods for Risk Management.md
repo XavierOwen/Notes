@@ -212,7 +212,15 @@ due to human and technical errors or accidents
 
 due to transaction proved unenforceable in law
 
-Legal risk is generally related to credit risk.
+Legal risk is generally related to credit risk
+
+
+
+### Business risk
+
+risk arising from strategic decisions or reputational risk
+
+Regulatory capital is not required for business risk under Basel II.
 
 
 
@@ -340,7 +348,7 @@ $\QED$
 
 
 
-$\Def$ Risk contribution
+$\Def$ <span id = "Risk-contribution">Risk contribution<span>
 
 $i$: risky asset
 
@@ -391,9 +399,9 @@ $$
 
 $\Def$ Kurtosis
 
-the degree of ﬂatness of a distribution
+the degree of flatness of a distribution
 $$
-\kappa = \frac{\Exp{\Pare{x-\Exp{X}}^4}}{\sigma^4} = \frac{\int_{-\infty}^\infty{\Pare{x-\Exp{X}}^4}f\Pare{x}\,\dd x}{\sigma^4}
+\kappa = \frac{\Exp{\Pare{x-\Exp{X}}^4}}{\sigma^4} = \frac{\d{\int_{-\infty}^\infty{\Pare{x-\Exp{X}}^4}f\Pare{x}\,\dd x}}{\sigma^4}
 $$
 
 - normal distribution: $\kappa=3$
@@ -525,6 +533,15 @@ $\Rmk$ As for the default risk
   - lower loss than expected
   - huge loss infrequently
 
+$\Rmk$ Distribution for loss density function
+
+|                         market risk                          |                         credit risk                          |                       operational risk                       |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1552146672007.png" width=200> | <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1552146698528.png" width=200> | <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1552146702661.png" width=200> |
+|                       $t$-distribution                       |                            skewed                            |                        extreme shape                         |
+
+<img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1552146879860.png" width=400>
+
 
 
 ## VaR, expected shortfall and coherent risk measure
@@ -554,7 +571,7 @@ $$
 \myBox{
 \begin{align}
 \VaR_X\Pare{\tilde L} &= \inf\CB{I\in\RR,P\Pare{\tilde L>I}\leq 1-X}\\
-&= \inf\CB{I\in\RR,P\Pare{\tilde L\leq I}\geq 1-X}\\
+&= \inf\CB{I\in\RR,P\Pare{\tilde L\leq I}\geq X}\\
 \implies P\Pare{\tilde L \leq \VaR_X\Pare{\tilde L}}&=X
 \end{align}}
 $$
@@ -653,7 +670,7 @@ $$
 &= \int_{-\infty}^{\infty} L\;\dd \Pare{\frac{P\Pare{\CB{\tilde L < L}\cap \CB{\tilde L\geq\VaR_\alpha\Pare{\tilde L}}}}{P\Pare{\tilde L\geq\VaR_\alpha\Pare{\tilde L}}}} \\
 &= \frac{\d{\int_{-\infty}^{\infty}L f_{\tilde L}\Pare{L} \idctV_{L\geq \VaR_\alpha\Pare{\tilde L}} \;\dd L}}{P\Pare{\tilde L\geq\VaR_\alpha\Pare{\tilde L}}}= \frac{\d{\int_{-\infty}^{\infty}L\times f\Pare{L}\idctV_{L\geq \VaR_\alpha\Pare{\tilde L}}\;\dd L}}{\d{\int_{-\infty}^{\infty} f\Pare{L}\idctV_{L\geq \VaR_\alpha\Pare{\tilde L}}\;\dd L}}\\
 &= \frac{\d{\int_{\VaR_\alpha\Pare{\tilde L}}^{\infty}L\times f\Pare{L}\;\dd L}}{\d{\int_{\VaR_\alpha\Pare{\tilde L}}^{\infty} f\Pare{L}\;\dd L}}\\
-&= \frac{\d{\int_{\VaR_\alpha\Pare{\tilde L}}^\infty  L\times f\Pare{L}\;\dd  L}}{1-\alpha}
+&= \myBox{\frac{\d{\int_{\VaR_\alpha\Pare{\tilde L}}^\infty  L\times f\Pare{L}\;\dd  L}}{1-\alpha} = \text{TCE}_\alpha\Pare{\tilde L}}
 \end{align}
 $$
 
@@ -802,22 +819,22 @@ $\alpha$: $99\%$
 
 $501$ historical data
 
-**Step 1**: collect the data, shown in the picture
+**Step**$\;\;$**1**: collect the data, shown in the picture
 
 <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551086094532.png" width=400>
 
-**Step 2**: calculate $500$ possible scenarios, the percentage changes of $n$ variables between day $i$ and $i+1$, $i=0,1,\dots,500$
+**Step**$\;\;$**2**: calculate $500$ possible scenarios, the percentage changes of $n$ variables between day $i$ and $i+1$, $i=0,1,\dots,500$
 
-**Step 3**: calculate the possible portfolio value for each scenario, and the possible changes in portfolio value
+**Step**$\;\;$**3**: calculate the possible portfolio value for each scenario, and the possible changes in portfolio value
 
 <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551086952321.png" width=400>
 
-**Step 4**: estimate the percentile points using the changes in value (data in last column)
+**Step**$\;\;$**4**: estimate the percentile points using the changes in value (data in last column)
 
 for example:
 
-- the $1$-percentile point of the distribution of changes in the portfolio value: the fifth-smallest number
-- the $99$-percentile point of the distribution of loss: the negative of the fifth-smallest number
+- the $1$-percentile point of the distribution of *changes* in the portfolio value: the fifth-smallest number
+- the $99$-percentile point of the distribution of *loss*: the negative of the fifth-smallest number
 - $\myEmphy{\text{N-day }\VaR = \text{1-day }\VaR\times\sqrt{N}}$
 - or even the empirical loss distribution function
 
@@ -838,20 +855,403 @@ $$
 \myBox{q_\alpha=\alpha\text{-quantile of }\tilde L=\inf\CB{q>0\mid P\Pare{\tilde L \leq q}\geq \alpha}}
 $$
 
-
-
+$\Rmk$ difference of two
+$$
+\begin{align}
+q_\alpha&=\alpha\text{-quantile of }\tilde L=\inf\CB{q>0\mid P\Pare{\tilde L \leq q}\geq \alpha}\\[0.6em]
+\VaR_\alpha\Pare{\tilde L} &= \inf\CB{L\in\RR,P\Pare{\tilde L\leq L}\geq\alpha}
+\end{align}
+$$
 
 
 
 $\Def$
 
-**Economic capital** (**risk capital**) is the amount of capital a ﬁnancial institution needs to absorb losses over a certain time horizon (usually one year) with a certain conﬁdence level
+**Economic capital** (**risk capital**) is the amount of capital a ﬁnancial institution needs to absorb losses over a certain time horizon (usually one year) with a certain conﬁdence level.
 
-corporation rate $\uparrow\implies$ confidence level $\uparrow\implies$ $\VaR\uparrow\implies$
+Since it's designed to cover the difference between the actual and the expected loss
 $$
-\text{EC}\uparrow=\text{economic capital}=\VaR-\text{EL}
+\text{EC}_\alpha=\text{economic capital}=q_\alpha-\text{EL}
 $$
 <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551088127491.png" width=400>
 
+$\Rmk$
+
+Suppose $\alpha=99.98\%$
+
+$\implies \text{EC}_\alpha$ will be sufficient to cover unexpected losses in $9998$ out of $10000$ years, assuming a planning horizon of one year
+
+corporation rate $\uparrow\implies$ confidence level $\uparrow\implies$ $\VaR, q_\alpha\uparrow\implies\text{EC}\uparrow$
 
 
+
+### Aggregating economic capital
+
+IF perfect correlation between risks
+$$
+\text{EC}_{\text{total}} = \sum\text{EC}_i
+$$
+Generally it's hybrid like this
+$$
+\myBox{\text{EC}_{\text{total}} = \sqrt{\sum_{i=1}^n\sum_{j=1}^n \text{EC}_i\text{EC}_j \rho_{ij}  }}
+$$
+
+- exact, IF normally distributed
+- approximation, IF not all normally distributed
+
+
+
+$\eg{}$ <span id='findEC_Total'>Find</span> $\text{EC}_\text{total}$
+
+Given estimates for economic capital
+$$
+\begin{array}{ccc} \hline
+\text{Type of risk} & \text{Business unit 1} & \text{Business unit 2}\\\hline
+\text{Market risk} & 30 & 40 \\
+\text{Credit risk} & 70 & 80 \\
+\text{Operational risk} & 30 & 90\\\hline
+\end{array}
+$$
+Given their correlation
+$$
+\begin{array}{ccc} \hline
+ & \text{MR-1}& \text{CR-1} & \text{OR-1} & \text{MR-2} & \text{CR-2} & \text{OR-2} \\\hline
+\text{MR-1} & 1.0 & 0.5 & 0.2 & 0.4 & 0.0 & 0.0\\
+\text{CR-1} & 0.5 & 1.0 & 0.2 & 0.0 & 0.6 & 0.0\\
+\text{OR-1} & 0.2 & 0.2 & 1.0 & 0.0 & 0.0 & 0.0\\
+\text{MR-2} & 0.4 & 0.0 & 0.0 & 1.0 & 0.5 & 0.2\\
+\text{CR-2} & 0.0 & 0.6 & 0.0 & 0.5 & 1.0 & 0.2\\
+\text{OR-2} & 0.0 & 0.0 & 0.0 & 0.2 & 0.2 & 1.0\\
+\hline
+\end{array}
+$$
+$\slu$
+
+- Market risk: ${\text{EC}_\text{total} = \sqrt{30^2+40^2+2\times0.4\times30\times40}=58.8}$
+- Credit risk: ${\text{EC}_\text{total} = \sqrt{70^2+80^2+2\times0.6\times70\times80}=134.2}$
+- Operational risk: ${\text{EC}_\text{total} = \sqrt{30^2+90^2}=94.9}$
+- Unit $1$: ${\text{EC}_\text{total} = \sqrt{30^2+70^2+30^2+2\times0.5\times30\times70+2\times0.2\times30\times30+2\times0.2\times70\times30}=100.0}$
+- Unit $2$: ${\text{EC}_\text{total} = \sqrt{40^2+80^2+90^2+2\times0.5\times40\times80+2\times0.2\times40\times90+2\times0.2\times80\times90}=153.7}$
+
+$$
+\text{EC}_\text{total}=\sqrt{\begin{align}
+&30^2+40^2+70^2+80^2+30^2+90^2\\
++\; &2\times0.5\times30\times70 + 2\times0.2\times30\times30\\
++\; &2\times0.4\times30\times40 + 2\times0.2\times70\times30\\
++\; &2\times0.6\times70\times80 + 2\times0.5\times40\times80\\
++\; &2\times0.2\times40\times90 + 2\times0.2\times80\times90
+\end{align}} = 203.224
+$$
+
+$\Rmk$
+
+Clearly,
+$$
+58.8+134.2+94.9=287.9>100.0+153.7=253.7>203.224
+$$
+
+
+
+### Risk-adjusted return on capital
+
+$\Def$ RAROC and RAPM
+
+Risk-adjusted return on capital (RAROC):
+$$
+\myBox{\text{RAROC} = \frac{\text{Revenues}-\text{Costs}-\text{EL}}{\text{EC}}}
+$$
+this is one of the Risk-adjusted performance measurement (RAPM).
+
+$\eg{}$
+
+a loan,
+
+its losses: $1\%$ of outstanding loans per year on average
+
+$99.9\%$ worst-case loss: $5\%$ of outstanding loans
+
+spread between the cost of funds and the interest charged: $2.5\%$
+
+administrative cost: $0.7\%$
+
+$\slu$
+
+Suppose there's $\$100$ of loan
+$$
+\text{EC} = q_{99.9\%}-\text{EL}=5\%\cdot M-1\%\cdot M = \$4\\
+\text{RAROC} = \frac{2.5\%\cdot M-0.7\%\cdot M-1\%\cdot M}{\$4}=\frac{0.8}{4}=20\%\\
+$$
+$\Rmk$
+
+An alternative approach:
+$$
+\text{RAROC}  = \frac{\text{Revenues}-\text{Costs}-\text{EL}}{\text{EC}}+r_f
+$$
+IF risk free interest rate: $2\%$
+$$
+\text{RAROC}^* =20\%+2\%=22\%
+$$
+
+
+### Impact of autocorrelation on Value-at-Risk
+
+Recall: $\myEmphy{\text{N-day VaR}=\text{1-day VaR}\times \sqrt N}$
+
+This will fail when autocorrelation exists.
+
+$\Zrm$ Autocorrelation model for changes of portfolio value
+
+$i$: date
+
+$V_i$: value of portfolio
+
+$\sigma^2$: $\Var{\Delta V_i}$, $\forall\; i$
+
+Suppose: **first order autocorrelation**
+$$
+\myBox{\Delta V_i = \rho \Delta V_{i-1}+a_i}
+$$
+for all $i$, and here $a_i$ satisfy:
+
+- $\Exp{a_i}=0$, zero mean
+- $\Var{a_i}=\tilde\sigma^2$, constant variance
+- $\Cov{a_i,a_{i-k}}=0$, $\forall \; k\neq 0$
+
+$\implies$
+$$
+\myBox{\Var{\sum_{i=1}^N \Delta V_i} = \sigma^2\SB{N+2\Pare{N-1}\rho+2\Pare{N-2}\rho^2+\cdots+2\rho^{N-1}}}
+$$
+
+$$
+\implies\myBox{\text{N-day VaR}=\text{1-day VaR}\times \sqrt{N+2\Pare{N-1}\rho+2\Pare{N-2}\rho^2+\cdots+2\rho^{N-1}}   }
+$$
+
+$\pf$
+
+$\QQQ \Cov{a_i,\Delta V_k}=0$, $\forall \; k<i$ 
+$$
+\begin{align}
+\Cov{\Delta V_i,\Delta V_{i-k}} &= \rho\,\Cov{\Delta V_{i-1},\Delta V_{i-k}} + \Cov{a_i,\Delta V_{i-k}}\\
+&= \rho^2 \,\Cov{\Delta V_{i-2},\Delta V_{i-k}}\\
+&= \rho^k\,\Cov{\Delta V_{i-k},\Delta V_{i-k}}=\rho^k\sigma^2
+\end{align}
+$$
+
+$$
+\begin{align}
+\Var{\sum_{i=1}^N \Delta V_i} &= \sum_{i=1}^N\sum_{j=1}^N \Cov{\Delta V_i,\Delta V_j}\\
+&= \begin{array}{cccccccccc}
+&\sigma^2&+&\rho\sigma^2&+&\rho^2\sigma^2&+&\cdots&+&\rho^{N-2}\sigma^2&+&\rho^{N-1}\sigma^2 \\
++&\rho\sigma^2&+&\sigma^2&+&\rho\sigma^2&+&\cdots&+&\rho^{N-3}\sigma^2&+&\rho^{N-2}\sigma^2\\
++&\rho^2\sigma^2&+&\rho\sigma^2&+&\sigma^2&+&\cdots&+&\rho^{N-4}\sigma^2&+&\rho^{N-3}\sigma^2\\
+&\vdots&&\vdots&&\vdots&&&&\vdots&&\vdots&&\\
++&\rho^{N-1}\sigma^2&+&\rho^{N-2}\sigma^2&+&\rho^{N-3}\sigma^2&+&\cdots&+&\rho\sigma^2&+&\sigma^2
+\end{array}\\[0.8em]
+&= \sigma^2\SB{N+2\Pare{N-1}\rho+2\Pare{N-2}\rho^2+\cdots+2\rho^{N-1}}
+\end{align}
+$$
+
+$\QED$
+
+
+
+### Marginal, incremental and component Value-at-Risk
+
+Recall: [Risk contribution](#Risk-contribution): $\d{\myEmphy{\text{RC}_i = \text{UL}_i \frac{\partial \text{UL}_p}{\partial\text{UL}_i}} \implies\myEmphy{\text{UL}_p = \sum_i \text{RC}_i}}$
+
+$\Def$ Marginal $\VaR$, Incremental $\VaR$, Component $\VaR$
+
+portfolio with components
+
+$i\texttt{-th}$ component
+
+$x_i$: investment in $i\texttt{-th}$ component
+
+<u>marginal</u>
+
+the sensitivity of $\VaR $ to the amount invested in the $i\texttt{-th}$ component.
+
+$\implies$
+$$
+\myBox{\text{marginal VaR} = \frac{\partial\VaR}{\partial x_i}}
+$$
+
+<u>incremental</u>
+
+> What is the difference between $\VaR$ with and without the trade?
+
+could be
+
+- the incremental effect on $\VaR$ of a new trade
+- the incremental effect on $\VaR$ of closing out an existing trade
+
+$\implies$
+$$
+\myBox{\text{incremental VaR} =\VaR\Pare{x_i=\epsilon}-\VaR\Pare{x_i=0} \approx \frac{\partial\VaR}{\partial x_i}x_i} = C_i
+$$
+
+<u>component</u>
+
+the part of $\VaR$ that can be attributed to this component
+
+$\implies$
+
+$$
+\myBox{\text{component VaR} = \frac{\partial\VaR}{\partial x_i}x_i=C_i}
+$$
+
+
+$\Def$ linear homogeneity
+
+$V$: risk measure
+
+$x_i$: investment in $i\texttt{-th}$ component
+
+IF $x_i$ is changed to $\lambda x_i$, $\forall\; i$
+
+then $V$ changes to $\lambda V$
+
+$\implies$ $V$ satisfies the linear homogeneity condition
+
+$\Def$ homogenous function of degree one
+
+$x_1,\dots,x_n$: variables
+
+$f\Pare{x_1,\dots,x_n}$: continuous and differentiable function
+
+IF $\forall \; c$, constant,
+
+then $f\Pare{c\cdot x_1,\dots,c\cdot x_n} =c\cdot f\Pare{x_1,\dots,x_n}$
+
+$\implies$ $f$ is homogenous function of degree one
+
+$\Zrm$ Euler's theorem
+
+$x_1,\dots,x_n$: variables
+
+$f\Pare{x_1,\dots,x_n} = f\Pare{\mathbf x}$: differentiable and homogenous of degree one function
+
+$\implies$
+$$
+\myEmphy{f\Pare{\mathbf x}=x_1\cdot\frac{\partial f\Pare{\mathbf x}}{\partial x_1}+x_2\cdot\frac{\partial f\Pare{\mathbf x}}{\partial x_2}+\cdots+x_n\cdot\frac{\partial f\Pare{\mathbf x}}{\partial x_2}= \Tran{\mathbf x}\frac{\partial f\Pare{\mathbf x}}{\partial \mathbf x} }
+$$
+$\pf$
+
+$\QED$
+
+$\Corlr$
+
+Euler's theorem$\implies$
+$$
+\myBox{\VaR = \sum_i\frac{\partial\VaR}{\partial x_i}x_i=\sum_i C_i }
+$$
+$\pf$
+
+2333
+
+$\QED$
+
+$\Rmk$
+
+$C_i$ can also be regarded as the *expected loss* on the $i\texttt{-th}$ position, conditional on the loss of the portfolio equaling the $\VaR$ level
+$$
+\QQQ\myBox{C_i = \Exp{\tilde L_i\mid \tilde L = \VaR}}
+$$
+
+
+$\Rmk$
+
+Here we can similarly obtain
+$$
+\myBox{\text{EC} = \sum_i \frac{\partial\text{EC}}{\partial x_i}x_i}
+$$
+
+### Allocation of the diversification benefit
+
+$i\texttt{-th}$ business unit
+
+$x_i$: investment
+
+$\implies$ allocate $\dfrac{\partial\text{EC}}{\partial x_i}x_i$ to the $i\texttt{-th}$ business unit
+
+$\implies$ approximation
+$$
+\myBox{\dfrac{\partial\text{EC}}{\partial x_i}x_i\approx \frac{\Delta\text{EC}}{\Delta y_i }}\BBspace y_i=\frac{\Delta x_i}{x_i}
+$$
+$\eg{}$
+
+see [previous](#findEC_Total)
+
+$\text{EC}_{\text{total}}=203.2$, $\text{EC}_1=100$, $\text{EC}_2=153.7$
+
+now allocate
+
+$\slu$
+
+<u>naive</u>
+$$
+\begin{array}{ccc}\hline
+\text{Unit}&\text{Business unit 1} & \text{Business unit 2}\\\hline
+\text{Portion} & \dfrac{100}{100+153.7} & \dfrac{153.7}{100+153.7} \\
+\text{Investment} & 80.1 & 123.1\\ \hline
+\end{array}
+$$
+<u>incremental effect approach</u>
+$$
+\begin{array}{ccc}\hline
+\text{Unit}&\text{Business unit 1} & \text{Business unit 2}\\\hline
+\text{Incremental effect}& 203.2-153.7 & 203.2 − 100\\
+\text{Portion} & \dfrac{49.5}{49.5+103.2} & \dfrac{103.2}{49.5+103.2} \\
+\text{Investment} & 65.9 & 137.3\\ \hline
+\end{array}
+$$
+$\myEmphy{\dfrac{\Delta\text{EC}}{\Delta y_i }}$
+
+let
+
+$\Delta y_i=1\%$
+$$
+\begin{array}{ccc} \hline
+\text{Type of risk} & \text{Business unit 1}\Pare{+1\%} & \text{Business unit 2}\Pare{+1\%}\\\hline
+\text{Market risk} & 30.3 & 40.4 \\
+\text{Credit risk} & 70.7 & 80.8 \\
+\text{Operational risk} & 30.3 & 90.9\\\hline
+\end{array}
+$$
+
+$$
+\text{EC}_\text{total,unit 1+}=\sqrt{\begin{align}
+&30.3^2+40^2+70.7^2+80^2+30.3^2+90^2\\
++\; &2\times0.5\times30.3\times70.7 + 2\times0.2\times30.3\times30.3\\
++\; &2\times0.4\times30.3\times40 + 2\times0.2\times70.7\times30.3\\
++\; &2\times0.6\times70.7\times80 + 2\times0.5\times40\times80\\
++\; &2\times0.2\times40\times90 + 2\times0.2\times80\times90
+\end{align}} = 203.906351
+$$
+
+$$
+\text{EC}_\text{total,unit 2+}=\sqrt{\begin{align}
+&30^2+40.4^2+70^2+80.8^2+30^2+90.9^2\\
++\; &2\times0.5\times30\times70 + 2\times0.2\times30\times30\\
++\; &2\times0.4\times30\times40.4 + 2\times0.2\times70\times30\\
++\; &2\times0.6\times70\times80.8 + 2\times0.5\times40.4\times80.8\\
++\; &2\times0.2\times40.4\times90.9 + 2\times0.2\times80.8\times90.9
+\end{align}} = 204.576543
+$$
+
+$$
+\begin{array}{ccc}\hline
+\text{Unit}&\text{Business unit 1} & \text{Business unit 2}\\\hline
+\text{Incremental}& 1\% & 1\%\\
+{\Delta\text{EC}} & 0.682 & 1.353 \\
+\text{Investment} & 68.2 & 135.3\\ \hline
+\end{array}
+$$
+
+$\Rmk$
+
+Other allocation schemes exist.
+
+The best are those that reflect the **incremental impact** of the business unit on the **total economic capital**.
+
+The amount of capital allocated to a business unit is generally *less than* the capital estimated for the business unit as a stand-alone entity because of diversification benefits.
