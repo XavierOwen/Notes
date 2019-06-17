@@ -537,10 +537,10 @@ $\Rmk$ Distribution for loss density function
 
 |                         market risk                          |                         credit risk                          |                       operational risk                       |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1552146672007.png" width=200> | <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1552146698528.png" width=200> | <img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1552146702661.png" width=200> |
+| <img src="D:\Notes\FinMath\Financial Risk Management_SUSTech\assets\1552146672007.png" width=200> | <img src="D:\Notes\FinMath\Financial Risk Management_SUSTech\assets\1552146698528.png" width=200> | <img src="D:\Notes\FinMath\Financial Risk Management_SUSTech\assets\1552146702661.png" width=200> |
 |                       $t$-distribution                       |                            skewed                            |                        extreme shape                         |
 
-<img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1552146879860.png" width=400>
+<img src="D:\Notes\FinMath\Financial Risk Management_SUSTech\assets\1552146879860.png" width=400>
 
 
 
@@ -692,7 +692,7 @@ $\slu$
 
 <u>single loan</u>
 
-<img src="../../../Department%20of%20Mathematics/Notes/Financial%20Risk%20Management_SUSTech/assets/1550790411319.png">
+<img src="D:\Notes\FinMath/Financial Risk Management_SUSTech/assets/1550790411319.png">
 
 clearly, one year, $99\%\ \VaR$ is $\$2$ million $\implies$
 $$
@@ -821,13 +821,13 @@ $501$ historical data
 
 **Step**$\;\;$**1**: collect the data, shown in the picture
 
-<img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551086094532.png" width=400>
+<img src="D:\Notes\FinMath\Financial Risk Management_SUSTech\assets\1551086094532.png" width=400>
 
 **Step**$\;\;$**2**: calculate $500$ possible scenarios, the percentage changes of $n$ variables between day $i$ and $i+1$, $i=0,1,\dots,500$
 
 **Step**$\;\;$**3**: calculate the possible portfolio value for each scenario, and the possible changes in portfolio value
 
-<img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551086952321.png" width=400>
+<img src="D:\Notes\FinMath\Financial Risk Management_SUSTech\assets\1551086952321.png" width=400>
 
 **Step**$\;\;$**4**: estimate the percentile points using the changes in value (data in last column)
 
@@ -873,7 +873,7 @@ Since it's designed to cover the difference between the actual and the expected 
 $$
 \text{EC}_\alpha=\text{economic capital}=q_\alpha-\text{EL}
 $$
-<img src="D:\Department of Mathematics\Notes\Financial Risk Management_SUSTech\assets\1551088127491.png" width=400>
+<img src="D:\Notes\FinMath\Financial Risk Management_SUSTech\assets\1551088127491.png" width=400>
 
 $\Rmk$
 
