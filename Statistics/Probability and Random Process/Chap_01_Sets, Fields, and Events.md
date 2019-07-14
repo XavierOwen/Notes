@@ -154,7 +154,7 @@ $\Def$
 
 $\Ppt$ Cardinality of Unions and Intersections
 
-**inclusion-exclusion principle** 
+*mathematical induction* $\implies $ **inclusion-exclusion principle** 
 $$
 \begin{align}
 \abs{A\cup B}&=\abs{A}+\abs B-\abs{A\cap B}\\
@@ -163,7 +163,7 @@ $$
 &\bbspace - \Pare{\pm1}^n \sum_{\begin{array}{c}i,j,k,\dots,n=1\\i\neq j\neq k\neq\cdots\neq n\end{array}} \abs{A_i\cap A_j \cap A_k\cap\cdots\cap A_n}
 \end{align}
 $$
-Given sets $\CB{A_i}$ are mutually exclusive,
+here the last term is $\Pare{\pm1}^n\abs{A_1\cap A_2\cap\cdots\cap A_n}$. Given sets $\CB{A_i}$ are mutually exclusive,
 $$
 \forall i\neq j, A_i\cap A_j =\emptyset \implies \abs{\bigcup_{i=1}^n A_i} = \sum_{i=1}^n \abs{A_i}
 $$

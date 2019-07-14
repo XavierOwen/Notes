@@ -107,7 +107,7 @@ $$
 
 ## Probability Space
 
-$\Def$ **Probability Space**
+$\Def$
 
 sample space: $S$
 
@@ -115,7 +115,7 @@ field of subsets of $S$: $\FsF$
 
 probability measure $P$
 
-$\implies$ probability space: triplet $\CB{S,\FsF,P}$
+$\implies$ **probability space**: triplet $\CB{S,\FsF,P}$
 
 **Sample space**
 
@@ -173,6 +173,265 @@ P\Pare{B} &= P\Pare{\Pare{A\cap B}\cup \Pare{\bar A\cap B}}\\
 \implies &\myEmphy{ P\Pare{A\cup B}=P\Pare{A}+P\Pare{B}-P\Pare{A\cap B}}
 \end{align}
 $$
+*mathematical induction* $\implies$
+$$
+\begin{align}
+P\Pare{\bigcup\nolimits_{i=1}^n A_i} &= \sum_{i=1}^n P\Pare{A_i}-\sum_{\begin{array}{c}i,j=1\\i\neq j\end{array}}^n P\Pare{A_i\cap A_j}\\
+&\Bspace+\sum_{\begin{array}{c}i,j,k=1\\i\neq j\neq k\end{array}}^n P\Pare{A_i\cap A_j\cap A_k}-\cdots\\
+&\Bspace-\Pare{\pm 1}^n \sum_{\begin{array}{c}i,j,k,\dots,n=1\\i\neq j\neq k\neq\cdots\neq n\end{array}} P\Pare{A_i\cap A_j \cap A_k\cap\cdots\cap A_n}
+\end{align}
+$$
+here the last term is just $\Pare{\pm1}^nP\Pare{A_1\cap A_2\cap\cdots\cap A_n}$
+
+
+
+## Conditional Probability
+
+$\Def$
+
+event $B$, conditioned on the occurrence of another event $A$
+$$
+\myBox{\left.\begin{align}
+P\Pare{B\mid A}& = \frac{P\Pare{B\cap A}}{P\Pare{A}}\\
+P\Pare{B\cap A} &= P\Pare{B\mid A}\cdot P\Pare{A}
+\end{align}\right\}}\myEmphy{ \text{ if } P\Pare A \neq 0}
+$$
+this can also be interpreted as:
+
+the probability of the event $B$ in the reduced sample space $S_1=A$
+
+$\eg{2.2.1}$
+
+tossing a die
+
+FIND the probability that $3$ has occurred conditioned on the toss being odd
+
+$\slu$
+
+$A=\CB{\text{odd number}}=\CB{1,3,5}$, $B=\CB{3}$
+$$
+P\Pare{\CB{3}\mid\CB{\text{odd number}}} = \frac{P\Pare{B\cap A}}{P\Pare A} = \frac{1/6}{1/2}=1/3
+$$
+Now, $S_1=A=\CB{1,3,5}\implies$
+$$
+P\Pare{\CB{3}\mid\CB{\text{odd number}}}=1/3
+$$
+$\eg{2.2.3}$
+
+rolling two dice
+
+wins on the first roll if it's a $7$ or $11$
+
+loses if it's a $2$, $3$ or $12$
+
+for the others, that number becomes a point and the game continues. Till another occurrence of that point, he wins or a $7$ he loses
+
+FIND the probability of winning
+
+$\slu$
+
+- *Using conditional probability*
+
+win in first roll: $P\Pare{\CB{7}}+P\Pare{\CB{11}}=8/36$
+
+loss in first roll: $P\Pare{\CB{2}}+P\Pare{\CB{3}}+P\Pare{\CB{12}}=4/36$
+
+point: $i$,
+
+SUPPOSE point $i$ happens with probability $p$, $i.e.$, $P\Pare{\CB{i}}=p$
+
+not winning after the first roll: $\bar w=P\Pare{\CB{\text{not $i$ and not $7$}}}=1-p-1/6\implies$
+$$
+\begin{align}
+&P\CB{\text{win}\mid i\text{ in first roll}} = p+\bar w p+\bar w^2 p+\cdots = \frac{p}{1-\bar w}=\frac{p}{p+1/6}\\
+\implies &P\CB{\text{win in second or subsequent row}} = p\times\frac{p}{p+1/6}=\frac{p^2}{p+1/6}
+\end{align}
+$$
+thus we have
+$$
+P\CB{\text{win after point 4 or 10}}=2\times\left.\Pare{\frac{3}{36}}^2\right/\Pare{\frac{3}{36}+\frac{1}{6}}=\frac{1}{18}\\
+P\CB{\text{win after point 5 or 9}}=2\times\left.\Pare{\frac{4}{36}}^2\right/\Pare{\frac{4}{36}+\frac{1}{6}}=\frac{4}{45}\\
+P\CB{\text{win after point 6 or 8}}=2\times\left.\Pare{\frac{5}{36}}^2\right/\Pare{\frac{5}{36}+\frac{1}{6}}=\frac{25}{198}CB
+$$
+so the total winning probability 
+$$
+P\CB{\text{win}}=8/36+1/18+4/45+25/198=244/495
+$$
+
+- *Using reduced sample space*
+
+SUPPOSE point $i$ in first roll
+$$
+\begin{array}{ccc}\hline
+\text{point }i& \text{number of possible winning combination} & \text{number of terminate combination}\\\hline
+4 & \abs{\CB{\Pare{1,3},\Pare{2,2},\Pare{3,1}}}=3 &3+\abs{\CB{\Pare{1,6},\Pare{2,4},\dots,\Pare{6,1}}}=9\\
+5 & 4 & 10\\
+6 & 5 & 11\\
+8 & \abs{\CB{\Pare{2,6},\Pare{3,5},\dots,\Pare{6,2}}}=5 & 11\\
+9 & 4 &10\\
+10 & 3 & 9\\\hline
+\end{array}
+$$
+$\implies P\CB{\text{win after first roll}}=2\times\Pare{\dfrac{3}{36}\cdot\dfrac{3}{9}+\dfrac{4}{36}\cdot\dfrac{4}{10}+\dfrac{5}{36}\cdot\dfrac{5}{11}}=\dfrac{134}{495}$
+
+$\implies P\CB{\text{win}}=8/36+134/495=244/495$
+
+
+
+## Independence
+
+$\Def$ 
+
+for two events $A,B$
+
+- **functional independence**: if the occurrence of $B$ does not in any way influence the occurrence of $A$, and vice versa.
+- **statistical independence**: if $A,B\in\FsF$, $\myEmphy{P\Pare{A\cap B}=P\Pare{A}P\Pare B}\iff A,B$ are (statistically) independent
+
+For more events, say $A_1,A_2,A_3$, they're independent if
+$$
+\begin{cases}
+\myEmphy{P\Pare{A_1\cap A_2\cap A_3}=P\Pare{A_1}P\Pare{A_2}P\Pare{A_3}}\\
+\myEmphy{P\Pare{A_i\cap A_j}=P\Pare{A_i}P\Pare{A_j}, i\neq j, i,j=1,2,3},&\myEmphy{\text{pairwise independence}}\end{cases}
+$$
+
+
+$\Rmk$
+
+If $A,B$ are mutually exclusive
+
+$\implies P\Pare{A\cup B}=P\Pare A+P\Pare B\implies P\Pare{A\cap B}=0$
+
+If $A,B$ are independent
+
+$\implies P\Pare{A\cap B}=P\Pare A\cdot P\Pare B = 0 \implies$ one being null event
+
+
+
+$\eg{2.3.2}$ 
+
+two dice, red and blue
+
+$A$: red being odd; $B$: sum being $9$
+
+clearly $A,B$ are functionally dependent
+
+FIND if they are statistically dependent
+
+and how about $A$ and $C$: sum being $8$
+
+$\slu$
+
+$P\Pare{A\cap B} = P\CB{\Pare{3,6},\Pare{5,4}}=1/18$
+
+$P\Pare A\times P\Pare B = 1/2 \times 1/9 = 1/18 = P\Pare{A\cap B}$
+
+$\implies A$ and $B$ are functionally dependent, and statistically independent
+
+$\implies P\Pare{B\mid A}= P\Pare{B\cap A}/P\Pare A=P\Pare B,P\Pare{A\mid B}=P\Pare{A\cap B}/P\Pare B=P\Pare A$
+
+$P\Pare{A\cap C} = P\CB{\Pare{3,5},\Pare{5,3}}=1/18$
+
+$P\Pare A\times P\Pare C = 1/2 \times 5/36 = 5/72 \neq P\Pare{A\cap C}$
+
+$\implies A$ and $C$ are functionally and statistically dependent
+
+
+
+## Total Probability and Bayes Theorem
+
+$\Def$ **Total Probability**
+
+$S$: sample space
+
+$\CB{A_1,A_2,\dots,A_n}$: a partition of $S$
+
+$B$: arbitrary event
+
+$\implies$
+$$
+\begin{align}
+B &= B\cap S = B\cap\Pare{A_1\cup A_2\cup \cdots\cup A_n}\\
+&= \Pare{B\cap A_1}\cup\Pare{B\cap A_2}\cup\cdots\cup\Pare{B\cap A_n}
+\end{align}
+$$
+$A_1,A_2,\dots,A_n$ are a partition $\implies$ mutually exclusive
+
+$\implies \Pare{B\cap A_1},\Pare{B\cap A_2},\dots,\Pare{B\cap A_n}$ are mutually exclusive
+
+$\implies P\Pare B=\sum P\Pare{B\cap A_i}$
+
+$\implies \myBox{P\Pare{B}=\sum_{i=1}^n P\Pare{B\mid A_i}\cdot P\Pare{A_i} }$
+
+
+
+$\Zrm$ **Bayes**
+$$
+\myBox{P\Pare{A_i\mid B}=\frac{P\Pare{A_i\cap B}}{P\Pare{B}} = \frac{P\Pare{B\mid A_i}\cdot P\Pare{A_i}}{P\Pare{B}} = \myEmphy{\frac{P\Pare{B\mid A_i}\cdot P\Pare{A_i}}{\sum_{j=1}^n P\Pare{B\mid A_j}\cdot P\Pare{A_j}}} }
+$$
+
+
+$\eg{2.4.4}$ Monty Hall
+
+$3$ boxes, $A,B,C$, one with a ball and two empty
+
+select one, then one of the other two will open and show this's empty
+
+FIND should you change selection?
+
+$\slu$
+
+- Mathematical analysis
+
+SUPPOSE you select $A$
+
+LET the events of opening empty boxes being $A',B',C'$
+
+from your perspective, the probabilities of selecting the box with a ball are
+
+$P\Pare A=P\Pare B=P\Pare C = 1/3$. Consider $B'$,
+
+$\implies P\Pare{B'\mid A}=1/2$, $P\Pare{B'\mid B}=0$, $P\Pare{B'\mid C}=1$
+
+$\implies P\Pare{B'}=\dfrac{1}{2}\cdot\dfrac{1}{3}+0\cdot\dfrac{1}{3}+1\cdot\dfrac{1}{3}=\dfrac{1}{2} \implies$
+$$
+P\Pare{A\mid B'} = \frac{P\Pare{B'\cap A}}{P\Pare{B'}}= \frac{P\Pare{B'\mid A}P\Pare{A}}{P\Pare{B'}}=\frac{1/2\cdot 1/3}{1/2}=1/3\\
+P\Pare{C\mid B'} = \frac{P\Pare{B'\cap C}}{P\Pare{B'}}= \frac{P\Pare{B'\mid C}P\Pare{A}}{P\Pare{B'}}=\frac{1\cdot 1/3}{1/2}=2/3 > 1/3
+$$
+similar for other conditions
+
+$\implies$ change your selection
+
+- Heuristic analysis
+
+SUPPOSE $A$ with the ball
+
+conditioning on your selection
+
+$\implies P\Pare{B'\mid A}=1/2=P\Pare{C'\mid A}$, $P\Pare{C'\mid B}=1=P\Pare{B'\mid C}\implies$
+$$
+\begin{array}{cccc}
+\hline
+\text{desicion} & \text{select} & \text{open} & \text{reselect} & \text{result} & \text{Probability} & P\CB{\text{win}}\\\hline
+\text{not switch} & A & B' & A & + & P\Pare{B'}=1/2\times 1/3 = 1/6 & 1/3\\
+& C & B' & C & - & P\Pare{B'}=1\times1/3=1/3\\
+& A & C' & A & + & P\Pare{C'}=1/2\times 1/3 = 1/6\\
+& B & C' & B & - & P\Pare{C'}=1\times 1/3 = 1/3\\\hline
+\text{switch}& A & B' & C & - & P\Pare{B'}=1/6 & 2/3\\
+& C & B' & A & + & P\Pare{B'}=1/3\\
+& A & C' & B & - & P\Pare{C'}=1/6\\
+& B & C' & A & + & P\Pare{C'}=1/3\\\hline
+\end{array}
+$$
+$\implies$ change your selection
+
+
+
+
+
+
+
+
+
 
 
 
