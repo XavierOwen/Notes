@@ -25,4 +25,4 @@ build
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-.bat
+*.bat
