@@ -163,7 +163,7 @@ $\Def$ Conditional Probability
 
 ***Conditional Probability*** for event $E$ given that event $F$ has occurred is denoted by $P(E\mid F)$, and the formula for this is 
 $$
-\myBox{P(E \mid F) = \ffrac{P(EF)} {P(F)}}
+\myBox{P(E \mid F) = \frac{P(EF)} {P(F)}}
 $$
 $\Rmk$
 
@@ -247,7 +247,6 @@ $$
 P(H\mid W) = \frac{P(HW)} {P(W)} = \frac{P(HW)} {P(W\mid H)P(H) + P(W \mid T)P(T)} = \frac{\frac{2} {9} \frac{1} {2}} {\frac{2} {9} \frac{1} {2} + \frac{5} {11}\frac{1} {2}} = \frac{22} {67}
 $$
 
-
 ***
 
 Here's the generalized method. Suppose that $F_1, F_2, \dots, F_n$ are mutually exclusive events such that $\bigcup_{i=1}^{n}F_i = S$. In other words, exactly one of the events $F_1, F_2, \dots, F_n$ will occur. Then we write: 
@@ -266,7 +265,7 @@ $$
 
 Then we have the formula, the ***Bayes' formula***:
 $$
-\myBox{P\Pare{F_j\mid E} = \ffrac{P(EF_j)} {P(E)} = \frac{P(E \mid F_j)P(F_j)} {\sum_{i=1}^{n} P(E \mid F_i) P(F_i)}}
+\myBox{P\Pare{F_j\mid E} = \frac{P(EF_j)} {P(E)} = \frac{P(E \mid F_j)P(F_j)} {\sum_{i=1}^{n} P(E \mid F_i) P(F_i)}}
 $$
 
 
