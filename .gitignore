@@ -4,6 +4,7 @@ try.md
 # specified file suffix
 *.zip
 *.jar
+*.rds
 
 # all directory ipynb_checkpoints
 **/.ipynb_checkpoints/
