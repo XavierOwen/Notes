@@ -9,6 +9,7 @@ Notes on courses I've taken, welcome.
 - [Fundamental Business Statistics](https://github.com/XavierOwen/Notes/tree/master/FinMath/Fund_Business%20Statistics)
 - [Intermediate Investment](https://github.com/XavierOwen/Notes/tree/master/FinMath/Intermediate%20Investment)
 - [Introduction to Numerical Computing](https://github.com/XavierOwen/Notes/tree/master/Informatics/Intro%20to%20Numerical%20Computing)
+- [R: Elegant graphics for data analysis](https://github.com/XavierOwen/Notes/tree/master/Statistics/R/Elegant%20Graphics%20for%20Data%20Analysis)
 
 Using MathJax Macros are banned in native `.md`  file, so the notes are originally taken in iPython Notebook. Convert them using command
 
