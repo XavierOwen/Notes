@@ -1,9 +1,0 @@
-﻿[Numpy
-Pandas
-Matplotlib]
-[Python
-Keras
-Seaborn
-Lightning]
-[Tensorflow
-Django]

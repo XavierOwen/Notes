@@ -11,9 +11,9 @@ try.md
 **/old/
 
 # specified directories
-Informatics/Algorithms/codes/algs4
-Informatics/Algorithms/algs4-data/
-Informatics/np_pd_mpl/AnatomyOfMatplotlib-master
+Computational/Algorithms/codes/algs4
+Computational/Algorithms/algs4-data/
+Computational/np_pd_mpl/AnatomyOfMatplotlib-master
 
 # Python specified
 *.py[cod]
