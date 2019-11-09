@@ -1,0 +1,72 @@
+function [l,v,err] = poweriter(A,v0)
+	v = v0/norm(v0);
+	lam = v'*A*v; %Rayleigh quotient
+
+	k=1;
+	err(k)=norm(A*v-lam*v)
+
+	while (err(k) > tol)
+		k=k+1;
+		u=A*v;
+		v=u/norm(u);
+		lam=v'*A*v;
+		err(k)=norm(A*v-lam*v);
+
+end
+%-------------------------
+
+myfunction
+
+% this script demonstrate the simple power iteration for finding the
+% largest eigenvalue and its eigenvector
+clc
+%specify the matrix
+A=[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+0 -9 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+0 0 128 0 0 0 0 0 0 0 0 0 0 0 0 0;
+0 0 0 6 0 0 0 0 0 0 0 0 0 0 0 0;
+0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0;
+0 0 0 0 0 -100 0 0 0 0 0 0 0 0 0 0;
+0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0;
+0 0 0 0 0 0 0 0.2 0 0 0 0 0 0 0 0;
+0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0;
+0 0 0 0 0 0 0 0 0 50 0 0 0 0 0 0;
+0 0 0 0 0 0 0 0 0 0 -40 0 0 0 0 0;
+0 0 0 0 0 0 0 0 0 0 0 127 0 0 0 0;
+0 0 0 0 0 0 0 0 0 0 0 0 5 0 0 0;
+0 0 0 0 0 0 0 0 0 0 0 0 0 12 0 0;
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 18 0;
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1;];
+n=length(A);
+%initialize the vector
+temp=magic(4);
+v = flipud(temp(:));
+v(3)=0;
+v=v/norm(v);
+for k=1:50
+    v=A*v; %multiply the vector by A
+    nv1=norm(v); % find the norm
+    v=v/nv1;    % normalize the new vector
+
+    subplot(2,1,1)
+    plot(k,nv1,'o')
+    hold on
+    subplot(2,1,2)
+    plot(v,'o')
+    hold on;
+end
+
+v = flipud(temp(:));
+2v=v/norm(v);
+for k=1:50
+    v=A*v; %multiply the vector by A
+    nv=norm(v); % find the norm
+    v=v/nv;    % normalize the new vector
+
+    subplot(2,1,1)
+    plot(k,nv,'o')
+    hold on
+    subplot(2,1,2)
+    plot(v,'o')
+    hold on;
+end
