@@ -1,5 +1,6 @@
 # specified file
 try.md
+Draft.ipynb
 
 # specified file suffix
 *.zip
@@ -9,6 +10,7 @@ try.md
 # all directory ipynb_checkpoints
 **/.ipynb_checkpoints/
 **/old/
+**/Edith/
 
 # specified directories
 Computational/Algorithms/algs4-data/

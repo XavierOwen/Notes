@@ -296,7 +296,7 @@ $\Def$ **Forward interest rate**s
 
 $f\Pare{0,t,T}$: Forward rate decided upon today (time $0$), for a loan starting at $t$ and reimbursed at $T$, also noted as $f_{t,T}$
 
-$i\Pare{0,u} = f\Pare{0,0,u}​$: spot rate for a loan that starts at time $0​$ and is reimbursed at later time $u​$.
+$i\Pare{0,u} = f\Pare{0,0,u}$: spot rate for a loan that starts at time $0$ and is reimbursed at later time $u$.
 
 $\Zrm$
 $$
@@ -1321,7 +1321,7 @@ $\Rmk$
 
 ### Asset and liabilities management
 
-$\Zrm​$ Redington conditions
+$\Zrm$ Redington conditions
 
 Suppose flat term structure, $i$
 
