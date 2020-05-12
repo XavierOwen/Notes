@@ -1,6 +1,6 @@
-# Introduction
+# Conditional Probability and Independence
 
-Yuanxing Cheng, May 8, 2020
+Yuanxing Cheng, May 12, 2020
 $$
 % bbox
 % \bbox[#EEF, 5px, border: 2px solid #880015]{E=mc^2}
@@ -30,7 +30,6 @@ $$
 \newcommand{\myEmphy}[2][#880015]{ {\color{#1}{#2}} }
 \newcommand{\myBox}[2][9px, border:2px solid #880015]{ {\bbox[#1]{#2}} }
 \newcommand{\d}[1]{ {\displaystyle{#1}} }
-\newcommand{\Tran}[1]{{#1}^{\mathrm{T}}}
 \newcommand{\CB}[1]{\left\{ #1 \right\}}
 \newcommand{\SB}[1]{\left[ #1 \right]}
 \newcommand{\Pare}[1]{\left( #1 \right)}
@@ -55,15 +54,20 @@ $$
 \newcommand{\EbE}{\mathbb{E}}
 \newcommand{\FbF}{\mathbb{F}}
 \newcommand{\GbG}{\mathbb{G}}
+\newcommand{\HbH}{\mathbb{H}}
 \newcommand{\IbI}{\mathbb{I}}
 \newcommand{\NbN}{\mathbb{N}}
 \newcommand{\ZbZ}{\mathbb{Z}}
 \newcommand{\QbQ}{\mathbb{Q}}
 \newcommand{\PbP}{\mathbb{P}}
 \newcommand{\AcA}{\mathcal{A}}
+\newcommand{\BcB}{\mathcal{B}}
 \newcommand{\CcC}{\mathcal{C}}
+\newcommand{\DcD}{\mathcal{D}}
 \newcommand{\EcE}{\mathcal{E}}
 \newcommand{\FcF}{\mathcal{F}}
+\newcommand{\GcG}{\mathcal{G}}
+\newcommand{\HcH}{\mathcal{H}}
 \newcommand{\IcI}{\mathcal{I}}
 \newcommand{\NcN}{\mathcal{N}}
 \newcommand{\RcR}{\mathcal{R}}
@@ -72,11 +76,11 @@ $$
 \newcommand{\AsA}{\mathscr{A}}
 \newcommand{\FsF}{\mathscr{F}}
 \newcommand{\IsI}{\mathscr{I}}
+\newcommand{\idct}{\mathbf{1}}
 \newcommand{\dd}{\mathrm{d}}
+\newcommand{\Tran}[1]{{#1}^{\mathrm{T}}}
 \newcommand{\reff}[1]{ \tag{#1}\label{#1} }
 \newcommand{\reft}[1]{ \Pare{\ref{#1}} }
-\newcommand{\I}[1]{\mathrm{I}\left( #1 \right)}
-\newcommand{\N}[1]{\mathcal{N}\left( #1 \right)}
 \newcommand{\Exp}[1]{\mathrm{E}\left[ #1 \right]}
 \newcommand{\Var}[1]{\mathrm{Var}\left[ #1 \right]}
 \newcommand{\Avar}[1]{\mathrm{Avar}\left[ #1 \right]}
@@ -96,61 +100,78 @@ $$
 \newcommand{\SUM}{\myEmphy{\text{Summary}}}
 \newcommand{\pf}{\myEmphy{\largeText{Proof}}}
 \newcommand{\slu}{\myEmphy{\largeText{Solution}}}
+\newcommand{\Corlr}[1]{\myEmphy{\largeText{Corrollary #1}}}
 \newcommand{\Corlr}{\myEmphy{\largeText{Corrollary}}}
+\newcommand{\rmk}[1]{\myEmphy{\largeText{Remark #1}}}
 \newcommand{\Rmk}{\myEmphy{\largeText{Remark}}}
 \newcommand{\pops}[1]{\myEmphy{\largeText{Proposition #1}}}
 \newcommand{\Pops}{\myEmphy{\largeText{Proposition}}}
 \newcommand{\zrm}[1]{\myEmphy{\largeText{Theorem #1}}}
 \newcommand{\Zrm}{\myEmphy{\largeText{Theorem}}}
-\newcommand{\PbPt}[1]{\myEmphy{\largeText{Property #1}}}
-\newcommand{\PbPt}{\myEmphy{\largeText{Property}}}
+\newcommand{\PPt}[1]{\myEmphy{\largeText{Property #1}}}
+\newcommand{\PPt}{\myEmphy{\largeText{Property}}}
 \newcommand{\def}[1]{\myEmphy{\largeText{Definition #1}}}
 \newcommand{\Def}{\myEmphy{\largeText{Definition}}}
 \newcommand{\lm}[1]{\myEmphy{\largeText{Lemma #1}}}
 \newcommand{\Lm}{\myEmphy{\largeText{Lemma}}}
 \newcommand{\eg}[1]{\myEmphy{\largeText{Example #1}}}
-\newcommand{\ex}[1]{\myEmphy{\largeText{Exercise.#1}}}
-\newcommand{\rmk}[1]{\myEmphy{\largeText{Remark #1}}}
+\newcommand{\ex}[1]{\myEmphy{\largeText{Exercise #1}}}
 $$
-The notes is based on textbook: Probability Essentials by Jean Jacod and Philip Protter, second edition, and the notes from lectures by professor Ruoting Gong.
+$\def{3.1}$ 
 
-Proofs of theorems can be found in textbook or elsewhere, not all are included. And for some only important points are given.
+- Two events $A$ and $B$ (subsets of $\Omega$) are ***independent*** if $P\Pare{A\cap B}=P\Pare A \cdot P\Pare B$
+- A collection of events $\Pare{A_i}_{i\in I}$ is an ***independent*** collection  if for every finite subset $J$ of $I$, $P\Pare{\bigcap_{i\in J} A_i}=\prod_{i\in J}P\Pare{A_i}$. Here it's also called ***mutually independent***.
 
-The exercises are from the textbook and some extra from class. Solutions are brief. Tricky questions will have a star.
+$\Rmk$ Independent$\implies$pairwise independent
+
+$\zrm{3.1}$ If $A$ and $B$ are independent, then so are $A$ and $B^c$, $A^c$ and $B$, $A^c$ and $B^c$
+
+$\def{3.2}$ Let $A$, $B$ be events, $P\Pare{B}>0$.
+
+The ***conditional probability*** of $A$ given $B$ is $P\Pare{A\mid B}=\dfrac{P\Pare{A\cap B}}{P\Pare B}$.
+
+$\zrm{3.2}$ Suppose $P\Pare B>0$
+
+- $A$ and $B$ are independent$\iff P\Pare{A\mid B}=P\Pare A$
+- the mapping: $A\mapsto P\Pare{A\mid B}$ from $\AcA\to\SB{0,1}$ is a new probability measure on $\AcA$, called the ***conditional probability measure given*** $B$
+
+$\zrm{3.3}$ If $A_1,\dots,A_n\in\AcA$ and $P\Pare{A_1\cap\cdots\cap A_{n-1}}>0$ then
+$$
+P\Pare{A_1\cap\cdots\cap A_n}=P\Pare{A_1}P\Pare{A_2\mid A_1}P\Pare{A_3\mid A_1\cap A_2}\cdots P\Pare{A_n\mid A_1\cap \cdots\cap A_{n-1}}
+$$
 
 
 
-## Random Experiments
 
-### The state space
 
-Set of all possible outcomes of the experiment, usually denoted by $\Omega$.
 
-### Events
 
-A property which can be observed either to hold or not to hold after the experiment is done.
 
-Mathematically, it's a subset of $\Omega$. Also if letting $A$ and $B$ be two events, then
 
-- the contrary event is set $A^c$
-- $A$ or $B$ is interpreted as $A \cup B$
-- $A$ and $B$ is interpreted as $A\cap B$
-- sure event is $\Omega$
-- impossible event is $\O$
-- elementary event is a singleton, $\CB{\omega}$ containing a single outcome of this experiment
 
-Let $\AcA$ be the family of all events (family or collection for sets of sets), and write $\AcA=2^\Omega$, the set of all subsets of $\Omega$.
 
-### Probability
 
-With each event $A$ we assign its probability $P\Pare{A}\in\SB{0,1}$. Thus now we define the mathematical model for experiment as a triple: $\Pare{\Omega,\AcA,P}$. Here $P$ is a mapping: $\AcA\to\SB{0,1}$.
 
-### Random Varibale
 
-$X$, a mapping from $\Omega$ to a space $E$, usually $E=\RbR$ or $\RbR^d$.
 
-Then define the law of the variable $X$:
 
-for $B\in E$ $P^X\Pare{B}=P\Pare{X^{-1}\Pare{B}}=P\Pare{\CB{\omega:X\Pare{\omega}\in B}}$.
 
-This law of the variable is also a probability defined on $E$ not $\Omega$, the triple is $\Pare{E,\EcE, P^X}$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Exercises
+
