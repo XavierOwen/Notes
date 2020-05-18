@@ -100,7 +100,7 @@ $$
 \newcommand{\SUM}{\myEmphy{\text{Summary}}}
 \newcommand{\pf}{\myEmphy{\largeText{Proof}}}
 \newcommand{\slu}{\myEmphy{\largeText{Solution}}}
-\newcommand{\Corlr}[1]{\myEmphy{\largeText{Corrollary #1}}}
+\newcommand{\corlr}[1]{\myEmphy{\largeText{Corrollary #1}}}
 \newcommand{\Corlr}{\myEmphy{\largeText{Corrollary}}}
 \newcommand{\rmk}[1]{\myEmphy{\largeText{Remark #1}}}
 \newcommand{\Rmk}{\myEmphy{\largeText{Remark}}}
@@ -285,7 +285,7 @@ $\pf$ for the first one, show the following
 
 for the second one, take $B_n=A_n^c$.
 
-$\ex{2.4}$ Let $\AcA$ be a $\sigma$-algebra and $\Pare{A_n}_{n\geq 1}$ a sequence of events in $\AcA$. Show that $\liminf_{n\to\infty} A_n\in A$, $\limsup_{n\to\infty} A_n\in A$, and $\liminf_{n\to\infty} A_n\subset \limsup_{n\to\infty} A_n$
+$\ex{2.4}$ Let $\AcA$ be a $\sigma$-algebra and $\Pare{A_n}_{n\geq 1}$ a sequence of events in $\AcA$. Show that $\liminf_{n\to\infty} A_n\in \AcA$, $\limsup_{n\to\infty} A_n\in \AcA$, and $\liminf_{n\to\infty} A_n\subset \limsup_{n\to\infty} A_n$
 
 $\pf$ let $B_n=\cap_{m\geq n} A_m$ and $C_n=\cup_{m\geq n} A_m$ (or notice that $\limsup A_n = \Pare{\liminf A_n^c}^c$)
 
@@ -393,3 +393,43 @@ Let $\Omega_1=\CB{\omega_n}_{n\in\NbN}$, a countable subset of $\Omega$. Then le
 - $A_k\in\AcA$
 - $\cup_{k=1}^\infty A_k=\CB{\omega_1,\omega_3,\dots}$ not finite
 - $\Pare{\cup_{k=1}^\infty A_k}^c\supset\CB{\omega_2,\omega_4,\dots}$ not finite
+
+
+
+$\ex{Extra 1}$ Let $\Pare{A_n}_{n\in\NbN^+}$ and $A$ be subsets of $\Omega$. Show that $A_n$ converges to $A\iff\limsup A_n=\liminf A_n=A$.
+
+$\pf$
+
+1. assume left side to prove the right side
+   - show $A\subset\liminf A_n\subset\limsup A_n$
+   - show $\limsup A_n\subset A$
+2. assume right side to prove the left side
+   - by contradiction
+
+$\implies$) In this part, assume $A_n\to A$ meaning $\forall\omega\in\Omega$, $\idct_{A_n}\Pare\omega\to\idct_A\Pare\omega$. Consider some $\omega_0\in A$, then $\idct_A\Pare{\omega_0}=1$. Thus $\forall \epsilon>0$, $\exist N\Pare{\omega_0}\in\NbN$, for $n>N\Pare{\omega_0}$, $\abs{\idct_{A_n}\Pare\omega-\idct_A\Pare\omega}\leq\epsilon$.
+
+Since indicator functions only take value $0$ and $1$, thus $\idct_{A_n}\Pare\omega=1$ for all $n>N\Pare{\omega_0}$. Thus
+$$
+\omega_0\in\bigcap_{n=N\Pare{\omega_0}}^\infty A_n\implies \omega\in\bigcup_{m=1}^\infty\bigcap_{n\geq m}A_n=\liminf_{n\to\infty} A_n.
+$$
+Since $\omega$ is arbitrarily chosen, $A\subset\liminf A_n$. Thus $A\subset\liminf A_n\subset\limsup A_n$.
+
+Now consider some $\omega_1\in\limsup A_n=\cap_{n=1}^\infty\cup_{m\geq n}A_m$, thus: $\forall n\in\NbN$, $\omega_1\in \cup_{m\geq n}A_m$ meaning $\omega_1\in A_{m\Pare{n}}$ where $m\Pare{n}\geq n$. Since $\idct_{A_n}\Pare{\omega}$ converges $\forall \omega$, for $\omega_1$ must satisfies $\idct_{A_n}\Pare{\omega}=1$ for some $n\geq N\Pare{\omega_1}$. Thus it must be that $\idct_{A_n}\Pare{\omega_1}\to 1=\idct_A\Pare{\omega_1}$. Also by arbitrariness, $\limsup A_n\subset A$.
+
+Thus finally $A=\liminf A_n=\limsup A_n$.
+
+$\Longleftarrow$) In this part, assume $A=\liminf A_n=\limsup A_n$. 
+
+Use contradiction. Suppose that $A_n\nrightarrow A$, meaning $\exist \omega_2\in\Omega$, $\idct_{A_n}\Pare{\omega_2}\nrightarrow \idct_A\Pare{\omega_2}$.
+
+If $\omega_2\in A$, then $\idct_{A_n}\Pare{\omega_2}\nrightarrow 1$. Thus $\forall n\in\NbN$, $\exist m\Pare{n}\geq n$, $\idct_{A_{m\Pare n}}\Pare{\omega_2}=0$, thus $\omega_2\in A_{m\Pare n}^c$. Then for all $n\in\NbN$,
+$$
+\omega_2\in \bigcup_{k=n}^\infty A_k^c\implies \omega_2\in \bigcap_{n=1}^\infty\bigcup_{k=n}^\infty A_k^c = \Pare{\bigcup_{n=1}^\infty\bigcap_{k=n}^\infty A_k}^c=\Pare{\liminf_{n\to\infty} A_n}^c = A^c
+$$
+contradict to $\omega_2\in A$.
+
+If $\omega_2\notin A$, then $\idct_{A_n}\Pare{\omega_2}\nrightarrow 0$. Thus $\forall n\in\NbN$, $\exist m\Pare{n}\geq n$, $\idct_{A_{m\Pare n}}\Pare{\omega_2}=1$, thus $\omega_2\in A_{m\Pare n}$. Then for all $n\in\NbN$,
+$$
+\omega_2\in \bigcup_{k=n}^\infty A_k\implies \omega_2\in \bigcap_{n=1}^\infty\bigcup_{k=n}^\infty A_k = \limsup_{n\to\infty} A_n = A
+$$
+contradict to $\omega_2\notin A$.

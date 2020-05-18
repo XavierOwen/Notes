@@ -1,4 +1,4 @@
-# Conditional Probability and Independence
+# Probability on a Finite or Countable Space
 
 Yuanxing Cheng, May 12, 2020
 $$
@@ -100,7 +100,7 @@ $$
 \newcommand{\SUM}{\myEmphy{\text{Summary}}}
 \newcommand{\pf}{\myEmphy{\largeText{Proof}}}
 \newcommand{\slu}{\myEmphy{\largeText{Solution}}}
-\newcommand{\Corlr}[1]{\myEmphy{\largeText{Corrollary #1}}}
+\newcommand{\corlr}[1]{\myEmphy{\largeText{Corrollary #1}}}
 \newcommand{\Corlr}{\myEmphy{\largeText{Corrollary}}}
 \newcommand{\rmk}[1]{\myEmphy{\largeText{Remark #1}}}
 \newcommand{\Rmk}{\myEmphy{\largeText{Remark}}}
@@ -117,85 +117,49 @@ $$
 \newcommand{\eg}[1]{\myEmphy{\largeText{Example #1}}}
 \newcommand{\ex}[1]{\myEmphy{\largeText{Exercise #1}}}
 $$
-$\def{3.1}$ 
+For this chapter we assume $\Omega$ is finite or countable.
 
-- Two events $A$ and $B$ (subsets of $\Omega$) are ***independent*** if $P\Pare{A\cap B}=P\Pare A \cdot P\Pare B$
-- A collection of events $\Pare{A_i}_{i\in I}$ is an ***independent*** collection  if for every finite subset $J$ of $I$, $P\Pare{\bigcap_{i\in J} A_i}=\prod_{i\in J}P\Pare{A_i}$. Here it's also called ***mutually independent***.
+$\zrm{4.1}$ 
 
-$\Rmk$ Independent$\implies$pairwise independent
+- A probability on the finite or countable set $\Omega$ is characterized by its values on the atoms: $p_\omega=P\Pare{\CB{\omega}}$ for $\omega\in\Omega$
+- Let $\Pare{p_\omega}_{\omega\in\Omega}$ be a family of real numbers indexed by the finite or countable set $\Omega$. Then there exists a unique probability $P$ such that $P\Pare{\CB{\omega}}=p_\omega$ if and only if $p_\omega\geq0$ and $\sum_{\omega\in\Omega}p_\omega=1$
 
-$\zrm{3.1}$ If $A$ and $B$ are independent, then so are $A$ and $B^c$, $A^c$ and $B$, $A^c$ and $B^c$
+$\def{4.1}$ Probability measure $P$ on the finite set $\Omega$ is ***uniform*** if: $p_\omega=P\Pare{\CB{\omega}}$ doesn't depend on $\omega$.
 
-$\def{3.2}$ Let $A$, $B$ be events, $P\Pare{B}>0$.
-
-The ***conditional probability*** of $A$ given $B$ is $P\Pare{A\mid B}=\dfrac{P\Pare{A\cap B}}{P\Pare B}$.
-
-$\zrm{3.2}$ Suppose $P\Pare B>0$
-
-- $A$ and $B$ are independent$\iff P\Pare{A\mid B}=P\Pare A$
-- the mapping: $A\mapsto P\Pare{A\mid B}$ from $\AcA\to\SB{0,1}$ is a new probability measure on $\AcA$, called the ***conditional probability measure given*** $B$
-
-$\zrm{3.3}$ If $A_1,\dots,A_n\in\AcA$ and $P\Pare{A_1\cap\cdots\cap A_{n-1}}>0$ then
-$$
-P\Pare{A_1\cap\cdots\cap A_n}=P\Pare{A_1}P\Pare{A_2\mid A_1}P\Pare{A_3\mid A_1\cap A_2}\cdots P\Pare{A_n\mid A_1\cap \cdots\cap A_{n-1}}
-$$
+$\Rmk$ For uniform probability measure, we have: $P\Pare{A}=\dfrac{\#\Pare A}{\#\Pare\Omega}$.
 
 
-$\Def$ A collection of events $\Pare{E_n}$ is called a ***partition*** of $\Omega$ if:
 
-- $E_n\in\AcA$, for each $n$
-- $E_n$ are pairwise disjoint
-- $P\Pare{E_n}>0$, for each $n$
-- $\cup_n E_n=\Omega$
+## Appendix: Some useful result on series
 
-$\zrm{3.4 (Partition Equation)}$ Let $\Pare{E_n}$ be a finite or countable partition of $\Omega$. Then if $A\in\AcA$,
-$$
-P\Pare{A}=\sum_n P\Pare{A\mid E_n}\cdot P\Pare{E_n}
-$$
-$\pf$ $A=A\cap \Omega=A\cap\Pare{\cup_n E_n}=\cup_n\Pare{A\cap E_n}$.
+Some conventions
 
-$\zrm{3.5 (Bayes' Theorem)}$ Let $\Pare{E_n}$ be a finite or countable partition of $\Omega$. Supposing $P\Pare A>0$, then
+- $+\infty+\infty=+\infty$, $-\infty-\infty=-\infty$
+- for $a\in\RbR$, $a+\infty=+\infty$, $a-\infty=-\infty$, $a\times\infty=\begin{cases}+\infty,&\text{if }a>0\\ 0,&\text{if }a=0\\ -\infty,&\text{if }a<0\\\end{cases}$
 
+Some definitions: for number series $\Pare{u_n}_{n\in\NbN^+}$, we have series $S_n=\sum_n u_n$
 
-$$
-P\Pare{E_n\mid A}=\frac{P\Pare{A\mid E_n}\cdot P\Pare{E_n}}{\sum_m P\Pare{A\mid E_m}\cdot P\Pare{E_m}}
-$$
+- ***convergent*** if $S_n$ converges to a *finite* limit $S$ and write $S=\sum_n u_n$
+- ***absolutely convergent*** if the series $\sum_n\abs{u_n}$ converges
+- $S$ could be $\infty$ meaning $S_n$ can increase to $+\infty$
+
+Some results:
+
+- when $u_n$ are reals and the series is absolutely convergent, then the order of summation if of no influence
+- when $u_n\geq 0$, the sum $\sum_n u_n$, finite or infinite doesn't change if the order is changed
+- when $u_n\geq 0$ and the series is absolutely convergent, we have this ***associativity*** property: let $\Pare{A_i}_{i\in I}$ be a partition of $\NbN^+$, with $I=\CB{1,2,\dots,N}$ for some integer $N$ or $I=\NbN^+$. For each $i\in I$, we set $v_i=\sum_{n\in A_i} u_n$. If $A_i$ if finite, then $v_i$ is a usual sum, but if not, then itself is a sum of a series. Then we write $\sum_n u_n=\sum_{i\in I}v_i$.
+
 
 
 ## Exercises
 
-In all exercises the probability space is fixed, and $A$, $B$, $A_n$, etc. are events.
+nah
 
-$\ex{3.1}$ Show that if $A\cap B=\O$ then $A$ and $B$ cannot be independent unless $P\Pare A=0$ or $P\Pare{B}=0$.
 
-$\ex{3.2}$ Let $P\Pare C>0$. Show $P\Pare{A\cup B\mid C}=P\Pare{A\mid C}+P\Pare{B\mid C}-P\Pare{A\cap B\mid C}$.
 
-$\ex{3.3}$ Let $P\Pare C>0$ and $A_1,\dots,A_n$ are pairwise disjoint. Show that $P\Pare{\cup_{i=1}^n A_i\mid C}=\sum_{i=1}^n P\Pare{A_i\mid C}$.
 
-$\ex{3.4}$ Let $P\Pare C>0$. Show $P\Pare{A\cap C}=P\Pare{A\mid C}\cdot P\Pare C$.
 
-$\ex{3.5}$ Let $0<P\Pare{C}<1$ and $A$ be any event. Show $P\Pare A=P\Pare{A\mid C}\cdot P\Pare C+P\Pare{A\mid C^c}\cdot P\Pare{C^c}$.
+ 
 
-$\ex{3.6}$ nah
 
-$\ex{3.7}$ Let $\Pare{A_n}_{n\geq 1}\in\AcA$ and $\Pare{B_n}_{n\geq 1}\in\AcA$ and $A_n\to A$, $B_n\to B$, with $P\Pare B>0$ and $P\Pare{B_n}>0$, for all $n$. Show:
 
-1. $\lim_{n\to\infty}P\Pare{A_n\mid B}=P\Pare{A\mid B}$
-2. $\lim_{n\to\infty}P\Pare{A\mid B_n}=P\Pare{A\mid B}$
-3. $\lim_{n\to\infty}P\Pare{A_n\mid B_n}=P\Pare{A\mid B}$
-
-$\pf$ notice that $\idct_{A\cap B}\Pare{\omega}=\idct_A\Pare\omega\cdot\idct_{B}\Pare\omega$
-
-and more on 1), since $P\Pare{\cdot\mid B}$ is a probability measure thus by Theorem 2.4, it's obvious.
-
-$\ex{3.8}$ nah
-
-$\ex{3.9}$ Suppose $A,B,C$ are independent events and $P\Pare{A\cap B}\neq 0$. Show $P\Pare{C\mid A\cap B}=P\Pare C$.
-
-$\ex{3.10~3.16}$ nah
-
-$\ex{3.17}$ Let $A_1,A_2,\dots,A_n$ be independent events. Show that the probability that none of the $A_1,\dots,A_n$ occur is less than or equal to $\exp\CB{-\sum_{i=1}^n P\Pare{A_i}}$
-
-$\pf$ use $1+x\leq e^{x}$
-
-$\ex{3.18}$ Let $A,B$ be events with $P\Pare{A}>0$. Show $P\Pare{A\cap B\mid A\cup B}\leq P\Pare{A\cap B\mid A}$.
