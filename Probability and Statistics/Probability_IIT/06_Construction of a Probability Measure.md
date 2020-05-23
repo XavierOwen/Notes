@@ -306,7 +306,7 @@ I don't want to state the theorem here, but I will list some definitions require
 
 The next thing we do with this measure is to include the so called null set
 
-$\def{6.2}$ Let $P$ be a probability measure on $\Pare{\Omega,\AcA}$. A ***null set*** (***negligible set***) for $P$ is a set $A\subset\Omega$ such that there exists a $B\in\AcA$ satisfying $\subset B$ and $P\Pare B=0$.
+$\def{6.2}$ Let $P$ be a probability measure on $\Pare{\Omega,\AcA}$. A ***null set*** (***negligible set***) for $P$ is a set $A\subset\Omega$ such that there exists a $B\in\AcA$ satisfying $A\subset B$ and $P\Pare B=0$.
 
 $\Rmk$ The negligible set is *NOT* required to be in $\AcA$.
 

@@ -1,6 +1,6 @@
-# Introduction
+# Random Variables
 
-Yuanxing Cheng, May 8, 2020
+Yuanxing Cheng, May 23, 2020
 $$
 % bbox
 % \bbox[#EEF, 5px, border: 2px solid #880015]{E=mc^2}
@@ -14,6 +14,8 @@ $$
 \DeclareMathOperator*{\plim}{plim}
 \DeclareMathOperator*{\span}{span}
 \DeclareMathOperator*{\trace}{Trace}
+\newcommand{\cupdot}{\;\cdot \hspace{-7pt}\cup}
+\newcommand{\bigcupdot}[1][-7]{\cdot \hspace{#1pt}\bigcup}
 \newcommand{\space}{\;\;}
 \newcommand{\bspace}{\;\;\;}
 \newcommand{\Bspace}{\;\;\;\;}
@@ -21,6 +23,7 @@ $$
 \newcommand{\BBspace}{\;\;\;\;\;\;}
 \newcommand{\QbQQ}{\boxed{?\:}}
 \newcommand{\void}{\left.\right.}
+\newcommand{\imblies}{\Longleftarrow}
 % latex Emphy
 % \definecolor{EmphyQ}{HTML}{880015}
 % \definecolor{EmphyW}{HTML}{660066}
@@ -30,7 +33,6 @@ $$
 \newcommand{\myEmphy}[2][#880015]{ {\color{#1}{#2}} }
 \newcommand{\myBox}[2][9px, border:2px solid #880015]{ {\bbox[#1]{#2}} }
 \newcommand{\d}[1]{ {\displaystyle{#1}} }
-\newcommand{\Tran}[1]{{#1}^{\mathrm{T}}}
 \newcommand{\CB}[1]{\left\{ #1 \right\}}
 \newcommand{\SB}[1]{\left[ #1 \right]}
 \newcommand{\Pare}[1]{\left( #1 \right)}
@@ -55,28 +57,36 @@ $$
 \newcommand{\EbE}{\mathbb{E}}
 \newcommand{\FbF}{\mathbb{F}}
 \newcommand{\GbG}{\mathbb{G}}
+\newcommand{\HbH}{\mathbb{H}}
 \newcommand{\IbI}{\mathbb{I}}
 \newcommand{\NbN}{\mathbb{N}}
 \newcommand{\ZbZ}{\mathbb{Z}}
 \newcommand{\QbQ}{\mathbb{Q}}
 \newcommand{\PbP}{\mathbb{P}}
 \newcommand{\AcA}{\mathcal{A}}
+\newcommand{\BcB}{\mathcal{B}}
 \newcommand{\CcC}{\mathcal{C}}
+\newcommand{\DcD}{\mathcal{D}}
 \newcommand{\EcE}{\mathcal{E}}
 \newcommand{\FcF}{\mathcal{F}}
+\newcommand{\GcG}{\mathcal{G}}
+\newcommand{\HcH}{\mathcal{H}}
 \newcommand{\IcI}{\mathcal{I}}
 \newcommand{\NcN}{\mathcal{N}}
+\newcommand{\McM}{\mathcal{M}}
+\newcommand{\OcO}{\mathcal{O}}
 \newcommand{\RcR}{\mathcal{R}}
+\newcommand{\ScS}{\mathcal{S}}
 \newcommand{\YcY}{\mathcal{Y}}
 \newcommand{\ZcZ}{\mathcal{Z}}
 \newcommand{\AsA}{\mathscr{A}}
 \newcommand{\FsF}{\mathscr{F}}
 \newcommand{\IsI}{\mathscr{I}}
+\newcommand{\idct}{\mathbf{1}}
 \newcommand{\dd}{\mathrm{d}}
+\newcommand{\Tran}[1]{{#1}^{\mathrm{T}}}
 \newcommand{\reff}[1]{ \tag{#1}\label{#1} }
 \newcommand{\reft}[1]{ \Pare{\ref{#1}} }
-\newcommand{\I}[1]{\mathrm{I}\left( #1 \right)}
-\newcommand{\N}[1]{\mathcal{N}\left( #1 \right)}
 \newcommand{\Exp}[1]{\mathrm{E}\left[ #1 \right]}
 \newcommand{\Var}[1]{\mathrm{Var}\left[ #1 \right]}
 \newcommand{\Avar}[1]{\mathrm{Avar}\left[ #1 \right]}
@@ -93,64 +103,34 @@ $$
 \newcommand{\FSD}{\text{FSD}}
 \newcommand{\SSD}{\text{SSD}}
 \newcommand{\QED}{\myEmphy{\blacksquare}}
-\newcommand{\SUM}{\myEmphy{\text{Summary}}}
 \newcommand{\pf}{\myEmphy{\largeText{Proof}}}
 \newcommand{\slu}{\myEmphy{\largeText{Solution}}}
+\newcommand{\corlr}[1]{\myEmphy{\largeText{Corrollary #1}}}
 \newcommand{\Corlr}{\myEmphy{\largeText{Corrollary}}}
+\newcommand{\rmk}[1]{\myEmphy{\largeText{Remark #1}}}
 \newcommand{\Rmk}{\myEmphy{\largeText{Remark}}}
 \newcommand{\pops}[1]{\myEmphy{\largeText{Proposition #1}}}
 \newcommand{\Pops}{\myEmphy{\largeText{Proposition}}}
 \newcommand{\zrm}[1]{\myEmphy{\largeText{Theorem #1}}}
 \newcommand{\Zrm}{\myEmphy{\largeText{Theorem}}}
-\newcommand{\PbPt}[1]{\myEmphy{\largeText{Property #1}}}
-\newcommand{\PbPt}{\myEmphy{\largeText{Property}}}
+\newcommand{\PPt}[1]{\myEmphy{\largeText{Property #1}}}
+\newcommand{\PPt}{\myEmphy{\largeText{Property}}}
 \newcommand{\def}[1]{\myEmphy{\largeText{Definition #1}}}
 \newcommand{\Def}{\myEmphy{\largeText{Definition}}}
 \newcommand{\lm}[1]{\myEmphy{\largeText{Lemma #1}}}
 \newcommand{\Lm}{\myEmphy{\largeText{Lemma}}}
 \newcommand{\eg}[1]{\myEmphy{\largeText{Example #1}}}
-\newcommand{\ex}[1]{\myEmphy{\largeText{Exercise.#1}}}
-\newcommand{\rmk}[1]{\myEmphy{\largeText{Remark #1}}}
+\newcommand{\ex}[1]{\myEmphy{\largeText{Exercise #1}}}
+\newcommand{\SUM}{\myEmphy{\text{Summary}}}
 $$
-The notes is based on textbook: Probability Essentials by Jean Jacod and Philip Protter, second edition, and the notes from lectures by professor Ruoting Gong. The labeling is the same with the book.
 
-Proofs of theorems can be found in textbook or elsewhere, not all are included. And for some only important points are given.
+$\def{8.1}$ 
 
-The exercises are from the textbook and some extra from class. Solutions are brief. Tricky questions will have a star.
+- $X$ is a ***measurable function*** if given two measurable spaces $\Pare{E,\EcE}$ and $\Pare{F,\FcF}$, $X:E\to F$, it satisfies that $X^{-1}\Pare{A}\in\EcE$ for all $A\in\FcF$, or shortly if $X^{-1}\Pare\FcF\subset\EcE$. Here $X$ is called ***measurable relative (with respect) to*** $\EcE$ ***and*** $\FcF$.
+- When $\Pare{E,\EcE}=\Pare{\Omega,\AcA}$ where $\Pare{\Omega,\AcA,P}$ is the underlying probability space, this measurable function $X$ is called a ***random variable***
+- Then when $F=\RbR$, and usually, $\FcF=\BcB\Pare\RbR$, $X$ is called a ***real valued random variable***.
 
+$\zrm{8.1*}$ Let $\CcC$ be a class of subsets of $F$ such that $\sigma\Pare\CcC=\FcF$. In order for a function $X:E\to F$ to be measurable wrt $\EcE$ and $\FcF$, it's necessary and sufficient that $X^{-1}\Pare\CcC\subset\EcE$.
 
+$\pf$ Necessity means that if $X$ is measurable then $X^{-1}\Pare\CcC\subset\EcE$. This is clear since by definition, $X^{-1}\Pare\FcF\subset\EcE$ and $\CcC\subset\FcF$.
 
-## Random Experiments
-
-### The state space
-
-Set of all possible outcomes of the experiment, usually denoted by $\Omega$.
-
-### Events
-
-A property which can be observed either to hold or not to hold after the experiment is done.
-
-Mathematically, it's a subset of $\Omega$. Also if letting $A$ and $B$ be two events, then
-
-- the contrary event is set $A^c$
-- $A$ or $B$ is interpreted as $A \cup B$
-- $A$ and $B$ is interpreted as $A\cap B$
-- sure event is $\Omega$
-- impossible event is $\O$
-- elementary event is a singleton, $\CB{\omega}$ containing a single outcome of this experiment
-
-Let $\AcA$ be the family of all events (family or collection for sets of sets), and write $\AcA=2^\Omega$, the set of all subsets of $\Omega$.
-
-### Probability
-
-With each event $A$ we assign its probability $P\Pare{A}\in\SB{0,1}$. Thus now we define the mathematical model for experiment as a triple: $\Pare{\Omega,\AcA,P}$. Here $P$ is a mapping: $\AcA\to\SB{0,1}$.
-
-### Random Varibale
-
-$X$, a mapping from $\Omega$ to a space $E$, usually $E=\RbR$ or $\RbR^d$.
-
-Then define the law of the variable $X$:
-
-for $B\in E$ $P^X\Pare{B}=P\Pare{X^{-1}\Pare{B}}=P\Pare{\CB{\omega:X\Pare{\omega}\in B}}$.
-
-This law of the variable is also a probability defined on $E$ not $\Omega$, the triple is $\Pare{E,\EcE, P^X}$.
