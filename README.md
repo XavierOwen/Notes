@@ -1,5 +1,8 @@
 # Notes
-Notes on courses I've taken, welcome.
+
+Yuanxing
+
+Notes on courses and seminars I've taken, welcome.
 
 - Models and Pricing of Financial Derivatives
 - Actuarial Mathematics
@@ -11,13 +14,13 @@ Notes on courses I've taken, welcome.
 - Introduction to Numerical Computing
 - R: Elegant graphics for data analysis
 
-Using MathJax Macros are banned in native `.md`  file, so the notes are originally taken in iPython Notebook. Convert them using command
+The notes are originally taken in iPython Notebook. Convert them to `.md` using command
 
 ```
 jupyter nbconvert --to markdown notebook_name.ipynb
 ```
 
-I'll try to avoid using macros in the future
+/*I'll try to avoid using macros in the future*/
 
 The `.css` file in the `others` folder is the one I'm currently using, feel free to try
 
