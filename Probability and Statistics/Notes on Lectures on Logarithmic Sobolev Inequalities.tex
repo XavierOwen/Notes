@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{amsthm, amsmath, amssymb, amsfonts, graphicx, epsfig}
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{Notes on Lectures on Logarithmic Sobolev Inequalities}
+\author{Yuanxing Cheng}
+
+
+\begin{document}
+
+\maketitle
+\section{Markov Semi-groups}
+\subsection{Markov Semi-groups and Generators}
+
+\begin{definition}
+    A familiy  \(\Pare{P_t}_{t\geq 0}\) of linear operators on a Banach space  \(\Pare{\cB, \norm\cdot}\) is a \emph{semi-group} iff it satisfies the following:
+    \begin{itemize}
+        \item \(P_0=I\), the identity on \(\cB\)
+        \item the map \(t\to P_t\) is continuous in the sense that for all \(f\in \cB\), \(t\to P_tf\) is a continuous map from \(\bR^+\) into \(\cB\)
+        \item \(\forall f\in \cB\) and \(\Pare{t,s}\in \Pare{\bR^+}^2\) \[P_{t+s} f=P_t P_s f\]
+    \end{itemize}
+
+\end{definition}
+
+Under most cases, \(\cB\) will be the set \(\cC\Pare{\Omega}\) of real-valued functions bounded continuous functions on a Polish space \(\Omega\) equipped with the uniform norm. Other cases, we might need uniform boundedness.
+
+\begin{definition}
+    A semi-group \(\Pare{P_t}_{t\geq 0}\) is \emph{Markov} iff
+    \begin{itemize}
+        \item for any \(t\in\bR^+\), \(P_t\1=\1\)
+        \item for any \(t\in \bR^+\), \(P_t\) preserves positivity, i.e., for any \(f\in\cB,t\in \bR^+\), \(f\geq 0\implies P_tf\geq 0\)
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    \(P_t\) is \emph{contractive} iff for any \(f\in\cB\), 
+    \begin{equation}
+        \norm{P_t f}\leq \norm{f}
+    \end{equation}
+    where \(\norm{\cdot}\) denotes the norm on \(\cB\).
+\end{definition}
+
+\begin{definition}
+    The \emph{infinitesimal generator} \(\cL\) of a semi-group \(P_t\) is defined by 
+    \begin{equation}
+        \cL f:= \lim_{t\to 0^+} \frac{\Pare{P_t-I}f}{t}
+    \end{equation}
+    for any function \(f\) for which the limit makes sense. The domain \(\cD(\cL)\) of \(\cL\) is the set of functions of \(\cC(\Omega)\) for which above limit exists.
+\end{definition}
+
+\begin{theorem}[Hille-Yoshida theorem for Markov semi-groups]
+    A Linear operator \(\cL\) is the infinitesimal generator of a Markov semi-group \(\Pare{P_t,t\in\bR^+}\) on \(\cB \) iff
+    \begin{enumerate}
+        \item \(\1\in\cD(\cL)\) and \(\cL\1=0\)
+        \item \(\cD(\cL)\) is dense in \(\cB\)
+        \item \(\cL\) is closed: iff any sequence \(f_n\) of \(\cD(\cL)\) converging to \(f\) and such that \(\cL f_n\) converge, then \(\lim_{n\to\infty} \cL f_n=\cL f\)
+        \item for anyy \(\lambda >0\), \(\Pare{\lambda I-\cL}\) is invertible. And its inverse is bounded \[\sup_{\norm f\leq 1} \norm{\Pare{\lambda I-\cL}^{-1}f}\leq 1/\lambda\]
+        and preserve positivity, i.e., for all \(f\geq 0\), \(\Pare{\lambda I-\cL}^{-1}f\geq 0\)
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Invariant Measures of a semi-group}
+
+\begin{definition}
+    Let \(\Pare{P_t}_{t\geq 0}\) be a Markov semi-group. A probability measure \(\mu\) on \(\Pare{\Omega,\Sigma}\) is invariant with respect to the semi-group \(\Pare{P_t}_{t\geq 0}\) iff for any \(f\in \cC(\Omega)\) and any \(t\geq 0\)
+    \begin{equation}
+        \mu\Pare{P_t f} = \mu(f)
+    \end{equation}
+    The set of invariant measures for a semi-group \(\Pare{P_t}_{t\geq 0}\) will be denoted hereafter \(\cJ=\cJ(P)\)
+\end{definition}
+
+This invariant probability is also characterized by
+
+\begin{proposition}
+    \(\mu\) on \(\Pare{\Omega,\Sigma}\) is invariant with respect to the semi-group \(\Pare{P_t}_{t\geq 0}\) iff for any \(f\in \cD(\cL)\), 
+    \begin{equation}
+        \mu(\cL f)=0
+    \end{equation}
+\end{proposition}
+
+Extension
+
+\begin{proposition}
+    Let \(\mu \in \cJ(P)\) with respect to a Markov semi-group \(\Pare{P_t}_{t\geq 0}\) (i.e., \(\mu\) is invariant to \(P_t\)). \(\Pare{P_t}_{t\geq 0}\)  can be extended to any \(L^p(\mu)\) for \(p\geq 1\).
+\end{proposition}
+
+Prove using Jensen's inequality and Hahn-Banach theorem.
+
+\begin{definition}
+    A Markov semi-group \(\CB{P_t,t\geq 0}\) is \(L^q(\mu)\) \emph{ergodic} for \(q\in (1,\infty)\) and \(\mu\in \cJ(P_t)\) iff for any function \(f\in L^q(\mu)\),
+    \[
+        \lim_{t\to\infty}\int \Pare{P_t f-\mu f}^q \dif \mu = 0
+    \]
+    A Markov semi-group \(\CB{P_t,t\geq 0}\) is \(L^q(\mu)\) is \emph{uniformly ergodic} iff \(\cJ(P_t)\) is reduced to a unique probability measure and
+    \[
+        \lim_{t\to\infty}\norm{P_t f-\mu f}_{\infty}=0
+    \]
+\end{definition}
+
+
+A stronger property than invariance
+\begin{definition}
+    A probability measure \(\mu\) on \(\Pare{\Omega,\Sigma}\) is \emph{reversible} for a Markov semi-group \(\CB{P_t,t\geq 0}\) iff for any \(\Pare{f,g}\in\cB\) and time \(t\geq 0\), 
+    \begin{equation}
+        \mu(g P_t f)=\mu(fP_t g)
+    \end{equation}
+    Equivalently, we say that \(\Pare{P_t}_{t\geq0}\) satisfies the detailed balance condition for the probability \(\mu\).
+\end{definition}
+
+And the set of reversible measures of a Markov semi-group \(\CB{P_t,t\geq 0}\) will be denoted as \(\cJ_0(P_t)\).
+
+\subsection{Markov Processes}
+
+
+
+
+
+
+
+
+
+\end{document}

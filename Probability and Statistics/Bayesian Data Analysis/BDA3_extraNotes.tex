@@ -1,0 +1,214 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {D:/Notes/others/assets/} }
+\usepackage{amsthm, amsmath, amssymb, amsfonts, graphicx, epsfig}
+
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{Notes for Bayesian Data Analysis 3}
+\author{Yuanxing Cheng}
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Probability and inference}
+\subsection{The three steps of Bayesian data analysis}
+
+\begin{itemize}
+    \item Full probability model: a joint probability distribution of all observable and unobservable, \emph{remember the underlying knowledge and data collection process}
+    \item Conditioning on observed data: get posterior distribution, i.e. the conditional probability distri of the unobserved quantities, \emph{given the observed data}
+    \item Evaluating the fit of the model, and posterior. \emph{How good? Sensitivity to assumptions?}
+\end{itemize}
+
+\subsection{General notation for statistical inference}
+
+Population, sample, estimates, parameters, etc.
+
+\subsubsection*{Parameters, data, and predictions}
+
+Denote $\theta$ as unobservable parameter vector, \(y\) as the observed data. \(\tilde{y}\) as unknown but observable data.
+
+\subsubsection*{Observational units and variables}
+
+Data, of \(n\) objects. Write \(y=\Pare{y_1,\dots,y_n}\) or \(\Tran{y}\). Notice \(y_i\) itself could be a vector, then the entire \(y\) is a \(n\) row matrix.
+
+\subsubsection*{Exchangeability}
+
+\(n\) values \(y_i\) may be regarded as exchangeable. Then the joint pdf \(p(y_1,\dots,y_n\) is invariant to permutations of indexes.
+
+\subsubsection*{Explanatory variables}
+
+Or \emph{covariates}. Use \(X\) to denote the entire set of explanatory variables for all \(n\) units. If there're \(k\) explanatory variables, then \(X\) is a matrix of \(n\times k\).
+
+\subsubsection*{Hierarchical modeling}
+Or \emph{multilevel models}. It's possible here to assume the exchangeability at each level of units.
+
+\subsection{Bayesian inference}
+Conclude about a parameter vector \(\theta\) or unobserved data \(\tilde{ y}\) in probability statements, usually denoted as \(p(\theta\mid y) \) or \(p(\tilde{ y}\mid y)\). And also implicitly condition on the known values \(x\).
+
+\subsubsection*{Probability notation}
+\(p(\cdot\mid\cdot)\) denotes a conditional pdf w/ the arguments determined by the context. \(p(\cdot)\) usually denotes a marginal distribution. And if for example \(\theta\sim\cN(\mu,\sigma^2)\), we also write \(p(\theta)=\cN(\theta\mid\mu,\sigma^2)\).
+
+The geometric mean is \(\exp\Pare{\Exp{\log\theta}}\)
+
+\subsubsection*{Bayes' rule}
+
+Of prior \(p(\theta)\) and sample distribution \(p(y\mid\theta)\), we have \[p(\theta,y)=p(\theta)p(y\mid\theta).\] Then by Bayes' rule we have the \emph{posterior}: 
+\begin{equation}\label{1.1}
+    p(\theta\mid y)=\frac{p(\theta,y)}{p(y)}=\frac{p(\theta)p(y\mid\theta)}{p(y)},    
+\end{equation}
+
+where \(p(y)=\sum_\theta p(\theta)p(y\mid \theta)=\int p(\theta)p(y\mid \theta) \dif\theta\) is the total probability. Usually we write above in the following form
+\begin{equation}\label{1.2}
+    p(\theta\mid y)\propto p(\theta)p(y\mid\theta).
+\end{equation}
+
+\subsubsection*{Prediction}
+
+The \emph{\Red{prior} predictive distribution} is 
+\begin{equation}\label{1.3}
+    p(y)=\sum_\theta p(y,\theta)= \sum_\theta p(\theta)p(y\mid \theta)=\int p(y,\theta)\dif\theta=\int p(\theta)p(y\mid \theta) \dif\theta.
+\end{equation}
+
+Then we predict an observable \(\tilde{ y}\). Then its distribution is \emph{\Red{posterior} predictive distribution}, with formula
+\begin{align}
+    p(\tilde{y}\mid y) &=\int p(\tilde y,\theta\mid y)\dif \theta\nonumber\\
+    &=\int p(\tilde{y}\mid\theta,y)p(\theta\mid y)\dif\theta\Bspace\textrm{Given $\theta$, $y$ and $\tilde y$ are independent}\nonumber\\
+    &=\int p(\tilde{y}\mid \theta)p(\theta\mid y)\dif\theta\label{1.4}
+\end{align}
+
+\subsubsection*{Likelihood}
+
+From above \ref{1.4}, data \(y\) affect the posterior only through \(p(y\mid\theta)\), i.e., the likelihood function when \(y\) is fixed. This is the likelihood principle.
+
+\subsubsection*{Likelihood and odds ratio}
+
+Define \emph{posterior odds} for two parameters \(\theta_1\) and \(\theta_2\) to be 
+\begin{equation}\label{1.5}
+    \frac{p(\theta_1\mid y)}{p(\theta_2\mid y)}=\frac{p(\theta_1)p(y\mid\theta_1)/p(y)}{p(\theta_2)p(y\mid\theta_2)/p(y)}=\frac{p(\theta_1)p(y\mid\theta_1)}{p(\theta_2)p(y\mid\theta_2)},
+\end{equation}
+
+The later part is \emph{likelihood ratio} thus we have: \emph{posterior odds=prior odds times likelihood ratio}
+
+\subsection{Discrete examples: genetics and spell checking}
+
+2 examples,
+\subsection{Probability as a measure of uncertainty}
+
+Basically, the idea is the bayesian methods are more subjective due to the reliance on a prior distribution.
+\subsection{Example: probability from football point spreads}
+\subsection{Example: calibration for record linkage}
+\subsection{Some useful results from probability theory}
+
+Regarding the joint density, we have the following
+\begin{align*}
+    p(u)&=\int p(u,v)\dif v\\
+    p(u,v,w)&=p(u\mid v,w)p(v\mid w)p(w)\\
+    p(u,v\mid w)&=p(v\mid u,w)P(u\mid w)=p(u\mid v,w)p(v\mid w)
+\end{align*}
+
+In vector calculus, we define covariance matrix as
+\[\Cov{u}=\int(u-\Exp{u})\Tran{(u-\Exp u)}p(u)\dif u\]
+
+And conditional expectation is a function of conditioned variables. For example \(\Exp{u\mid v}\) is a function of \(v\). And we have the following formula
+\begin{align}
+    \Exp{u}&=\Exp{\Exp{u\mid v}}\\
+    \Exp{u}&=\int\int u\cdot p(u,v)\dif u\dif v=\int\int u\cdot p(u\mid v)\dif u\; p(v)\dif v\\
+        &=\int \Exp{u\mid v}p(v)\dif v\\
+    \Var{u}&=\Exp{\Var{u\mid v}}+\Var{\Exp{u\mid v}}
+\end{align}
+
+\subsubsection*{Transformation of variables}
+Denote \(p_u(u)\) the density for \(u\) and transformation is \(v=f(u)\). If \(p_u\) is discrete and \(f\) is one-to-one, then \(p_v(v)=p_u(f^{-1}(v))\). And if \(f\) is many-to-one, then we need to sum those probabilities of same value of \(f(u)\).
+
+And if \(p_u\) is continuous, and \(f\) is one-to-one, then \(p_v(v)=\abs{J}p_u(f^{-1}(v))\) where \(\abs{J}\) is the absolute value of the determinant of Jacobian, and can be denoted as \(\frac{\partial u}{\partial v}\) even in vector form.
+
+A useful 1-d function, the logarithm
+\begin{equation}\label{1.10}
+    \logit(u)=\log(\frac{u}{1-u})
+\end{equation}
+
+with the inverse \(\logit^{-1}(v)=\frac{e^v}{1+e^v}\).
+
+Another useful function is the probit transformation \(\Phi^{-1}(u)\) where \(\Phi\) is the standard normal cdf.
+
+\subsection{Computation and software}
+\subsubsection*{Summarizing inferences by simulation}
+\subsubsection*{Sampling using the inverse cumulative distribution function}
+
+For 1-d distribution \(p(v)\) with cdf \(F(v)\), the inverse cdf \(F^{-1}\) can be used to obtain random samples from the distribution \(p\).
+
+\begin{enumerate}
+    \item Draw a random value \(U\) from standard uniform
+    \item \(v=F^{-1}(U)\) and this \(v\) will be a random draw from \(p\).
+\end{enumerate}
+
+\subsubsection*{Simulation of posterior and posterior predictive quantities}
+
+\subsection{Bayesian inference in applied statistics}
+\subsection{Selected Exercises}
+\section{Single-parameter models}
+\subsection{Estimating a probability from binomial data}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\appendix
+\section*{Appendices}
+\addcontentsline{toc}{section}{Appendices}
+\section{Standard probability distribution}
+\subsection{Continuous distribution}
+\subsubsection*{Uniform}
+
+Standard uniform \(U(0,1)\), equal possibilities. If \(u\sim U(0,1)\), then \(\theta=a+(b-a)u\sim U(a,b)\). A noninformative distribution is obtained in the limit as \(a\to\infty\) and \(b\to\infty\).
+\subsubsection*{Univariate normal}
+
+Standard normal \(\cN(0,1)\). If \(z\sim\cN(0,1)\) then \(\theta=\mu+\sigma z\sim \cN(\mu,\sigma^2)\). A noninformative (flat distribution) is obtained in the limit as \(\sigma\to\infty\). And \(\sigma=0\) corresponds to point mass at \(\theta\).
+
+Useful properties: If two independent \(\theta_1\sim\cN(\mu_1,\sigma_1^2)\) and \(\theta_2\sim\cN(\mu_2,\sigma_2^2)\), then \(\theta_1+\theta_2\sim\cN(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)\). And mixture property states that if \(\theta_1\mid\theta_2\sim\cN(\theta_2,\sigma_1^2)\) and \(\theta_2\sim\cN(\mu_2,\sigma_2^2)\), then \(\theta_1\sim\cN(\mu_2,\sigma_1^2+\sigma_2^2)\).
+
+\subsubsection*{Lognormal}
+
+When \(\log\theta\sim\cN(\mu,\sigma^2)\), \(\theta\) is log normal. Using transformation, its density is $$p(\theta)=\Pare{\sqrt{2\pi}\sigma\theta}^{-1}\exp\Pare{\frac{-1}{2\sigma^2}\Pare{\log\theta-\mu}^2}.$$ Its mean is \(\exp(\mu+\frac{1}{2}\sigma^2)\) and variance is \(\exp(2\mu)\exp(\sigma^2)(\exp(\sigma^2-1))\), and mode is \(\exp(\mu-\sigma^2)\)
+
+
+\subsubsection*{Multivariate normal}
+
+Standard Multi-normal \(z=(z_1,\dots,z_d)\sim\cN(0,I_d)\) where \(I_d\) is \(d\times d\) identity matrix. If \(z\sim\cN(0,I_d)\) then \(\theta=\mu+Az\sim\cN(\mu,A\Tran{A})\)
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

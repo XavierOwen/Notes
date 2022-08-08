@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{amsthm, amsmath, amssymb, amsfonts, graphicx, epsfig}
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{Notes on Natural-Gradient Variational Inference}
+\author{Yuanxing Cheng}
+
+
+\begin{document}
+
+\maketitle
+
+\section{About natural gradient VI}
+\subsection{Exponential familiy}
+\begin{equation}
+    q(\theta\mid\eta)=q_\eta(\theta)=h(\theta) \exp\CB{\AB{\eta,\phi(\theta)}-A(\eta)}
+\end{equation}
+
+Here \(q\) is an exponential familiy over parameters \(\theta\) with natural parameters \(\eta\). 
+
+\begin{itemize}
+    \item \(\phi(\theta)\) is the vector of sufficient statistics.
+    \item \(A(\eta)=\log \int\exp\Pare{\Tran{\phi(\theta)}\eta}\dif \theta \) is the log-partition function.
+    \item \(h(\theta)\) is a scaling constant. 
+\end{itemize}
+
+As in our case, this \(q(\theta\mid\eta)\) is our \(\rho(x)\). This paper update \(q\) through updating \(\eta\).
+
+Also assume a minimal exponential familiy, then \(\phi(\theta)\) are lin-idp. And this leads to the result that there's a 1-to-1 mapping between \(\eta\) and mean parameters \(m\).
+\[m=\Exp{\phi(\theta)}=\nabla_\eta A(\eta)\]
+
+Above equation is obtained by considering it as the first order dirivative of first momentum. 
+
+Next, the objective function is ELBO defined as following:
+
+\begin{equation}
+    \cL(\eta)=\bE_{q_\eta(\theta)}\SB{\log p(\cD\mid\theta)}+\bE_{q_\eta(\theta)}\SB{\log\frac{p_0(\theta)}{q_\eta(\theta)}}
+\end{equation}
+
+where \(\cD\) are data. Above it's a expecation of likelihood plus the KL divergence.
+
+\subsection{Updating strategy}
+\begin{equation}\label{eq:updateEta}
+    \eta_{t+1}=\eta_t+\beta_t\bfF^{-1}(\eta_t)\nabla_\eta \cL(\eta_t)
+\end{equation}
+
+with \(\bfF(\eta_t)=\bE_{q_\eta(\theta)}\SB{\nabla_\eta\log q_\eta(\theta)\Tran{\nabla_\eta\log q_\eta(\theta)}}\) the Fisher Information matrix. i.e., \(I=\int \rho\abs{\nabla\log \rho}^2\dif x\) in our case. And \(\beta_t\) is the learning rate.
+
+A simplification with result: \(\bfF(\eta)=\nabla_{\eta\eta}^2 A(\eta)\), then by consider \(\cL\) as a function of \(m\) instead of \(\eta\) (denote as \(\cL_*\)), we have
+\begin{equation}
+    \nabla_\eta \cL(\eta_t)=\nabla_\eta m_t \nabla_m\cL_*(m_t)=\nabla_{\eta\eta}^2 A(\eta)\nabla_m\cL_*(m_t)=\bfF(\eta)\nabla_m\cL_*(m_t)
+\end{equation}
+
+And thus the updating strategy is reduced to
+\begin{equation}
+    \eta_{t+1}=\eta_t+\beta_t\nabla_m\cL_*(m_t)
+\end{equation}
+
+Then we plug in \(\cL_*\), first we notice the gradient of KL term is easily obtained.
+
+\begin{align*}
+    \nabla_m \textrm{KL}&=\nabla_m\bE_{q_\eta{\theta}}\SB{\phi(\theta)^\top(\eta_0-\eta)+A(\eta)+\textrm{const}}\\
+    &=\nabla_m(m^\top(\eta_0-\eta))+\nabla_mA(\eta)\\
+    &=(\eta_0-\eta-\nabla_m\eta^\top)+\nabla_mA(\eta)\\
+    &= \eta_0-\eta-\bfF^{-1}(\eta)m+\bfF^{-1}(\eta)m = \eta_0-\eta
+\end{align*}
+
+Then the update further reduced through
+\begin{equation}
+    \eta_{t+1}=\eta_t+\beta_t(\nabla_m\textrm{likelihood}+(\eta_0-\eta_t))
+\end{equation}
+\end{document}

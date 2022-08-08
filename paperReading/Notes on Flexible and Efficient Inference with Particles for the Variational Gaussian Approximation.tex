@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{amsthm, amsmath, amssymb, amsfonts, graphicx, epsfig}
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{Notes on Flexible and Efficient Inference with Particles for the Variational Gaussian Approximation} 
+\author{Yuanxing Cheng}
+
+
+\begin{document}
+
+\maketitle
+
+\section{before starting}
+
+Transform between variable flow and particle flow for Gaussian variational inference.
+
+\section{Abstruct}
+Variational Inference. A flexible and efficient algorithm based on a linear flow leading to a particle based approximation. With sufficient number of particles, algorithm converges linearly to the exact solution for Gaussian targets. On a set of synthetic and high-dimension problems, algorithm outperforms.
+
+\section{Introduction}
+Introducing Gaussian particle flow (GPF), that approximate a Gaussian variational distribution with particles. A stochastic version, Gaussian Flow (GF). Prove the decreasing of empirical version of free energy. Comparison with other VGA algorithm.
+
+\section{Related work}
+Bayesian Inference is to find posterior distribution of latent variable \(\bfx \in \bR^D\) given observations \(y\). To use Bayes theorem that \(p(\bfx\mid y)=\frac{p(y\mid x)p(x)}{p(y)}\) we need to compute \(p(y)\) which is hard. Variational inference (VI) turns this into an optimization problem. The measure of closeness of densities is Kullback-Leibler (KL) divergence
+
+\[
+    \KL \SB{q(x)\parallel p(x)}=\bE_q\SB{\log q(x)-\log p(x)}=\int q(x)\log \frac{q(x)}{p(x)}\dif x
+\]
+
+Denote by \(\cQ\) a family of distributions, we look for
+
+\[\argmin_{q\in\cQ} \KL\SB{q(x)\parallel p(x\mid y)}=\argmin_{q\in\cQ} \int q(x) \log \frac{q(x)p(y)}{p(y\mid x)p(x)}\dif x\]
+
+Equivalently, we minimize the upper bound, the variational free energy \(\cF\)
+
+\begin{equation}
+    \KL\SB{q(x)\parallel p(x\mid y)} \leq \cF[q]=\int q(x) \log q(x)-q(x)\log\Pare{p(y\mid x)p(x)}\dif x=-\bE_q\SB{\log\Pare{p(y\mid x)p(x)}}-\bH_q
+\end{equation}
+
+where \(\bH_q = -\bE_q\SB{\log q(x)}\) is the entropy of \(q\). 
+
+Following are developed approaches in the literature.
+
+\subsection{The Variational Gaussian Approximation}
+
+We restrict the distribution family \(\cQ\) to be multivariate Gaussian distribution: \(q(x)=\cN(m,C)\) where \(m\in \bR^D\) is the mean and \(C\in\CB{A\in\bR^{D\times D} \mid x^\top A x\geq 0, \forall x\in\bR^D}\) is the covariance matrix. As in the definition, \(C\) is positive semi-definite. Then we use the result that the entropy of multivariate normal is \(\frac{1}{2}\log\Pare{\det\Pare{2\pi e C}}\), so we can rewrite the energy as follows, ignoring the constant.
+
+\begin{equation}
+    \cF[q]=-\bE_q\SB{\log\Pare{p(y\mid x)p(x)}}-\bH_q=-\frac{1}{2}\log\abs{C}+\bE_q\SB{\phi(x)}
+\end{equation}
+
+where \(\phi(x)=-\log(p(y\mid x)p(x))\).
+
+Issues with this method: hard to compute gradient wrt \(C\), non-sparse matrix from gradient of entropy, and positive-definiteness of covariance leads to non-trivial constraints on parameter updates and thus the instabilities in the algorithm.
+
+To solve above issues, first focus on factorizable models. For problems with likelihoods that can be rewritten as \(p(y\mid x)=\prod_{d=1}^D p(y\mid x_d)\), the number of independent variational parameters is reduced to \(2D\). Then the Gaussian expectation of free energy split into a sum of 1-d integrals. 
+
+To extend to the general case, gradients of the gree energy are estimated by a stochastic sampling approach. And this relies on the \emph{reparametrization trick}, where the expectation over the parameter dependent variational density \(q_\theta\) is replaced by an expectation over a fixed density \(q^0\), and thus \(\nabla_\theta q_\theta\) is avoided.
+
+For the Gaussian case, this reparametrization is a linear transformation of an arbitrary \(D\) dimensional Gaussian random varaible \(x\sim q_\theta (x)\) in terms of a \(D\) dimensional Gaussian rv \(x^0\sim q^0=\cN(m^0,C^0)\)
+\begin{equation}
+    x = \Gamma(x^0-m^0)+m
+\end{equation}
+
+where \(\Gamma\in\bR^{D\times D}\) and \(m\in \bR^d\) are the variational parameters. Assuming \(C^0\) non-degenerate and for simplicity, we set it as identity matrix \(I\). Then we can write the gradient of the expectation given \(q\) over a function \(f\) given mean \(m\): \(\nabla_m\bE_q\SB{f(x)} = \bE_{q^0}\SB{\nabla_m f\Pare{\Gamma\Pare{x^0-m^0}+m}}\)
+
+\section{Gaussian (Particle) Flow}
+Below denote \(\frac{\dif (\cdot)}{\dif t}\) indicates the total derivative given time, and \(\frac{\partial (\cdot)}{\partial t}\)
+
+\section{Gaussian Variable Flows}
+Based on idea of variable flows, define \(x^{n+1}=x^n+\epsilon f^n(x^n)\) where \(f^n:\bR^D\to\bR^D\). Using reparametrization trick, we choose a linear map \(f\) and write
+
+\begin{equation}
+    \frac{\dif x^t}{\dif t} = f^t(x^t)=A^t(x^t-m^t)+b^t
+\end{equation}
+
+where \(A^t\) is a matrix and \(m^t:=\bE_{q^t}\SB{x}\). And when initial \(x^0\) is Gaussian, \(x^t\) are also Gaussian for any \(t\). 
+
+Then we construct a flow that decreases the free energy.
+
+\begin{align}
+    \frac{\dif \cF[q^t]}{\dif t}&=\frac{\dif}{\dif t} \int q^t (\log q^t(x)+\phi(x))\dif x\\
+    &= \int \frac{\partial q^t(x)}{\partial t}(\log q^t (x)+\phi(x))\dif x+\int q^t(x)\Pare{\frac{\partial q^t(x)}{\partial t}\frac{1}{q^t(x)}+\frac{\partial \phi(x)}{\partial t}}\dif x\\
+    &= \int \frac{\partial q^t(x)}{\partial t} (\log q^t(x)+\phi(x)) \dif x
+\end{align}
+
+Then use continuity equation for the density 
+
+\[
+    \frac{\partial q^t(x)}{\partial t}=-\nabla_x\cdot (q^t(x)f^t(x))
+\]
+
+\begin{align*}
+    \frac{\dif \cF[q^t]}{\dif t} &= \int -\nabla_x \cdot (q^t(x)f^t(x))\Pare{\log q^t(x)+\phi(x)}\dif x\\
+    &= \int (q^t(x)f^t(x))\cdot \nabla_x\Pare{\log q^t(x)+\phi(x)}\dif x\\
+    &= \int -\Pare{\nabla_x\cdot (q^t(x)f^t(x))+q^t(x)f^t(x)\cdot \nabla_x\phi(x)}\dif x\\
+    &= \int -\Pare{\nabla_x q^t(x)\cdot f^t(x)+q^t(x)f^t(x)\cdot\nabla_x\phi(x)}\dif x\\
+    &= -\bE_{q^t}\SB{\nabla_x\cdot f^t(x)}
+\end{align*}
+
+
+
+
+
+
+
+
+\end{document}
