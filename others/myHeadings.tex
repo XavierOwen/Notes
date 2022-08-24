@@ -2,6 +2,10 @@
 
 %%% standard pachages
 \usepackage{amsthm, amsmath, amssymb, amsfonts, graphicx, epsfig}
+\graphicspath{ {D:/Notes/others/assets/} }
+
+\usepackage{algorithm, algpseudocode}
+
 \allowdisplaybreaks
 \usepackage{setspace}
 %\usepackage{accents}
@@ -111,7 +115,23 @@
             citecolor=blue, urlcolor=blue]{hyperref}
 \usepackage[usenames]{color}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% custom textbox
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbset{my left line/.style={
+          enhanced, frame hidden, borderline west = {0.5pt}{0pt}{black}, % speficif border
+          opacityframe=0, opacityback=0,opacityfill=0, % color
+          arc = 0mm, left skip=1em, % border
+          left = 1mm,top=0mm,bottom=0mm,boxsep=1mm,middle=0mm, % text and border
+}}
 
+\newtcbox{\mybox}[1][]{my left line, #1}
+\newtcolorbox{myleftlinebox}[1][]{my left line, #1}
+% usage
+% use \mybox[on line]{your TEXT} for inline box otherwise forcing line breaks   
+% for whole break, use \begin{myleftlinebox
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -454,6 +474,7 @@
 \DeclareMathOperator*{\argmax}{arg\,max} % argmax
 \DeclareMathOperator*{\rank}{rank\,} % argmax
 \DeclareMathOperator*{\KL}{KL} % KL divergence
+\DeclareMathOperator*{\Proj}{Proj} % Projection
 \DeclareMathOperator{\Std}{\mathrm{Std}} % \std for Standard deviation
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINANCE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
