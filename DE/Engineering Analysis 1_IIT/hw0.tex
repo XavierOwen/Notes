@@ -1,0 +1,194 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{HW0}
+\author{Yuanxing Cheng, A20453410, MMAE-501-f22}
+
+\begin{document}
+
+\maketitle
+
+\section*{1}
+
+\begin{myleftlinebox}
+    Prove \(\abs{AB} = \abs{A}\abs{B}\) when both are \(2\times 2\) matrices.
+    \tcblower
+    Let \(A = \begin{bmatrix}
+        a_1 & a_2\\
+        a_3 & a_4
+    \end{bmatrix}\) and  \(B = \begin{bmatrix}
+        b_1 & b_2\\
+        b_3 & b_4
+    \end{bmatrix}\), then
+    \begin{align*}
+        \LHS & = \begin{vmatrix}
+            a_1 b_1+a_2 b_3 & a_1b_2+a_2 b_4 \\ 
+            a_3b_1 +a_4 b_3 & a_3b_2+a_4 b_4
+            \end{vmatrix}\\
+            &= a_1a_3b_1b_2+a_1a_4b_1b_4+a_2a_3b_2b_3+a_2a_4b_3b_4-a_1a_3b_1b_2-a_2a_3b_1b_4-a_2a_4b_3b_4\\
+            &= a_1a_4b_1b_4+a_2a_3b_2b_3-a_2a_3b_1b_4-a_1a_4b_2b_3\\
+            \RHS &= \Pare{a_1a_4-a_2a_3}\Pare{b_1b_4-b_2b_3}\\
+            &= a_1a_4b_1b_4+a_2a_3b_2b_3-a_2a_3b_1b_4-a_1a_4b_2b_3\\
+            & = \LHS
+    \end{align*}
+\end{myleftlinebox}
+
+\section*{2}
+\begin{myleftlinebox}
+    Determine \(A^\top\), \(\Adj\Pare{A}\), \(A^{-1}\) when \(A = \begin{bmatrix}
+        1 & 2 & 1\\
+        2 & 1 & 0 \\
+        -1 & 0 & 1
+    \end{bmatrix}\)
+    \tcblower
+    \[
+        A^\top = \begin{bmatrix}
+            1 & 2 & -1\\
+            2 & 1 & 0 \\
+            1 & 0 & 1
+        \end{bmatrix}
+    \]
+    \[
+        \Adj(A)= \begin{bmatrix}
+            1\cdot 1-0 & -(2\cdot 1-0) & 2\cdot 0-1\cdot 1\\
+            -2\cdot 1+0 & -1\cdot 1+1\cdot (-1) & -0+(-1)\cdot 2 \\
+            0-(-1)\cdot 1 & 0-2\cdot 1 & 1-4
+        \end{bmatrix} = \begin{bmatrix}
+            1 & -2 & -1\\
+            -2 & 2 & 2\\
+            1 & 2 & -3
+        \end{bmatrix}
+    \]
+    \[
+        A^{-1} = \frac{1}{\abs{A}}\Adj(A) = -\frac{1}{ 2 }\Adj(A) = \begin{bmatrix}
+            -1/2 & 1 & 1/2\\
+            1 & -1 & -1\\
+            -1/2 & -1 & 3/2
+        \end{bmatrix}
+    \]
+\end{myleftlinebox}
+
+\section*{3}
+\begin{myleftlinebox}
+    Prove \(\abs{A} = \abs{A^\top} \) using cofactor matrix expansion
+    \tcblower
+    Denote \(A^\top = \Pare{b_{ij}}_{3\times 3}\) and corresponding cofactor matrix \(D_{ij}\). Then we expand \(A^\top\) along the first column and obtain
+
+    \[
+        \abs{A^\top} = b_{11}D_{11} + b_{21}D_{21}+b_{31}D_{31}
+    \]
+    Notice \(b_{ij} = a_{ji}\),\( D_{ij} = (-1)^{i+j} B(i\mid j) = (-1)^{i+j}A(j\mid i) =C_{ji}\), where \(B(i \mid j) \) denote the new matrix obtained by removing row \(i\) and column \(j\) from matrix \(B = A^\top\), then
+    \[
+        \abs{A^\top} = a_{11}C_{11}+a_{12}C_{12}+a_{13}C_{31}
+    \]
+    Corresponding to the cofactor expansion of \(A\) along first row, and thus \(\abs{A} = \abs{A^\top}\).
+\end{myleftlinebox}
+
+\section*{4}
+\begin{myleftlinebox}
+    Gaussian elimination to solve 
+    \[
+        \begin{cases}
+            a_{11}x_1 + a_{12} x_2 = b_1\\
+            a_{21}x_1 + a_{22} x_2 = b_2
+        \end{cases}
+    \]
+    where \(b_1^2+b_2^2>0\). Show it's same as using Cramer's Rule and then solve
+    \[
+        \begin{cases}
+            x_1 + 5 x_2 = 3\\
+            7 x_1 -3 x_2 = -1
+        \end{cases}
+    \]
+    \tcblower
+    For the general form, multiply \(a_{21}\) to first eqn and minus \(a_{11}\) multiply second eqn, then we obtain 
+    \[(a_{21}a_{12}-a_{11}a_{22})x_2 = a_{21}b_1-a_{11}b_2\implies x_2 = \frac{a_{11}b_2 - a_{21}b_1}{a_{11}a_{22}-a_{21}a_{12}} = \frac{D_2}{\abs{A}}\]
+
+    Similarly, multiply \(a_{22}\) to first eqn and minus \(a_{12}\) multiply second eqn, then we obtain 
+    \[(a_{11}a_{22} - a_{21}a_{12})x_1 = a_{22}b_1-a_{12}b_2\implies x_1= \frac{a_{22}b_1-a_{12}b_2}{a_{11}a_{22}-a_{21}a_{12}} = \frac{D_1}{\abs{A}}\]
+    
+    where \(D_i\) is obtained by replacing \(A\)'s \(i\)-th column to \([b_1,b_2]^\top\).
+
+    For the case with actual numbers, using cramer's rule, the solution is
+    \[
+        x_1 = \frac{-4}{-38}=\frac{2}{19}, x_2 = \frac{-22}{-38} = \frac{11}{19}
+    \]
+\end{myleftlinebox}
+
+\section*{5}
+\begin{myleftlinebox}
+    \[P(\lambda) = \begin{vmatrix}
+        4-\lambda & 0 & 1\\
+        1 & -\lambda & 1\\
+        -1 & -2 & 2-\lambda 
+    \end{vmatrix}
+    \]
+    Expand it and solve it.
+    \tcblower
+    \[
+        P(\lambda) = (4-\lambda)(-\lambda)(2-\lambda)+0+(-2)-\lambda-0-(4-\lambda)(-2)=-(\lambda-2)(\lambda+1)(\lambda+3)
+    \]
+    Thus when \(\lambda\) equals \(2,-1,-3\), \(P(\lambda)\) vanishes.
+\end{myleftlinebox}
+
+\section*{6}
+\begin{myleftlinebox}
+    solve \[Ax = \begin{bmatrix}
+        1 & 4 & 1 & 0 \\
+        2 & 1 & 3 & 1 \\
+        5 & 6 & 7 & 2\\
+        2 & 1 & 0 & 1
+    \end{bmatrix}x=0\]
+    \tcblower
+    Using Gaussian elimination, above is reduced to \[\begin{bmatrix}
+        1 & 4 & 1 & 0 \\
+        0 & 7 & -1 & -1\\
+        0 & 0 & 0& 0\\
+        0 & 0 & -3 & 0
+    \end{bmatrix}x=0\]
+    Then start with letting \(x_2 = k\), we solve it as \(x = [-4k,k,0,7k]^\top\) for \(k\in\bR\).
+\end{myleftlinebox}
+
+\section*{7}
+\begin{myleftlinebox}
+    Given augumented matrix, write the equations and see if consistent.
+    \[
+        \SB{
+            \begin{array}[]{ccc|c}
+                1 & 2 & 1 & 4\\
+                1 & 1 & 2 & 0\\
+                2 & 1 & 1 & 4\\
+                0 & 3&  5 & 1
+            \end{array}
+        }
+    \]
+    \tcblower
+    \[
+        \begin{cases}
+            x_1+2x_2+x_3 = 4\\
+            x_1 + x_2 + 2x_3=0\\
+            2x_1 + x_2 + x_3=4\\
+            3x_2 + 5x_3 = 1
+        \end{cases}
+    \]
+    Using gaussian elimination, we can obtain
+    \[\begin{cases}
+        -4x_3 = 8\\
+        8x_3 = -11
+    \end{cases}\]
+    Thus inconsistent.
+\end{myleftlinebox}
+
+
+
+%\newpage
+
+%\bibliographystyle{acm}
+%\bibliography{D:/Papers.bib}
+
+%\newpage
+%\appendix
+%\section{Appendix}
+
+\end{document}
