@@ -1,0 +1,156 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{HW4}
+\author{Yuanxing Cheng, A20453410, MMAE-501-f22}
+
+\begin{document}
+
+\maketitle
+
+\section*{1}
+
+\begin{myleftlinebox}
+    Reduce the differential eigenproblem \((1-x^2)u''-xu'+\lambda u=0\) to Sturm-Liouville form.
+    \tcblower
+    From the form
+    \[a_0\frac{\dif^2 u_i}{\dif x^2} + a_1(x) \frac{\dif u_i}{\dif x}+\Pare{a_2(x)+\lambda_i a_3(x)} u_i=0\]
+    \begin{align*}
+        a_0(x) &= 1-x^2\\
+        a_1(x) &= -x\\
+        a_2(x) &= 0\\
+        a_3(x) &= 1\\
+    \end{align*}
+    To obtain the SL form \(\frac{\dif}{\dif x} \Pare{p(x)\frac{\dif}{\dif x}u_i} +\Pare{q(x)+\lambda_i w(x)}u_i=0  \), we let \(p(x)=\exp\Pare{\int \frac{a_1}{a_0}\dif x}=\sqrt{x^2-1}\), \(q(x)=\frac{a_2}{a_0}p=0\) and \(w(x)=\frac{a_3}{a_0}p=-\frac{1}{\sqrt{x^2-1}}\)
+\end{myleftlinebox}
+\section*{2}
+\begin{myleftlinebox}
+    Find the eigenvalues and eigenfunctions of the differential eigenproblem
+    \[u''+\lambda u=0,u'(0)=0,u(1)=0\]
+    \tcbline
+    For case \(\lambda=0\), we end up with solution \(u(x)=c_1 x+c_2\). Plug in the boundary condition we have
+    \[\begin{cases}
+        c_1&=0\\
+        c_1+c_2 &= 0
+    \end{cases}\implies c_i=0\]
+    This is trivial, so next we consider \(\lambda=-\mu^2\) where \(\mu>0\). The solution is \(u=c_1 e^{\mu t}+c_2 e^{-\mu t}\). Plug in the boundary condition we have
+    \[\begin{cases}
+        (c_1-c_2)\mu&=0\\
+        c_1 e^{\mu}+c_2 e^{-\mu} &= 0
+    \end{cases}\implies c_i=0\]
+    Still trivial, so we consider \(\lambda=\mu^2\). The solution is then \(u=c_1 e^{i\mu t}+c_2 e^{-i\mu t}=c_3\cos(\mu t)+ic_4\sin(\mu t)\).
+    For \(u(x)=c_3 \cos (\mu t)\), plug in the boundary condition we have
+    \[\begin{cases}
+        -c_3\mu\sin(0)&=0\\
+        c_3\cos(\mu) &= 0
+    \end{cases}\implies \mu=\frac{\pi}{2}+k\pi,k\in \bZ\]
+
+    For \(u(x)=c_4 \sin (\mu t)\), plug in the boundary condition we have
+    \[\begin{cases}
+        c_4\mu\cos(0)&=0\\
+        c_4\sin(\mu) &= 0
+    \end{cases}\implies c_4=0\]
+
+    Excluding these trivial solutions, we end up with eigenvalues \(\lambda_i=\mu^2=(k+0.5)^2\pi^2,k\in\bZ\), and the corresponding eigenfunctions are \(u_k(t)=c_3\cos((k+0.5)\pi t)\), \(k=1,2,3,\dots\).
+
+    Finally, we normalizing the functions, and obtain \(c_3=\sqrt 2\).
+\end{myleftlinebox}
+
+\section*{3}
+\begin{myleftlinebox}
+    Find the eigenvalues and eigenfunctions of the differential eigenproblem \(\lambda=\mu^2\)
+    \[x^2 u'' + xu' +\mu^2u = 0, u(1)=0,u(4)=0\]
+    \tcbline
+    Plug in the general form \(u(x)=x^r\) we obtain \(r^2+\mu^2=0\) so \(r=\pm i\mu\) and \(u(x)=x^{\pm i\mu}=e^{\pm(\ln x)i\mu}\). Then use Euler's formula and obtain
+    \(u(x)=c_1\cos(\mu\ln x)\), or \(u(x)=c_2\sin(\mu\ln x)\).
+
+    For \(u(x)=c_1\cos(\mu\ln x)\), the boundary condition gives \(c_1=0\) thus trivial, and for  \(u(x)=c_2\sin(\mu\ln x)\) the boundary condition gives \(c_2 \sin(\mu\ln 4)=0\) thus \(\mu=\frac{k\pi}{\ln 4}\) where \(k\in\bZ\). Similarly after normalizing it we have the eigenfunctions \(\sqrt 2\sin(\frac{k\pi\ln x}{\ln 4})\) and corresponding eigenvalues are \(\mu^2=\frac{k^2\pi^2}{(\ln 4)^2}\)
+\end{myleftlinebox}
+
+\section*{4}
+\begin{myleftlinebox}
+    Verify that the set of functions \(\phi_n(x)=\sin\Pare{\dfrac{n\pi x}{l}}, n=1,2,\dots\) on \(x\leq x\leq l\) are orthogonal with unit weight, and find their norms.
+    \tcbline
+    For distinct \(n,m\), we have the following:
+    \begin{align*}
+        \Pare{\phi_n,\phi_m}&=\int_0^l \sin\Pare{\frac{n\pi x}{l}}\sin\Pare{\frac{m\pi x}{l}}\dif x\\
+        &= \frac{1}{2}\int_0^l \cos\Pare{\frac{(n-m)\pi x}{l}}-\cos\Pare{\frac{(n+m)\pi x}{l}} \dif x\\
+        &= \frac{1}{2\pi}\Pare{\frac{l}{n-m}\given{\sin\Pare{\frac{(n-m)\pi x}{l}}}_0^l-\frac{l}{n+m}\given{\sin\Pare{\frac{(n+m)\pi x}{l}}}_0^l}=0
+    \end{align*}
+    This is the orthogonality; for the norm, we have
+    \begin{align*}
+        \Pare{\phi_n,\phi_n}&=\int_0^l \sin\Pare{\frac{n\pi x}{l}}\sin\Pare{\frac{n\pi x}{l}}\dif x\\
+        &= \frac{1}{2}\int_0^l 1-\cos\Pare{\frac{2n\pi x}{l}}  \dif x\\
+        &= l/2
+    \end{align*}
+    Thus their norms are \(\sqrt{\frac{l}{2}}\).
+\end{myleftlinebox}
+
+\section*{5}
+\begin{myleftlinebox}
+    Show that Bessel's equation of order \(\nu\): \(x^2u''+xu'+(x^2-\nu^2)u=0\) is not self-adjoint. Then find \(a\) such that the following equation is self-adjoint.
+    \[a\sin x u''+\cos x u'+2u=0\]
+    \tcbline
+    According to the standard form of a general second order linear differential equation: \(\cL u =\frac{1}{w(x)}\Pare{a_0(x)u''(x)+a_1(x)u'(x)+a_2(x)u(x)}\), here
+    \begin{align*}
+        a_0(x) &= x^2,\\
+        a_1(x) &= x,\\
+        a_2(x) &= x^2,\\
+        \lambda &= \nu^2,\\
+        w(x) &= 1
+    \end{align*}
+    As in the requirement: \(a_1(x)=a_0'(x)\), apparently \((x^2)'=2x\neq x\), thus not self-adjoint. 
+    This requirement also give rise to the solution to \(a\). We only want \((a\sin x)'=\cos x\) thus \(a=1\).
+
+\end{myleftlinebox}
+
+\section*{6}
+\begin{myleftlinebox}
+    Expand the polynomial \(3x^4-4x^2-x\) in terms of a linear combination of the first four Chebyhev polynomials.
+    \tcbline
+    \begin{align*}
+        T_0(x) &= 1,\\
+        T_1(x) &= x,\\
+        T_2(x) &= 2x^2-1,\\
+        T_3(x) &= 4x^3-3x,\\
+        T_4(x) &= 8x^4-8x^2+1
+    \end{align*}
+    We can compare the coefficients from higher order.
+    \begin{align*}
+        a_4 &= 3/8,\\
+        a_3 &= 0,\\
+        a_2 &= (-4-(-8)\times 3/8)/2 = -1/2,\\
+        a_1 &= -1,\\
+        a_0 &= -(3/8+1/2)=-7/8
+    \end{align*}
+\end{myleftlinebox}
+\section*{7}
+
+\begin{myleftlinebox}
+    A rectangular membrane with its corners at \((0,0), (a,0), (0,b), (a,b)\) has its edges clamped. The governing equation is the two-dimensional wave equation in Cartesian coordinates
+    \[\frac{\partial^2 u}{\partial t^2} = c^2\Pare{\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}}\]
+    where \(c\) is the wavespeed, and \(u\) is the vibrational amplitude. Show that the natural vibrational frequencies are given by 
+    \[\omega_{mn}=c\sqrt{\Pare{\frac{n\pi}{a}}^2+\Pare{\frac{m\pi}{b}}^2}\]
+    and that the corresponding eigenfunctions determining the modes of the vibration are
+    \[\phi_{mn}=\sin\Pare{\frac{n\pi x}{a}}\sin\Pare{\frac{m\pi y}{b}}\]
+    \tcbline
+    Using separation of variable method, we first obtain
+    \[-\frac{c^2\Delta \phi}{\phi}=-\frac{\ddot\psi}{\psi}=\lambda=(k_1+k_2)\omega^2\]
+    First we solve spatial equation: \(\Delta \phi=-\frac{\omega^2}{c^2} \phi\), where the boundary condition is zero edges due to the clamp.
+    Here we do another separation of variable: \(\phi(x,y)=\phi_1(x)\phi_2(y)\) then we have \(\phi_2(y)\Delta\phi_1(x)+\phi_1(x)\Delta\phi_2(y)=-\frac{(k_1+k_2)\omega^2}{c^2}\phi_1(x)\phi_2(y)\) and then we could have
+    \begin{align*}
+        \frac{\partial^2}{\partial x^2}\phi_1(x)+\frac{k_1\omega^2}{c^2}\phi_1(x)&=0\\
+        \frac{\partial^2}{\partial y^2}\phi_1(y)+\frac{k_2\omega^2}{c^2}\phi_2(y)&=0\\
+        \phi_1(0)=\phi_1(a)&=0\\
+        \phi_2(0)=\phi_2(b) &= 0
+    \end{align*}
+    The general solution is \(\phi_1(x)=c_1\cos\Pare{\sqrt{k_1}\frac{\omega_n}{c}x}+c_2\sin\Pare{\sqrt{k_1}\frac{\omega_n}{c}x}\) and from the initial condition, \(c_1=0\) and \(\sin\Pare{\sqrt{k_1}\frac{\omega_na}{c}}=0\) so the eigenvalues satisfy \(\sqrt{k_1}\frac{\omega_na}{c}=n\pi,n=1,2,\dots\) and the eigenfunctions are \(\phi_1(x)=c_2\sin\Pare{\frac{n\pi x}{a}}\). Similarly, \(\phi_2(y)=c_4\sin\Pare{\frac{m\pi y}{b}}\), \(m,n=1,2,\dots\). The arbitrary constants here are taken as \(1\) and thus
+    \[\phi_{mn}(x,y)=\phi_1(x)\phi_2(y)=\sin\Pare{\frac{n\pi x}{a}}\sin\Pare{\frac{m\pi y}{b}}\]
+    Their natural frequencies are \(k_1\omega^2=\frac{n\pi c}{a}\) and \(k_2\omega^2=\frac{m\pi c}{b}\), then
+    \[\omega_{mn} = \sqrt{(k_1+k_2)\omega^2}=c\sqrt{\Pare{\frac{n\pi}{a}}^2+\Pare{\frac{m\pi}{b}}^2}\]
+\end{myleftlinebox}
+
+
+
+\end{document}

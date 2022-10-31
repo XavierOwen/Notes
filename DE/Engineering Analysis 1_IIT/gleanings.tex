@@ -1,0 +1,325 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{Gleanings on Engineering Analysis I}
+\author{Yuanxing Cheng, A20453410, MMAE-501-f22}
+
+
+\begin{document}
+
+\maketitle
+
+\section{On Diagonalization of Matrices}
+
+\(Q\) diagonalizes \(A\) is \(Q^\top A Q =D\) is a diagonal matrix. \(Q\) is the called {\it modal matrix}. A general procedure for real symmetric matrix \(A_{N\times N}\).
+
+\begin{enumerate}
+    \item notice for real symmetric matrix, it has \(N\) different eigenvalues, here we obtain them and name them as \(\lambda_i\)
+    \item get normalized eigenvectors \(q_i\)
+    \item construct orthogonal modal matrix \(Q=[q_1,\dots,q_N]\)
+    \item then \(D = \diag(\lambda_1,\dots,\lambda_N)\)
+\end{enumerate}
+
+Then, we write \(x=Qy\) and then write the {\it canonical form} of the quadratic form.
+
+\[x^\top A x=y^\top Q^\top AQ y = \sum_N \lambda_i y_i^2  \]
+
+Then clearly, \(Q\) and \(A\) share the same eigenvalues ({\it spectral theorem}), and then we call \(D = Q^\top A Q\) the similarity transformation.
+
+
+\begin{theorem}[Spectral theorem in finite space]
+    for normal matrix, it's diagonalizable using its orthogonal model matrix. The result share the same eigenvalues and they are similar.
+\end{theorem}
+
+\begin{remark}
+    For real and symmetric matrix \(\bfA\) with distinct eigenvalues, the eigenvectors are mutually orthogonal and we have decomposition: \(\bfA = \bfQ \bfD \bfQ^\top\) where \(\bfQ\) is the modal matrix comprised of the orthonormal eigenvectors of \(\bfA\) and \(\bfD\) is a diagonal matrix having the eigenvalues of \(\bfA\) along its diagonal; for nonsymmetric matrix with distinct eigenvalues, the eigenvectors are mutually linearly independent, but not necessarily orthogonal. So we can have the decomposition: \(\bfA = \bfU \bfD \bfU^{-1}\) and \(\bfU\) is the modal matrix containing the linearly-independent eigenvectors of \(\bfA\). For nonsymmetric matrix with repeated eigenvalues, it ends up {\it Jordan canonical form} and we write \(\bfA = \bfU\bfJ\bfU^{-1}\) where \(\bfJ\) is the nearly-diagonal Jordan canonical form.
+\end{remark}
+
+
+
+\section{On solving DEs}
+
+\subsection{System of N coupled first-order linear ordinary differential equations}
+
+Consider
+
+\begin{equation*}
+    \begin{split}
+        \dot u_1(t) &= A_{11} u_1(t) + A_{12} u_2(t) + \cdots+ A_{1N} u_N(t) + f_1(t)\\
+        \dot u_2(t) &= A_{21} u_1(t) + A_{22} u_2(t) + \cdots+ A_{2N} u_N(t) + f_2(t)\\
+         & \vdots\\
+        \dot u_N(t) &= A_{N1} u_1(t) + A_{N2} u_2(t) + \cdots+ A_{NN} u_N(t) + f_N(t)\\
+    \end{split}
+\end{equation*}
+
+In matrix form, we write \(\dot \bfu(t) = \bfA \bfu(t)+\bff(t)\). If \(\bff\equiv 0\) then the system is homogeneous.
+
+To solve this, we first diagonalize \(\bfA\).
+
+\begin{enumerate}
+    \item Diagonalize \(\bfA\) and obtain \(D = U^{-1}\bfA U\)
+    \item Consider \(\dot \bfu(t) = U \dot \bfv(t)\)
+    \item then we have \(\dot\bfv(t) = U^{-1}AU\bfv(t) + U^{-1}\bff(t)=D\bfv(t)+U^{-1}\bff(t)\)
+    \item we then obtain the uncoupled system and the homogeneous system will have an obvious soution: \(v_i (t)= c_i e^{\lambda_i t}\) where \(\lambda_i\) is the \(i\)-th element of the diagonal of matrix \(D\).
+    \item For nonhomogeneous system, the particular solution can be found using method of undetermined coefficients.
+    \item Finally, \(\bfu(t) = U\bfv(t)\) is the solution we want.
+    
+\end{enumerate}
+
+\subsection{N-th order Linear ODE}
+
+Consider
+
+\[u^{(N)}=F(t,u,\dot u,\dots,u^{(N-1)})\]
+
+We write it into a system of N first-order differential equations by substitutions \(u_i(t) = u^{(i-1)}(t)\).
+
+\begin{remark}
+    For linear equations, both the real and imaginary parts of complex solutions are by themselves solutions of the differential equations, and a linear combination of the real and imaginary parts, is also a solution of the linear equations. The real and imagainary parts is obtained using {\it Euler's formula}: \(e^{\theta it} =\cos(\theta t)+i\sin(\theta t)\)
+\end{remark}
+
+\begin{remark}
+    Above we are only discussing {\it autonomous} system meaning \(\bfA\) does not depend on time.
+\end{remark}
+
+\section{Decompositions}
+
+\subsection{SVD}
+For matrix \(A\) of size \(m\times n\) we want to decomposite it to \(A = U\Sigma V^\top\) where \(U\) is \(m\times m\) orthogonal matrix, \(V\) is \(n\times n\) orthogonal matrix, \(\Sigma\) is an \(m \times n\) diagonal matrix. In the following, \(u_i\) and \(v_i\) are column vectors of \(u\) and \(V\). 
+
+\begin{enumerate}
+    \item \(AA^\top u_i = \sigma_i^2 u_i = \sigma_i A v_i\), solving left singular vectors of \(A\), and singular values \(\sigma_i\). We also want \(\sigma_1\geq\sigma_2\cdots\sigma_p\geq 0\) where \(p=\min (m,n)\).
+    \item Alternatively, we can solve right singular vectors from \(A^\top A v_i = \sigma_i^2 v_i = \sigma_i A^\top u_i\)
+    \item obtain full \(U\) and \(V\) and orthonormalizing them.
+    \item fill \(\Sigma\) left columns in \(0\).
+    \item The final result can be also expressed in the form: \(A = \sum_{i=1}^p \sigma_i u_i v_i^\top\).
+\end{enumerate}
+
+\begin{remark}
+    in image compression, we might use \(k<p\).
+\end{remark}
+
+\subsection{Polar decomposition}
+
+Following SVD, we might futher write \(A = U\Sigma V^\top = UV^\top V\Sigma V^\top\) and break this up into \(A = WR\) where \(W = UV^\top\) and \(R = V\Sigma V^\top\).
+
+Notice \(U\) and \(V\) are both orthogonal so that \(W\) is also orthogonal; and \(R\) is symmetric since \(\Sigma\) is symmetric.
+
+\begin{enumerate}
+    \item Notice \(A^\top A = R^\top R = R^2\), we first solve \(R\).
+    \item Notice we can diagonalize \(R^2\) and \(R\): \(Q^\top R^2 Q = \diag(\lambda_1^2,\cdots,\lambda_N^2)\), \(Q^\top R Q = \diag(\lambda_1,\cdots,\lambda_N)\)
+    \item then \(R = Q\diag(\lambda_1,\cdots,\lambda_N) Q^\top\)
+    \item \(W = AR^{-1}\)
+\end{enumerate}
+
+\subsection{QR}
+
+Write \(A = [u_1,u_2,\dots, u_S]\) and we want \(A = QR\) where \(Q\) is orthonormal matrix \([q_1,q_2,\dots, q_S]\) and \(R\) is right triangular matrix. Following Gram-schmidt, we are transforming \(u_i\) to \(q_i\). For \(i=2,3,\dots, S\),
+
+\[\hat u_i = u_i - \sum_{k=1}^{i-1} \AB{u_i,q_k} q_k\]
+
+then we normalize them \(q_i = \frac{\hat u_i}{\norm{\hat u_i}}\). And this GS orthogonalization is actually  a matrix decomposition for \(A\) because we actually have \(\hat u_i = \norm{\hat u_i} q_i\), \(\norm{\hat u_i}=\AB{\hat u_i,q_i}\), and 
+
+\[u_i = \norm{\hat u_i} q_i + \sum_{k=1}^{i-1} \AB{u_i,q_k}q_k\]
+
+Above in a nicer way:
+
+\begin{equation*}
+    \begin{split}
+        i=1& : u_1 =\AB{u_1,q_1} q_1,\\
+        i=2& : u_2 =\AB{u_2,q_1}q_1,+\AB{u_2,q_2}q_2,\\
+        \vdots &
+    \end{split}
+\end{equation*}
+
+or in matrix form: \(A=QR\) where \(Q=[q_1,q_2,\dots,q_S ]\) and 
+
+\[R=\begin{bmatrix}
+    \AB{u_1,q_1} & \AB{u_2,q_1} & \AB{u_3,q_1} & \cdots &\AB{u_S,q_1}\\
+    0            & \AB{u_2,q_2} & \AB{u_3,q_2} & \cdots &\AB{u_S,q_2}\\
+    \vdots & &&& \AB{u_S,q_S}
+\end{bmatrix}\]
+
+\subsection{LU decomposition}
+
+\subsection{CHolesky decomposition}
+
+\section{Differential Eigenproblems}
+
+\subsection{Function Spaces, bases, and orthogonalization}
+
+\begin{definition}
+    A set of functions \(u_i(x)\) for \(i=1,2,\dots,M\) are {\it linearly independent} over an interval \(a\leq x\leq b\) is their linear combination is zero is all coefficients are zero \(\forall x\in [a,b]\).
+\end{definition}
+
+\begin{remark}
+    For any piecewise continuous function \(u(x)\) we have expression:
+    \[u(x)=\sum_{i=1}^\infty a_n u_n(x)\] where \(a_n\in\bR \) and \(a_n\) are not all zeros, \(u_n(x)\) are linear-independent {\it basis functions}. When there are actually infinite sum, we say \(u(x)\) is {\it infinite dimensional}.
+\end{remark}
+
+\begin{definition}
+    We also want basis functions mutually orthogonal, so here we define the inner product of two functions.
+    \[
+        \AB{u_m(x),u_n(x)}=\int_a^b w(x)u_m(x)u_n(x)\dif x
+    \]
+    orthogonality means  \(\AB{u_m(x),u_n(x)}\equiv 0\forall x\in [a,b]\), and \(w(x)\) is a weight function. \(w(x)\equiv 1\) unless stated otherwise.
+\end{definition}
+
+\begin{definition}[Legendre polynomials]
+    Obtained from Gram-schmidt process on \(u_i(x)=x^i\) for \(i=0,1,\dots\) and \(-1\leq x\leq 1\), the first several terms are \(\tilde u_i(x) = 1,x,\frac{1}{2}(3x^2-1),\dots\). Then any piecewise continuous function \(f(x)\) in the interval \(-1\leq x\leq 1\) can be written as 
+    \[f(x) = \sum_{i=1}^\infty \AB{f(x),\tilde{u}_i(x)} \tilde{u}_i(x)\]
+\end{definition}
+
+\begin{remark}
+    When considering bases \(\cos(ix),\sin(ix)\) for \(i=0,1,\dots\) and \(0\leq x\leq 2\pi\), we end up with {\it Fourier series},
+    \begin{equation*}
+        \begin{split}
+            f(x) &= \frac{a_0}{\sqrt{2\pi}}+\sum_{i=1}^\infty a_i \frac{\cos(ix)}{\sqrt{\pi}}+\sum_{i=1}^\infty b_i \frac{\sin(ix)}{\sqrt{\pi}}\\
+            a_0 &= \AB{f(x),\frac{1}{\sqrt{2\pi}}}=\frac{1}{\sqrt{2\pi}} \int_0^{2\pi} f(x)\dif x\\
+            a_i &= \AB{f(x),\frac{\cos(ix)}{\sqrt{\pi}}}=\frac{1}{\sqrt{\pi}} \int_0^{2\pi} f(x)\cos(ix)\dif x\\
+            b_i &= \AB{f(x),\frac{\sin(ix)}{\sqrt{\pi}}}=\frac{1}{\sqrt{\pi}} \int_0^{2\pi} f(x)\sin(ix)\dif x
+        \end{split}
+    \end{equation*}
+\end{remark}
+
+\begin{definition}[Eigenproblems]
+    Consider \(n\)-th order differential equation \(\cL u(x)=f(x)\) where 
+    \[\cL = a_0+a_1\frac{\dif}{\dif x} + a_2 \frac{\dif^2}{\dif x^2}+\cdots+a_n \frac{\dif^n}{\dif x^n}\]
+    We then tend to find \(\lambda_i\) so that  \(\cL u_i(x) = \lambda_i u_i(x)\). We call the nontrivial solution \(u_i(x)\) the eigenvalue of \(\cL\) and \(u_i(x)\) the {\it eigenfunction} of \(\cL\).
+\end{definition}
+
+Given that the differential operator \(\cL\) is self-adjoint (defined below) and boundary conditions,
+
+\begin{enumerate}
+    \item Solve \(\cL u_i(x) = \lambda_i u_i(x)\) as a \(N\)-th order Linear order ODE,  excluding the trivial solution.
+    \item Usually we end up in a characteristic equation with roots being the eigenvalues
+    \item And when solving for coefficients of general solutions, make sure the norm of eigenfunctions being \(1\), resulting in normalized eigenfunctions.
+    \item write \(f(x) = \sum_{i=1}^\infty \hat a_i u_i(x)\) where \(\hat a_i=\AB{f(x),u_i(x)}\)
+    \item write \(u(x) = \sum_{i=1}^\infty  a_i u_i(x)\) where \(a_i = \frac{\hat a_i}{\lambda_i}\), so that \(\cL u(x)=f(x)\)
+    \item The final solution can be written as 
+    \[u(x) = \sum_{i=1}^\infty \frac{\AB{f(x),u_i(x)}}{\lambda_i} u_i(x)\]
+\end{enumerate}
+
+\section{Adjointness}
+
+\begin{definition}[from matrix transpose to adjoint operator]
+    Consider matrix \(A\) of size \(n\times n\), arbitrary vectors \(u\) and \(v\) or size \(n\times 1\). We define \(A^\top\) the matrix such that \(\AB{v,Au}=\AB{A^\top v, u}\). And in real case, \(\AB{v,Au}=\AB{u, A^\top v}\). Likewise, for operator \(\cL\) we define its adjoint \(\cL^*\) such that 
+    \[\AB{v,\cL u} = \AB{u,\cL^* v}\]
+    where \(u(x)\) and \(v(x)\) are arbitrary functions with homogeneous boundary conditions.
+\end{definition}
+
+\begin{remark}
+    An easy way to find an operator's adjoint is to use test function, then do integration by parts.
+\end{remark}
+
+\begin{example}[Second order linear differential equation with variable coefficients]
+    \[\cL u =\frac{1}{w(x)}\Pare{a_0(x)u''(x)+a_1(x)u'(x)+a_2(x)u(x)}=0\]
+    where \(x\in [a,b]\) and \(w(x)\) is a weight function.
+    \begin{enumerate}
+        \item Consider test function \(v(x)\) and find
+        \begin{equation*}
+            \begin{split}
+                \AB{v,\cL u}&=\int_a^b w(x)v(x) \Pare{\frac{1}{w(x)}\Pare{a_0(x)u''(x)+a_1(x)u'(x)+a_2(x)u(x)}}\dif x\\
+                &= \int_a^b \Pare{a_0vu''+a_1 vu'+a_2vu}\dif x
+            \end{split}
+        \end{equation*}
+        \item using integration by parts to down-order \(u\): \(\int p\dif q=pq-\int q\dif p\), we obtain the following:
+        \begin{itemize}
+            \item \(\int_a^b a_0vu''\dif x= \int_a^b a_0v\dif u'= \given{a_0vu'}_a^b -\int_a^b u'(a_0v)'\dif x =\given{a_0vu'}_a^b -\given{(a_0v)'u}_a^b +\int_a^b u(a_0v)''\dif x \)
+            \item \(\int_a^b a_1 vu'\dif x = \int_a^b a_1 v\dif u=\given{a_1vu}_a^b-\int_A^b u(a_1v)'\dif x\)
+            \item \(a_2(x)\) term with \(u(x)\) so no need to do integration by parts
+        \end{itemize}
+        \item combine these we end up with
+        \[\AB{v,\cL u}=\Pare{a_0 vu'-(a_0v)'u+a_1vu}_a^b +\int_a^b w(x)u(x)\Pare{\frac{1}{w(x)}\Pare{(a_0v)''-(a_1v)'+a_2v}}\dif x \]
+        \item above should equal to \(\AB{u,\cL^* u}\) so given homogeneous BC, \(\cL^*v=\frac{1}{w(x)}\Pare{(a_0v)''-(a_1v)'+a_2v}\)
+    \end{enumerate}
+\end{example}
+\begin{remark}
+    variable coefficients move inside the derivatives, and the odd-order derivatives change sign as compared to \(\cL\).
+\end{remark}
+
+\begin{definition}
+    A differential operator \(\cL\) is {\it self-adjoint}, or Hermitian, if \(\cL=\cL^*\).
+\end{definition}
+\begin{remark}
+    Similar to symmetric matrix, its eigenvectors are mutually orthogonal if its eigenvalues are distinct, self-adjoint operator's eigenfunctions are mutually orthogonal if its eigenvalues are distinct.
+\end{remark}
+
+\subsection{Sturm-Liouville differential operator}
+
+For differential equations in the previous example, use product rule we have
+
+\[\cL^* v=\frac{1}{w(x)}\Pare{(a_0v)''-(a_1v)'+a_2v}=\frac{1}{w(x)}\Pare{a_0v''+(2a_0'-a_1)v'+(a_0''-a_1'+a_2)v}\]
+
+Letting \(\cL=\cL^*\), we want
+\begin{align*}
+    a_1 &= 2a_0'-a_1 \implies a_1 = a_0'\\
+    a_2 &= a_0''-a_1'+a_2
+\end{align*}
+
+So a self-adjoint differential operator may have the form:
+
+\begin{align*}
+    \cL u &= \frac{1}{w(x)} \Pare{a_0u''+a_0'u'+a_2u}\\
+    \cL &= \frac{1}{w(x)} \Pare{\frac{\dif}{\dif x}\Pare{p(x)\frac{\dif}{\dif x}}+q(x)}
+\end{align*}
+
+where \(p(x)>0\) and \(w(x)>0\) in \(a\leq x\leq b\) and the boundary conditions are homogeneous.
+\begin{remark}
+    Similarly, we have the forth-order Sturm-Liouville differential operator
+    \[\cL = \frac{1}{w(x)}\Pare{\frac{\dif^2}{\dif x^2}\Pare{s(x)\frac{\dif^2}{\dif x^2}} +\frac{\dif}{\dif x}\Pare{p(x)\frac{\dif}{\dif x}}+q(x) }\]
+\end{remark}
+
+\begin{remark}[Eigenfunctions of Sturm-Liouville Operators]
+    Still we assume homogeneous boundary conditions, and consider the eigenproblrm \(w(x)\cL u_i(x)=-\lambda_i w(x) u_i(x)\). We have
+    \begin{itemize}
+        \item the eigenvalues are distinct and nonnegative
+        \item the eigenfunctions \(u_i(x)\) are orthogonal wrt the weight function \(w(x)\).
+    \end{itemize}
+\end{remark}
+
+\begin{remark}
+    some special cases
+    \begin{itemize}
+        \item taking \(p\equiv 1\) and \(q\equiv 0\) on \(x\in[0,1]\)  produces eigenfunctions. Either fourier sine series or fourier cosine series, for different set of boundary conditions.
+        \item taking \(p(x)=x\), \(q(x)=\frac{-\nu^2}{x}\), \(w(x)=x\) on \(x\in[0,1]\) produces Bessel functions, with \(\lambda_i=\mu_i^2\) 
+        \item taking \(p(x)=1-x^2\), \(q(x)=0\), \(w(x)=1\) on \(x\in[-1,1]\) produces Legendre Polynomials, with \(\lambda_i=\nu(\nu+1)\)
+        \item Legendre polynomials have recursion relation: 
+        \[(\nu+1)P_{\nu+1}(x)-(2\nu+1)xP_\nu(x)+\nu P_{\nu-1}(x)=0\]
+        \item taking \(p(x)=\sqrt{1-x^2}\), \(q(x)=0\), \(w(x)=\frac{1}{\sqrt{1-x^2}}\) on \(x\in[-1,1]\) produces Chebyshev polynomials, with \(\lambda_i=\nu^2\)
+        \item Chebyshev polynomials have recursion relation:
+        \[T_{\nu+1}(x)-2xT_\nu(x)+T_{\nu-1}(x)=0\]
+    \end{itemize}
+\end{remark}
+
+\begin{remark}
+    for nonhomogeneous boundary conditions, we can apply certain transformation.
+\end{remark}
+
+\section{Separation of Variables}
+
+A new way to solve PDEs, by assume solution \(u(x,t)=\phi(x)\psi(t)\).
+
+\subsection{General hyperbolic partial differential equation}
+
+Consider \(\cM \ddot u+\cK u=0\) where \(\cM\) and \(\cK\) are linear differential operators in space, and dots denote differential in time.
+
+Substituting into the governing equation gives
+
+\[\ddot \psi \cM \phi + \psi\cK \phi=0\implies \frac{\cK \phi}{\cM \phi}=-\frac{\ddot\psi}{\psi}=\lambda\]
+
+it's a constant since LHS only on space and RHS only on time.
+
+Then we solve uncoupled differential equations
+
+\begin{align*}
+    \cK \phi(x) &=\lambda\cM \phi(x)\\
+    \ddot\psi(t) &= -\lambda \psi(t)
+\end{align*}
+\subsection{Electrmagnetics}
+\subsection{Schr\"odinger Equation}
+
+
+
+\end{document}

@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{HW5}
+\author{Yuanxing Cheng, A20453410, MMAE-501-f22}
+
+\begin{document}
+
+\maketitle
+
+\section*{1}
+
+\begin{myleftlinebox}
+    Given that \(z=1\) is a root, find the other two roots of \(2z^3-z^2+3z-4=0\)
+    \tcblower
+    Use polynomial dvision, we have \(2z^3-z^2+3z-4=(z-1)(2z^2+z+4)\) thus the other two roots are the roots or \(2z^2+z+4=0\). By the formula, they are \(\dfrac{-1\pm\sqrt{-31}}{4}=-\dfrac{1}{4}-\dfrac{i}{4}\sqrt{31}\)
+\end{myleftlinebox}
+\section*{2}
+\begin{myleftlinebox}
+    Given that \(u=2+3i,v=1-2i,w=-3-6i\), find \(\abs{u+v}, u+2v,u-3v+2w, uv,uvw,\abs{u/v},v/w\)
+    \tcbline
+    \begin{itemize}
+        \item \(\abs{u+v}=\abs{3+i}=\sqrt{9+1}=\sqrt{10}\)
+        \item \(u+2v=4-i\)
+        \item \(u-3v+2w=-7-3i\)
+        \item \(uv=2+3i-4i-6i^2=8-i\)
+        \item \(uvw=-24+3i-48i+6i^2=-30-45i\)
+        \item \(\abs{u/v}=\abs{\dfrac{u\bar v}{\abs{v}^2}}=\abs{-\dfrac{4}{5}+\dfrac{7}{5}i}=\sqrt{\dfrac{13}{5}}\)
+        \item \(v/w=\dfrac{v\bar w}{\abs{w}^2}=\dfrac{3}{15}+\dfrac{4}{15}i\)
+    \end{itemize}
+\end{myleftlinebox}
+\section*{3}
+\begin{myleftlinebox}
+    Express the function \(f(z)=\dfrac{2z+i}{z+i}\) in both cartesian and polar form, and determine the forms taken by \(u\) and \(v\) in each case, i.e. \(f(z)=u(x,y)+iv(x,y)\) and \(f(z) = u(r,\theta)+iv(r,\theta)\)
+    \tcbline
+    first we plug in \(z=x+iy\) to get the cartesian form.
+    \begin{equation}
+        \begin{split}
+            f(z) &= \frac{(2x+i(2y+1))(x-i(y+1))}{(x+i(y+1))(x-i(y+1))}\\
+            &= \frac{2x^2+(2y+1)(y+1)}{x^2+(y+1)^2}+i\frac{-x}{x^2+(y+1)^2}
+        \end{split}
+    \end{equation}
+    using above result, we can easily get the polar form: \(f(z)=u+iv=r(\cos\theta+i\sin\theta)\), where
+    \begin{align*}
+        r &= \sqrt{u^2+v^2}\\
+        \theta &= \arctan\Pare{\frac{v}{u}}
+    \end{align*}
+\end{myleftlinebox}
+\section*{4}
+\begin{myleftlinebox}
+    Use the Cauchy-Riemann equations to show that the function \(f(z)=\frac{1}{z^2+1}\) is differentiable. Use the result to find \(f'(z)\) both in its cartisian form and as a function of \(z\), and locate any points where the derivative is not defined.
+    \tcbline
+    To use Cauchy-Riemann equation, first write original function in cartisian form. Plug in \(z=x+iy\) we have
+    \[f(z)=\frac{1}{z^2+1}=u+iv\]
+    where \(u(x,y)=\dfrac{x^2-y^2+1}{(x^2-y^2+1)^2+4x^2y^2}\) and \(v(x,y)=\dfrac{-2xy}{(x^2-y^2+1)^2+4x^2y^2}\). Next we find their derivatives, letting \(d=(x^2-y^2+1)^2+4x^2y^2\)
+    \begin{align*}
+        d_x &= \frac{\partial d}{\partial x} = 2(x^2-y^2+1)2x+8xy^2\\
+        d_y &= \frac{\partial d}{\partial y} = -2(x^2-y^2+1)2y+8yx^2\\
+        \frac{\partial u}{\partial x} &= \frac{2xd-d_x (x^2-y^2+1)}{d^2}\\
+        \frac{\partial v}{\partial y} &= \frac{-2xd-d_y(-2xy)}{d^2} \\
+        \frac{\partial u}{\partial x}-\frac{\partial v}{\partial y} &= \frac{4xd-d_x (x^2-y^2+1)+d_y(-2xy)}{d^2}\\
+        &= \frac{16x^3y^2-8xy^2(x^2-y^2+1)-2xy(4yx^2+4y^3-4y)}{d^2}=0\\
+        \frac{\partial u}{\partial y} &= \frac{-2yd-d_y(x^2-y^2+1)}{d^2}\\
+        \frac{\partial v}{\partial x} &= \frac{-2yd-d_x(-2xy)}{d^2}\\
+        \frac{\partial u}{\partial y}+\frac{\partial v}{\partial x} &= \frac{-4yd-d_y(x^2-y^2+1)-d_x(-2xy)}{d^2}\\
+         &= \frac{-16x^2y^3-8yx^2(x^2-y^2+1)+8x^2y(x^2-y^1+1)+16x^2y^3}{d^2}=0
+    \end{align*}
+    So \(f(z)\) is analytic in \(\bC\) thus differentiable. Next to find its derivative, using quotient rule, 
+    \begin{align*}
+        f'(z) &= \frac{-2z}{(z^2+1)^2}=\frac{-2x^5+4x^3y^2-4x^3+6xy^4-4xy^2-2x}{((x^2-y^2+1)^2-4x^2y^2)^2+(4xy(x^2-y^2+1))^2}\\
+        &+ \frac{6x^4y+4x^2y^3+4x^2y-2y^5+4y^3-2y}{((x^2-y^2+1)^2-4x^2y^2)^2+(4xy(x^2-y^2+1))^2}i
+    \end{align*}
+    If \(z^2+1=0\) then the derivative is not defined, which results in \(z=\pm i\).
+\end{myleftlinebox}
+\section*{5}
+\begin{myleftlinebox}
+    Use change of variable from the cartesian coordinates \((x,y)\) to the polar coordinates \(r,\theta\) given by \(x=r\cos \theta\) and \(y=r\sin \theta\) to show that the derivative of a single-valued analytic function \(f(z)=u(r,\theta)+iv(r,\theta)\) is given by 
+    \[f'(z)=\Pare{\frac{\partial u}{\partial r}+i\frac{\partial v}{\partial r}}\Pare{\cos\theta-i\sin\theta}\]
+    or
+    \[f'(z)=\Pare{\frac{\partial u}{\partial \theta}+i\frac{\partial v}{\partial \theta}}\Pare{\frac{-i}{r}}\Pare{\cos\theta-i\sin\theta}\]
+    \tcbline
+    The second expression is direct result of Cauchy-Riemann equation in polar form. Here I only derive the first one. Notice by chain rule,
+    \begin{align*}
+        \frac{\partial u}{\partial r}&=\frac{\partial u}{\partial x}\frac{\partial x}{\partial r}+\frac{\partial u}{\partial y}\frac{\partial y}{\partial r}=\cos\theta \frac{\partial u}{\partial x}+\sin\theta\frac{\partial u}{\partial y}\\
+        \frac{\partial u}{\partial \theta}&=\frac{\partial u}{\partial x}\frac{\partial x}{\partial \theta}+\frac{\partial u}{\partial y}\frac{\partial y}{\partial \theta}=-r\sin\theta \frac{\partial u}{\partial x}+r\cos\theta\frac{\partial u}{\partial y}
+    \end{align*}
+    This solves for the following
+    \begin{align*}
+        \frac{\partial u}{\partial x} &= \cos\theta\frac{\partial u}{\partial r}-\frac{1}{r}\sin\theta\frac{\partial u}{\partial \theta}\\
+        \frac{\partial u}{\partial y} &= \sin\theta\frac{\partial u}{\partial r}+\frac{1}{r}\cos\theta\frac{\partial u}{\partial \theta}
+    \end{align*}
+    then
+    \begin{align*}
+        f'(z) &= \frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}=\frac{\partial v}{\partial y}-i\frac{\partial u}{\partial y}\\
+        &= \cos\theta\frac{\partial u}{\partial r}-\frac{1}{r}\sin\theta\frac{\partial u}{\partial \theta}+i\Pare{\sin\theta\frac{\partial u}{\partial r}+\frac{1}{r}\cos\theta\frac{\partial u}{\partial \theta}}\\
+        &= \Pare{\frac{\partial u}{\partial r}+i\frac{\partial v}{\partial r}}\Pare{\cos\theta-i\sin\theta}
+    \end{align*}
+\end{myleftlinebox}
+\section*{7}
+\begin{myleftlinebox}
+    Show that \(u(x,y)=xy\) and \(v(x,y)=x^3-3xy^2 \) are both harmonic functions, but they are not harmonic conjugates.
+    \tcbline
+    First to show harmonic, we use laplace operator.
+    \[\Delta u=\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0+0=0,\Delta v = 6x-6x=0\]
+    Next to show they are not harmonic conjugates, we check if Cauchy-Riemann equation satisfied.
+    \[\frac{\partial u}{\partial x}=y,\frac{\partial v}{\partial y}=-6x\neq y,\frac{\partial u}{\partial y}=x,\frac{\partial v}{\partial x}=3x^2-6xy\neq -x\]
+\end{myleftlinebox}
+\end{document}
