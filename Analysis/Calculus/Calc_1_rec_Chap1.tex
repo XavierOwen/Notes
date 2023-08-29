@@ -1,0 +1,288 @@
+\documentclass[Calculus 1 Recitation.tex]{subfiles}
+
+\begin{document}
+\section{Functions and Limits}
+\subsection{Four Ways to Represent a Function}
+\begin{myleftlinebox}
+	function, it's domain and range
+	\tcblower
+	function $y=f(x)$ and $X, Y$ are two sets. $x\in X$ and $y\in Y$. A function is a rule that assigns each $x\in X$ to exactly one element $y=f(x)\in Y$. Domain of a function $X$ is the set of inputs accepted by the function so that the function makes sense.
+	\begin{itemize}
+		\item age, height are positive by default
+		\item $1/0$ doesn't make sense
+	\end{itemize}	
+	range can be obtained after you have the domain $Y=\{y=f(x) \mid x\in X\}$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	piecewise defined function
+	\tcblower
+	Divide domain of $f$ into subsets $X_1,X_2,\dots$ without intersection. Then, 
+	\[f(x) = \begin{cases}
+		f_1(x), & x\in X_1\\
+		f_2(x), & x\in X_2\\
+		\vdots
+	\end{cases}\]
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	even function and odd function
+	\tcblower
+	function $f(x)$ is even if $f(x)=f(-x)$ and is odd if $f(x)=-f(x)$, for any $x$ in its domain.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	increasing and decreasing
+	\tcblower
+	function $f(x)$ is increasing on an interval $I$ if $f(x_1)\geq f(x_2)$, for any $x_1, x_2\in I$, $x_1>x_2$. 
+
+	function $f(x)$ is decreasing on an interval $I$ if $f(x_1)\leq f(x_2)$, for any $x_1, x_2\in I$, $x_1>x_2$. 
+\end{myleftlinebox}
+
+
+\subsection{Mathematical Models}
+\begin{myleftlinebox}
+	mathematical model
+	\tcblower
+	math description of a phenomenon, usually by equations. For example someone's age vs year.
+	\begin{center}
+		\begin{tabular}{c|c}
+			\hline
+			year (at Jan. 1st) & age \\\hline
+			2020 & 1\\
+			2021 & 2\\
+			2022 & 3\\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	linear function: $y$ is a linear function of $x$.
+	\tcblower
+	when changes of $y$ is proportion to the changes of $x$
+	\begin{align*}
+		y-y_1 &= m(x-x_1),k\neq 0\\
+		y &= mx-mx_1+y_1 = mx+b
+	\end{align*}
+	we call $m$ the slope and b the $y$-intercept.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	polynomial function: $P(x)$
+	\tcblower
+	$P(x) = a_n x^{n}+a_{n-1} x^{n-1}+\cdots+a_1 x + a_0$, $n$ is nonnegative integer, $a_n\neq 0$ and its degree is $n$. A linear function is a polynomial of degree 1, and a quadratic function is a polynomial of degree 2, cubic for 3.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	power function
+	\tcblower
+	$f(x) = x^a$. If $a$ is an integer $n$,
+	\begin{itemize}
+		\item if $n$ is even, then $f(x)$ is even for $f(x)=f(-x)$
+		\item if $n$ is odd, then $f(x)$ is odd for $f(x)=-f(-x)$
+	\end{itemize}	
+	If $a=1/n$ with $n$ a positive integer, $f(x)=x^a$ is a root function. If $a=-1$, $f(x)=x^{-1}$ is a reciprocal function.
+\end{myleftlinebox}
+
+
+\begin{myleftlinebox}
+	rational function
+	\tcblower
+	$f(x) = P(x)/Q(x)$, where $P$ and $Q$ are two polynomial functions.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Trigonometric function
+	\tcblower
+	Given a right triangle, an angle $x$ in radian measure. For this angle $x$, define the opposite side to be the side opposite to $x$, with length $a$, define the adjacent side to be the side between $x$ and the right angle, with length $b$, and the hypotenuse side to be the side opposite to the right angle, with length $c$, then
+	
+	$\sin(x) = a/c$, $\cos(x)=b/c$, and $\tan(x) = a/b$; then $\csc(x)=1/\sin(x)$, $\sec(x)=1/\cos(x)$ and $\cot(x)=1/	\tan(x)$.
+	\begin{center}
+		\usetikzlibrary{angles,quotes}
+		\begin{tikzpicture}[
+			my angle/.style = {
+				draw, angle radius=7mm, 
+				angle eccentricity=1.1, 
+				right, inner sep=1pt,
+				font=\footnotesize
+				}
+			]
+			\coordinate (a) at (0,0);
+			\coordinate (c) at (4,0);
+			\coordinate (b) at (4,2);
+			\draw (a) -- (c)node[midway, below]{$b$, adjacent};
+			\draw (b) -- (c)node[midway,right]{$a$, opposite};
+			\draw (b) -- (a)node[midway,left, above,rotate=26.5]{$c$, hypotenuse}; % Triangle.
+			\draw (a) node[anchor=east,align=center] {$A$};
+			\draw (b) node[anchor=west,align=center] {$B$};
+			\draw (c) node[anchor=west]{$C$};
+			\pic[my angle,"$x$"] {angle = c--a--b};
+		\end{tikzpicture}
+	\end{center}
+	
+	
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	period function
+	\tcblower
+	if $f(x)=f(x+T)$, where $T$ is a constant.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	algebraic function, and transcendental if not
+	\tcblower
+	functions constructed using addition, subtraction, multiplication, division, raising to a whole number power, and taking roots. And some transcendental functions: $\sin(x)$, $\log(x)$, $e^x$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Exponential and Logarithmic function
+	\tcblower
+	Exponential function has the form $y=f(x)=b^x$, and logarithmic function has the form $y=f(x)=\log_b x = \log x/\log b$
+\end{myleftlinebox}
+
+\subsection{New Functions from Old Functions}
+
+\begin{myleftlinebox}
+	shifting a function $f(x)$
+	\tcblower
+	new function $g(x) = f(x-h)+v$, has the plot same as shift the plot of $f(x)$ $v$ units to the right vertically and $h$ units upward horizontally. Notice when $h<0$, shifting $h$ units to the right equals to shifting $|h|$ units to the left.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	stretching and reflecting a function $f(x)$
+	\tcblower
+	new function $g(x) = v\times f(x/h)$, has the plot same as stretch the plot of $f(x)$ by a factor of $v$ vertically and $h$ units horizontally. 
+	
+	If $v<0$, we do a reflection about the line $y=0$ (x-axis) first then stretch by a factor of $|v|$ vertically, and if $h<0$, we do a reflection about the line $x=0$ (y-axis) first then stretch by a factor of $|h|$ horizontally.
+	
+	if $|v|<1$ or $|h|<1$, it's a shrinking operation, not stretching.
+\end{myleftlinebox}
+
+
+\begin{myleftlinebox}
+	combination of functions $f(x)$ and $g(x)$
+	\tcblower
+	$f+g$ sum, $f-g$ difference, $fg$ product, and $f/g$ quotient. The domain of the new function is the intersection of domains of $f$ and $g$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	composition of functions $f(x)$ and $g(x)$
+	\tcblower
+	$(f\circ g)(x) = f(g(x))$. To make sure $x$ is accepted, first $g(x)$ need to make sense, then exclude those $x$ so that if letting $z=g(x)$, $f(z)$ make sense.
+	\begin{enumerate}
+		\item Let $z=g(x)$ so that $f\circ g(x) = f(z)$
+		\item find domain of $f(z)$, say set/interval $Z$
+		\item simplify $z=g(x)\in Z$ and obtain $x\in X_1$
+		\item find domain of $g(x)$, $X_2$
+		\item the domain of $f\circ g(x)$ is then $X_1\cap X_2$
+	\end{enumerate}
+\end{myleftlinebox}
+
+\subsection{The Tangent and Velocity Problems}
+
+\begin{myleftlinebox}
+	secant line and tangent line
+	\tcblower
+	With a given curve $C$, a secant line is a line passing through two points of a curve. In most cases, as one point is brought towards the other, the secant line tends to be the tangent line at the other point.
+
+	The slope of the tangent line is the limit of the slopes of the secant
+	lines.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	difference quotient
+	\tcblower
+	\[\frac{f(x+h)-f(x)}{h}, h\neq0\]
+\end{myleftlinebox}
+
+
+\subsection{The Limit of a Function}
+
+\begin{myleftlinebox}
+	the limit of $f(x)$ as $x$ approaches $a$
+	\tcblower
+	Suppose $f(x)$ is defined when $x$ is near the number $a$, Then we write
+	\[\lim_{x\to a}f(x)=L\]
+
+	or \(f(x)\to L\) as $x\to a$, if we can make the values of $f(x)$ arbitrarily close to $L$ 	by restricting $x$ to be sufficiently close to $a$ (on either side of $a$) but not equal to $a$. 
+
+	In $\epsilon-\delta$ language, the condition is: $\forall \epsilon > 0, \exists \delta > 0$ s.t. $\forall x, 0 < |x - a| < \delta$ we have $|f(x) - L| < \epsilon$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	left-side limits
+	\tcblower
+	Suppose $f(x)$ is defined when $x$ is near the number $a$, and also $x<a$. Then we write
+	\[\lim_{x\to a^-}f(x)=L\]
+
+	or \(f(x)\to L\) as $x\to a^-$, if we can make the values of $f(x)$ arbitrarily close to $L$ by restricting $x$ to be sufficiently close to $a$ (on left side of $a$) but not equal to $a$. 
+
+	In $\epsilon-\delta$ language, the condition is: $\forall \epsilon > 0, \exists \delta > 0$ s.t. $\forall x, 0 < a-x < \delta$ we have $|f(x) - L| < \epsilon$.
+
+	Right-side limit is defined in a similar way. 
+
+	And we have $\lim_{x\to a}f(x)=L \iff \lim_{x\to a^-}f(x)=\lim_{x\to a^+}f(x)=L$
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	infinite limits
+	\tcblower
+	the case when $L=\infty$. And then we call $x=a$ the vertical asymptote of the curve $f(x)$.
+\end{myleftlinebox}
+
+
+\subsection{Calculating Limits using the Limit Laws}
+
+
+\begin{myleftlinebox}
+	limit laws
+	\tcblower
+	Following operation is interchangeable with finding the limits.
+	\begin{itemize}
+		\item summation
+		\item difference
+		\item scalar multiplication
+		\item product
+		\item quotient (excluding the case where the denominator has limit $0$)
+		\item power to $n$ or $1/n$, $n$ is any positive integer
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	direct substitution property
+	\tcblower
+	the function limit at $a$ is equal to the function value at $a$. And we call the function is continuous at $a$ if this property hold.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	the squeeze theorem
+	\tcblower
+	Lemma: \emph{if $f(x)\leq g(x)$ when $x$ is near $a$, and the limits of $f$ and $g$ exist at $a$, then $\lim_{x\to a} f(x)\leq \lim_{x\to a} g(x)$.}
+
+	With this, we can show that if $f\leq g\leq h$ when $x$ is near $a$, and $\lim_{x\to a} f(x) = \lim_{x\to a} h(x)=L$, then $\lim_{x\to a} g(x)=L$.
+\end{myleftlinebox}
+
+\subsection{Exercises}
+
+\begin{myleftlinebox}
+	find difference quotient of \(x^2+2x+3\) and \(\frac{2}{x}\)
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	are the following functions odd, even, or neither. \(x^2\) where \(x>0\), \(\tan(x+\pi/4)\), \(x^{20}\), \(x^{-20}\), \(e^{x^3}\)
+	\tcblower
+	\vspace{5em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	transform the function $f(x)=\frac{1}{2x}+2$ to $g(x)=-\frac{1}{x-2}$
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+
+\end{document}

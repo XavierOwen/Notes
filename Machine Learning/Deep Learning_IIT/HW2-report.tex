@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+\graphicspath{ {D:/Notes/others/assets/} }
+\title{cs577 Assignment 2: Report}
+\author{Yuanxing Cheng, A20453410, CS577-f22\\ Department of Mathematics \\Illinois Institute of Technology}
+
+\begin{document}
+
+\maketitle
+\section*{Question 1}
+\subsection*{Problem statement}
+image tri-class classification problem
+\subsection*{Proposed solution}
+as asked, use densely connected neural networks to classify the classes.
+
+\subsection*{Implementation details}
+I will use colab to do all the work. The dataset are load from tensorflow.datasets so no extra link. The classes I pick are the first three.
+
+The training image is vectorized and converted to value between \(0\) and \(1\), and their labels are already in integers so no further process on it.
+The tuning process is summarized in the following tables
+
+\begin{center}
+    \begin{tabular}{ccccc}\hline
+        NN architecture & activation & optimizer & epoch & batch size \\ \hline
+        (64,64,3) & (sigmoid,sigmoid,softmax) & rmsprop, lr=0.001 & 10 & 100\\
+        ($64_{\times 7}$,3) & (relu,...,relu,softmax) & rmsprop, lr=0.001 & 75 & 1024\\
+        \hline
+    \end{tabular}
+\end{center}
+
+The loss vs epoch figure are below.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.24\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW2programmingQ1Loss}
+    \end{subfigure}
+\end{figure}
+
+
+\subsection*{Results and discussion}
+
+\begin{itemize}
+    \item train data size: 15000-1500
+    \item validation data size: 1500
+    \item test data size: 3000
+\end{itemize}
+
+No time to edit the code, obviously bugged.
+
+
+\newpage
+
+%\bibliographystyle{acm}
+%\bibliography{D:/Papers.bib}
+
+\newpage
+\appendix
+%\section{Appendix}
+
+\end{document}

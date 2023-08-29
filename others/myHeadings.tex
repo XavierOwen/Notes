@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%% this version: 03-14-2017 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% standard pachages
+%%% standard packages
 \usepackage{amsthm, amsmath, amssymb, amsfonts, graphicx, epsfig}
 %\graphicspath{ {D:/Notes/others/assets/} }
 
@@ -24,14 +24,14 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% The ulem package provides various types of underlining that can
-%%% stretch between words and be broken across lines. Convinient for editting. \sout{xxxx}
+%%% stretch between words and be broken across lines. Convenient for editing. \sout{xxxx}
 %%% http://ctan.unixbrain.com/macros/latex/contrib/ulem/ulem.pdf
 %%%% Remark: if used with natbib, then the bibliography comes underlined. Comment this package at last compilation
 %\usepackage{ulem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Cancel is used to cross out in math mode. \xcancel, \cancel Convinient for editting.
+%% Cancel is used to cross out in math mode. \xcancel, \cancel Convenient for editting.
 %% http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/cancel/cancel.pdf
 %\usepackage{cancel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +120,7 @@
 \tcbuselibrary{breakable}
 \tcbuselibrary{skins}
 \tcbset{my left line/.style={
-          enhanced, frame hidden, borderline west = {0.5pt}{0pt}{black}, % speficif border
+          enhanced, frame hidden, borderline west = {0.5pt}{0pt}{black}, % specify border
           opacityframe=0, opacityback=0,opacityfill=0, % color
           arc = 0mm, left skip=1em, % border
           left = 1mm,top=0mm,bottom=0mm,boxsep=1mm,middle=1mm, % text and border
@@ -146,7 +146,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% The present package defines the environment mdframed which automatically deals with pagebreaks in framed text.
+%%%%%% The present package defines the environment mdframed which automatically deals with page breaks in framed text.
 %%%%%% http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/mdframed/mdframed.pdf
 \usepackage[framemethod=default]{mdframed}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,9 +159,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% The package enhances the quality of tables in LATEX, providing extra
-%%% commands as well as behind-the-scenes optimisation. Guidelines
+%%% commands as well as behind-the-scenes optimization. Guidelines
 %%% are given as to what constitutes a good table in this context.
-%%% From version 1.61, the package offers longtable compatibility.
+%%% From version 1.61, the package offers long table compatibility.
 %\usepackage{booktabs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -171,7 +171,7 @@
 
 
 
-%% or use GEOMETRY pacakge
+%% or use GEOMETRY package
 \usepackage[margin=1.0in, letterpaper]{geometry}
 %\def\baselinestretch{1.1}
 
@@ -285,7 +285,7 @@
 \def\bY{\mathbb{Y}}
 \def\bZ{\mathbb{Z}}
 
-%% \mathscr Letters, for filtrations, sigma algebras etc
+%% \mathscr Letters, for filtration, sigma algebras etc
 \def\sA{\mathscr{A}}
 \def\sB{\mathscr{B}}
 \def\sC{\mathscr{C}}
@@ -429,6 +429,7 @@
 \def\bfTheta{\boldsymbol{\Theta}}
 \def\bfPsi{\boldsymbol{\Psi}}
 \def\bfOmega{\boldsymbol{\Omega}}
+\def\bfSigma{\boldsymbol{\Sigma}}
 
 
 %%%%%%%%%%%%%%%%%% Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -440,7 +441,7 @@
 \newcommand{\pd}[1]{\partial_{#1}}      % partial derivative
 \newcommand{\1}{\mathbbm{1}}            % preferable way of writing indicator function
 \newcommand{\set}[1]{\{#1\}}            % set: {xyz} to be used for inline formulas
-\newcommand{\Set}[1]{\left\{#1\right\}} % set: {xyz} to be used for seapare (not inline) formulas
+\newcommand{\Set}[1]{\left\{#1\right\}} % set: {xyz} to be used for separate (not inline) formulas
 \renewcommand{\mid}{\,|\,}              % mid bar with small spaces before and after: x | y
 \newcommand{\Mid}{\,\Big | \,}          % big bar with small spaces before and after:
 \newcommand{\norm}[1]{ \| #1 \| }       % mid bar with small spaces before and after: x | y
@@ -474,6 +475,7 @@
 \DeclareMathOperator*{\argmin}{arg\,min} % argmin
 \DeclareMathOperator*{\diag}{diag} % diag
 \DeclareMathOperator*{\argmax}{arg\,max} % argmax
+\DeclareMathOperator*{\Arg}{Arg} % arguments
 \DeclareMathOperator*{\rank}{rank\,} % argmax
 \DeclareMathOperator*{\KL}{KL} % KL divergence
 \DeclareMathOperator*{\Proj}{Proj} % Projection

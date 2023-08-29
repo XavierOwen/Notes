@@ -1,0 +1,201 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{cs577 Assignment 2: Solution}
+\author{Yuanxing Cheng, A20453410, CS577-f22\\ Department of Mathematics \\Illinois Institute of Technology}
+
+\begin{document}
+
+\maketitle
+
+\section*{Theoretical questions}
+
+\subsection*{Loss}
+\subsubsection*{1}
+\begin{myleftlinebox}
+    Write the equation for L1, L2, Huber and Log-cosh loss function and compare them. Explain their advantages/purposes.
+    \tcblower
+    Let \(d_j=\hat y_j^{(i)}-y_j^{(i)}\) for \(i\)-th sample at \(j\)-th dimension, we have
+    \begin{itemize}
+        \item L1 loss: \(\sum_j \abs{d_j}\)
+        \item L2 loss: \(\sum_j d_j^2\)
+        \item Huber loss: \(\sum_j \rho_\sigma(d_j)\) where \(\rho_\sigma(d)=\begin{cases}
+            \frac{1}{2}d^2, &\abs{d}\leq\sigma\\
+            \sigma(d-\frac{1}{2}\sigma), &\ow
+        \end{cases}\)
+        \item Log-cosh loss: \(\sum_j \log(\cosh(d_j))\)
+    \end{itemize}
+    Their advantages/purposes are:
+    \begin{itemize}
+        \item L1 loss: use absolute value to avoid cancelling of positive and negative \(d_j\)
+        \item L2 loss: use square to avoid this cancelling while make loss differentiable
+        \item Huber loss: to cap the loss for outliers
+        \item log-cosh: cap the loss for outliers and differentiable
+    \end{itemize}
+\end{myleftlinebox}
+\subsubsection*{2}
+\begin{myleftlinebox}
+    Write the equation for cross-entropy loss and explain how it is derived using maximum log-likelihood. Explain the worst cross-entropy value you expect for random assignment.
+    \tcbline
+    \[\hat y_j^{(i)}=P(y=j\mid X^{(i)})\]
+    then the negative log likelihood is
+    \[l(\theta) = -\log\Pare{\prod_{i=1}^m\prod_{j=1}^k P(y=j\mid X^{(i)})^{y_j^{(i)}} }=-\sum_{i=1}^m\sum_{j=1}^k y_j^{(i)}\log\Pare{\hat y_j^{(i)}}  \]
+    The random assignment will lead to \(-\log k\).
+\end{myleftlinebox}
+\subsubsection*{3}
+\begin{myleftlinebox}
+    Write the equation for softmax loss and describe when to use it
+    \tcbline
+    \[l(\theta) = -\sum_{i=1}^m\sum_{j=1}^k y_j^{(i)}\log\Pare{\hat y_j^{(i)}}=-\sum_{i=1}^m\sum_{j=1}^k y_j^{(i)}\Pare{z_j-\log\sum_{j=1}^k\exp(z_j)}\]
+    When to use: multi-class classification problem and when using softmax as activation before output layer
+\end{myleftlinebox}
+\subsubsection*{4}
+\begin{myleftlinebox}
+    Write the equation for Kullback-Liebler loss and explain its meaning. Explain the circumstances under which there is no difference between using cross-entropy or Kullback-Liebler to train the network.
+    \tcblower
+    \[l(\theta) = \sum_{i=1}^m\sum_{j=1}^k y_j^{(i)} \log\Pare{\frac{y_j^{i}}{\hat y_j^{(i)}}}  \]
+    meaning: the similarity between two distributions. This equals to cross-entropy loss when \(\sum_{i=1}^m\sum_{j=1}^k y_j^{(i)} \log\Pare{y_j^{i}}=0\)
+\end{myleftlinebox}
+
+\subsubsection*{5}
+\begin{myleftlinebox}
+    Explain the Hinge loss and squared Hinge loss. Describe the fundamental idea behind it and the worst value you expect for it before learning.
+    \tcbline
+    Hinge loss: used in binary classification while the labels are \(-1,1\). It's positive if prediction and input disagree in sign or if agree in sign and \(\abs{\hat y^{(i)}}<\sigma\). It's negative if predictions agree in sign and \(\abs{\hat y^{(i)}}>\sigma\). It has the form:
+    \[l(\theta)=\sum_j\max\Pare{0,\sigma-y_j^{(i)}\hat y_j^{(i)}}\]
+    The squared hinge loss also measure the label distance with margin \(\sigma\). It has the form:
+    \[l(\theta)=\frac{1}{2}\sum_{j=1}^k \max\Pare{0,\hat y_j^{(i)}-\hat y^{(i)}_{true}+\sigma}^2\]
+    The worst value can go infinity large.
+\end{myleftlinebox}
+
+\subsubsection*{6}
+\begin{myleftlinebox}
+    Compute the hinge loss for a 3-class classification problem with three examples with label \(1,2,3\), with prediction scores \(\hat y^{(1)}=(0.5,0.4,0.3)\), \(\hat y^{(2)}=(1.3,0.8,-0.6)\) and \(\hat y^{(1)}=(1.4,-0.4,2.7)\) (one-against-all-others).
+    \tcblower
+    \begin{align*}
+        L_1 &= \max(0,0.4-0.5+1)+\max(0,0.3-0.5+1)=1.7\\
+        L_2 &= \max(0,1.3-0.8+1)+\max(0,-0.6-0.8+1)=1.5\\
+        L_3 &= \max(0,1.4-2.7+1)+\max(0,-0.4-2.7+1)=0
+    \end{align*}
+\end{myleftlinebox}
+
+\subsubsection*{7}
+\begin{myleftlinebox}
+    Explain the purpose of adding a regularization term to the loss function. Explain the difference between L1 and L2 regularization and how they affect the weight distribution in the network. Explain the way to choose the regularization term coefficient.
+    \tcblower
+    Purpose:
+    \begin{itemize}
+        \item simple explanation is better (for better generalization)
+        \item when parameters are small enough, we can remove it and make the model simpler
+        \item smaller parameters are more stable that will generalize better
+    \end{itemize}
+    Difference between L1 and L2: L2 is more sensitive to outliers due to the square. Method to choose regularization coefficient is to plot the path of the coefficient \(\lambda\) vs the model parameters.
+\end{myleftlinebox}
+
+\subsubsection*{8}
+\begin{myleftlinebox}
+    Explain how L1 and L2 loss terms affect gradients in the network
+    \tcblower
+    As regularization term is added into the loss, the gradients also changes. It slightly alters the coefficients by a linear function on \(\lambda\) and thus prevent overfitting.
+\end{myleftlinebox}
+\subsubsection*{9}
+\begin{myleftlinebox}
+    Explain the difference between kernel, bias, and activity regularization
+    \tcblower
+    \begin{itemize}
+        \item kernel regularizer: on model parameters $\theta$
+        \item bias regularizer: on $\theta_0$
+        \item activity regularizer: on \(\hat y\)
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{Regularization}
+\subsubsection*{1}
+\begin{myleftlinebox}
+    Explain how weight decay is related to adding a regularization term to the loss function.
+    \tcblower
+    Add the regularization term results in extra term in the gradient and thus in gradient descent method, extra term is substructed and that's weight decay.
+\end{myleftlinebox}
+
+\subsubsection*{2}
+\begin{myleftlinebox}
+    Explain how early stopping to prevent overfitting is performed. Explain the strategies to reuse the validation data.
+    \tcblower
+    Early stopp when validation error starts to increase or when training error stops decreasing and this prevent overfitting. 
+    To reuse validation data, we have 2 strategies.
+    \begin{itemize}
+        \item use only train data and then train for number of iterations determine from validation data
+        \item after early stop, continue trainnnning from previous weights with train data while validation loss is bigger than training loss
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsubsection*{3}
+\begin{myleftlinebox}
+    Explain how data augmentation is performed and how it assists in prevent overfitting.
+    \tcblower
+    Add synthetic data to increase variability in training so that we have better generalization
+    \begin{itemize}
+        \item augment in feature or data domain
+        \item augment by interpolating between examples on by adding noise
+        \item augment by transforming img data: crop, rotate, rescale, intensity
+        \item other popular method in image classification, that are illumination/rotation/scale invariante
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsubsection*{4}
+\begin{myleftlinebox}
+    Explain how dropout is performed. What are advantages/disadvantages of dropout?
+    \tcblower
+    Steps for drop out.
+    \begin{enumerate}
+        \item at each training stage, drop out units in fully connected layers with probability \(1-\rho\) where \(\rho\) is a hyper-parameter. 
+        \item removed nodes are reinstated with original weights in the subsequent state
+    \end{enumerate}
+    Advantages:
+    \begin{itemize}
+        \item reduce node interations
+        \item reduce overfitting
+        \item increase training speed
+        \item reduce dependency on a single node
+        \item disttribute features across multiple nodes    
+    \end{itemize}
+    Disadvantages: longer training time
+\end{myleftlinebox}
+
+\subsubsection*{5}
+\begin{myleftlinebox}
+    Explain how the expected value of all combinations of dropped out networks can be approximated efficiently during testing.
+    \tcblower
+    At testing, we can multipy the output of each node by dropout probability so that it equals to the expected value.
+\end{myleftlinebox}
+
+\subsubsection*{6}
+\begin{myleftlinebox}
+    Explain how batch normalization is performed during training and during testing. In what way does batch normalization introduces randomness into training.
+    \tcblower
+    During training the layer output are normalized using output mean \(\mu_j\) and output  standard deviation \(\sigma_j\): \(\hat z_j^{(i)}=\frac{z_j^{(i)}-\mu_j}{\sigma_j}\). These numbers are stored and used again in testing process.
+    During training, because batches are randomly selected, batch normalization adds randomness into the training and thus reduces overfitting.
+\end{myleftlinebox}
+
+\subsubsection*{7}
+\begin{myleftlinebox}
+    Explain the purpose of scale and shift parameters in batch normalization. What are the values of scale and shift parameters that will cause the normalization to be canceled? Explain how the scale and shift parameters can be learned and what is a good initial value for them.
+    \tcblower
+    To terminate training, we need scale and shift after normalization: \(\tilde z_j=r_j \hat z_j+\beta_j\). If \(r_j=\sigma_j\) and \(\beta_j=\mu_j\), batch normalization is canceled.
+    These values can be learned if batch normalization is not needed. A good initial values could be zero for mean and one for standard deviation.
+\end{myleftlinebox}
+
+\subsubsection*{8}
+\begin{myleftlinebox}
+    Explain how ensemble classifiers can assist with overfitting. Describe the possible strategies for producing ensemble classifiers.
+    \tcblower
+    Ensemble classifiers train multiple independent models with:
+    \begin{itemize}
+        \item change data
+        \item change parameters
+        \item record multiple snapshots of the model during training with various learning rate
+    \end{itemize}    
+\end{myleftlinebox}
+
+\end{document}

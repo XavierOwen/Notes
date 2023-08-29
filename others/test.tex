@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\usepackage{amsthm, amsmath, amssymb, amsfonts, epsfig}
+\usepackage{algorithm, algpseudocode}
+\usepackage{algcompatible}
+\usepackage{subfiles}
+\usepackage{tikz}
+
+\title{Calculus 01 Recitation}
+\author{Yuanxing Cheng}
+
+\begin{document}
+
+\begin{center}
+		\usetikzlibrary{angles,quotes}
+		\begin{tikzpicture}[
+			my angle/.style = {
+				draw, angle radius=7mm, 
+				angle eccentricity=1.1, 
+				right, inner sep=1pt,
+				font=\footnotesize
+				}
+			]
+			\coordinate (a) at (0,0);
+			\coordinate (c) at (4,0);
+			\coordinate (b) at (4,2);
+			\draw (a) -- (c)node[midway, below]{$b$, adjacent};
+			\draw (b) -- (c)node[midway,right]{$a$, opposite};
+			\draw (b) -- (a)node[midway,left, above,rotate=26.5]{$c$, hypotenuse}; % Triangle.
+			\draw (a) node[anchor=east,align=center] {$A$};
+			\draw (b) node[anchor=west,align=center] {$B$};
+			\draw (c) node[anchor=west]{$C$};
+			\pic[my angle,"$x$"] {angle = c--a--b};
+		\end{tikzpicture}
+	\end{center}
+\end{document}

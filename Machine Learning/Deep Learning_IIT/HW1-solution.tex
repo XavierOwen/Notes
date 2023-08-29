@@ -1,0 +1,207 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+
+\title{cs577 Assignment 1: Solution}
+\author{Yuanxing Cheng, A20453410, CS577-f22\\ Department of Mathematics \\Illinois Institute of Technology}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questions}
+
+\subsection*{1}
+\begin{myleftlinebox}
+    Explain the difference between training, validation, and testing data sets. Explain the need for each datasets.
+    \tcblower
+    \begin{itemize}
+        \item all three data sets are different
+        \item training data sets are fed to the model first
+        \item then use validation data sets to "train" again and adjust the hyperparameters
+        \item through overfit the validation data sets, we can avoid overfit the test data sets
+        \item test data sets can test the model generalization
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{2}
+\begin{myleftlinebox}
+    Explain the 4 steps used in writing a network program using Keras (data, model, learning process, fitting)
+    \tcblower
+    \begin{enumerate}
+        \item in the data step, we load and vectorize the data, including their labels, then split the data. We also need to obtain the mean and std of the training data sets to normalize all the data, and build a dictionary of the vectorized data to their actual meaning. 
+        \item in the model step, we build a neural network with several layers of units, for now we use densely-connected, but could be convolution or others. For each layer, it comes with predefined number of hidden units, an activation function, and for the first layer, the shape of input.
+        \item in the learning step, we compile model in the last step with optimizer algorithm, loss function, and the metric to record
+        \item in the fitting step, we fit the model with training and validation data sets to tune the hyperparameters
+    \end{enumerate}
+\end{myleftlinebox}
+
+\subsection*{3}
+\begin{myleftlinebox}
+    Explain the basic parameters used to define a dense layer (number of units, activation)
+    \tcblower
+    \begin{itemize}
+        \item number of units is some positive integer and represents the number of affine function used in that layer for approximation
+        \item activation function is another function applied to output value before next layer
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{4}
+\begin{myleftlinebox}
+    Explain the network configuration aspects when compiling the model (optimizer, loss, metrics). Explain the difference between loss and metric.
+    \tcblower
+    \begin{itemize}
+        \item optimizer stands for the optimizization algorithm used when doing gradient descent
+        \item loss function defines the quantity to minimize through optimizization
+        \item metrics is a measurement of how good your model is, or how "far" your prediction from the true label. 
+        \item difference between loss and metric: loss used in train, metric used in test and validation.
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{5}
+\begin{myleftlinebox}
+    Explain the 5 basic arguments provided to fit
+    \tcblower
+    \begin{itemize}
+        \item input: training data
+        \item output: training labels
+        \item batch size: training data size for each training
+        \item epoch: 1 epoch represents that all training data are used via many batchs
+        \item validation data: used to evaluate the loss and  metrics at the end of each epoch
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{6}
+\begin{myleftlinebox}
+    Explain the steps used to convert a variable length text string into a binary feature vector
+    \tcblower
+    \begin{enumerate}
+        \item get a word list index and convert the words into their indexes
+        \item encode as list indicate if a word is present or not, e.g., [3,5] to [0,0,1,0,1,0,…,0]
+    \end{enumerate}
+\end{myleftlinebox}
+
+\subsection*{7}
+\begin{myleftlinebox}
+    Explain possible conclusions when observing training and validation loss graphs over epochs (underfitting and overfitting) 
+    \tcblower
+    \begin{itemize}
+        \item underfitting means that the training loss is not stable yet after the last epoch
+        \item overfitting means while training loss being stable however validation loss have a "V" shape. Overfit happens when that curve moves up
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{8}
+\begin{myleftlinebox}
+    Explain possible hyper-parameters that can be tuned (layers, units per layer, activation functions, loss)
+    \tcblower
+    \begin{itemize}
+        \item use more layers usually when the output is more complex. And if cannot improve the result, use the simplest one
+        \item more units will increase accuracy generally.
+        \item what activation function to use depends on the output type. Relu is used often in the hidden layers; for the output layer, we have
+        \begin{itemize}
+            \item binary output: use sigmoid
+            \item multi-class output: use softmax
+            \item regression problem: N/A
+        \end{itemize}
+        \item what loss function to use also depends on the output type. 
+        \begin{itemize}
+            \item binary output: use binary cross entropy
+            \item multi-class output: use categorical cross entropy
+            \item regression problem: mse or mae
+        \end{itemize}
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{9}
+\begin{myleftlinebox}
+    Explain how a vector of predictions from a binary classifier with a logistic function in the output layer can be converted to class decisions
+    \tcblower
+    for binary classifier we usually label as class 2 if the probability is less than .5; and as class 1 otherwise.
+\end{myleftlinebox}
+
+\subsection*{10}
+\begin{myleftlinebox}
+    Explain how one-hot-encoding is used to encode class labels of a multi-class classification problem
+    \tcblower
+    \begin{enumerate}
+        \item suppose total number of label is $M$, then all the labels are transform first, into a $M$ length zero vector
+        \item then for class $i$, its vector element at is changed to 1.
+    \end{enumerate}    
+\end{myleftlinebox}
+
+\subsection*{11}
+\begin{myleftlinebox}
+    Explain the meaning of the output layer when using softmax as an activation function in it
+    \tcblower
+    softmax will transform output values into a probability distribution and have the property that all values after activation summed up to 1.
+\end{myleftlinebox}
+
+\subsection*{12}
+\begin{myleftlinebox}
+    Explain the difference between sparse-categorical-crossentropy and categorical-crossentropy.
+    \tcblower
+    \begin{itemize}
+        \item sparse-categorical-crossentropy is used when the labels for different classes are integers
+        \item categorical-cross is used when using one-hot-encode as in problem 10.
+        \item the result should be the same
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{13}
+\begin{myleftlinebox}
+    Assume a dataset with 5 classes where each class is represented equally, what will be the accuracy of a random classifier?
+    \tcblower
+    for every sample, the random clasifier has a probability of being correct \(1/5\). The accuracy is the percentage of samples being correctly classified. So the accuracy is binormial distributed random variable. Suppose totally \(N\) data, \(X_i\), \(i=1,\dots,N\) then
+    \begin{equation*}
+        acc = \sum_i X_i/N, P(acc = k/N) = P(\sum_i X_i = k) = \binom{N}{k}0.2^k 0.8^{N-k}
+    \end{equation*}
+\end{myleftlinebox}
+
+\subsection*{14}
+\begin{myleftlinebox}
+    Explain how to normalize feature vectors to have equal mean and standard deviation. Explain the purpose of such normalization
+    \tcblower
+    \begin{itemize}
+        \item the easiest way is to make all features have zero mean and unit variance, and to do so, we do the following two steps
+        \begin{enumerate}
+            \item get column means for training data sets and substruct them from all data  column-wisely
+            \item get column standard deviation for training data then all data are divided by them column-wisely
+        \end{enumerate}
+        \item purpose is to make sure the scale of different features are alike and thus the learning spead for each feature are also alike
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{15}
+\begin{myleftlinebox}
+    Explain the difference between MSE and MAE metrics. Which is easier to intepret?
+    \tcblower
+    \begin{itemize}
+        \item MSE stands for mean square error and MAE stands for mean absolute error; MSE emphasis more on large errors; MAE is unit-preserving.
+        \item MAE is easier to interpret.
+    \end{itemize}
+\end{myleftlinebox}
+
+\subsection*{16}
+\begin{myleftlinebox}
+    Explain how to perform k-fold cross validation. When is k-fold cross-validation needed?
+    \tcblower
+    \begin{enumerate}
+        \item first divide train dataset into \(k-1\) part so that with validation dataset we have \(k\) block of data in training process
+        \item train on \(k-1\) blocks ot data and validate on the rest \(1\) block of data
+        \item repeat \(k\) times for diferent blocks of data.                       
+    \end{enumerate}
+    When total number of available data is small, we can do this.
+\end{myleftlinebox}
+
+\subsection*{17}
+\begin{myleftlinebox}
+    Explain when performing k-fold cross validation, how to report the validation error and how to train the final model
+    \tcblower
+    \begin{itemize}
+        \item the validation error is the average of \(k\) times of training on different blocks
+        \item the final model is trained on the whole dataset containing all \(k\) blocks of data
+    \end{itemize}
+\end{myleftlinebox}
+
+\end{document}

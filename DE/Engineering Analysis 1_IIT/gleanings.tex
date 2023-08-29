@@ -320,6 +320,981 @@ Then we solve uncoupled differential equations
 \subsection{Electrmagnetics}
 \subsection{Schr\"odinger Equation}
 
+\section{Complex variables}
 
+\subsection{Complex functions}
+
+On trigonometric functions, using taylor series
+
+\begin{align*}
+    \sin z &= z-\frac{z^3}{3!}+\frac{z^5}{5!}-\cdots = \sum_{n=0}^\infty (-1)^n \frac{z^{2n+1}}{(2n+1)!}=\frac{e^{iz}-e^{-iz}}{2i}\\
+    \cos z &= 1-\frac{z^2}{2!}+\frac{z^4}{4!}-\cdots = \sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!}=\frac{e^{iz}+e^{-iz}}{2}\\
+    e^{iz} &= \cos z+i\sin z
+\end{align*}
+
+\begin{theorem}[De Moivre's Theorem]
+    \[z^n = (re^{i\theta})^n r^n (\cos(n\theta)+i\sin(n\theta))\]
+\end{theorem}
+
+On hyperbolic functions, similarly we have
+
+\begin{align*}
+    \sinh z &= z+\frac{z^3}{3!}+\frac{z^5}{5!}+\cdots = \sum_{n=0}^\infty\frac{z^{2n+1}}{(2n+1)!}=\frac{e^{z}-e^{-z}}{2i}\\
+    \cosh z &= 1+\frac{z^2}{2!}+\frac{z^4}{4!}+\cdots = \sum_{n=0}^\infty \frac{z^{2n}}{(2n)!}=\frac{e^{z}+e^{-z}}{2}\\
+    \sinh(iz) &= i\sin z, \sin(iz)=i\sinh(z)\\
+    \cosh(iz) &= \cos z, \cos(iz) =\cosh(z)
+\end{align*}
+
+On expenentials, for \(z=x+iy\)
+
+\begin{align*}
+    e^z &= 1+z+\frac{z^2}{2!}+\frac{z^3}{3!}+\cdots = \sum_{n=0}^\infty \frac{z^n}{n!}\\
+    e^z &= e^x(\cos y+i\sin y)
+\end{align*}
+
+On Logarithms,  for \(z=re^{i\theta}\neq 0\)
+
+\[\log z = \log r+i\theta = \log\abs{z}+i(\theta_0+2k\pi)\]
+
+a multi-valued function. We define the pricinple argument where \(-\pi<\theta_0\leq\pi\), with \(k\in \bZ\).
+
+on fractional powers
+
+\begin{align*}
+    z^{n/m} &= \exp\CB{\log z^{n/m}}\\
+    &= \exp\CB{(n/m)\log (r+i(\theta_0+2k\pi))}\\
+    &= r^{n/m}\exp\CB{i(n/m)(\theta_0+2k\pi)}, k=0,1,2,\dots,m-1
+\end{align*}
+
+on inverse trigonometric functions, these values are solved from quadratic equation. For example with \(z=\sin w = \dfrac{e^{iw}-e^{-iw}}{2i}\) we have \((e^{iw})^2-2iz(e^{iw})-1=0\) and thus \(w = \sin^{-1} z = \frac{1}{i}\log(iz+(1-z^2)^{1/2})\). Similarly we have the following results
+
+\begin{align*}
+    \sin^{-1} z &= \frac{1}{i}\log(iz+(1-z^2)^{1/2})\\
+    \cos^{-1} z &= \frac{1}{i}\log(z+(z^2-1)^{1/2})\\
+    \tan^{-1} z &= \frac{1}{2i} \log\frac{i-z}{i+z}\\
+    \sinh^{-1}z &= \log(z+(1+z^2)^{1/2})\\
+    \cosh^{-1}z &= \log(z+(z^2-1)^{1/2})\\
+    \tanh^{-1}z &= \frac{1}{2}\log\frac{1+z}{1-z}
+\end{align*}
+
+\subsection{Analytic functions}
+
+\begin{definition}[Analyticity]
+    A complex function \(f(z)\) is anlytic at a point \(z=z_0\) if \(f(z)\) is {\em differentiable}  at \(z_0\) and in some neighbourhood of \(z_0\).
+    \begin{itemize}
+        \item and is {\em entire} if analytic in the entire complex plane.
+        \item and points where a function is not analytic, are {\em singular points}.
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}[Goursat's theorem]
+    If \(f(z)\) is analytic at a point \(z_0\), then \(f'(z)\) is continuous at \(z_o\).
+\end{theorem}
+
+\begin{theorem}[Cauchy-Riemann equations]
+    In order for a function \(w=f(z)=u(x,y)+iv(x,y)\) to be analytic in some region in \(\bR^2\), the following should be satisfied:
+    \[\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}, \frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}\]
+    Notice with this we further have the continuity of these partial derivatives. Thus we might conclude: Cauchy-Riemann equations \(\implies f(z)\) being analytic \(\implies\) continuity of partial derivatives.
+
+    We can also derive its expression in polar coordinates. Using change of variables we end up with
+    \[\frac{\partial u}{\partial r}=\frac{1}{r}\frac{\partial v}{\partial \theta}, \frac{\partial v}{\partial r}=-\frac{1}{r}\frac{\partial u}{\partial \theta}\]
+\end{theorem}
+
+\begin{corollary}
+    Then the derivatives have the forms
+    \begin{align*}
+        \frac{\dif w}{\dif z}=f'(z) &= \frac{\partial u}{\partial x} +i\frac{\partial v}{\partial x}\\
+         &= \frac{\partial v}{\partial y}-i\frac{\partial u}{\partial y}\\
+         &= \Pare{\frac{\partial u}{\partial r}+i\frac{\partial v}{\partial r}}(\cos\theta-i\sin\theta)\\
+         &= \Pare{\frac{\partial u}{\partial \theta}+i\frac{\partial v}{\partial \theta}}\frac{-i}{r}(\cos\theta-i\sin\theta)
+    \end{align*}
+\end{corollary}
+
+On the slopes of \(u\) and \(v\). Consider curve \(u(x,y)=U_1\) then
+\[\dif u=0=\frac{\partial u}{\partial x}\dif x+\frac{\partial u}{\partial y}\dif y\implies \Pare{\frac{\dif y}{\dif x}}_{u=U_1} = -\frac{\partial u/\partial x}{\partial u/\partial y}\]
+
+Similarly we have \[\Pare{\frac{\dif y}{\dif x}}_{v=V_1} = \frac{\partial u/\partial y}{\partial u/\partial x} = -\frac{1}{ \Pare{\frac{\dif y}{\dif x}}_{u=U_1}}\].
+
+Also notice that we have \(\nabla^2 u=\nabla^2 v=0\) and we call the solutions of laplace's equation the harmonic functions. And call \(u(x,y)\) and \(v(x,y)\) the harmonic conjugates of one another.
+
+\subsection{Branch points and branch cuts}
+
+Consider the multi-valued function 
+\[\log z = \log \abs z + i(\theta_0+2k\pi)\]
+
+where the principle argument is in range \(-\pi < \theta_0 \leq \pi \) and \(k\in\bZ\).
+
+\begin{definition}[branch]
+    \begin{itemize}
+        \item branch is a single-valued and analytic portion of a multi-valued function, say we can fix \(k=0\), which is the principle branch.
+        \item  The branch point is a point that must be inside any patch that is necessary to change branches of a function. In the example, \(z=0\) is a branch point of \(\log z\).
+        \item The branch cut is a curve along which the function is discontinuous if it is to remain single-valued. For example \(y=0, x\leq 0\) the negative real axis ia a branch cut of \(\log z\).
+    \end{itemize}
+\end{definition}
+
+\subsection{Conformal mapping and boundary value problems}
+
+First, we view complex function \(w=f(z)=u(x,y)+iv(x,y)\) as a mapping from \(x,y\)-plane to \(u,v\)-plane. We want the mapping to be one-to-one and conformal.
+
+\begin{theorem}[one-to-one mapping]
+    A mapping \(w=f(z)\) is one-to-one at \(z_0\) if 
+    \begin{itemize}
+        \item \(f(z)\) is analytic at \(z_0\) 
+        \item \(f'(z_0) \neq 0\) (points where \(f'(z)=0\) are called the critical points)
+    \end{itemize}
+    And then a unique inverse mapping function \(z=F(w)\) exists at \(z_0\).
+\end{theorem}
+
+Sketch of the proof. Notice we have
+
+\begin{equation*}
+    \begin{bmatrix}
+    \frac{\partial u}{\partial x} & \frac{\partial v}{\partial x}\\
+    \frac{\partial u}{\partial y} & \frac{\partial v}{\partial y}
+    \end{bmatrix} \begin{bmatrix}
+        \frac{\partial}{\partial u}\\
+        \frac{\partial}{\partial v}
+    \end{bmatrix} = \begin{bmatrix}
+        \frac{\partial}{\partial x}\\
+        \frac{\partial}{\partial y}
+    \end{bmatrix}    
+\end{equation*}
+
+Above linear system has unique solution if {\em Jacobian} is not zero.
+
+\begin{equation*}
+    J = \begin{vmatrix}
+        \frac{\partial u}{\partial x} & \frac{\partial v}{\partial x}\\
+        \frac{\partial u}{\partial y} & \frac{\partial v}{\partial y}
+    \end{vmatrix} = \frac{\partial u}{\partial x} \frac{\partial v}{\partial y}- \frac{\partial v}{\partial x}\frac{\partial u}{\partial y} \neq 0
+\end{equation*}
+
+Thus if further given the condition that the function is analytic, we can use the Cauchy-Riemann equation and obtain that \(J = \abs{f'(z)}^2\neq 0\).
+
+\begin{theorem}[conformal mapping]
+    conformal means locally angle-preserving. We can prove that the condition for being conformal is same for being one-to-one.
+\end{theorem}
+
+Sketch of the proof. For mapping \(w=f(z)\) and two curves \(C,T\) where \(C\) is in \(x,y\)-plane and is mapped to \(T\) in \(u,v\)-plane. We consider points \(z_0\) and \(z_o+\dif z\) on curve \(C\) and their image \(w_0\) and \(w_0+\dif w\). We also define \(\theta\) and \(\eta\) to be the angles of the tangents to the curves \(C\) and \(T\) at \(z_0\) and \(w_0\).
+
+We have the following relations
+\begin{align*}
+    \dif z &= \abs{\dif z} e^{i\theta}\\
+    \dif w &= \abs{\dif w} e^{i\eta}\\
+    f'(z_0)&= \abs{f'(z_0)}e^{i\Arg(f'(z_0))}
+\end{align*}
+
+Then we plug in above into \(\dif w = f'(z_0)\dif z\), we have
+\begin{align*}
+    \abs{\dif w} &= \abs{f'(z_0)}\abs{\dif z} \exp{i\Arg(f'(z_0)+\theta)}\\
+    \eta &= \Arg(f'(z_0))+\theta
+\end{align*}
+
+This means that mapping \(f(z)\) stretches the infinitesimal curve segment \(\dif z\) by a factor \(\abs{f'(z_0)}\) and rotates it by an angle \(\Arg(f'(z_0))\). So to preserve angles
+
+
+
+\begin{remark}
+    conformality \(\iff\) analyticity and non-zero derivatives
+\end{remark}
+
+\begin{theorem}
+    Subject to conformal mapping, Laplace's equation in the \(x,y\)-plane transforms to Laplace's equation in the \(u,v\)-plane.
+\end{theorem}
+
+With this theorem, we can simplify some problem by using conformal mapping first and solve the problem in the new plane where the conditions are in a simpler form. Here's a useful transformation: Linear Fractional (Bilinear or M\"obius) Transformation
+
+\[w=f(z) = \frac{az+b}{cz+d}\implies z=F(w)=\frac{-dw+b}{cw-a}\]
+We can use this to map three specified points \(z_1,z_2,z_3\) in the \(x,y\)-plane into three specified image points \(w_1,w_2,w_3\) in the \(u,v\)-plane, the constants are determined by solving:
+\[\frac{(w-w_1)(w_3-w_2)}{(w-w_2)(w_3-w_1)}=\frac{(z-z_1)(z_3-z_2)}{(z-z_2)(z_3-z_1)}\]
+And when a points is speficied to be at infinity, we set the fators that includes that point equal to \(1\). For example, if \(w_1=\infty\), then \((w-w_1)/(w_3-w_1)=1\).
+
+This map will transform lines and circles to lines or circles.
+
+Other conformal mappings are elementary mappings: translation, stretching, rotation, inversion. If only working in a restricted region, exponentials, trigonometrics can also be choices of conformal mapping. 
+
+\begin{myleftlinebox}
+    \begin{example}[temperature distribution, dirichilet type]
+        Consider Laplace's equation \(\frac{\partial ^2 T }{\partial x^2}+\frac{\partial^2 T}{\partial y^2}=0\) subject to the boundary condition in the complex plane \(z=x+iy\)
+        \begin{align*}
+            T(x,y) = 0,& \abs{z-\frac{1}{2}}=\frac{1}{2}\\
+            T(x,y) = 1,& \abs{z-\frac{1}{4}}=\frac{1}{4}
+        \end{align*}
+        It's an area between two isothermal circles that pass through the origin.
+    \end{example}
+    \tcbline
+    We consider transform the circle boundary to line boundary. Consider mapping:
+    \begin{align*}
+        z_1=0 &\to w_1 = \infty\\
+        z_2=\frac{1}{2} &\to w_2 = 0\\
+        z_3=1 &\to w_3 = 1
+    \end{align*}
+    Plug in above to the formula we end up with
+    \[w=f(z)=\frac{1-z}{z}\]
+    And the boundaies are mapped as follows
+    \begin{align*}
+        T(x,y) = 0,& \abs{z-\frac{1}{2}}=\frac{1}{2}\to u=1\\
+        T(x,y) = 1,& \abs{z-\frac{1}{4}}=\frac{1}{4}\to u=0
+    \end{align*}
+    In the new plane, we have
+
+    \[\frac{\partial^2 \hat T^2}{\partial u^2}+\frac{\partial ^2 \hat T}{\partial v^2} = 0\] with the above boundary conditions.
+
+    Notice that there's no change in the \(v\)-direction. So we assume \(\hat T = \hat T(u)\). Then we have \(\frac{\dif ^2\hat T}{\dif u^2}=0\implies \hat T(u,v)=Au+B\). With the boundary condition, we obtain \(\hat T (u,v)=u\).
+
+    Next we find the inverse map to get the solution in the original plane. From \(w=\frac{1-z}{z}\) we end up with \(u(x,y)=\frac{x}{x^2+y^2}-1\), thus
+    \[T(x,y)=\hat T(u(x,y),v(x,y))=\frac{x}{x^2+y^2}-1\]
+\end{myleftlinebox}
+
+\subsection{Diricilet Problem in a Circular Disk}
+
+The Laplace's equation in acylindrical coordinates is
+\[\frac{\partial^2 \phi}{\partial r^2}+\frac{1}{r}\frac{\partial \phi}{\partial r}+\frac{1}{r^2}\frac{\partial ^2\phi}{\partial \theta^2}=0\]
+
+with the boundary conditions on \(r=R\): 
+\[\phi(r,\theta)=\phi(R,\sigma)=f(\sigma)\]
+
+\subsubsection*{method 1: seperation of variables}
+We assume that \(\phi(r,\theta)=P(r)Q(\theta)\), then substute it into the equation and obtain
+
+\[\frac{r^2}{p}\frac{\dif ^2 P}{\dif r^2}+\frac{r}{P}\frac{\dif P}{\dif r}=\frac{-1}{Q}\frac{\dif ^2Q }{\dif \theta^2}=\lambda^2\]
+
+It's now an eigenproblem.
+
+\begin{align*}
+    r^2 \frac{\dif ^2 P}{\dif r^2}+r\frac{\dif P}{\dif r}-\lambda^2 P=0\\
+    {\dif ^2Q }{\dif \theta^2}+\lambda^2 Q = 0
+\end{align*}
+
+Solving these we have \(P(r) = C_1r^\lambda + C_2 r^{-\lambda}\), \(\lambda\neq 0\); \(P(\lambda) = C_3+C_4 \log r\), \(\lambda=0\), and \(Q(\theta) = C_5\cos(\lambda\theta)+C_6\sin(\lambda\theta)\), \(\lambda\neq 0\); \(Q(\theta) = C_7+C_8\theta\), \(\lambda=0\).
+
+So the general solution is 
+
+\[\phi(r,\theta)=(C_1 r^\lambda + C_2 r^{-\lambda})(C_5\cos(\lambda\theta)+C_6\sin(\lambda\theta))+(C_3+C_4 \log r)(C_7+C_8\theta)\]
+
+Notice the function must be bounded thus \(C_2=C_4=0\) and the function must be \(2\pi\)-periodic to be single-valued, thus \(C_8=0\). So we end up with
+
+\[\phi(r,\theta) = c_1 + r^\lambda(c_3 \cos(\lambda\theta)+c_4 \sin(\lambda\theta))\]
+
+Next to make sure the \(\cos\) and \(\sin\) terms have period \(2\pi\), we plug in \(\theta+2\pi\) and end up with \(\cos(2\pi\lambda)=1\) and \(\sin(2\pi\lambda)=0\). So the eigenvalues must be \(\lambda=1,2,3,\dots\). And thus the eigenfunction solution is 
+
+\[\phi(r,\theta) = A_0+\sum_{n=1}^\infty r^n \Pare{A_n \cos(n\theta)+B_n\sin(n\theta)}\]
+
+Then apply the boundary condition at \(r=R\) we have
+
+\[f(\sigma) = \phi(R,\sigma) =  A_0+\sum_{n=1}^\infty R^n \Pare{A_n \cos(n\sigma)+B_n\sin(n\sigma)}\]
+
+And this is just the fourier series expansion of \(f(\sigma)\) where we let
+
+\begin{align*}
+    A_0 &= \frac{1}{2\pi}    \int_0^{2\pi} f(\sigma )\dif\sigma\\
+    A_n &= \frac{1}{\pi R^n} \int_0^{2\pi} f(\sigma) \cos(n\sigma)\dif\sigma\\
+    B_n &= \frac{1}{\pi R^n} \int_0^{2\pi} f(\sigma) \sin(n\sigma)\dif\sigma
+\end{align*}
+
+Finally the simplified solution is:
+
+\[\phi(r,\theta) = \frac{1}{\pi}\int_0^{2\pi} f(\sigma)\Pare{\frac{1}{2}+\sum_{n=1}^\infty \Pare{\frac{r}{R}}^n \cos(n(\sigma-\theta))}\dif\sigma\]
+
+Next we rewrite this using the following relations:
+
+\begin{align*}
+    \sum_{n=1}^\infty \Pare{\frac{r}{R}}^n \cos(n(\sigma-\theta)) &= \Re\Pare{\sum_{n=1}^\infty \Pare{\frac{r}{R}e^{i(\sigma-\theta)}}^n }\\
+    \sum_{n=1}^\infty x^n &= -1+\frac{1}{1-x}
+\end{align*}
+
+We end up with the following:
+
+\begin{theorem}[Poisson integral formula for Dirichlet problem in a circular disk]
+    Suppose the boundary condition to be \(\phi(R,\sigma)=f(\sigma)\) then the Laplace's equation have solution:
+
+    \[\phi(r,\theta) = \frac{R^2-r^2}{2\pi} \int_0^{2\pi} \phi(R,\sigma) \frac{1}{R^2+r^2-2Rr\cos(\sigma-\theta)}\dif\sigma\]
+
+    where \(0\leq r\leq R\) and \(\theta\in \bR\). And \(\phi(R,\sigma) = f(\sigma)\) are the values of \(\phi(r,\theta)\) on the circular boundary at \(r=R\).
+\end{theorem}
+
+With above formula we obtain following two theorem:
+
+\begin{theorem}[Gauss' mean value theorem]
+    If \(C\) is a circle that is completely within a region \(R\) in which \(\phi(z)\) is analytic, then \(\phi(z)\) at the center of the circle is the average of the value of \(\phi(z)\) along \(C\).
+\end{theorem}
+\begin{theorem}[Maximum and minimum modulus theorem]
+    Let \(\phi(z)\) be continuous and nonconstant throughout a closed bounded region \(R\) and analytic within the interior of \(R\). Then the maximum value of \(\abs{\phi(z)}\) occurs on the boundary of \(R\). IF \(\phi(z)\) is nowhere zero in \(R\), then the minimum value of \(\abs{\phi(z)}\) must also occur on the boundary.
+\end{theorem}
+\subsubsection*{method 2: conformal map}
+
+we will build a conformal map and solve the problem in upper half plane. Consider the mapping:
+
+\begin{align*}
+    z_1=-1 &\to w_1 = 0\\
+    z_2=-i &\to w_2 = 1\\
+    z_3=1  &\to w_3 = \infty
+\end{align*}
+
+We solve it in similar method: \(w =f(z) = i\frac{1+z}{1-z}\) and \(z=e^{i\sigma}=F(w) =\frac{w-i}{w+i}\). We can check that it indeed map the unit circle to upper half plane.
+
+Consider some point on the unit circle \(e^{i\sigma}\) whose image in the upper half plane is \(\xi\). To obtain the formula in the new plane, we first rewrite the formula. 
+
+\begin{align*}
+    \phi(z) &=  \frac{R^2-r^2}{2\pi} \int_0^{2\pi} \phi(R,\sigma) \frac{1}{R^2+r^2-2Rr\cos(\sigma-\theta)}\dif\sigma\\
+    &= \frac{1}{2\pi}  \int_0^{2\pi} \phi(Re^{1\sigma}) \frac{R^2-r^2}{\abs{Re^{i\sigma}-re^{i\theta}}^2}\dif\sigma\\
+    &= \frac{1}{2\pi} \int_0^{2\pi} \phi(e^{i\sigma}) \frac{1-\abs{z}^2}{\abs{e^{i\sigma}-z}^2} \dif\sigma, \text{if } R=1
+\end{align*}
+
+Notice the unit circle is mapped to the real axis and thus: \(\hat \phi(e^{i\sigma}) = \hat\phi(F(\xi))=\hat\phi(\xi,0)\). Following this we can also derive the following.
+
+\begin{align*}
+    1-\abs{z}^2 &= 1-\abs{\frac{(u+iv)-i}{(u+iv)+i}}^2 = \frac{4v}{u^2+(a+v)^2} \\
+    \abs{e^{i\sigma}-z}^2 &= \abs{\frac{\xi-i}{\xi+i}-\frac{w-i}{w+i}}^2 = 4\frac{(u-\xi)^2+v^2}{(1+\xi^2)(u^2+(1+v)^2)}\\
+    ie^{i\sigma}\dif\sigma &= \Pare{\frac{1}{\xi+i}-\frac{\xi-i}{(\xi+i)^2}}\dif\xi\\
+    \dif\sigma &= \frac{2}{\xi^2+1} \dif\xi
+\end{align*}
+
+Substituting these into the formula gives
+
+\begin{align*}
+    \hat\phi(u,v) &= \frac{1}{2\pi}\int_{-\infty}^\infty \hat\phi(\xi,0) \frac{4v}{u^2+(1+v)^2} \frac{1}{4}\frac{(1+\xi^2)(u^2+(1+v)^2)}{(\xi-u)^2+v^2}\frac{2}{1+\xi^2}\dif\xi\\
+    &= \frac{v}{\pi}\int_{-\infty}^\infty \hat\phi(\xi,0) \frac{1}{(\xi-u)^2+v^2}\dif\xi, v>0
+\end{align*}    
+
+where \(\hat\phi(\xi,0)\) being the values on the boundary with \(v=0\).
+
+\begin{remark}
+    Fourier transform may also be used to derive this.
+\end{remark}
+
+\subsection{Application to Fluid Flows}
+
+\begin{definition}[2D incompressible flow condition]
+    Continuity equation:
+    \[\nabla\cdot \bfV = \frac{\partial v_x}{\partial x}+\frac{\partial v_y}{\partial y} = 0\]
+    where \(\bfV=v_x(x,y)i+v_y(x,y)j\) is the velocity vector, \(v_x(x,y)\) here denotes the velocity components and \(i\) denotes the unit vector in \(x\)-direction.
+\end{definition}
+
+\begin{definition}[Streamfunction]
+    Consider streamfunction \(\psi(x,y)\) defined by 
+    \[v_x = \frac{\partial\psi}{\partial y}, v_y = -\frac{\partial \psi}{\partial x}\]
+    so that the flow is automatically incompressible. We also call the contours of constant streamfunction streamlines. We can also see that the slop of the streamline is:
+
+    \[\frac{\dif y}{\dif x} = \frac{-\partial\psi/\partial x}{\partial \psi/\partial y} = \frac{v_y}{v_x}\]
+    it's the direction of the velocity vector thus streamlines can indicate the local flow direction (velocity direction).
+\end{definition}
+
+\begin{definition}[vorticity]
+    Vorticity is the curl of the velocity field, in 2D cartesian coordinates, we write
+    \[\omega = \nabla\times \bfV = \frac{\partial v_y}{\partial x}-\frac{\partial v_x}{\partial y}\]
+    And in 3D cartesian coordinates, we write
+    \[\nabla\times\bfV = \Pare{\frac{\partial v_z}{\partial y}-\frac{\partial v_y}{\partial z}, \frac{\partial v_x}{\partial z}-\frac{\partial v_z}{\partial x}, \frac{\partial v_y}{\partial x}-\frac{\partial v_x}{\partial y}}\]
+    If the flow is irrotational, we have \(\omega=0\) in which case there exists a scalar function \(\phi(x,y)\) for which \(\nabla\times (\nabla\phi)=0\).
+\end{definition}
+
+\begin{remark}
+    The curl of the gradient of any scalar function is zero. In 2D case we have
+    \[\nabla\times (\nabla \phi) = \frac{\partial (\partial \phi/\partial y)}{\partial x} - \frac{\partial(\partial \phi/\partial x)}{\partial y}=0\]
+    And in 3d case we have
+    \[\nabla\times (\nabla \phi) = \Pare{\frac{\partial ^2\phi}{\partial y\partial z}-\frac{\partial ^2\phi}{\partial z\partial y},\frac{\partial ^2\phi}{\partial z\partial x}-\frac{\partial ^2\phi}{\partial x\partial z},\frac{\partial ^2\phi}{\partial x\partial y}-\frac{\partial ^2\phi}{\partial y\partial x}} =0\]
+\end{remark}
+
+\begin{definition}[velocity potential]
+    We write the velocity vector as a gradient of a scalar function \(\phi(x,y)\) according to \(\bfV = \nabla \phi\) where the components are \( v_x = \frac{\partial\phi}{\partial x}\). We call this scalar function \(\phi\) the velocity potential.
+\end{definition}
+
+\begin{corollary}
+    From the incompressible condition, we have \(\nabla\cdot\bfV = 0\) and thus
+    \[\frac{\partial^2 \phi}{\partial x^2}+\frac{\partial^2\phi}{\partial y^2} = 0\]
+    Also the streamfunction has the property (2D case):
+    \[w=\nabla\times \bfV = \frac{\partial v_y}{\partial x}-\frac{\partial v_x}{\partial y} = -\frac{\partial^2\psi}{\partial x^2}- \frac{\partial^2\psi}{\partial y^2}\]
+\end{corollary}
+
+\begin{definition}[potential flow]
+    Ideal flow: two-dimensional, incompressible, inviscid, irrotational.
+\end{definition}
+
+\begin{corollary}
+    For the ideal flow, the streamfunction, velocity potential are homonic functions, and are harmonic conjugates of one another, i.e.:
+    \[\nabla^2 \phi = 0, \nabla^2\psi = -\omega=0, v_x = \frac{\partial \phi}{\partial x}=\frac{\partial \psi}{\partial y}, v_y = \frac{\partial \phi}{\partial y}=-\frac{\partial \psi}{\partial x}\]
+    And thus here we define the complex potential function:
+    \[\Phi(z) = \phi(x,y)+i\psi(x,y)\]
+    where \(\Phi(z)\) is an analytic function. Correspondingly we have the complex velocity by taking derivatives.
+    \[\frac{\dif\Phi}{\dif z} = \frac{\partial \phi}{\partial x}+i\frac{\partial psi}{\partial x} = \frac{\partial \psi}{\partial y}-i\frac{\partial \phi}{\partial y} = v_x-iv_y = \bar W(z)\]
+    The velocity potential drives the flow along the streamlines from higher to lower potential.
+    We also define the Stagnation points in the potential flow where the velocity \(\bfV = 0\), or \(\bar W = \frac{\dif \Phi}{\dif z} = 0\).
+\end{corollary}
+
+In polar coordinates, we have the following results:
+
+\begin{align*}
+    \bfV &= v_r(r,\theta)\bfe_r + v_\theta(r,\theta)\bfe_\theta\\
+    v_r &= \frac{\partial \phi}{\partial r} = \frac{1}{r}\frac{\partial \psi}{\partial \theta}\\
+    v_\theta &= \frac{1}{r}\frac{\partial \phi}{\partial \theta} = -\frac{\partial\psi}{\partial r}\\
+    \nabla^2\phi &= \frac{1}{r} \frac{\partial}{\partial r}\Pare{r\frac{\partial \phi}{\partial r}} + \frac{1}{r^2} \frac{\partial ^2\phi}{\partial \theta^2} = 0\\
+    \bar W(z) &= \frac{\dif \Phi}{\dif z} = (v_r-iv_\theta)e^{-i\theta}
+\end{align*}
+
+Next, we define basic flows by specifying their complex potentials. 
+
+Uniform flow: of speed \(U\) at an angle \(\alpha\) with positive \(x\)-axis.
+
+\begin{align*}
+    \Phi(z) &= Ue^{-i\alpha}z\\
+    \bar W(z) &= Ue^{-i\alpha}=U(\cos \alpha-i\sin\alpha)\\
+    v_x &= U\cos \alpha\\
+    v_y &= U\sin\alpha
+\end{align*}
+
+Sources and sinks: \(Q\) being the volumetric flow rate. If \(Q>0\), it's a source and sink if negative.
+
+\begin{align*}
+    \Phi(z) &= \frac{Q}{2\pi} \log z\\
+    \Phi(z) &= \frac{Q}{2\pi}( \log r+i\theta)\\
+    \phi(x,y) &= \Re(\Phi)=\frac{Q}{2\pi} \log r\\
+    \psi(x,y) &= \Im(\Phi) =\frac{Q}{2\pi}\theta\\
+    v_r &= \frac{\partial \phi}{\partial r}= \frac{1}{r}\frac{\partial\psi}{\partial \theta}= \frac{Q}{2\pi r}\\
+    v_\theta &= \frac{1}{r}\frac{\partial \phi}{\partial \theta} = -\frac{\partial \psi}{\partial r} = 0
+\end{align*}
+
+Point Vortex: \(\Gamma\) being the circulation strength. If \(\Gamma>0\), it's counterclockwise rotation.
+
+\[\Phi(z) = -i\frac{\Gamma}{2\pi} \log z\]
+
+Doublet: obtained by placing a source and a sink a distance \(\epsilon\) apart and taking \(\epsilon \to 0\) in a particular manner. The resulting velocity potential is \(\Phi = \frac{S}{z}\) where \(S\) is the strength of the doublet.
+
+Corner and Wedge flows: 
+
+\begin{align*}
+    \Phi(z) &= \frac{A}{n}z^n, n\geq \frac{1}{2}\\
+    \phi(r,\theta) &= \frac{A}{n} r^n \cos(n\theta)\\
+    \psi(r,\theta) &= \frac{A}{n} r^n \sin(n\theta)\\
+    \bar W(z) &= Az^{n-1} = Ar^{n-1} e^{in\theta}e^{-i\theta}\\
+    v_r(r,\theta) &= Ar^{n-1} \cos(n\theta)\\
+    v_\theta(r,\theta) &=- Ar^{n-1} \sin(n\theta)
+\end{align*}
+
+Next we can consider using conformal mapping on the flows.
+
+\begin{align*}
+    \bar W(z) &= \frac{\dif\Phi}{\dif z}\\
+    \hat{\bar W}(w) &= \frac{\dif \hat \Phi}{\dif w}\\
+    \Phi&=\hat\Phi\\
+    \frac{\dif\Phi}{\dif z} &= \frac{\dif \hat\Phi}{\dif w}\frac{\dif w}{\dif z} = \frac{\dif \hat\Phi}{\dif w} f'(z)\\
+    \hat W(z) &= f'(z) \hat{\bar W}(w)
+\end{align*}
+
+The magnitudes of the velocities differ by a factor of \(f'(z)\) in the \(z\)- and \(w\)-planes, while the values of \(\phi\) and \(\psi\) are the same at image points, i.e. \(\Phi(z) = \hat\Phi(w)\).
+
+The critical points of the mapping, i.e. where \(f'(z) = 0\) are stagnation points in the physical domain i.e. \(\bar W(z)=0\).
+
+Two useful general purpose mappings:
+
+Schwarz-Christoffel Transformation: it maps the interior of a polygon with \(n\) vertices in the \(z\)-plane to the upper half of the \(w\)-plane. The inverse transformation is
+
+\[z=F(w)=A\int (w-u_1)^{k_1}(w-u_2)^{k_2}\cdots (w-u_n)^{k_1n}\dif w+B\]
+
+where \(k_i=\frac{\alpha_i}{\pi}-1\)
+
+Joukowski Transformation: the mapped image is a cylinder. We have
+
+\begin{align*}
+    z &= F(w)=w+\frac{c^2}{w}\\
+    w &= f(z)=\frac{1}{2}z\pm {\Pare{\frac{z}{2}}^2-c^2}^{1/2}
+\end{align*}
+
+\section{Integration in the complex plane and residue theory}
+\section{Variational Methods}
+
+We use differential calculus to find extrema of functions, and use variatinoal calculus to find extrema of functionals, say a definite integral involving an unknown function and its derivatives The result should be a function.
+
+\subsection{Integration by parts}
+
+starting from product rule of two functions \(p(x)\) and \(q(x)\), \(\frac{\dif}{\dif}(pq) = p\frac{\dif q}{\dif x}+q\frac{\dif p}{\dif x}\) and thus integration
+\[pq = \int p\frac{\dif q}{\dif x} \dif x+\int q\frac{\dif q}{\dif x}\dif x\implies \int p\dif q = pq-\int q\dif p\]
+
+Alternatively, for a definite integral over \(x_0\leq x\leq x_1\), we have
+\[\int_{x_0}^{x_1} p\dif q = \given{pq}_{x_0}^{x_1}-\int_{x_0}^{x_1} q\dif p\]
+
+In the two-dimensional context, integration by parts is replaced by the divergence theorem.
+
+\begin{theorem}[2D divergence theorem]
+    \[\iint_A \nabla\cdot \bfv\dif A = \oint_C\bfv\cdot \bfn\dif s\]
+    where \(\bfv\) is any vector, \(\bfn\) is the outward facing unit normal to the curve \(C\) bounding the area \(A\). Notice that \(\dif s\) proceeds in the counterclockwise direction along the boundary.
+\end{theorem}
+
+\begin{corollary}
+    Consider apply divergence theorem to \(\bfv = \psi\nabla\phi\) where \(\phi(x,y)\) and \(\phi(x,y)\) are arbitrary 2D scalar functions. Then
+    \begin{align*}
+        \nabla \cdot\bfv &= \nabla\cdot(\psi\nabla\phi)=\psi\nabla^2\phi+\nabla\psi\cdot \nabla\phi\\
+        \bfv\cdot\bfn &= \psi (\nabla\phi\cdot \bfn)
+    \end{align*}
+    Then in the Green's first theorem, we have
+    \[\iint_A\nabla\psi\cdot\nabla\phi\dif A = \oint_C\psi (\nabla\phi\cdot\bfn)\dif s-\iint_A\psi\nabla^2\phi\dif A\]
+    In one dimension, with \(\psi=\psi(x)\) and \(\phi=\phi(x)\) we have \(\nabla=\frac{\dif}{\dif x}i\) and \(\bfn_0=-i\), \(\bfn_1=i\) and \(\dif A = \dif x\) thus
+    \[\int_{x_0}^{x_1} \frac{\dif\psi}{\dif x}\frac{\dif\phi}{\dif x}\dif x = \given{\psi\frac{\dif\phi}{\dif x}_{x=x_1}}-\given{\psi\frac{\dif\phi}{\dif x}}_{x=x_0} -\int_{x_0}^{x_1} \psi\frac{\dif^2\phi}{\dif x^2}\dif x\]
+    Consider \(\psi(x)=q(x)\) and \(\phi(x)=\int p(x)\dif x\) we have the integration by parts formula in 1D. For 2D case, we have \(\bfv=P(x,y)i+Q(x,y)j\), \(\bfn=\frac{\dif y}{\dif s}i-\frac{\dif x}{\dif s}j\) and \(\nabla=\frac{\partial}{\partial x}i+\frac{\partial }{\partial y}j\). The formula goes to:
+    \[\iint_A \Pare{\frac{\dif P}{\dif x}+\frac{\dif Q}{\dif y}}\dif x\dif y=\oint_C\Pare{P\frac{\dif y}{\dif x}-Q\frac{\dif x}{\dif x}}\dif s=\oint_C (P\dif y-Q\dif x)\]
+\end{corollary}
+
+\begin{lemma}[fundamental lemma of the calculus of variations]
+    If \(g(x)\) is a continuous function in \(x_0\leq x\leq x_1\) and if 
+    \[\int_{x_0}^{x_1} g(x)h(x)\dif x=0\]
+    where \(h(x)\) is an arbitrary function in the same interval with \(h(x_0)=h(x_1)=0\) then \(g(x)=0\) at every point in the inverval \(x_0\leq x\leq x_1\).
+\end{lemma}
+
+can be proved by contradiction.
+
+\subsection{Calculus of variations}
+
+\begin{definition}[Varation of a function]
+    consider the functional \(I[u(x)]\) of the function \(u(x)\) of the form 
+    \[I[u(x)] = \int_{x_0}^{x_1} F(x,u(x),u'(x))\dif x\]
+
+    where \(u(x)\) is smooth and is the family of curves passing through the speficied end points \(u(x_0)=u_0\), \(u(x_1)=u_1\). 
+    
+    Then consider \(\hat u(x) = u(x) +\Pare{\given{\frac{\partial u}{\partial \epsilon}}_{\epsilon=0}}\epsilon+O(\epsilon^2)\). And the variation of \(u\) is
+    \[O(\epsilon) = \delta u = \Pare{\given{\frac{\partial u}{\partial \epsilon}}_{\epsilon=0}}\epsilon:= \epsilon \eta(x)\]
+    where \(\eta(x_0) = \eta(x_1)=0\).
+\end{definition}
+
+Next we derive the definition of functional derivative, starting from 
+\begin{align*}
+    \given{\frac{\dif I[u(x)]}{\dif\epsilon}}_{\epsilon=0} &= \lim_{\epsilon\to 0} \frac{I[\hat u(x)]-I[u(x)]}{\epsilon}\\
+    &= \lim_{\epsilon\to 0} \frac{I[u+\epsilon\eta]-I[u]}{\epsilon}\\
+    &= \lim_{\epsilon\to 0}\frac{1}{\epsilon} \Pare{ \int_{x_0}^{x_1} F(x,u+\epsilon \eta,u'+\epsilon\eta')\dif x-\int_{x_0}^{x_1} F(x,u,u')\dif x }
+\end{align*}
+
+Then using Talor series expansion for the first integral, we have
+\begin{align*}
+    \given{\frac{\dif I}{\dif\epsilon}}_{\epsilon=0} &=\lim_{\epsilon\to 0}\frac{1}{\epsilon} \Pare{ \int_{x_0}^{x_1} F(x,u,u') + \epsilon\eta\frac{\partial F}{\partial u}+\epsilon \frac{\dif \eta}{\dif x}\frac{\partial F}{\partial u'}+O(\epsilon^2)\dif x -\int_{x_0}^{x_1} F(x,u,u')\dif x }\\
+    &= \int_{x_0}^{x_1} \eta\frac{\partial F}{\partial u}+\frac{\dif\eta}{\dif x} \frac{\partial F}{\partial u'}\dif x
+\end{align*}
+Applying the integration by parts to the second part by letting \(p=\frac{\partial F}{\partial u'}\) and \(q=\eta\), we end up with
+\[\given{\frac{\dif I}{\dif\epsilon}}_{\epsilon=0} = \int_{x_0}^{x_1} \eta\frac{\partial F}{\partial u} \dif x + \given{\Pare{\frac{\partial F}{\partial u'}\eta}}_{x_0}^{x_1}- \int_{x_0}^{x_1} \eta\frac{\dif }{\dif x} \Pare{\frac{\partial F}{\partial u'}}\dif x =\int_{x_0}^{x_1}\Pare{\frac{\partial F}{\partial u}-\frac{\dif }{\dif x} \Pare{\frac{\partial F}{\partial u'}}} \eta\dif x\]
+
+Thus we define the functional derivative
+
+\begin{definition}[The functional derivative]
+    
+    
+    \[\frac{\delta I}{\delta u} = \frac{\partial F}{\partial u}-\frac{\dif }{\dif x} \Pare{\frac{\partial F}{\partial u'}}\]
+    so that we have \(\given{\frac{\dif I}{\dif\epsilon}}_{\epsilon=0} = \int_{x_0}^{x_1}\frac{\delta I}{\delta u}  \eta\dif x\)
+\end{definition}
+
+At the extrema of the functional \(I[u(x)]\), we would expect that \(\given{\frac{\dif I}{\dif\epsilon}}_{\epsilon=0}=0\). Nest we find the stationary function of the functional \(I\). We write
+
+\begin{align*}
+    \frac{\dif I}{\dif \epsilon}&=\frac{\dif}{\dif\epsilon}\int_{x_0}^{x_1} F\dif x=\int_{x_0}^{x_1} \frac{\dif F}{\dif\epsilon}\dif x\\
+    \frac{\dif F}{\dif \epsilon} &= \frac{\partial F}{\partial x}\frac{\dif x}{\dif \epsilon} + \frac{\partial F}{\partial u}\frac{\dif u}{\dif \epsilon} + \frac{\partial F}{\partial u'}\frac{\dif u'}{\dif \epsilon}
+\end{align*}
+
+Notice that \(x\) is independent of \(\epsilon\) so the first term vanishes. Next using the definition of \(u(x) = \hat u(x)-\epsilon \eta(x)\) we have
+
+\[ \frac{\dif u}{\dif \epsilon} = -\eta(x), \frac{\dif u'}{\dif \epsilon} = -\eta'(x)\]
+
+and thus to make sure \(\frac{\dif I}{\dif\epsilon}=0\), we want
+
+\[\int_{x_0}^{x_1} \Pare{\frac{\partial F}{\partial u}\eta + \frac{\partial F}{\partial u'}\eta'}\dif x=0\]
+Using integrating by parts again, the second term goes to
+
+\[\int_{x_0}^{x_1}\frac{\partial F}{\partial u'}\eta'\dif x = \given{\Pare{\frac{\partial F}{\partial u'}\eta}}_{x_0}^{x_1} - \int_{x_0}^{x_1} \frac{\dif}{\dif x}\Pare{\frac{\partial F}{\partial u'}}\eta\dif x\]
+
+\begin{definition}[Natural boundary condition]
+    To continue, here we add the natural boundary condition for integrand \(F(x,u,u')\). It's
+    \[\given{\frac{\partial F}{\partial u'}}_{x_0}=\given{\frac{\partial F}{\partial u'}}_{x_1}=0\]
+\end{definition}
+
+\begin{remark}
+    If \(u(x)\) are fixed at the end points, then \(\delta u=0\) at the end points so we don't need this natural boundary condition.
+\end{remark}
+
+Now the first term vanishes, we can plug it in and end up with
+
+\[\int_{x_0}^{x_1} \Pare{\frac{\partial F}{\partial u} -\frac{\dif}{\dif x}\Pare{\frac{\partial F}{\partial u'}}}\eta\dif x=0\]
+
+notice \(\eta\) is an arbitrary function thus we end up with the following equation:
+
+\begin{definition}[Euler-Lagrange equation]
+    For an integrand of the form \(F=F(x,u,u')\), the Euler equation is:
+    \[\frac{\partial F}{\partial u} -\frac{\dif}{\dif x}\Pare{\frac{\partial F}{\partial u'}}=0\]
+    It's necessary, but not sufficient condition for an extremum of \(I[u(x)]=\int F\dif x\).
+\end{definition}
+
+
+
+\begin{proposition}
+    Another form obtained by expanding the terms using total derivative:
+    \[\frac{\partial F}{\partial u} - \Pare{\frac{\partial ^2 F}{\partial u'\partial x}+\frac{\partial ^2 F}{\partial u'\partial u}\frac{\dif u}{\dif x}+\frac{\partial ^2 F}{\partial u'^2 }\frac{\dif^2u}{\dif x^2}}=0\]
+\end{proposition}
+
+\begin{corollary}
+    A special case when \(F=F(u,u')\) that does not explicitly depend on the independent variable \(x\). We can do the following: Supposing \(x(u)\) exists.
+    \begin{align*}
+        I[u(x)] &= \int_{x_0}^{x_1} F(u,u') \dif x\\
+        &= \int_{u_0}^{u_1} F\Pare{u, \Pare{\frac{\dif x}{\dif u}}^{-1}}\frac{\dif x}{\dif u}\dif u\\
+        &= \int_{u_0}^{u_1}  \bar F(u,x')\dif u\\
+        \bar F(u,x') &= x'F(u,(x')^{-1})
+    \end{align*}
+    Then since here \(\partial \bar F/\partial x=0\) the Euler equation is reduced to 
+    \[-\frac{\dif }{\dif u}\Pare{\frac{\partial \bar F}{\partial x'}}=0\implies \frac{\partial \bar F}{\partial x'}=c\]
+    It can be alternatively derived in another way and obtained in a different form, with a different name: Beltrami identity:
+    \[F-\frac{\partial F}{\partial u'}\frac{\dif u}{\dif x}=c\]
+\end{corollary}
+
+\begin{corollary}
+    This form can also be obtained when encountering end points on different curves. Supposing \(u(0)=f(x_0)\) and \(u(1)=g(x_1)\). We can actually show that the Euler equation is of the usual form except at the ends, where we have the transversality conditions:
+    \begin{align*}
+        F+(f'-u')\frac{\partial F}{\partial u'}=0, &x=x_0\\
+        F+(g'-u')\frac{\partial F}{\partial u'}=0, &x=x_1
+    \end{align*}
+\end{corollary}
+
+\subsection{Summary on notation and definitions}
+
+\begin{itemize}
+    \item the functional of interest: \(I[u(x)] = \int_{x_0}^{x_1} F(x,u,u')\dif x\)
+    \item variation of function \(u\): \(\delta u=O(\epsilon) = \epsilon\eta(x)\) \item especially here we have \(\delta u'=(\delta u)'\) meaning the variational operator \(\delta\) and the differential operator \(\dif/\dif x\) are commutative if the differentiation is wrt an independent variable.
+    \item variation of functional \(I[u]\):
+    \[\delta I = \delta \int_{x_0}^{x_1} F(x,u,u')\dif x = \int_{x_0}^{x_1}\delta F(x,u,u') \dif x=0\]
+    \item total differential of \(F(x,u,u')\):
+    \[\dif F = \frac{\partial F}{\partial x}\dif x+\frac{\partial F}{\partial u}\dif u+\frac{\partial F}{\partial u'}\dif u'\]
+    \item (total) variation of \(F(x,u,u')\):
+    \[\delta F = \frac{\partial F}{\partial x}\delta x+\frac{\partial F}{\partial u}\delta u+\frac{\partial F}{\partial u'}\delta u'=\frac{\partial F}{\partial u}\delta u+\frac{\partial F}{\partial u'}\delta u'\]
+    \item functional derivative: As \(\given{\dfrac{\dif I}{\dif\epsilon}}_{\epsilon=0}=\displaystyle\lim_{\epsilon\to0}\frac{I[u+\delta u]-I[u]}{\epsilon}=\int_{x_0}^{x_1}\Pare{\frac{\partial F}{\partial u}-\frac{\dif }{\dif x}\Pare{\frac{\partial F}{\partial u'}}}\eta\dif x\), we define
+    \[\frac{\delta I}{\delta u}=\frac{\partial F}{\partial u}-\frac{\dif }{\dif x}\Pare{\frac{\partial F}{\partial u'}}\]
+    \item Euler equation for integrand \(F(x,u,u')\): \(\frac{\partial F}{\partial u}-\frac{\dif }{\dif x}\Pare{\frac{\partial F}{\partial u'}}=0\)
+\end{itemize}
+
+Some fun fact about variational principles
+\begin{itemize}
+    \item straight line: shortest distance between two points
+    \item circle: shortest curve enclosing a given area (Dido's problem)
+    \item sphere: smallest area enclosing a given volume
+    \item isosceles triangle: a triangle having the shortest perimeter with a given
+    base line and area
+\end{itemize}
+
+In higher dimension, the results are:
+
+\begin{itemize}
+    \item Euler equation for \(F(x,u,u',u'')\)
+    \[\frac{\partial F}{\partial u}-\frac{\dif }{\dif x}\Pare{\frac{\partial F}{\partial u'}}+\frac{\dif^2 }{\dif x^2}\Pare{\frac{\partial F}{\partial u''}}=0\]
+    \item expanding results in a 4-th order ode, which gives rise to the following
+    \item two possible boundary condition sets: first is to specify \(u\) and \(u'\) at the end points so that \(\delta u\) and \(\delta u'\) at \(x_0,x_1\) are both zero. Or use natural boundary conditions, that at \(x_0,x_1\) we have
+    \[\frac{\dif }{\dif x}\Pare{\frac{\partial F}{\partial u''}}-\frac{\partial F}{\partial u'}=0, \frac{\partial F}{\partial u''}=0\]
+    \item for \(F(x,u,u',\dots,u^{(n)})\), the Euler equation is
+    \[\frac{\partial F}{\partial u}-\frac{\dif }{\dif x}\Pare{\frac{\partial F}{\partial u'}}+\frac{\dif^2 }{\dif x^2}\Pare{\frac{\partial F}{\partial u''}}-\cdots+(-1)^n \frac{\dif^n }{\dif x^n}\Pare{\frac{\partial F}{\partial u^{(n)}}} =0\]
+\end{itemize}
+
+We'll move to function of more independent variables. 
+\subsection{Functional of Two Independent Variables}
+
+Generally, we consider the following functional where \(u(x,y)\) depends on two independent variables \(x\) and \(y\).
+\[I[u(x,y)] = \iint_A F(x,y,u,u_x,u_y)\dif x\dif y\]
+
+Here subscripts denote partial differential instead of components. By setting the variation of the functional equal to \(0\), the Euler Equation is obtained via the following steps:
+
+\begin{align*}
+    \delta I[u(x,y)] &= 0\\
+    &=\iint_A \frac{\partial F}{\partial u}\delta u+\frac{\partial F}{\partial u_x}\delta (u_x) +\frac{\partial F}{\partial u_y}\delta (u_y) \dif x\dif y\\
+    &=\iint_A \frac{\partial F}{\partial u}\delta u+\frac{\partial F}{\partial u_x}(\delta u)_x +\frac{\partial F}{\partial u_y}(\delta u)_y \dif x\dif y\\
+    &=\iint_A \frac{\partial F}{\partial u}\delta u+ \SB{\frac{\partial }{\partial x}\Pare{\frac{\partial F}{\partial u_x}\delta u}-\frac{\partial}{\partial x}\Pare{\frac{\partial F}{\partial u_x}}\delta u} +\SB{\frac{\partial }{\partial y}\Pare{\frac{\partial F}{\partial u_y}\delta u}-\frac{\partial}{\partial y}\Pare{\frac{\partial F}{\partial u_y}}\delta u}  \dif x\dif y\\
+    &=\iint_A \frac{\partial F}{\partial u}\delta u+ \SB{\frac{\partial }{\partial x}\Pare{\frac{\partial F}{\partial u_x}\delta u}+\frac{\partial }{\partial y}\Pare{\frac{\partial F}{\partial u_y}\delta u}} -\SB{\frac{\partial}{\partial x}\Pare{\frac{\partial F}{\partial u_x}}\delta u+\frac{\partial}{\partial y}\Pare{\frac{\partial F}{\partial u_y}}\delta u}  \dif x\dif y\\
+\end{align*}
+
+Next we use the divergence theorem on the second term above. Let \(P=\dfrac{\partial F}{\partial u_x}\delta u\) and \(Q=\dfrac{\partial F}{\partial u_y}\delta u\), then we have
+\[\iint_A \Pare{\frac{\partial F}{\partial u} -\Pare{\frac{\partial}{\partial x}\Pare{\frac{\partial F}{\partial u_x}}+\frac{\partial}{\partial y}\Pare{\frac{\partial F}{\partial u_y}}} }\delta u \dif x\dif y +\oint_C \Pare{P\frac{\dif y}{\dif x}-Q\frac{\dif x}{\dif x}}\dif s=0 \]
+
+where the second term can be written explicitly as 
+
+\[\oint_C \Pare{\frac{\partial F}{\partial u_x}\frac{\dif y}{\dif x}-\frac{\partial F}{\partial u_y}\frac{\dif x }{\dif s}}\delta u\dif s\]
+
+This results in the following Euler equation.
+
+\begin{theorem}
+    Euler's equation for integrand \(F(x,y,u,u_x,u_y)\) is
+    \[\frac{\partial F}{\partial u} -\Pare{\frac{\partial}{\partial x}\Pare{\frac{\partial F}{\partial u_x}}+\frac{\partial}{\partial y}\Pare{\frac{\partial F}{\partial u_y}}} =0\]
+    So that the first integration above goes to \(0\). For the second integration, either we speficy \(u(x,y)\) at the boundary so that \(\delta u=0\), or we apply the natural boundary condition:
+    \[\frac{\partial F}{\partial u_x}\frac{\dif y}{\dif s}-\frac{\partial F}{\partial u_y}\frac{\dif x}{\dif s}=0\]
+    In vector form, we write the Euler equation as:
+    \[\frac{\partial F}{\partial u}-\nabla\cdot \frac{\partial F}{\partial \nabla u}=0\]
+    The natural boundary condiiton is:
+    \[\bfn\cdot \frac{\partial F}{\partial\nabla u}=0\]
+\end{theorem}
+
+\begin{remark}[arc length formula in 2D]
+    smooth function \(u(x,y)\) enclosing an area \(A\) have area:
+    \[\iint_A \sqrt{1+\Pare{\frac{\partial u}{\partial x}}^2+\Pare{\frac{\partial u}{\partial y}}^2}\dif x\dif y\]\
+    A generalization to the length formula in 1D
+    \[\int_{x_0}^{x_1} \sqrt{1+\Pare{\frac{\dif u}{\dif x}}^2}\dif x\]
+\end{remark}
+
+\subsection{Inverse problem}
+
+Convert known differential equations into their equivalent variational form. Here's the general steps we can follow.
+
+\begin{enumerate}
+    \item Write the differential equation in operator form: \(\cL u=0\)
+    \item times \(\delta u\) then take integral and let it be zero: \(\int_\Omega \cL u\delta u\dif \bfx=0\)
+    \item using integration by parts and other formula to finally obtain \(\delta I[u]=0\)
+\end{enumerate}
+
+Here's an example of the 2D rectangle Dirichlet problem. We begin with the differential equation:
+
+\[\Delta u=\nabla^2 u=\frac{\partial ^2 u}{\partial x^2}+\frac{\partial u^2}{\partial y^2}=0\]
+
+along with the specified boundary condition on the boundary \(C\): \(u(x,y)=u_0(x,y)\).
+
+\begin{equation*}
+    \begin{split}
+        0 &=  \iint_\Omega \Delta u\delta u\dif x\dif y\\
+        &= \iint_\Omega u_{xx} \delta u\dif x\dif y + \iint_\Omega u_{yy} \delta u\dif x\dif y\\
+        &= \int_{y_0} ^{y_1} \Pare{\int_{x_0} ^{x_1} \delta u\dif u_x} \dif y+\int_{x_0} ^{x_1} \Pare{\int_{y_0} ^{y_1} \delta u\dif u_y} \dif x\\
+        &= \int_{y_0} ^{y_1} \Pare{0- \int_{x_0} ^{x_1} u_x \dif \delta u}\dif y + \int_{x_0} ^{x_1} \Pare{0- \int_{y_0} ^{y_1} u_y \dif \delta u}\dif x\\
+        &=  -\int_{y_0} ^{y_1} \int_{x_0} ^{x_1} u_x\delta u_x\dif x \dif y- \int_{x_0} ^{x_1}\int_{y_0} ^{y_1}  u_y\delta u_y\dif y\dif x\\
+        &= -\frac{1}{2}\int_\Omega \delta\Pare{u_x^2+u_y^2}\dif x\dif y\\
+        &= \delta \int_\Omega \nabla u\cdot \nabla u \dif x\dif y
+    \end{split}
+\end{equation*}
+
+\begin{remark}
+    This process can always be done on linear, self-adjoint differential operators.
+\end{remark}
+
+\begin{remark}
+    For poisson equation: \(\cL u = f\) similarly we have the inverse problem solution: 
+    \[ I[u] = \iint_\Omega \Pare{\Pare{\frac{\partial u}{\partial x}}^2+\Pare{\frac{\partial u}{\partial y}}^2+2fu }\dif x\dif y \]
+\end{remark}
+
+\subsection{Functionals of Two Dependent Variables}
+
+\begin{theorem}
+    Euler's Equation for \(F(x,y,u,v,u_x,v_x,u_y,v_y)\) are
+    \begin{align*}
+        \frac{\partial F}{\partial u}-\frac{\partial}{\partial x}\Pare{\frac{\partial F}{\partial u_x}}-\frac{\partial}{\partial y}\Pare{\frac{\partial F}{\partial u_y}}=0\\
+        \frac{\partial F}{\partial v}-\frac{\partial}{\partial x}\Pare{\frac{\partial F}{\partial v_x}}-\frac{\partial}{\partial y}\Pare{\frac{\partial F}{\partial v_y}}=0
+    \end{align*}
+
+    Either we use fixed boundary conditions or the following natural boundary conditions:
+
+    \begin{align*}
+        \frac{\partial F}{\partial u_x}\frac{\dif y}{\dif s}-\frac{\partial F}{\partial u_y}\frac{\dif x}{\dif s}=0\\
+        \frac{\partial F}{\partial v_x}\frac{\dif y}{\dif s}-\frac{\partial F}{\partial v_y}\frac{\dif x}{\dif s}=0
+    \end{align*}
+\end{theorem}
+
+\subsection{Constrained Functionals}
+
+\subsubsection*{Integral constraints}
+
+Use Lagrange multiplier method, notice the multiplier hereis treated as a number not a function.
+
+
+Consider the functional \(I[u]=\int_{x_0}^{x_1} F(x,u,u')\dif x\) subject to \(\int_{x_0}^{x_1} G(x,u,u')\dif x=C\). We build \(J[u]=\int_{x_0}^{x_1} \tilde F(\lambda, x,u,u')\dif x\) where \(\tilde F(\lambda, x,u,u')=F+\lambda G\) and then solve \(\delta J[u]=0\). We call \(\tilde F\) the augmented integrand. Multiple constraints are treated similarly. We write \(\tilde F=F+\sum_i \lambda_i G_i\). The Euler's equation is simimlar: 
+
+\[\frac{\partial \tilde F}{\partial u}-\frac{\dif }{\dif x}\Pare{\frac{\partial \tilde F}{\partial u'}}=0\]
+
+One specific type of problems: Sturm-Liouville problems, where the integrand has the form: \(F(x,u,u')=q(x)u^2-p(x)(u')^2\), and the constraint has the form \(G(x,u,u')=r(x)u^2\) and \(C=1\). Three functions \(r,p,q\) are known. The simplified Euler's equation is:
+
+\[q(x) u +\lambda r(x)u-\frac{\dif }{\dif x}\Pare{-p(x)u'}=0\]
+
+That's how this type of problem got its name for this is a Sturm-Liouville equation. Notice here \(\lambda\) is an eigenvalue of the Sturm-Liouville differential operator.
+
+\subsubsection*{Algebraic and differential constraints}
+
+Consider the functional \(I[u,v]=\int_{x_0}^{x_1} F(x,u,v,u',v')\dif x\) subject to \(\phi(u,v,u',v')=0\).
+
+Notice in this case to use the multiplier, it's no longer a number but a continuous function of the independent variable(s). We write the augmented integrand as
+
+\[\tilde F = F+\lambda(x)\phi\]
+
+The Euler's equation is the same: \(\frac{\partial \tilde F}{\partial u}-\frac{\dif }{\dif x}\Pare{\frac{\partial \tilde F}{\partial u'}}=0\) and \(\frac{\partial \tilde F}{\partial u}-\frac{\dif }{\dif x}\Pare{\frac{\partial \tilde F}{\partial v'}}=0\).
+
+\section{Hamilton's Principle}
+
+\subsection{Hamilton's Principle for Discrete Systems}
+
+Consider the system to be a single \(O(1)\)-sized rigid particle, a point mass \(m\) acted upon by a force \(\bff(t)\) and \(\bfr(t)\) is the position vector of the system and \(t\) is independent variable.
+
+\begin{theorem}[Hamilton's Variational Principle for a Single Particle]
+    In order to determine the actual trajectory \(\bfr(t)\) of the system over the finite time \(t_0\leq t\leq t_1\), Hamilton's principle asserts that the trajectory must be such that \(\bfr(t)\) is a stationary funciton of the functional
+    \[\int_{t_0}^{t_1} \delta T+\bff\cdot\delta \bfr \dif t=0\]
+
+    \begin{itemize}
+        \item For the first term, \(T\) is the kinetic energy of the system and it equals \(T=\frac{1}{2}m\dot \bfr^2:=\frac{1}{2} m\bfv^2\). It's a scalar.
+        \item For the second term, \(\bff\cdot\delta \bfr \) is the virtual work owing to the application of the actual resultant external force \(\bff\) acting on the system through the infinitesimal virtual displacement \(\delta\bfr\). Some examples including the gravitational potential, electrostatic potential, and deformation potential.
+    \end{itemize}
+\end{theorem}
+
+\begin{remark}
+    Notice the principle only asserts that \(\bfr(t)\) is the stationary solution, thus not necessaryily a minimum.
+\end{remark}
+
+
+By variation, the Euler's equation for this system is the newoton's second law.
+
+\[m\ddot \bfr-\bff=0\]
+
+\begin{remark}
+    There's a subtle difference betweent the differential form (local law) and the variatonal form (global law). Newton's second law requires two initial conditions at the initial time, position and velocity, thus a initial-value problem. And the Hamilton's principle requires the positions of initial and ending time, thus a boundary-value problem.
+\end{remark}
+
+Next we consider the case when nonconservative forces is involved. 
+
+\begin{definition}[Conservative forces]
+    \(\bff_c\), forces that the virtual work done \(W_c\) is independent of the path and only depends on the initial and final positions. Such work is recoverable, and the process is reversible.
+
+    If the work done depend on the path, then the force is nonconservative.
+\end{definition}
+
+\begin{definition}[Mechanical energy]
+    The capacity to do work.
+    \begin{itemize}
+        \item kinetic energy: from its motion
+        \item potential energy: from its position in a conservative force field.
+    \end{itemize}
+    A system is conservative when its mechanical energy is conserved.
+\end{definition}
+
+Thus far, we write 
+
+\begin{align*}
+    \bff\cdot\delta\bfr&=\bff_c\cdot\delta \bfr+\bff_{nc}\cdot\delta \bfr\\
+    W_c &= \int_{\bfr_1}^{\bfr_2} \bff_c\cdot \delta \bfr = \int_{\bfr_1}^{\bfr_2}\delta\Gamma = \Gamma(\bfr_2)-\Gamma(\bfr_1)\\
+    \Gamma&=-V\\
+    \bff_c\cdot\delta\bfr &= -\delta V
+\end{align*}
+
+In cartisian coordinates, we also have
+
+\[\delta V = \nabla V\cdot\delta\bfr\implies \bff_c=-\nabla V\]
+
+So the Conservative force maybe expressed as the gradient of the scalar potential energy function.
+
+
+\begin{theorem}[Hamilton's Variational Principle for Conservative and Nonconservative Forces]
+    \[\int_{t_0}^{t_1} \delta (T-V)+\bff_{nc}\cdot\delta \bfr \dif t=0\]
+    And if there's only conservative force, we may write
+
+    \[\delta \int_{t_0}^{t_1} L\dif t:=\delta\cA=0\]
+    where \(L=T-V\) is called the Lagrangian. And \(\cA\) is the action integral. This formula is also referred as the lease action principle (LAP).
+\end{theorem}
+
+
+\subsection{Hamilton's Principle for Continuous Systems}
+
+In the previouis subsection, the particles are nondeformable and thus the virtual work is only that from the external forces acting on the system. Now we turn to continuous systems comprised of deformable bodies in which the mass is distributed throughout the body.
+
+We can apply the discrete version of the principle to differential elements of the continuous system \(\bar V\) for volumn, \(\bar A\) for area and \(\bar S\) for length, and we sum over the entire volumn through integration. Some other changes including
+
+\begin{itemize}
+    \item Lagrangian: \(L = \int \cL\dif \bar V\) where \(\cL\) is the Lagrangian density, and it equals the kinetic energy per unit minus the potential energy per unit: \(\cL=\cT-\cV\)
+    \item Other than external forces, also put internal forces that deform the continuous system
+\end{itemize}
+  
+
+\subsection{Euler-Lagrange Equations}
+
+For now we only consider the discrete cases. We begin with following series of definitions and formulae. For a dynamical system with \(n\) degrees of freedom,
+
+\begin{itemize}
+    \item Degree of freedom: the minimum number of scalar dependent variables required to fully describe the motion or state of the system.
+    \item Generalized coordinates (dependent): \(q_i(t)\), \(i=1,2,\dots, n\);
+    \item Generalized velocities: \(\dot q_i(t)\), where dots denote differentiation wrt time;
+    \item Virtual displacements: \(\delta q_i\), the infinitesimally small variations.
+    \item Kinetic energy: \(T(q_1,\dots,q_n,\dot q_1,\dots,\dot q_n)\),
+    \item Potential energy: \(V(q_1,\dots,q_n)\),
+    \item Lagrangian: \(L (t,q_i,\dot q_i) = T(t,q_i,\dot q_i)-V(t,q_i) \),
+    \item Euler-Lagrange equations for an n-DOF with conservative forces: \(\frac{\partial L}{\partial q_i}-\frac{\dif }{\dif t}\Pare{\frac{\partial L}{\partial \dot q_i}}=0\), \(i=1,2,\dots, n\);
+    \item and the equivalent form: \(\frac{\partial L}{\partial q_i}-\frac{\dif }{\dif t}\Pare{\frac{\partial T}{\partial \dot q_i}}=0\) since \(\frac{\partial V}{\partial \dot q_i}=0\)
+    \item The virtual work: \(\bff\cdot \delta\bfr = \sum_i \bff\cdot \frac{\partial \bfr}{\partial q_i}\delta q_i = \sum_i Q_i \delta q_i\), and we call \(Q_i=\bff\cdot\frac{\partial \bfr}{\partial q_i} \) the generalized force.
+    \item The conservative force: \(Q_i=\bff\cdot\frac{\partial \bfr}{\partial q_i}=-\frac{\partial V}{\partial q_i}\)
+    \item The Euler-Lagrangian equations of motion for an n-DOF system with nonconservative forces: \(\frac{\partial L}{\partial q_i}-\frac{\dif }{\dif t}\Pare{\frac{\partial L}{\partial \dot q_i}}=-Q_i\) where \(Q_i\) are the generalized forces owing to nonconservative forces acting on the system, and the potential owing to conservative forces are included in the Lagrangian \(L=T-V\).
+    \item Generalized momenta: \(p_i = \frac{\partial T}{\partial \dot q_i} = \frac{\partial L}{\partial \dot q_i}\) and we can use \(\dot p_i\) to simplify the E-L equations: \(\frac{\partial L}{\partial q_i}=\dot p_i\).
+\end{itemize}
+
+\begin{proposition}[Invariance of Euler-Lagrangian Equations]
+    E-L equations are independent of the coordinate system, say \(q_i\) and \(q_i^*\), \(i=1,2,\dots, n\), under the condition that matrix \(\dfrac{\partial q_j^*}{\partial q_i}\) is non-singular. Then for \(L(t,q_i,\dot q_i)=L^*(t,q_i^*, \dot q_i^*)\) we have\
+    \[\frac{\partial L}{\partial q_i}-\frac{\dif }{\dif t}\Pare{\frac{\partial L }{\partial \dot q_i}}=\frac{\partial L^*}{\partial q_i^*}-\frac{\dif }{\dif t}\Pare{\frac{\partial L^* }{\partial \dot q_i^*}}=0\]
+\end{proposition}
+
+\begin{corollary}
+    During the derivation, a byproduct is that
+    \[\frac{\partial \dot q_j^*}{\partial \dot q_i}=\sum_i\frac{\partial q_j^*}{\partial q_i}\]
+\end{corollary}
+
+\subsection{From the First Law of Thermodynamics to the Hamilton's Principle}
+
+\begin{theorem}[Conservation of Mass]
+    For a closed system, where no matter is moving across the system boundary, then the mass of the system is a constant: \(\dot m=0\).
+\end{theorem}
+
+\begin{theorem}[The first law of thermodynamics]
+    The conservation of energy: time rate of change of total energy of the system = time rate of energy transfer across the system boundary. And we call a system adiabatic if no hear transfer across the boundary. By assuming no work entering or exiting the system across the boundary, it requires that \(\dot E=0\).
+\end{theorem}
+
+To derive the Hamilton's principle, we neglect heat transfer, work crossing the system boundary, and changes in thermodynamic internal energy, thus \(E=T+V-W_{nc}=2T-L-W_{nc}\) is a constant. We also assume the system is autonomous.  The derivation is skipped. Here's a byproduct.
+
+\begin{corollary}
+    During the derivation, a byproduct is that
+    \[E=2T-L-W_{nc}=\sum_i \dot q_i \frac{\partial L}{\partial \dot q_i}-L-W_{nc}\]
+\end{corollary}
+
+
+Also performing the inverse problem from the E-L equations can also give Hamilton's principle. We consider
+
+\begin{align*}
+    0&=\int_{t_0}^{t_1} \sum_i \Pare{\frac{\partial L}{\partial q_i}-\frac{\dif }{\dif t}\Pare{\frac{\partial L}{\partial \dot q_i}}+Q_i}\delta q_i \dif t\\
+    &=- \given{\Pare{\sum_i \frac{\partial L}{\partial \dot q_i}\delta q_i}}_{t_0}^{t_1}+\int_{t_0}^{t_1} \sum_i\Pare{\frac{\partial L}{\partial q_i}\delta q_i+\frac{\partial L}{\partial \dot q_i}\delta\dot q_i+Q_i\delta q_i}\dif t\\
+    &= 0+\int_{t_0}^{t_1} \Pare{\delta L+\sum_iQ_i \delta q_i}\dif t\\
+    &= \int_{t_0}^{t_1} \Pare{\delta L+\bff_{nc}\cdot \delta\bfr}\dif t\\
+    &= \int_{t_0}^{t_1} \Pare{\delta T+\bff     \cdot \delta\bfr}\dif t
+\end{align*}
+
+\subsection{Conservation of Mechanical Energy and the Hamiltonian}
+
+Consider the system with only conservative forces acting on, \(Q_i=0\), \(W_{nc}=0\). The first law of thermodynamics reads \(E=H=T+V\) being a constant. Here \(H\) is the total mechanical energy of a conservative system. And similarly we have
+
+\[H = \sum_i \dot q_i\frac{\partial L}{\partial \dot q_i}-L=\sum_i \dot q_i p_i -L\]
+
+\begin{proposition}[Hamilton's canonical equations]
+    We have following two equivalent expressions for Euler-Lagrangian Equations of motion using Hamiltonian \(i=1,2,\dots,n\), notice \(p_i\) is generalized momenta and \(L\) is assumed to have the form \(L(q_i,\dot q_i)\)
+    \[\frac{\partial H}{\partial q_i}=-\dot p_i,\frac{\partial H}{\partial p_i}=\dot q_i\]
+\end{proposition}
+
+\begin{remark}
+    With above two relations, we can find that \(H\) and \(L\) are the Legendre transform of each other. In ideal condition, for function \(f(x)\), we write its Legendre transform \(f^*(p)=\Pare{px-f(x)}\mid_{x=(f')^{-1}(p)}\)
+\end{remark} 
+
+
+\begin{theorem}[Noether's Theorem]
+    This theorem will build connection between Hamilton's principle and Conservation laws. It assets that if the Lagrangian exhibits some mathematical symmetry, for which it is invariant under a transformation in one of the variables on which it depends, denoted by \(s\), then an associated property \(C\) exists that is conserved such that \(\dot C=0\).
+\end{theorem}
+
+
+First example starting from Hamilton's principle for conservative autonomous systems, \(L\) is independent of \(s=t\) and thus invariant, then
+
+\[\dot E=\frac{\dif}{\dif t}\Pare{2T-L-W_{nc}}=\frac{\dif}{\dif t}\Pare{\sum_i \dot q_i \frac{\partial L}{\partial \dot q_i}-L}=0\]
+
+so here \(C=H=T+V\).
+
+Then consider the E-L equations, as we have proved the invariance of E-L equations under \(L=L^*\), so the variable here is \(s=q_i\). And we can also consider the case where \(L\) is independent of \(q_i\) so that \(\frac{\partial}{\partial q_i}=0\), then
+ L
+\[\frac{\dif}{\dif t} \Pare{\frac{\partial L}{\partial \dot q_i}}=\frac{\partial L}{\partial q_i}=0\]
+
+So we can let \(C=\frac{\partial L}{\partial \dot q_i}=p_i\).
+
+\section{Classical Machanics}
+
+Other than the examples, here're some important definites and formulae.
+
+\begin{itemize}
+    \item in three-dimensional cylindrical coordinates we have the kinetic energy: \(T=\frac{1}{2}m\Pare{\dot r^2+(r\dot\theta)^2+\dot z^2}=\frac{m}{2}\Pare{\dot q_1^2+(q_1\dot q_2)^2+\dot q_3^2}\)
+    \begin{itemize}
+        \item The generalized force \(m\ddot q_1-mq_1\dot q_2^2=Q_1=-\frac{\partial V}{\partial q_1}\) where \(mq_1 \dot q_2^2\) is the centrifugal acceleration
+        \item The generalized force \(mq_1^2\ddot q_2+2mq_1 \dot q_1\dot q_2=Q_2=-\frac{\partial Q}{\partial q_2}\) where \(2mq_1 \dot q_1\dot q_2\) is the Coriolis acceleration. 
+        \item And \(m\ddot q_3=Q_3=-\frac{\partial V}{\partial q_3}\)
+    \end{itemize}
+    \item in the dynamics problems with constraints, we may use augmented Lagrangian \(\tilde L = T-V+\lambda(t) \phi(q_i)\). And we call holonomic constraints for those constrain the coordinates of the system.
+    \item Principle of virtual work: at the static status, all forces are balanced, system do not move with time, and thus the virtual work must be zero.
+    \item In statics problem, the potential energy is the total virtual work (sum or integration of \(\bff\cdot \delta \bfq\)) that would be required to move the system through a virtual displacement \(\delta\bfq\) from its unloaded condition to its fully-loaded condition, where it is in static equilibrium. 
+\end{itemize}
 
 \end{document}

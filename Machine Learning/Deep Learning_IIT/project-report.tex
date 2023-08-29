@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+\graphicspath{ {D:/Notes/others/assets/} }
+\title{cs577 Final Project: Report}
+\author{Yuanxing Cheng, A20453410, CS577-f22\\ Department of Mathematics \\Illinois Institute of Technology}
+
+\begin{document}
+
+\maketitle
+\section{Problem statement}
+
+We are interested in using movie posters to predict the movie genres. This is a multi-classification problem. And we belive the model would work better given extra object detection of input along with the original input. This idea I intend to implement is from \cite{chu2017movie}.
+
+We also noticed a related work using gram layer \cite{wi_poster-based_2020} to connect the poster and the genre. However since my teammate drop the course, this part cannot be completed.
+
+More unfinished work can be found in the tesm responsibility section.
+
+\section{Proposed solution}
+
+I split the model into three part, which are base CNN layer, yolo objective detection layer, and gram layer. The data collection should be done by my teammate, and he quited. Thus I don't have access to the training data. The following model involving input shape and total number of movie genre are instead assumed.
+
+The outputs of the three parts (now two parts) are then added together and passed to a full connected layer, then another full connected layer with softmax activation.
+
+In the original paper, the authors adopted an algorithm that could obtain a probability thresholds from a discret probability distribution. So that we can use the obtained thresholds to decide if a movie is labeled as certain genre or not. I followed this idea and implement it. Here's the algorithm \ref{alg:thres}.
+
+\begin{algorithm}
+    \caption{Algorithm for obtaining the probability thresholds}\label{alg:thres}
+    \begin{algorithmic}
+        \State \textbf{Input}: model output, the predicted probability vector \(\hat \bfy\), the true probability \(\bfy\), obtained from dataset. For example, if movie is of genre 1 and 2, then this true probability vector is \((0.5,0.5,0,0,\dots)\). An pre-determined threshold upper bound \(u\) and threshold moving stepsize \(s\). All vectors are of length equal to the total number of movie genre, \(N\).
+        \State \textbf{Output}: vector of best threshold for current output \(\bfy_s\)
+        \State Initialize \(\bfy_s\)
+        \For {\(i=1\) to \(N\)}
+            \State \(j=0\)
+            \State Initialize empty vector \(\bfrho\) and \(\bftheta\)
+            \For {\(j<u\)}
+                \State Zero initialize a binary vector \(\bfb\)
+                \If {\(\hat \bfy_i > j\)}
+                    \State \(b_i=1\)
+                \Else
+                    \State \(b_i=0\)
+                \EndIf
+                \State assign \(t\) to be the Matthews correlation coefficient of \(\bfy\) and \(\bfb\), obtained  using \cite{scikit-learn}
+                \State append \(\bfrho\) the value \(t\)
+                \State append \(\bftheta\) the value \(j\)
+                \State \(j \gets j+s\)
+            \EndFor
+            \State \(k^* = \argmax_k \bfrho\)
+            \State \((\bfy_s)_i=\bftheta[k^*]\)
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+
+\section{Implementation details}
+
+All the code are written using Python \cite{10.5555/1593511} and was going to be tested on colab platform. For now, I use the following modules to help me in construct the model: Numpy \cite{harris2020array}, keras \cite{chollet2015keras} and tensorflow \cite{tensorflow2015-whitepaper}.
+
+\subsection*{component: CNN}
+
+This is a normal CNN layer consists of an up sampling process and down sampling process
+
+\begin{center}
+    \begin{tabular}{ccc}
+        \hline
+        Layer & output shape & params used\\
+        \hline 
+        input layer & 1120,960,3 & 0\\
+        conv 2d & 1120,960,100 & 2800\\
+        max pooling & 560,480,100 & 0\\\
+        conv2d & 560,480,32& 28832\\
+        conv2d & 560,480,64 & 18496\\
+        conv2d & 560,480,128 & 73856\\
+        conv2d & 560,480,256 & 295168\\
+        conv2d & 560,480,128& 295040\\
+        conv2d & 560,480,80 & 92240\\
+        batch normalizing & 560,480,80 & 320\\
+        max pooling & 280, 240 ,80 & 0\\
+        flatten & 5376000 & 0\\
+        dense & 80 & 430080080 \\
+        batch normalizing & 80 & 320       \\\hline
+    \end{tabular}
+\end{center}
+
+\subsection{component: object detection with Yolo}
+
+This part is adpoted from \cite{anh_yolo3_2022} and \cite{brownlee_how_2019}, where the first one gives an implementation of the original yolo model in keras, and the latter one give an thorough example which help me a lot in understanding this model.
+
+Here is a figure \ref{fig:yolov3} that explains its basic architecture from \cite{almog_yolo_2020}.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.70\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{yolov3}
+    \end{subfigure}
+    \caption{yolov3 architecture from Uri Almog}
+    \label{fig:yolov3}
+\end{figure}
+
+
+Above yolo detection base is then followed by certain up sampling and a dense layer. Overall, this part looks like the following \ref{pic:overall_model}.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.70\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{yolo_branch}
+    \end{subfigure}
+    \caption{full yolov3 branch}\label{pic:overall_model}
+\end{figure}
+
+
+\subsection{component: gram layer}
+
+This part should be finished by my teammate and thus is skipped here.
+
+This three components are designed to parallelly extract features from input. The following figure explain this architecture.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.88\textwidth}
+        \centering
+        \includegraphics[width=.70\linewidth]{final_model}
+    \end{subfigure}
+    \caption{overall model with 3 parallel components, notice the gram layer component is omitted here}
+\end{figure}
+
+
+\section{Results and discussion}
+
+Due to lack of input data, the model is not trained. I can only provide a synthetic data to find a best threshold.
+
+\section{Team responsibility}
+
+This section follows the original proposal before my teammate quit the course. As been decided, Yuanxing Cheng will be doing the implementation of \cite{chu2017movie} and the paper, slides. Shansi Dong will be doing the implementation of \cite{wi_poster-based_2020} and data collection. As he quit the course, the extra model compoment is not constructed in our final model. In addition, due to the fact that I have limited knowledge on collecting poster data from IMDB, the training and testing on the model cannot be completed.
+
+
+\newpage
+
+\newpage
+\bibliographystyle{acm}
+\bibliography{D:/Notes/others/xE.bib}
+
+\end{document}

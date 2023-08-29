@@ -1,0 +1,260 @@
+\documentclass{article}
+
+\input{D:/Notes/others/myHeadings.tex}
+\graphicspath{ {D:/Notes/others/assets/} }
+\title{cs577 Assignment 2: Report}
+\author{Yuanxing Cheng, A20453410, CS577-f22\\ Department of Mathematics \\Illinois Institute of Technology}
+
+\begin{document}
+
+\maketitle
+\section{Binary Classification}
+\subsection*{Problem statement}
+
+Binary classification for cat and dog.
+
+\subsection*{Proposed solution}
+
+The data is retrieved inside google colab notebook. The data splitting is also done there. Once done, we continue training a custom CNN. To improve, we adjust the epoch number and batch number as a simple hyper tuning.
+
+To visualize the performance, I plot all the activation of some input and also plot the filters learned in training using gradient ascent.
+
+Finally I use VGG16 as base convolution layer and train only top full connected layers with certain data augmentation to reduce overfitting. Then I unfreeze the last convolution base and continue training.
+
+\subsection*{Implementation details}
+
+Custome CNN with batch size 20 and 30 epoch. The optimizer is rmsprop with learning rate 2e-5.
+
+\begin{center}
+    \begin{tabular}{ccc}
+        \hline
+        Layer & output shape & params used\\
+        \hline 
+        conv 2d & 148,148,32 & 896\\
+        max pooling 2d & 74,74,32 & 0\\
+        conv 2d & 72,72,64 & 18496\\
+        max pooling & 36,36,64 & 0\\
+        conv 2d & 34,34,128 & 73856\\
+        max pooling & 17,17,128 & 0\\
+        conv 2d & 15,15,128 & 147584\\
+        batch normalizing & 15,15,128 & 512\\
+        flatten & 28800 & 0\\
+        dense & 512 & 14746112\\
+        dense & 1 & 512\\ \hline   
+    \end{tabular}
+\end{center}
+
+Then we see the result as follows:
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Try1_acc}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Try1_loss}
+    \end{subfigure}
+    \caption{first try}
+\end{figure}
+
+So I increaes the batch size to 40 and use only 20 epoch and run again. Here's the result.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Try2_acc}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Try2_loss}
+    \end{subfigure}
+    \caption{second try}
+\end{figure}
+\newpage
+Next we use VGG16 as freezed base. We get the following result.
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.40\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1VGG16Freeze_acc}
+    \end{subfigure}
+    \begin{subfigure}{.40\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1VGG16Freeze_loss}
+    \end{subfigure}\\
+    \begin{subfigure}{.40\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1VGG16Contin_acc}
+    \end{subfigure}
+    \begin{subfigure}{.40\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1VGG16Contin_loss}
+    \end{subfigure}
+    \caption{First row are results from freezed base training, second row are results after I free the last layer of conv base}
+\end{figure}
+
+Then we use some data augmentation and do above process again.
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.40\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1VGG16FreezeAug_acc}
+    \end{subfigure}
+    \begin{subfigure}{.40\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1VGG16FreezeAug_loss}
+    \end{subfigure}\\
+    \begin{subfigure}{.40\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1VGG16ContinAug_acc}
+    \end{subfigure}
+    \begin{subfigure}{.40\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1VGG16ContinAug_loss}
+    \end{subfigure}
+    \caption{First row are results from freezed base training, second row are results after I free the last layer of conv base}
+\end{figure}
+
+
+
+
+\subsection*{Results and discussion}
+
+Now this custom CNN model has accuracy 0.70.
+
+Below are some visualizing.
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.32\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Cat_ori}
+        \caption{original cat image}
+    \end{subfigure}
+    \begin{subfigure}{.32\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Cat_0_4}
+        \caption{activation at layer 0, channel 4}
+    \end{subfigure}
+    \begin{subfigure}{.32\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Cat_2_2}
+        \caption{activation at layer 2, channel 2}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Cat_all}
+    \caption{all activations}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.85\linewidth]{cs577HW4programmingQ1Try2_filter_all}
+    \caption{all filters}
+\end{figure}
+
+As for VGG based model accuracy. Without augmentation, we get accuracy 0.52 after training only the fc layers. And it is increased to 0.545 after freeing the last conv layer. With augmentation, we get accuracy 0.915 after training only the fc layers. And it is increased to 0.935 after freeing the last conv layer.
+
+\section{Multiclass classification}
+\subsection*{Problem Statement}
+
+A multiclass classification on CIFAR-10 dataset.
+
+\subsection*{Proposed Solution}
+
+The dataset are load directly from keras package. The data splitting is also done there. Once done, we continue training a custom CNN. To improve, we adjust the epoch number and batch number as a simple hyper tuning.
+
+Next I add one more inception blocks and do again.
+
+Similarly I add instead a residual block and go over everything again.
+
+\subsection*{Implementation details}
+
+Custome CNN with batch size 512 and 30 epoch. The optimizer is rmsprop with learning rate 1e-3.
+
+\begin{center}
+    \begin{tabular}{ccc}
+        \hline
+        Layer & output shape & params used\\
+        \hline 
+        conv 2d & 30,30,32 & 896\\
+        max pooling 2d & 15,15,32 & 0\\
+        conv 2d & 13,13,64 & 18496\\
+        max pooling & 6,6,64 & 0\\
+        conv 2d & 4,4,128 & 73856\\
+        batch normalizing & 4,4,128 & 512\\
+        flatten & 2048 & 0\\
+        dense & 512 & 1049088\\
+        dense & 10 & 5130\\ \hline   
+    \end{tabular}
+\end{center}
+
+The neural network with inception block looks like below. Notice to shorten the training time, all the dataset are only kept as one tenth of the original number.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.50\linewidth]{cs577HW4programmingQ2Inception_archi}
+    \caption{CNN with inception block}
+\end{figure}
+
+It's first trained with batch size 512 and 25 epochs. Later I tuned it to 64 batch size and 20 epochs. 
+
+Here's the training results.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ2Inception_acc}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ2Inception_loss}
+    \end{subfigure}\\
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ2Inception_acc_try2}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ2Inception_loss_try2}
+    \end{subfigure}
+    \caption{training the CNN with inception block. First row is initial try and second row is done after hyper tuning.}
+\end{figure}
+
+
+As for the CNN with a residual block.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.50\linewidth]{cs577HW4programmingQ2Res_archi}
+    \caption{CNN with residual block}
+\end{figure}
+
+Here's the training result.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ2Res_acc}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+        \centering
+        \includegraphics[width=.85\linewidth]{cs577HW4programmingQ2Res_loss}
+    \end{subfigure}
+    \caption{training the CNN with residual block}
+\end{figure}
+
+
+\subsection*{Results and discussion}
+
+The original CNN model only achieved 0.4843 accuracy. After using the inception block, it becomes 0.461. And is 0.47 if using residual block.
+
+
+\end{document}
