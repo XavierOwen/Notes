@@ -198,7 +198,7 @@
 \end{myleftlinebox}
 
 
-\subsection{The Limit of a Function}
+\subsection{The Limit of a Function}\label{sec:funcLimit}
 
 \begin{myleftlinebox}
 	the limit of $f(x)$ as $x$ approaches $a$
@@ -229,7 +229,18 @@
 \begin{myleftlinebox}
 	infinite limits
 	\tcblower
-	the case when $L=\infty$. And then we call $x=a$ the vertical asymptote of the curve $f(x)$.
+	In this case the limit doesn't exist.
+
+	Suppose $f(x)$ is defined when $x$ is near the number $a$, Then we write
+	\[\lim_{x\to a}f(x)=\infty\]
+
+	or \(f(x)\to \infty\) as $x\to a$, if we can make the values of $f(x)$ arbitrarily large by restricting $x$ to be sufficiently close to $a$ (on either side of $a$) but not equal to $a$. 
+
+	In $\epsilon-\delta$ language, the condition is: $\forall M > 0, \exists \delta > 0$ s.t. $\forall x, 0 < |x - a| < \delta$ we have $f(x)>M$.
+
+	Negative infinite limits, one-sided infinite limits can be defined similarly.
+	
+	And then we call $x=a$ the vertical asymptote of the curve $f(x)$.
 \end{myleftlinebox}
 
 
@@ -253,16 +264,70 @@
 \begin{myleftlinebox}
 	direct substitution property
 	\tcblower
-	the function limit at $a$ is equal to the function value at $a$. And we call the function is continuous at $a$ if this property hold.
+	if the function limit at $a$ is equal to the function value at $a$. And we call the function is continuous at $a$ if this property hold.
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	the squeeze theorem
+	the Squeeze theorem
 	\tcblower
-	Lemma: \emph{if $f(x)\leq g(x)$ when $x$ is near $a$, and the limits of $f$ and $g$ exist at $a$, then $\lim_{x\to a} f(x)\leq \lim_{x\to a} g(x)$.}
-
-	With this, we can show that if $f\leq g\leq h$ when $x$ is near $a$, and $\lim_{x\to a} f(x) = \lim_{x\to a} h(x)=L$, then $\lim_{x\to a} g(x)=L$.
+	\begin{lemma}
+		if $f(x)\leq g(x)$ when $x$ is near $a$, and the limits of $f$ and $g$ exist at $a$, then $\lim_{x\to a} f(x)\leq \lim_{x\to a} g(x)$.
+	\end{lemma}
+	\begin{theorem}
+		With this, we can show that if $f\leq g\leq h$ when $x$ is near $a$, and $\lim_{x\to a} f(x) = \lim_{x\to a} h(x)=L$, then $\lim_{x\to a} g(x)=L$.
+	\end{theorem}
 \end{myleftlinebox}
+
+
+\subsection{The Precise Definition of a Limit}
+
+see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}.
+
+\subsection{Continuity}
+
+\begin{myleftlinebox}
+	point continuity
+	\tcblower
+	A function $f$ is continuous at $x=a$ if $\lim_{x\to a} f(x) = f(a)$
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	type of discontinuity at a point $x=a$
+	\tcblower
+	\begin{itemize}
+		\item removable: when we can define a new value for $f(a)$ so that $f(x)$ can regain continuity at $x=a$. (a pothole)
+		\item jump: when the left limit and the right limit exist but they are not equal (stairs)
+		\item infinite: when the left limit or the right limit doesn't exist. ($1/x$ and $\sin(1/x)$)
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	left continuity and interval continuity
+	\tcblower
+	A function $f$ is continuous from the right at a point $x=a$ if $\lim_{x\to a^+} f(x) = f(a)$.
+
+	A function $f$ is continuous on an interval if it is continuous at every number in the interval.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Properties of continuous function
+	\tcblower
+	\begin{theorem}\label{thm:continFunc}
+		If $f$ and $g$ are both continuous at $a$, then their combination $f\pm g$, $fg$, $f/g$ where $g(a)\neq 0$, are continuous at $a$.
+
+		If $g$ is continuous at $a$ and $f$ is continuous at $g(a)$, then the composition $f(g(x))$ is continuous at $a$.
+	\end{theorem}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Intermediate Value Theorem
+	\tcblower
+	\begin{theorem}\label{thm:intermediateValue}
+		Suppose that $f$ is continuous on the closed interval $[a, b]$ and let $N$ be any number between $f(a)$ and $f(b)$, where $f(a) \neq f(b)$. Then there exists a number c in $(a, b)$ such that $f(c) = N$.
+	\end{theorem}
+	meaning a continuous function takes on every intermediate value between the function values at two ends of the interval.
+\end{myleftlinebox}
+
 
 \subsection{Exercises}
 
@@ -273,7 +338,7 @@
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	are the following functions odd, even, or neither. \(x^2\) where \(x>0\), \(\tan(x+\pi/4)\), \(x^{20}\), \(x^{-20}\), \(e^{x^3}\)
+	are the following functions odd, even, or neither. \(x^2\) where \(x>0\), \(\tan(x+\pi/4)\), \(x^{20}\), \(x^{-20}\), \(e^{x^3}\), $x^x$ where $x$ is a integer.
 	\tcblower
 	\vspace{5em}
 \end{myleftlinebox}
@@ -283,6 +348,67 @@
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
+
+\begin{myleftlinebox}
+	plot the function $y=\sgn(x) := \begin{cases}
+		1, & x>0\\
+		0, & x=0\\
+		-1.& x<0
+	\end{cases}$. And then find the limit, left limit and right limit of $\sgn(x)$ at $x=0$.
+	\tcblower
+	\vspace{3em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	An object is moving. The distance traveled $x$ and time passed $t$ has an approximated relation $x = 2t^3+t^2+5t$. What's the average speed from $t=1$ to $t=3$?
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	For the previous question, first simplify the difference quotient of the distance function $\frac{x(t+\Delta t)-x(t)}{\Delta t}$ at $x=1$. What's the limit when $\Delta t$ goes to $0$? Also what's the limit of $x(t)$ at $x=1$? Use words to explain their difference.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+
+\begin{myleftlinebox}
+	Use $\epsilon-\delta$ language to show that $\lim_{x\to 1} 1/x = 1$ and $\lim_{x\to 2} x^3 = 8$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Use $\epsilon-\delta$ language to prove $x\sin(1/x)$ has limit $0$ at $x=0$ and $\sin(1/x)$ doesn't have limit at $x=0$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Use $\epsilon-\delta$ language to prove that the limit at point $x=a$ doesn't exist when the left limit doesn't equal to the right limit.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Use $\epsilon-\delta$ language to prove that function of the form $k x^n$ is continuous everywhere, where $k\neq 0$ and $n$ is an integer.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Use $\epsilon-\delta$ language to prove the properties of the continuous function \autoref {thm:continFunc}.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Show that there's a solution of the equation $x^4-5=0$ between $0$ and $2$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+
 
 
 \end{document}
