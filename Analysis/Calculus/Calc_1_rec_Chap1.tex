@@ -17,7 +17,7 @@
 \begin{myleftlinebox}
 	piecewise defined function
 	\tcblower
-	Divide domain of $f$ into subsets $X_1,X_2,\dots$ without intersection. Then, 
+	Divide domain of $f$ into subsets $X_1,X_2,\dots$ without intersection, so $X_i\cap X_j=\emptyset$. Then, 
 	\[f(x) = \begin{cases}
 		f_1(x), & x\in X_1\\
 		f_2(x), & x\in X_2\\
@@ -60,7 +60,7 @@
 \begin{myleftlinebox}
 	linear function: $y$ is a linear function of $x$.
 	\tcblower
-	when changes of $y$ is proportion to the changes of $x$
+	when changes of $y$ is proportion to the changes of $x$. For an arbitrary point belong to this relationship, $(x,y)$ and a fixed point $(x_1,y_1)$ also belong to this relationship,
 	\begin{align*}
 		y-y_1 &= m(x-x_1),k\neq 0\\
 		y &= mx-mx_1+y_1 = mx+b
@@ -332,10 +332,17 @@ see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}.
 \subsection{Exercises}
 
 \begin{myleftlinebox}
-	find difference quotient of \(x^2+2x+3\) and \(\frac{2}{x}\)
+	Define $y(x) = \frac{x^2-x}{2(x-2)}$ and $g(x) = \frac{x}{2}$. State the difference between them and plot them.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Given that $y=x^2$, is $y$ a function of $x$? is $x$ a function of $y$? If not, add a restriction to make it/them function(s).
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
 
 \begin{myleftlinebox}
 	are the following functions odd, even, or neither. \(x^2\) where \(x>0\), \(\tan(x+\pi/4)\), \(x^{20}\), \(x^{-20}\), \(e^{x^3}\), $x^x$ where $x$ is a integer.
@@ -350,23 +357,32 @@ see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}.
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	plot the function $y=\sgn(x) := \begin{cases}
-		1, & x>0\\
-		0, & x=0\\
-		-1.& x<0
-	\end{cases}$. And then find the limit, left limit and right limit of $\sgn(x)$ at $x=0$.
-	\tcblower
-	\vspace{3em}
-\end{myleftlinebox}
-
-\begin{myleftlinebox}
-	An object is moving. The distance traveled $x$ and time passed $t$ has an approximated relation $x = 2t^3+t^2+5t$. What's the average speed from $t=1$ to $t=3$?
+	find difference quotient of \(x^2+2x+3\) and \(\frac{2}{x}\)
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	For the previous question, first simplify the difference quotient of the distance function $\frac{x(t+\Delta t)-x(t)}{\Delta t}$ at $x=1$. What's the limit when $\Delta t$ goes to $0$? Also what's the limit of $x(t)$ at $x=1$? Use words to explain their difference.
+	plot function $y=\sgn(x) := \begin{cases}
+		1, & x>0\\
+		0, & x=0\\
+		-1.& x<0
+	\end{cases}$ and function $z = g(x)=\begin{cases}
+		\abs{x},& x\neq 0\\
+		1, &x=0
+	\end{cases}$. And then find the limit, left limit and right limit of $f(x)$ and $g(x)$ at $x=0$.
+	\tcblower
+	\vspace{3em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	An object is moving straightforward. The location $x$ and time $t$ has an approximated relation $x = 2t^3+t^2+5t$. What's the average speed from $t=1$ to $t=3$?
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	For the previous question, first simplify the difference quotient of the distance function $\frac{x(t+\Delta t)-x(t)}{\Delta t}$ at $t=1$. What's the limit when $\Delta t$ goes to $0$? Also what's the limit of $x(t)$ at $t=1$? Use words to explain their difference.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
