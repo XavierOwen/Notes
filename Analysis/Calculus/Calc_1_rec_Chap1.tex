@@ -281,7 +281,17 @@
 
 \subsection{The Precise Definition of a Limit}
 
-see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}.
+see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}. For $\lim_{x\to a}f(x)=L$, we mean that $f(x)$ will approach $L$, as long as we move $x$ to a point close enough to $a$, but not $a$ itself.
+
+\begin{itemize}
+	\item $a$, the target point, where we want to know about the function limit
+	\item $\epsilon$ measures how close the function value $f(x)$ at the moving point $x$ to the limit $L$, with $\abs{f(x)-L}<\epsilon$
+	\item  we want $\epsilon$ arbitrarily small, so $\epsilon$ can be any positive number
+	\item $\delta$ measures how close the moving point $x$ to the target point $a$, with $0<\abs{x-a}<\delta$
+	\item In many simple cases, $\delta$ is a function of $\epsilon$. So if we can prove that $0<\abs{x-a}<\delta(\epsilon)$ leads to $\abs{f(x)-L}<\epsilon$, then the limit $L$ is found.
+\end{itemize}
+
+The easiest case is when $f(x)=x, x\neq a$, we can consider $\delta(\epsilon)=\epsilon$ so that we have $\lim_{x\to a} f(x)=a$.
 
 \subsection{Continuity}
 
@@ -338,7 +348,7 @@ see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}.
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	Given that $y=x^2$, is $y$ a function of $x$? is $x$ a function of $y$? If not, add a restriction to make it/them function(s).
+	Given that $y=x^2$, is $y$ a function of $x$? is $x$ a function of $y$? If not, add a restriction to make it/them function(s) and plot them.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
@@ -351,13 +361,13 @@ see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}.
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	transform the function $f(x)=\frac{1}{2x}+2$ to $g(x)=-\frac{1}{x-2}$
+	transform the function $f(x)=\frac{1}{2x}+2$ to $g(x)=-\frac{1}{x-2}$, and plot what you gain at each step.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	find difference quotient of \(x^2+2x+3\) and \(\frac{2}{x}\)
+	find difference quotient of \(x^2+2x+3\) and \(\frac{2}{x}\).
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
@@ -395,7 +405,7 @@ see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}.
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	Use $\epsilon-\delta$ language to prove $x\sin(1/x)$ has limit $0$ at $x=0$ and $\sin(1/x)$ doesn't have limit at $x=0$.
+	Use $\epsilon-\delta$ language to prove $x\sin(1/x)$ has limit $0$ at $x=0$ and $\sin(1/x)$ doesn't have limit at $x=0$. Then use Squeeze theorem to prove the first part.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
@@ -424,7 +434,17 @@ see the $\epsilon-\delta$ language part in \autoref{sec:funcLimit}.
 	\vspace{2em}
 \end{myleftlinebox}
 
+\begin{myleftlinebox}
+	Show function $f(x)=x$ and function $g(x)=\sin(x)$ intersect with each other.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
 
+\begin{myleftlinebox}
+	In the film \emph{The Curious Case of Benjamin Button}, Benjamin was born at the age of 85. His age decreases as time passes until the end of his life at age 0. Now consider somewhere on earth a normal child Xavier was born at the same time when Benjamin was born. Assume Xavier is gonna live for at least 85 years, prove there exists a time when Benjamin and Xavier will be at the same age. Make a story of this kind on your own. Maybe transferring water from cup A to cup B.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
 
 
 \end{document}
