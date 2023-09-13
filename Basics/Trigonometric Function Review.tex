@@ -8,7 +8,7 @@
 \input{../others/myHeadings.tex}
 \usetikzlibrary{angles,quotes}
 
-\title{Trigonometric Function Review}
+\title{Trigonometric Functions Review}
 \author{Yuanxing Cheng}
 
 \begin{document}
@@ -185,14 +185,17 @@
 				\coordinate (A) at (3,0);
 				\coordinate (B) at (30:3);
 				\coordinate (C) at (2.6,0);
-				\coordinate (D) at (3,3);
+				\coordinate (D) at (3,1.7);
 				\draw (A) node[below]{$A$};
 				\draw (O) node[below]{$O$};
+				\draw (B) node[above]{$B$};
+				\draw (D) node[above]{$D$};
 				\draw (O) -- (A)node[midway,below]{$OA=r=1$};
 				\draw (O) -- (B);
 				\draw (A) arc (0:30:3)node[midway,left]{$x$};
 				\draw (B) -- (intersection of 0,0 -- 3,0 and 30:3--330:3)node[midway,left]{$\sin(x)$};
 				\draw (A) -- (intersection of 3,0 -- 3,3 and 0,0--30:3)node[midway,right]{$\tan(x)$};
+				\draw pic[draw, angle radius=3mm] {right angle=O--C--B};
 				\draw[dashed] (B) --(intersection of 3,0--3,5 and 0,0--30:3);
 				\pic[my angle,"$x$"] {angle = A--O--B};
 				\draw (C) node[below]{$C$};
@@ -390,6 +393,34 @@
 		\arccos(x) &= \frac{\pi}{2}-\arcsin(x)\\
 		\arctan(\frac{1}{x}) &= \frac{\pi}{2}- \arctan(x), x>0\\
 		\arctan(\frac{1}{x}) &= -\frac{\pi}{2}- \arctan(x), x<0
+	\end{align*}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	hyperbolic functions
+	\tcblower
+	Using exponential function $e^x$ we define:
+	\begin{align*}
+		\sinh(x) &= \frac{e^x-e^{-x}}{2} = \frac{e^{2x}-1}{2e^x} = \frac{1-e^{-2x}}{2e^{-x}}\\
+		\cosh(x) &= \frac{e^x+e^{-x}}{2} = \frac{e^{2x}+1}{2e^x} = \frac{1+e^{-2x}}{2e^{-x}}\\ 
+		\tanh(x) &= \frac{\sinh(x)}{\cosh(x)} = \frac{e^x-e^{-x}}{e^x+e^{-x}} = \frac{e^{2x}-1}{e^{2x}+1}
+	\end{align*}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	relation between hyperbolic functions
+	\tcblower
+	Using exponential function $e^x$ we define:
+	\begin{align*}
+		\sinh(-x) &= -\sinh(x)\\
+		\cosh(-x) &= \cosh(x)\\
+		\cosh^2(x) -\sinh^2(x) &= 1\\
+		\cosh(x)+\sinh(x)&=e^x\\
+		\cosh(x)-\sinh(x)&=e^{-x}\\
+		\sinh(x+y) &=\sinh(x)\cosh(y)+\cosh(x)\sinh(y)\\
+		\cosh(x+y) &=\cosh(x)\cosh(y)+\sinh(x)\sinh(y)\\
+		\arcsinh(x)&=\ln(\sqrt{x+\sqrt{x^2+1}})\\
+		\arccosh(x)&=\ln(\sqrt{x+\sqrt{x^2-1}})\\
 	\end{align*}
 \end{myleftlinebox}
 
