@@ -120,8 +120,6 @@
 			\pic[my angle,"$x$"] {angle = c--a--b};
 		\end{tikzpicture}
 	\end{center}
-	
-	
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
@@ -209,6 +207,8 @@
 	or \(f(x)\to L\) as $x\to a$, if we can make the values of $f(x)$ arbitrarily close to $L$ 	by restricting $x$ to be sufficiently close to $a$ (on either side of $a$) but not equal to $a$. 
 
 	In $\epsilon-\delta$ language, the condition is: $\forall \epsilon > 0, \exists \delta > 0$ s.t. $\forall x, 0 < |x - a| < \delta$ we have $|f(x) - L| < \epsilon$.
+
+	If $f(x)$ is only defined on one side of $a$, check the next definition.
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
@@ -221,9 +221,12 @@
 
 	In $\epsilon-\delta$ language, the condition is: $\forall \epsilon > 0, \exists \delta > 0$ s.t. $\forall x, 0 < a-x < \delta$ we have $|f(x) - L| < \epsilon$.
 
-	Right-side limit is defined in a similar way. 
-
-	And we have $\lim_{x\to a}f(x)=L \iff \lim_{x\to a^-}f(x)=\lim_{x\to a^+}f(x)=L$
+	Remarks:
+	\begin{itemize}
+		\item Right-side limit is defined in a similar way. 
+		\item $\lim_{x\to a}f(x)=L \iff \lim_{x\to a^-}f(x)=\lim_{x\to a^+}f(x)=L$
+		\item If the domain of $f$ stays in one side of $a$, for example $f(x)=\frac{x}{\sqrt{x}}$, the limit at $a$ can still be defined properly to be the side limit. Thus $\lim_{x\to 0}\frac{x}{\sqrt{x}}=0$.
+	\end{itemize}
 \end{myleftlinebox}
 
 \begin{myleftlinebox}

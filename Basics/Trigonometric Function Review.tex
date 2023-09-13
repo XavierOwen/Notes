@@ -1,0 +1,416 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\usepackage{amsthm, amsmath, amssymb, amsfonts, epsfig}
+\usepackage{algorithm, algpseudocode}
+\usepackage{algcompatible}
+\input{../others/myHeadings.tex}
+\usetikzlibrary{angles,quotes}
+
+\title{Trigonometric Function Review}
+\author{Yuanxing Cheng}
+
+\begin{document}
+
+\maketitle
+
+\section{Basics}
+\begin{myleftlinebox}
+    radian and degree
+    \tcblower
+    They are the unit of angle. And the standard unit is radian.
+    \begin{itemize}
+        \item $1$ radian is defined as the angle subtended from the center of a circle which intercepts an arc equal in length to the radius of the circle. 
+        \item $360$ degree is one complete revolution.
+    \end{itemize}
+    Using radian measure, we have the relation, $s=\theta r$.
+	\begin{center}
+		\begin{tikzpicture}[
+			my angle/.style = {
+				draw, angle radius=7mm, 
+				angle eccentricity=1.1, 
+				right, inner sep=1pt,
+				font=\footnotesize
+				}
+			]
+			\coordinate (O) at (0,0);
+			\coordinate (A) at (2,0);
+			\coordinate (B) at (60:2);
+			\coordinate (s) at (30:2);
+			\draw (O) node[anchor=east,align=center] {$O$};
+			\draw (O) circle (2);
+			\draw (A) node[anchor=west,align=center] {$A$};
+			\draw (B) node[xshift=0.3cm, yshift=0.2cm,align=center] {$B$};
+			\draw (s) node[xshift=0.2cm, yshift=0.2cm,align=center] {$s$};
+			\draw (O) -- (A)node[midway, below]{$r$, radius};
+			\draw (O) -- (B);
+			\pic[my angle,"$\theta$"] {angle = A--O--B};
+		\end{tikzpicture}
+	\end{center}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	$\pi$
+	\tcblower
+	$\pi$ is defined as the ratio of a circle's circumference $C$ to its diameter $d$. So $C=\pi d=2\pi r$. A right angle is $\pi/2=90$ degree.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	trigonometric function
+	\tcblower
+	Given a right triangle, an angle $x$ in radian measure. For this angle $x$, define the opposite side to be the side opposite to $x$, with length $a$, define the adjacent side to be the side between $x$ and the right angle, with length $b$, and the hypotenuse side to be the side opposite to the right angle, with length $c$, then
+	
+	$\sin(x) = a/c$, $\cos(x)=b/c$, and $\tan(x) = a/b$; then $\csc(x)=1/\sin(x)$, $\sec(x)=1/\cos(x)$ and $\cot(x)=1/	\tan(x)$.
+	\begin{center}
+		\begin{tikzpicture}[
+			my angle/.style = {
+				draw, angle radius=7mm, 
+				angle eccentricity=1.1, 
+				right, inner sep=1pt,
+				font=\footnotesize
+				}
+			]
+			\coordinate (a) at (0,0);
+			\coordinate (c) at (4,0);
+			\coordinate (b) at (4,2);
+			\draw (a) -- (c)node[midway, below]{$b$, adjacent};
+			\draw (b) -- (c)node[midway,right]{$a$, opposite};
+			\draw (b) -- (a)node[midway,left, above,rotate=26.5]{$c$, hypotenuse}; % Triangle.
+			\draw (a) node[anchor=east,align=center] {$A$};
+			\draw (b) node[anchor=west,align=center] {$B$};
+			\draw (c) node[anchor=west]{$C$};
+			\pic[my angle,"$x$"] {angle = c--a--b};
+		\end{tikzpicture}
+	\end{center}
+\end{myleftlinebox}
+
+
+\section{Conclusions}
+
+\begin{myleftlinebox}
+	area of circle
+	\tcblower
+	Using limit and squeeze theorem, we separate the area of a circle into $n$ number of annulus. Now the area of circle with radius $r$, $A$ satisfies the following:
+	\[\sum_{i=0}^{n-1} \frac{r}{n}\Pare{2\pi \frac{r(i+1)}{n}}>A>\sum_{i=0}^{n-1} \frac{r}{n}\Pare{2\pi \frac{ri}{n}}\]
+	\begin{center}
+		\begin{tikzpicture}[scale=0.8]
+			\coordinate (O) at (0,0);
+			\coordinate (A) at (2,0);
+			\coordinate (B) at (2.5,0);
+			\coordinate (C) at (30:2);
+			\coordinate (D) at (30:2.5);
+			\draw (O) circle (2);
+			\draw (O) circle (2.5);
+			\draw (A) arc (0:30:2)node[midway,left]{$2\pi r_i$};
+			\draw (B) arc (0:30:2.5)node[midway,right]{$2\pi r_{i+i}$};
+			\draw (A) -- (B)node[midway, below]{$\frac{r}{n}$};
+		\end{tikzpicture}
+	\end{center}
+	Above inequality is reduced to 
+	\[\pi r^2 \frac{n+1}{n}>A>\pi r^2 \frac{n-1}{n}\]
+	Then by squeeze theorem (for series not functions), $\lim_{n\to\infty} A = A=\pi r^2$.
+
+	Similar idea can be used to find the area of a sector. For a sector of radius $r$ and angle $\theta$, its area is $\frac{1}{2}\theta r^2$. A linear function of $\theta$.
+
+	We can also plug in the formula for arc length $s=\theta r$ and above becomes $\frac{1}{2} \theta s$, which is quite similar to the one for triangle.
+\end{myleftlinebox}
+
+
+\begin{myleftlinebox}
+	Pythagorean Theorem
+	\tcblower
+	\begin{theorem}
+		In any right triangle with sides of lengths $a$ and $b$, and hypotenuse of length $c$, we have $a^2+b^2=c^2$.
+	\end{theorem}
+	\begin{proof}
+		We can put four triangles of the same size into the following shape.
+
+		\begin{center}
+			\begin{tikzpicture}
+				\coordinate (A) at (-2,-2);
+				\coordinate (B) at (2,-2);
+				\coordinate (C) at (2,2);
+				\coordinate (D) at (-2,2);
+				\coordinate (O) at (0,0);
+				\coordinate (E) at (-1,-2);
+				\coordinate (F) at (2,-1);
+				\coordinate (G) at (1,2);
+				\coordinate (H) at (-2,1);
+				\draw (A) node[below]{$A$};
+				\draw (E) node[below]{$E$};
+				\draw (B) node[below]{$B$};
+				\draw (F) node[right]{$F$};
+				\draw (C) node[right]{$C$};
+				\draw (G) node[above]{$G$};
+				\draw (D) node[above]{$D$};
+				\draw (H) node[left]{$H$};
+				\draw (O) node[xshift=0cm, yshift=0cm]{$c^2$};
+				\draw (A) -- (E)node[midway, below]{$a$};
+				\draw (E) -- (B)node[midway, below]{$b$};
+				\draw (B) -- (F)node[midway, right]{$a$};
+				\draw (F) -- (C)node[midway, right]{$b$};
+				\draw (C) -- (G)node[midway, above]{$a$};
+				\draw (G) -- (D)node[midway, above]{$b$};
+				\draw (D) -- (H)node[midway, left]{$a$};
+				\draw (H) -- (A)node[midway, left]{$b$};
+				\draw (E) -- (F)node[midway, below]{$c$};
+				\draw (F) -- (G)node[midway, right]{$c$};
+				\draw (G) -- (H)node[midway, above]{$c$};
+				\draw (H) -- (E)node[midway, left]{$c$};
+			\end{tikzpicture}
+		\end{center}
+	\end{proof}
+	\begin{proposition}
+		$\sin^2(x)+\cos^2(x)=1$
+	\end{proposition}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	some simple relations
+	\tcblower
+	\begin{itemize}
+		\item for any triangle with sides of length $a$, $b$, and $c$: $a+b>c$, $b+c>a$, and $c+a>b$
+		\item when $x$ is close to $0$, we have $\sin(x)<x<\tan(x)$
+		\begin{center}
+			\begin{tikzpicture}[
+				my angle/.style = {
+					draw, angle radius=7mm, 
+					angle eccentricity=1.1, 
+					right, inner sep=1pt,
+					font=\footnotesize
+					},scale=2
+				]
+				\coordinate (O) at (0,0);
+				\coordinate (A) at (3,0);
+				\coordinate (B) at (30:3);
+				\coordinate (C) at (2.6,0);
+				\coordinate (D) at (3,3);
+				\draw (A) node[below]{$A$};
+				\draw (O) node[below]{$O$};
+				\draw (O) -- (A)node[midway,below]{$OA=r=1$};
+				\draw (O) -- (B);
+				\draw (A) arc (0:30:3)node[midway,left]{$x$};
+				\draw (B) -- (intersection of 0,0 -- 3,0 and 30:3--330:3)node[midway,left]{$\sin(x)$};
+				\draw (A) -- (intersection of 3,0 -- 3,3 and 0,0--30:3)node[midway,right]{$\tan(x)$};
+				\draw[dashed] (B) --(intersection of 3,0--3,5 and 0,0--30:3);
+				\pic[my angle,"$x$"] {angle = A--O--B};
+				\draw (C) node[below]{$C$};
+				\draw (O) -- (C)node[xshift=-1.5cm, yshift=0.2cm,align=center]{$OC=\cos(x)$};
+			\end{tikzpicture}
+		\end{center}
+		\item $\tan(x)=\frac{\sin(x)}{\cos(x)}$
+		\item $\sin(x+2\pi)=\sin(x)$, $\cos(x+2\pi)=\cos(x)$
+		\item $\sin(-x)=-\sin(x)$, $\cos(-x)=\cos(x)$, $\tan(-x)=-\tan(x)$
+		\item $\sin(x+\pi)=-\sin(x)$, $\cos(x+\pi)=-\cos(x)$
+		\item $\sin(x+\pi/2)=\cos(x)$, $\cos(x+\pi/2)=-\sin(x)$
+	\end{itemize}
+	
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	$\sin(x+y)$ and $\cos(x+y)$
+	\tcblower
+	\begin{center}
+		\usetikzlibrary{calc}
+		\begin{tikzpicture}[
+			my angle/.style = {
+				draw, angle radius=7mm, 
+				angle eccentricity=1.1, 
+				right, inner sep=1pt,
+				font=\footnotesize
+				}
+			]
+			\coordinate (A) at (0,0);
+			\coordinate (B) at (3,0);
+			\coordinate (C) at (3,2);
+			\coordinate (D) at (3,5);
+			\draw (A) node[below]{$A$};
+			\draw (B) node[below]{$B$};
+			\draw (C) node[right]{$C$};
+			\draw (D) node[above]{$D$};
+			\draw (A) -- (B);
+			\draw (A) -- (C);
+			\draw (A) -- (D)node[midway,left]{$AD=1$};
+			\draw (D) -- (B);
+			\pic[my angle,"$x$"] {angle = B--A--C};
+			\pic[my angle,"$y$"] {angle = C--A--D};
+			\draw pic[draw, angle radius=3mm] {right angle=A--B--D};
+			
+			\coordinate (E) at ($(A)!(D)!(C)$);
+			\draw (E) node[right]{$E$};
+			\draw (E) -- (C);
+			\draw (E) -- (D);
+			\draw pic[draw, angle radius=3mm] {right angle=A--E--D};
+
+			\coordinate (F) at ($(A)!(E)!(B)$);
+			\draw (F) node[right]{$F$};
+			\draw (E) -- (F);
+			\draw (F) -- (B);
+			\draw pic[draw, angle radius=3mm] {right angle=E--F--B};
+
+			\coordinate (G) at ($(C)!(E)!(D)$);
+			\draw (G) node[left]{$G$};
+			\draw (E) -- (G);
+			\draw pic[draw, angle radius=3mm] {right angle=E--G--D};
+		\end{tikzpicture}
+	\end{center}
+	From above figure, we can write the following:
+	\begin{equation*}
+		\begin{split}
+			&DB=\sin(x+y)=DG+GB=DG+EF\\
+			&AB=\cos(x+y)=AF-AB=AF-EG\\
+			&\angle CDE = \angle CAB=x\\
+			&DE=AD\sin(y)=\sin(y),DG=DE\cos(x)=\sin(y)\cos(x),EG=DE\sin(x)=\sin(y)\sin(x)\\
+			&AE=AD\cos(y)=\cos(y),EF=AE\sin(x)=\cos(y)\sin(x), AF=AE\cos(x)=\cos(y)\cos(x)\\
+			&\sin(x+y)=\sin(x)\cos(y)+\cos(x)\sin(y)\\
+			&\cos(x+y)=\cos(x)\cos(y)-\sin(x)\sin(y)
+		\end{split}
+	\end{equation*}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	other formulas 
+	\tcblower
+	\begin{equation*}
+		\begin{split}
+			\tan(x+y) &= \frac{\sin(x+y)}{\cos(x+y)}=\frac{\sin(x)\cos(y)+\cos(x)\sin(y)}{\cos(x)\cos(y)-\sin(x)\sin(y)}\\
+			&= \frac{\tan(x)+\tan(y)}{1-\tan(x)\tan(y)}\\
+			\sin(x-y)&= \sin(x+(-y)) = \sin(x)\cos(y)-\cos(x)\sin(y)\\
+			\cos(x-y)&= \cos(x+(-y)) = \cos(x)\cos(y)+\sin(x)\sin(y)\\
+			\tan(x-y)&= \tan(x+(-y)) =  \frac{\tan(x)-\tan(y)}{1+\tan(x)\tan(y)}\\
+			\sin(2x) &= \sin(x+x) = 2\sin(x)\cos(x)=\frac{2\sin(x)\cos(x)}{\sin^2(x)+\cos^2(x)} = \frac{2\tan(x)}{1+\tan^2(x)}\\
+			\cos(2x) &= \cos(x+x) = \cos^2(x)-\sin^2(x)=\frac{\cos^2(x)-\sin^2(x)}{\sin^2(x)+\cos^2(x)} = \frac{1-\tan^2(x)}{1+\tan^2(x)}\\
+			\tan(2x) &= \tan(x+x) = \frac{2\tan(x)}{1-\tan^2(x)}
+		\end{split}
+	\end{equation*}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	half-angle formulas 
+	\tcblower
+	use the identity:
+	\begin{equation*}
+		\begin{split}
+			\cos(2x)&=2\cos^2(x)-1=1-2\sin^2(x)\\
+			\cos(x) &=2\cos^2(x/2)-1=1-2\sin^2(x/2)
+		\end{split}
+	\end{equation*}
+	then solve this quadratic equation we have
+	\begin{equation*}
+		\begin{split}
+			\sin(x/2) &= \sqrt{\frac{\cos(x)+1}{2}} \text{ or } -\sqrt{\frac{\cos(x)+1}{2}}\\
+			\cos(x/2) &= \sqrt{\frac{1-\cos(x)}{2}} \text{ or } -\sqrt{\frac{1-\cos(x)}{2}}
+		\end{split}
+	\end{equation*}
+	where the sign can be determined using the quadrant of the half-angle.  
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Law of sines
+	\tcblower
+	\begin{theorem}
+		For any triangle $\triangle ABC$ with sides of length $a$, $b$, $c$, we have the following:
+		\[\frac{a}{\sin(\angle A)}=\frac{c}{\sin(\angle C)}=\frac{b}{\sin(\angle B)}\]
+		\begin{center}
+			\begin{tikzpicture}
+				\coordinate (A) at (0,0);
+				\coordinate (B) at (3,0);
+				\coordinate (C) at (2,2);
+				\draw (A) node[below]{$A$};
+				\draw (B) node[below]{$B$};
+				\draw (C) node[above]{$C$};
+				\draw (A) -- (B)node[midway,below]{$c$};
+				\draw (A) -- (C)node[midway,left]{$b$};
+				\draw (C) -- (B)node[midway,right]{$a$};
+			\end{tikzpicture}
+		\end{center}
+	\end{theorem}
+	The proof uses the fact that the area of this triangle $S=\frac{1}{2}c\cdot b\sin\angle A=\frac{1}{2}c\cdot a\sin\angle B$
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Law of cosines
+	\tcblower
+	\begin{theorem}
+		For any triangle $\triangle ABC$ with sides of length $a$, $b$, $c$, we have the following:
+		\begin{align*}
+			c^2 &= a^2+b^2 -2ab\cos\angle C\\
+			a^2 &= b^2+c^2 -2bc\cos\angle A\\
+			b^2 &= c^2+a^2 -2ca\cos\angle B
+		\end{align*}
+	\end{theorem}
+	\begin{proof}
+		Notice that $c=a\cos\angle B+b\cos\angle A$, we multiply this by $c$ and obtain
+		\[c^2=ac\cos\angle B+bc\cos\angle A\]
+		Do this for all three sides and we have
+		\begin{align*}
+			a^2 &= ac\cos\angle B+ab\cos\angle C\\
+			b^2 &= bc\cos\angle A+ba\cos\angle C\\
+			c^2 &= ca\cos\angle B+cb\cos\angle A
+		\end{align*}
+		And the rest part of the proof is obvious.
+	\end{proof}
+\end{myleftlinebox}
+
+\section{Extensions}
+
+\begin{myleftlinebox}
+	inverse trigonometric functions, not the reciprocal trigonometric functions
+	\tcblower
+	With $y=\sin(x)$, where $x\in \bR$, we define $x=\arcsin(y)$ where $y\in[-1,1]$ and range $x\in [-\frac{\pi}{2},\frac{\pi}{2}]$. Similarly we can define the following:
+	\begin{itemize}
+		\item $y=\arcsin(x)$ where $x\in[-1,1]$ and $y\in [-\frac{\pi}{2},\frac{\pi}{2}]$
+		\item $y=\arccos(x)$ where $x\in[-1,1]$ and $y\in [0,\pi]$
+		\item $y=\arctan(x)$ where $x\in\bR$ and $y\in [-\frac{\pi}{2},\frac{\pi}{2}]$
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	composition of inverse trigonometric functions
+	\tcblower
+	We have the following result:
+	\begin{center}
+		\begin{tabular}{lll}
+			$\sin(\arcsin(x))=x$ & $\cos(\arcsin(x))=\sqrt{1-x^2}$ & $\sin(\arccos(x))=\sqrt{1-x^2}$\\
+			$\sin(\arccos(x))=\sqrt{1-x^2}$ & $\cos(\arccos(x))=x$ & $\tan(\arccos(x))=\frac{\sqrt{1-x^2}}{x}$\\
+			$\sin(\arctan(x))=\frac{x}{\sqrt{1+x^2}}$ & $\cos(\arctan(x))=\frac{1}{\sqrt{1+x^2}}$ & $\tan(\arctan(x))=x$
+		\end{tabular}
+	\end{center}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	relation between inverse trigonometric functions
+	\tcblower
+	We have the following result:
+	\begin{align*}
+		\arcsin(-x) &= -\arcsin(x)\\
+		\arccos(-x) &= \pi-\arccos(x)\\
+		\arctan(-x) &= -\arctan(x)\\
+		\arccos(x) &= \frac{\pi}{2}-\arcsin(x)\\
+		\arctan(\frac{1}{x}) &= \frac{\pi}{2}- \arctan(x), x>0\\
+		\arctan(\frac{1}{x}) &= -\frac{\pi}{2}- \arctan(x), x<0
+	\end{align*}
+\end{myleftlinebox}
+
+\section{Exercises}
+
+\begin{myleftlinebox}
+	show that $\frac{\sin(x)}{x}\to 1$ as $x\to 0$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	show that $\frac{1-\cos(x)}{0.5x^2}\to 1$ as $x\to 0$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	show that $\frac{\tan(x)}{x}\to 1$ as $x\to 0$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\end{document}
