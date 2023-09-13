@@ -80,6 +80,7 @@
 			\draw (a) node[anchor=east,align=center] {$A$};
 			\draw (b) node[anchor=west,align=center] {$B$};
 			\draw (c) node[anchor=west]{$C$};
+			\draw pic[draw, angle radius=3mm] {right angle=a--c--b};
 			\pic[my angle,"$x$"] {angle = c--a--b};
 		\end{tikzpicture}
 	\end{center}
@@ -124,7 +125,7 @@
 		In any right triangle with sides of lengths $a$ and $b$, and hypotenuse of length $c$, we have $a^2+b^2=c^2$.
 	\end{theorem}
 	\begin{proof}
-		We can put four triangles of the same size into the following shape.
+		We can put four triangles of the same size into the following square.
 
 		\begin{center}
 			\begin{tikzpicture}
