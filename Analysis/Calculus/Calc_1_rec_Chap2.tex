@@ -172,7 +172,26 @@
 	implicit function
 	\tcblower
 	In the case of 2 variables $x$ and $y$, we define a function like $y=f(x)$ before. The implicit function has the form $R(x,y)=0$, like the one for the unit circle, $x^2+y^2-1=0$.
+
+	And the trick here is to use chain rule. Take $h(x)g(y)=0$ for example, we have
+	\[\frac{\dif}{\dif x} (h(x)g(y))=h'(x)g(y)+h(x)\frac{\dif}{\dif x} g(y)=h'(x)g(y)+h(x)\Pare{\frac{\dif}{\dif y} g(y)} \frac{\dif y}{\dif x}\]
+	
+	The last step is to check if there's any substitution with $h(x)g(y)=0$.
 \end{myleftlinebox}
+
+\subsection{Related Rates}
+
+\begin{myleftlinebox}
+	related rates problems
+	\tcblower
+	Suppose we have relation $y=f(z)$ and $z=g(x)$, then with $\frac{\dif z}{\dif x}=g'$, we have
+
+	\[\frac{\dif y}{\dif x}=\frac{\dif y}{\dif z}\frac{\dif z}{\dif x}\]
+	
+	Usually, one of the relation is given and the other can be obtained through geometry and physical laws.
+\end{myleftlinebox}
+
+\subsection{Linear Approximations and Differentials}
 
 \subsection{About Euler's number}
 \begin{myleftlinebox}
@@ -214,6 +233,11 @@
 	\vspace{2em}
 \end{myleftlinebox}
 
+\begin{myleftlinebox}
+	Suppose initially you are $0.5$ meter tall and weight $3$ kilogram. Let $h$ be your height, $w$ be your weight, $B$ is your BMI and $B=w/h^2$. Given that $h=0.5+0.02t$, and $w=3+t$ for some period, find $\dif B/\dif t$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
 
 
 \end{document}
