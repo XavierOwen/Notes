@@ -193,7 +193,35 @@
 
 \subsection{Linear Approximations and Differentials}
 
+\begin{myleftlinebox}
+	linearization
+	\tcblower
+	Linearization is the tangent line at point $(a,f(a))$ and is used to approximate curve $f(x)$ when $x$ is near $a$.
+
+	\[L(x)=f(a)+f'(a)(x-a)\approx f(x), x \text{ near }a\]
+
+	Here $L$ is the linearization of $f$ at $a$ and $f\approx L$ when $x$ near $a$ is called the linear approximation or tangent line approximation of $f$ at $a$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	differentials
+	\tcblower
+	If $y=f(x)$ where $f$ is differentiable, the differential $\dif x$ is an independent variable and we define differential $\dif y$ in terms of $\dif x$: $\dif y=f'(x)\dif x$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	about the errors
+	\tcblower
+	when using $L$ to approximate $f$, we define the following errors
+	\begin{itemize}
+		\item absolute error $\epsilon(x)=\abs{f(x)-L(x)}$
+		\item relative error $\eta(x) =   \abs{\frac{f(x)-L(x)}{f(x)}}$
+		\item percentage error $\delta(x)=100\% \times \eta(x)$
+	\end{itemize}
+\end{myleftlinebox}
+
 \subsection{About Euler's number}
+
 \begin{myleftlinebox}
 	$e$
 	\tcblower
@@ -201,6 +229,7 @@
 	and
 	\[\lim_{x\to 1}\frac{e^x-1}{x}=1\]
 \end{myleftlinebox}
+
 \subsection{Exercises}
 
 \begin{myleftlinebox}
@@ -238,6 +267,5 @@
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
-
 
 \end{document}
