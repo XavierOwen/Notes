@@ -156,6 +156,32 @@
 	\end{itemize}
 \end{myleftlinebox}
 
+\subsection{The Chain Rule}
+
+\begin{myleftlinebox}
+	the chain rule
+	\tcblower
+	if $g$ is differentiable at $x$ and $f$ is differentiable at $g(x)$, the the composite function $F=f\circ g$ is differentiable at $x$ and $F'$ is given by 
+	\[F'(x)=f'(g(x))g'(x)\]
+	Or in Leibniz notation, if $y=f(u)$ and $u=g(x)$ are both differentiable functions, then
+	\[\frac{\dif y}{\dif x} = \frac{\dif y}{\dif u}\frac{\dif u}{\dif x}\]
+\end{myleftlinebox}
+
+\subsection{Implicit Differentiation}
+\begin{myleftlinebox}
+	implicit function
+	\tcblower
+	In the case of 2 variables $x$ and $y$, we define a function like $y=f(x)$ before. The implicit function has the form $R(x,y)=0$, like the one for the unit circle, $x^2+y^2-1=0$.
+\end{myleftlinebox}
+
+\subsection{About Euler's number}
+\begin{myleftlinebox}
+	$e$
+	\tcblower
+	\[e=\sum_{n=0}^\infty \frac{1}{n!}=\lim_{n\to\infty}(1+\frac{1}{n})^n\]
+	and
+	\[\lim_{x\to 1}\frac{e^x-1}{x}=1\]
+\end{myleftlinebox}
 \subsection{Exercises}
 
 \begin{myleftlinebox}
@@ -181,5 +207,13 @@
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Using the chain rule to find the derivatives of the following functions: $\sin(\cos(2x))$, $\sqrt[4]{x^3+1}$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+
 
 \end{document}
