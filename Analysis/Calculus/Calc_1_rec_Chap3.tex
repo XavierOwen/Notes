@@ -1,0 +1,146 @@
+\documentclass[Calculus 1 Recitation.tex]{subfiles}
+
+\begin{document}
+\section{Applications of Differentiation}
+\subsection{Maximum and Minimum Values}
+\begin{myleftlinebox}
+	global maximum/minimum, extreme values
+	\tcblower
+	Let $c\in D$, the domain of $f$. Then $f(c)$ is the
+	\begin{itemize}
+		\item global maximum, or absolute maximum, value of $f$ on $D$, if $f(c)\geq f(x)$, $\forall x\in D$.
+		\item global minimum, or absolute minimum, value of $f$ on $D$, if $f(c)\leq f(x)$, $\forall x\in D$.
+	\end{itemize}
+	They are the extreme values of $f$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	local maximum/minimum
+	\tcblower
+	Let the neighborhood of $c$ is in $D$, the domain of $f$. Then $f(c)$ is the
+	\begin{itemize}
+		\item local maximum value of $f$, if $f(c)\geq f(x)$, when $x$ is near $c$
+		\item local minimum value of $f$, if $f(c)\leq f(x)$, when $x$ is near $c$
+	\end{itemize}
+	Here being true "near" $c$ means being true on some open interval containing $c$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	The Extreme Value Theorem
+	\tcblower
+	\begin{theorem}
+		If $f$ is continuous on a closed interval $[a,b]$, then $f$ attains an absolute maximum value at $f(c)$ and an absolute minimum value $f(d)$ at some $c,d\in[a,b]$.
+	\end{theorem}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	critical number
+	\tcblower
+	A critical number of $f$ is a number $c$ in the domain $D$ such that either $f'(c)=0$ or $f'(c)$ doesn't exist.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	The Fermat's Theorem
+	\tcblower
+	\begin{theorem}
+		If $f$ has a local maximum or minimum at $c$, and if $f'(c)$ exists, then $f'(c)=0$. In terms of critical numbers, $c$ is a critical number of $f$.
+	\end{theorem}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	closed interval method
+	\tcblower
+	To find the absolute maximum/minimum value of a function $f$ on a closed interval $[a,b]$,
+	\begin{enumerate}
+		\item find the values of $f$ at the critical numbers of $f$ in $(a,b)$
+		\item find the values of $f$ at the endpoints of the interval
+		\item the largest of the values from step 1 and 2 is the absolute maximum value, and the smallest of these values is the absolute minimum value.
+	\end{enumerate}
+\end{myleftlinebox}
+
+\subsection{The Mean Value Theorem}
+
+\begin{myleftlinebox}
+	Rolle's Theorem
+	\tcblower
+	\begin{theorem}
+		Let $f$ be a function that satisfies the following three conditions:
+		\begin{itemize}
+			\item $f$ is continuous on $[a,b]$
+			\item $f$ is differentiable on $(a,b)$
+			\item $f(a)=f(b)$
+		\end{itemize}
+		then $\exists c\in(a,b)$ such that $f'(c)=0$.
+	\end{theorem}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	The Mean Value Theorem
+	\tcblower
+	\begin{theorem}
+		Let $f$ be a function that satisfies the following two conditions:
+		\begin{itemize}
+			\item $f$ is continuous on $[a,b]$
+			\item $f$ is differentiable on $(a,b)$
+		\end{itemize}
+		then $\exists c\in(a,b)$ such that $f'(c)=\frac{f(b)-f(a)}{b-a}$.
+	\end{theorem}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	some facts
+	\tcblower
+	\begin{proposition}
+		If $f'(x)=0$ for all $x\in(a,b)$, then $f$ is a constant on $(a,b)$. And if $f'(x)=g'(x)$ for all $x\in(a,b)$, then $f=g+c$ on $(a,b)$ where $c$ is a constant.
+	\end{proposition}
+\end{myleftlinebox}
+
+\subsection{Exercises}
+
+\begin{myleftlinebox}
+	find the global/local maximum/minimum of function: $x^3-3x^2+6$ on interval $[-1,2]$.
+	\tcblower
+	\vspace{2em}	
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	find the critical numbers of functions: $x+1/x$, $\tan(x)$, $x\sin(6x^2)$.
+	\tcblower
+	\vspace{2em}	
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Assume $0<\alpha<\beta<\pi/2$, prove 
+	\[\frac{\beta-\alpha}{\cos^2\alpha}<\tan\beta-\tan\alpha<\frac{\beta-\alpha}{\cos^2\beta}\]
+	\tcblower
+	\vspace{3em}	
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Prove $\abs{\sin x-\sin y} \leq \abs{x-y}$, $x,y\in\bR$
+	\tcblower
+	\vspace{3em}	
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Prove Cauchy's Mean Value Theorem. 
+	\begin{theorem}
+		Let $f,g$ be two functions that satisfy the following three conditions:
+		\begin{itemize}
+			\item $f,g$ is continuous on $[a,b]$
+			\item $f,g$ is differentiable on $(a,b)$
+			\item $g'\neq0$ when $x\in(a,b)$
+		\end{itemize}
+		then $\exists c\in(a,b)$ such that $\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)}$.
+	\end{theorem}
+	\tcblower
+	\vspace{3em}	
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Assuming $f$ is differentiable at $[0,\infty)$ and $0\leq f(x)\leq \frac{x}{1+x^2}$, prove there exists a $c>0$ such that
+	\[f'(c)=\frac{1-c^2}{(1+c^2)^2}\]
+	\tcblower
+	\vspace{3em}
+\end{myleftlinebox}
+\end{document}
