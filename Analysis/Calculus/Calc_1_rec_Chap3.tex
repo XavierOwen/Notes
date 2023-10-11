@@ -95,6 +95,88 @@
 	\end{proposition}
 \end{myleftlinebox}
 
+\subsection{What Derivatives Tell Us about the Shape of a Graph}
+
+\begin{myleftlinebox}
+	increasing, decreasing test
+	\tcblower
+	\begin{itemize}
+		\item if $f'(x)>0$ on an interval, then $f$ is increasing on that interval
+		\item if $f'(x)<0$ on an interval, then $f$ is decreasing on that interval
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	first derivative test
+	\tcblower
+	\begin{itemize}
+		\item if $f'(x)$ changes from positive to negative at $a$, then $f$ has a local maximum at $a$
+		\item if $f'(x)$ changes from negative to positive at $a$, then $f$ has a local minimum at $a$
+		\item if $f'(x)$ is positive to the left and right of $a$, or negative to the left and right of $a$, then $f$ has no local maximum or minimum at $a$
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	concave upward and downward
+	\tcblower
+	If the graph of $f$ lies above all its tangents on an interval $I$, then $f$ is concave upward on $I$. If the graph of $f$ lies below all its tangents on an interval $I$, then $f$ is concave downward on $I$.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	concavity test
+	\tcblower
+	\begin{itemize}
+		\item if $f''(x)>0$ on an interval, then $f$ is concave upward on that interval
+		\item if $f''(x)<0$ on an interval, then $f$ is concave downward on that interval
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	inflection point
+	\tcblower
+	A point $P$ on a curve $y = f(x)$ is called an inflection point if $f$ is continuous there and the curve changes from concave upward to concave downward.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	first derivative test
+	\tcblower
+	\begin{itemize}
+		\item if $f'(a)=0$ and $f''(a) > 0$, then $f$ has a local minimum at $a$
+		\item if $f'(a)=0$ and $f''(a) < 0$, then $f$ has a local maximum at $a$
+	\end{itemize}
+\end{myleftlinebox}
+
+\subsection{Limits at Infinity; Horizontal Asymptotes}
+
+\begin{myleftlinebox}
+	limit at infinity
+	\tcblower
+	We use the notation $\lim_{x\to\infty} f(x)=L$. Let $f$ be a function defined on some interval $(a,\infty)$, then limit of $f$ at positive infinity is $L$ if values of $f$ can be made arbitrarily close to $L$ by requiring $x$ to be sufficiently large.\\
+	In $\epsilon-\delta$ language, $\forall \epsilon >0$, $\exists M>0$ such that $\forall x>M$, $\abs{f(x)-L}<\epsilon$.\\
+	Limit at negative infinity can be defined similarly.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	horizontal asymptote
+	\tcblower
+	Line $y=L$ is a horizontal asymptote of function $y=f(x)$ if either $\lim_{x\to\infty} f(x)=L$ of $\lim_{x\to-\infty} f(x)=L$
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	limit of negative rational power function at infinity
+	\tcblower
+	\begin{theorem}
+		if $r$ is a rational number, then $\lim_{x\to\infty} \frac{1}{x^r}=0$. Further if $x^{r}$ is defined for all $x$, then $\lim_{x\to-\infty} \frac{1}{x^r}=0$.
+	\end{theorem}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	infinity limits at infinity
+	\tcblower
+	Notation $\lim_{x\to\infty} f(x)=\infty$ is used to indicates that the values of $f(x)$ become infinitely large as $x$ goes to infinity.\\
+	In $\epsilon-\delta$ language, $\forall M >0$, $\exists x(M)>0$ such that $\forall x>x(M)$, $f(x)>M$.
+\end{myleftlinebox}
+
 \subsection{Exercises}
 
 \begin{myleftlinebox}
@@ -143,4 +225,30 @@
 	\tcblower
 	\vspace{3em}
 \end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Let $f(x)=x+\frac{1}{x}$. Find the intervals where it's increasing, where it's decreasing, where it's concave upward and where it's concave downward.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Let $f(x)=\sin(x)$. Find the intervals where it's increasing, where it's decreasing, where it's concave upward and where it's concave downward. Then find all its inflection points.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Calculate the following limit where $a_n,b_n\neq 0$.
+	\[\lim_{x\to\infty}\frac{a_n x^n}{b_n x^n}, \lim_{x\to\infty}\frac{a_n x^n+a_{n-1} x^{n-1}}{b_n x^n+b_{n-1} x^{n-1}}\]
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Use $\epsilon-\delta$ language to say that $\sin(x)$ doesn't have limit at infinity.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
 \end{document}
