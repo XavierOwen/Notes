@@ -177,6 +177,27 @@
 	In $\epsilon-\delta$ language, $\forall M >0$, $\exists x(M)>0$ such that $\forall x>x(M)$, $f(x)>M$.
 \end{myleftlinebox}
 
+\subsection{Summary of Curve Sketching}
+\begin{myleftlinebox}
+	Guidelines for Plotting $y=f(x)$
+	\tcblower
+	\begin{enumerate}
+		\item domain and plot range: select where to plot the function so that the interesting parts are included
+		\item intercepts: mark $f(0)$ on $y$-axis and roots for $f(x)=0$ on $x$-axis if possible
+		\item symmetry: check if $f$ is odd or even, or can be shifted or stretched to an odd or even function $g$, and also check if the function is periodic or not
+		\item asymptotes: use dashed line to plot horizontal asymptotes and vertical asymptotes. Slant asymptotes and other higher order asymptotes will be discussed later
+		\item intervals of increase and decrease: calculate $f'(x)$ and check its positivity
+		\item local maximum or minimum: solve $f'(x)=0$ and check if $f''(x)\neq 0$
+		\item concavity and points of inflection: calculate $f''(x)$ and check its positivity
+	\end{enumerate}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	slant asymptote
+	\tcblower
+	If $\lim_{x\to\infty} f(x)-(kx+b)=0$ or $\lim_{x\to-\infty} f(x)-(kx+b)=0$, then line $y=kx+b$ is a slant asymptote for $f(x)$.
+\end{myleftlinebox}
+
 \subsection{Exercises}
 
 \begin{myleftlinebox}
@@ -239,6 +260,12 @@
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
+	Use $\epsilon-\delta$ language to say that $\sin(x)$ doesn't have limit at infinity.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
 	Calculate the following limit where $a_n,b_n\neq 0$.
 	\[\lim_{x\to\infty}\frac{a_n x^n}{b_n x^n}, \lim_{x\to\infty}\frac{a_n x^n+a_{n-1} x^{n-1}}{b_n x^n+b_{n-1} x^{n-1}}\]
 	\tcblower
@@ -246,7 +273,21 @@
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	Use $\epsilon-\delta$ language to say that $\sin(x)$ doesn't have limit at infinity.
+	Calculate the asymptote for the following function.
+	\[\frac{a_3 x^3+a_2 x^2+a_1 x+a_0}{b_1 x+b_0}\]
+	where $a_3,b_1\neq0$
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Consider a semi-ellipse above the $x$-axis with expression: $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$, $y\geq 0$. Find the area of the largest rectangle that can be inscribed inside.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Find the point on the parabola $y=6x^2$ that is closest to the point $(3,3)$.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
