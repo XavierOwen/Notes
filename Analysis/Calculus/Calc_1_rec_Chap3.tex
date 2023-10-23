@@ -179,7 +179,7 @@
 
 \subsection{Summary of Curve Sketching}
 \begin{myleftlinebox}
-	Guidelines for Plotting $y=f(x)$
+	guidelines for plotting $y=f(x)$
 	\tcblower
 	\begin{enumerate}
 		\item domain and plot range: select where to plot the function so that the interesting parts are included
@@ -196,6 +196,96 @@
 	slant asymptote
 	\tcblower
 	If $\lim_{x\to\infty} f(x)-(kx+b)=0$ or $\lim_{x\to-\infty} f(x)-(kx+b)=0$, then line $y=kx+b$ is a slant asymptote for $f(x)$.
+\end{myleftlinebox}
+
+\subsection{Graphing with Calculus and Technology}
+\begin{myleftlinebox}
+	some ready-to-use graphing tools
+	\tcblower
+	\begin{itemize}
+		\item graphing calculator: \href{https://www.amazon.com/s?k=graphing+calculator}{link to Amazon}
+		\item \href{https://www.desmos.com/calculator}{Desmos}
+		\item \href{https://www.mathway.com/Graph}{Mathway}
+		\item \href{https://www.geogebra.org/graphing}{Geogebra}
+		\item \href{https://www.symbolab.com/graphing-calculator}{Symbolab}
+		\item \href{https://www.wolframalpha.com/}{Wolframalpha}
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	some graphing tools with coding
+	\tcblower
+	\begin{itemize}
+		\item Python with matplotlib
+		\item R with ggplot2
+		\item Wolfram Mathematica
+		\item MATLAB and GNU Octave 
+		\item TikZ and PGF in \LaTeX
+		\item Julia with Plots
+		\item C++ with sciplot or matplotlib
+	\end{itemize}
+\end{myleftlinebox}
+
+\subsection{Optimization Problems}
+\begin{myleftlinebox}
+	first derivative test for absolute extreme values
+	\tcblower
+	\begin{itemize}
+		\item if $f'(x)>0$ for all $x<c$ and $f'(x)<0$ for all $x>c$, then $f(c)$ is the absolute maximum value of $f$
+		\item if $f'(x)<0$ for all $x<c$ and $f'(x)>0$ for all $x>c$, then $f(c)$ is the absolute minimum value of $f$
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	some definitions from business and economics literature
+	\tcblower
+	Case: a company is producing and selling a product
+	\begin{itemize}
+		\item cost function: $C(x)$ where $x$ is the number of unit produced and $C(x)$ is the cost for producing $x$ units
+		\item marginal cost: $C'(x)$
+		\item demand function/price function: $p(x)$ is the price per unit if the company sells $x$ unit
+		\item revenue function: $R(x)=xp(x)$
+		\item marginal revenue function: $R'(x)$
+		\item profit function: $P(x)=R(x)-C(x)$
+		\item marginal profit function: $P'(x)$
+	\end{itemize}
+\end{myleftlinebox}
+
+\subsection{Newton's Method}
+\begin{myleftlinebox}
+	Newton's Method
+	\tcblower
+	An algorithm to find a root of a real-valued function.
+	\begin{enumerate}
+		\item prepare a staring point $x_0$
+		\item let $x_{i+1}=x_i-\frac{f(x_i)}{f'(x_i)}$
+		\item keep doing step 2 until $|x_{n+1}-x_n|<\epsilon$ where $\epsilon$ is the error tolerance
+	\end{enumerate}
+\end{myleftlinebox}
+
+\subsection{Antiderivatives}
+\begin{myleftlinebox}
+	antiderivative
+	\tcblower
+	A function $F$ is called the antiderivative of $f$ on an interval $I$ if $F'(x)=f(x)$ for all $x\in I$.
+	\begin{theorem}
+		If $F$ is an antiderivative of $f$ on an interval $I$, then the most general antiderivative of $f$ on $I$ is $F(x)+C$ where $C$ is an arbitrary constant.
+	\end{theorem}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	antidifferentiation formulas
+	\tcblower
+	\begin{center}
+		\begin{tabular}{cc|cc}
+			\hline
+			Function & Particular antiderivative & Function & Particular antiderivative\\\hline
+			$cf(x)$ & $cF(x)$ & $\cos(x)$ & $\sin(x)$\\
+			$f(x)+g(x)$ & $F(x)+G(x)$ & $\sin(x)$ & $-\cos(x)$\\
+			$x^n$, $n\neq 1$ & $\frac{x^{n+1}}{n+1}$ & $\frac{1}{\cos^2(x)}$ & $\tan(x)$\\
+			\hline
+		\end{tabular}
+	\end{center}
 \end{myleftlinebox}
 
 \subsection{Exercises}
