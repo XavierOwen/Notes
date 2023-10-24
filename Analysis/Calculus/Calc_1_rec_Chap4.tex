@@ -1,0 +1,166 @@
+\documentclass[Calculus 1 Recitation.tex]{subfiles}
+
+\begin{document}
+\section{Integrals}
+\subsection{The Area and Distance Problems}
+\begin{myleftlinebox}
+	area under a curve
+	\tcblower
+	The area $A$ of the region $S$ that lies under the graph of the continuous function $f$ is the limit of the sum of the areas of approximating rectangles:
+	\begin{itemize}
+		\item starting from $a$ to $b$, divide the interval into $n$  subintervals of fixed width $\frac{b-a}{n}$
+		\item the points dividing the intervals are $x_1, x_2,\dots, x_{n-1}$ and we rename two end points $a=x_0$ and $b=x_n$ 
+		\item denote $\Delta x=\frac{b-a}{n}$ and write $x_i=a+i\Delta x$
+		\item the $i$th rectangle using the right end point has four corners:
+		\begin{itemize}
+			\item top right: $(x_i,f(x_i))$
+			\item top left: $(x_{i-1},f(x_i))$
+			\item bottom left: $(x_{i-1},0)$
+			\item bottom right: $(x_i,0)$
+		\end{itemize}
+		\item and the summation is $R_n=\sum_{i=1}^n f(x_i)\Delta x=\frac{b-a}{n}\sum_{i=1}^n f(x_i)$
+		\item the area is $A=\lim\limits_{n\to\infty} R_n$
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	lower sums and upper sums
+	\tcblower
+	In fact, we can take a set of sample points $x_i^*\in[x_{i-1},x_i]$ and let $R_n^* = \frac{b-a}{n}\sum_{i=1}^{n} f(x_i^*)$. We still have $A = \lim\limits_{n\to\infty} R_n^*$. $R_n^*$ is also called the Riemann sum.
+	\begin{itemize}
+		\item lower sums $\underline{R_n}$ is obtained by picking $x_i^*$ such that $f(x_i^*)$ is the minimum in $i$th interval $[x_{i-1},x_i]$
+		\item upper sums $\overline{R_n}$ is obtained by picking $x_i^*$ such that $f(x_i^*)$ is the maximum in $i$th interval
+	\end{itemize}
+	\begin{remark}
+		We can also prove that as $n$ increases, $\underline{R_n}$ is non-decreasing and $\overline{R_n}$ is non-increasing
+	\end{remark}
+\end{myleftlinebox}
+
+\subsection{The Definite Integrals}
+\begin{myleftlinebox}
+	definite integral
+	\tcblower
+	If $f$ is a function for $a\leq x\leq b$, then the definite integral of $f$ from $a$ to $b$ is
+	\[\int_a^b f(x)\dif x = \lim_{n\to\infty} \sum_{i=1}^n f(x_i^*)\Delta x,\]
+	provided that this limit exists and gives the same value for all possible choices of sample points. And we call $f$ \emph{integrable} on $[a,b]$.\\
+	For this integral, we call $f$ the integrand, $a$ the lower limit and $b$ the upper limit of integration. 
+	\begin{remark}
+		The rigorous definition of this integral (Riemann integral) is 
+		\[\int_a^b f(x)\dif x = \lim_{\max_i \Delta x_i\to 0} \sum_{i=1}^n f(x_i^*)\Delta x_i\]
+		To simplify the calculation, when $f$ is integrable, we also write:
+		\[\int_a^b f(x)\dif x =\lim_{n\to\infty} \sum_{i=1}^n f(x_i)\Delta x =\lim_{n\to\infty} \sum_{i=1}^n f(x_{i-1})\Delta x \]
+		where $\Delta x=\frac{b-a}{n}$ and $x_i=a+i\Delta x$, $i=0,1,2,\dots,n$.
+	\end{remark}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	from continuity to integrability
+	\tcblower
+	\begin{theorem}
+		If $f$ is continuous on $[a,b]$ or if $f$ has only a finite number of jump discontinuities, then $f$ is integrable on $[a,b]$. Thus we have
+	\end{theorem}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	sums of powers
+	\tcblower
+	\begin{itemize}
+		\item $1+2+\cdots+n=\frac{n(n+1)}{2}$
+		\item $1^2+2^2+\cdots+n^2 = \frac{n(n+1)(n+2)}{6}$
+		\item $1^3+2^3+\cdots+n^3 = \Pare{\frac{n(n+1)}{2}}^2$
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	properties of sums
+	\tcblower
+	\begin{itemize}
+		\item $\sum_{i=1}^n c a_i=c\sum_{i=1}^n  a_i$
+		\item $\sum_{i=1}^n (a_i\pm b_i) = \sum_{i=1}^n a_i \pm \sum_{i=1}^n b_i$
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	properties of definite integral
+	\tcblower
+	\begin{itemize}
+		\item $\int_a^b f(x)\dif x = -\int_b^a f(x) \dif x$
+		\item if $a=b$, $\int_a^b f(x)\dif x =0$
+		\item $\int_a^b c\dif x =c(b-a)$
+		\item $\int_a^b cf(x)\dif x =c\int_a^b f(x)\dif x $
+		\item $\int_a^b f(x)\pm g(x)\dif x = \int_a^b f(x)\dif x \pm \int_a^b g(x)\dif x$
+		\item $\int_a^c f(x)\dif x = \int_a^b f(x)\dif x +\int_b^c f(x)\dif x$
+		\item if $f(x)\geq 0$ on $[a,b]$ then $\int_a^b f(x)\dif x \geq 0$
+		\item if $f(x)\geq g(x)$ on $[a,b]$ then $\int_a^b f(x)\dif x \geq \int_a^b g(x)\dif x$
+		\item if $M\geq f(x)\geq m$ on $[a,b]$, then $M(b-a) \geq \int_a^b f(x)\dif x \geq m(b-a)$
+	\end{itemize}
+\end{myleftlinebox}
+
+\subsection{The Fundamental Theorem of Calculus}
+\begin{myleftlinebox}
+	The Fundamental Theorem of Calculus
+	\tcblower
+	\begin{theorem}
+		If $f$ is continuous on $[a,b]$, define 
+		\[g(x)=\int_{a}^x f(t)\dif t, a\leq x\leq b.\]
+		Then $g(x)$ is continuous on $[a,b]$ and differentiable on $(a,b)$. $g'(x)=f(x)$. In short,
+		\[\frac{\dif}{\dif x}\int_a^x f(t)\dif t=f(x)\]
+	\end{theorem}
+	With this theorem, we can calculate $\int_a^b f(t)\dif t=g(b)-g(a)=\given{g(x)}_a^b$
+	\begin{theorem}
+		Assume $f$ is continuous on $[a,b]$, and have continuous antiderivative $F$. If $f$ is Riemann integrable on $[a,b]$, then $\int_a^b f(t)\dif t=g(b)-g(a)$.
+	\end{theorem}
+\end{myleftlinebox}
+
+\subsection{Exercises}
+\begin{myleftlinebox}
+	There're other choices of approximating polygons:
+	\begin{itemize}
+		\item rectangle, using the left end point
+		\item rectangle, using the average of the two end points
+		\item rectangle, using the mid point
+		\item trapezoid, connecting two end points
+	\end{itemize}
+	Find the four corners of each polygon and discuss why they lead to the same answer.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Find the expressions for the area under the curve $f$ as a limit of summation of approximating rectangles. $f(x)=\frac{6x}{x^6+6}, 1\leq x\leq 3$
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Determine the regions whose areas are $\lim\limits_{n\to\infty} \frac{1}{n}\sum_{i=1}^n \Pare{\frac{2i}{n}}^3$ and $\lim\limits_{n\to\infty} \frac{2}{n}\sum_{i=1}^n 6\sqrt{6+\frac{6i}{n}}$, respectively.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Find $\int_a^b kx+b\dif x$ and $\int_a^b x^2\dif x$, then prove $\int_0^{\pi/2} x\sin x\leq \frac{\pi^2}{8}$
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Evaluate the integrals: $\int_{0}^{x}\cos(\theta)\dif \theta$, $\int_{-1}^1 x^2\sin(x) \dif x$
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Find the derivatives of the following functions: $g(x)=\int_x^0 t^6\cos(t^2)\dif t$, $h(x)=\int_{1/x}^6 \Pare{t+\frac{1}{t}}^2\dif t$
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Assuming $h$ is continuous and $f,g$ are differentiable, show that
+	\[\frac{\dif}{\dif x} \int_{g(x)}^{f(x)} h(t)\dif t = h(f(x))f'(x)-h(g(x))g'(x)\]
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\end{document}
