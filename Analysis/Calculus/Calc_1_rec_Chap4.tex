@@ -112,6 +112,31 @@
 	\end{theorem}
 \end{myleftlinebox}
 
+\subsection{Indefinite Integrals and the Net Change Theorem}
+\begin{myleftlinebox}
+	indefinite integral
+	\tcblower
+	Suppose the antiderivative of $f$ is $F$, then we write $F = \int f \dif x +c$. Here the most general antiderivative of $f$ is the indefinite integral where $c$ is the constant of integration.
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	some results
+	\tcblower
+	Except those appeared in antidifferentiation formula in Chapter 3, we also have
+	\begin{itemize}
+		\item $\int \csc^2 x\dif x = \int \frac{1}{\sin^2 x} \dif x = -\frac{1}{\tan x}+C=-\cot x +C$
+		\item $\int \sec x\tan x\dif x = \int \frac{\sin x}{\cos^2 x}\dif x = \frac{1}{\cos x}+C = \sec x + C$
+		\item $\int \csc x\cot x\dif x = \int \frac{\cos x}{\sin^2 x}\dif x = -\frac{1}{\sin x}+C = -\csc x + C$
+	\end{itemize}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Net Change Theorem
+	\tcblower
+	When a quantity $F(x)$ changes, the final value $F(b)$ equals the initial value $F(a)$ plus the integral of the rate of change $F(x)'$.
+	\[F(b) = F(a)+\int_a^b F'(x)\dif x\]
+\end{myleftlinebox}
+
 \subsection{Exercises}
 \begin{myleftlinebox}
 	There're other choices of approximating polygons:
@@ -161,6 +186,18 @@
 	\[\frac{\dif}{\dif x} \int_{g(x)}^{f(x)} h(t)\dif t = h(f(x))f'(x)-h(g(x))g'(x)\]
 	Then show that
 	\[\frac{\dif}{\dif x} \int_{g(x)}^{f(x)} h(t)q(x)\dif t = h(f(x))q(x)f'(x)-h(g(x))q(x)g'(x)+\int_{g(x)}^{f(x)} h(t)q'(x)\dif t\]
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Find the general indefinite integral of the following functions. $\frac{\sin(2x)}{\sin x}$, $(1-x^2)^2$, $\abs{x}$
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	The inverse trigonometric functions, especially, $\arcsin, \arctan$, and $\arcsec$ appear to be quite useful sometimes. Find their derivatives using implicit differentiation and chain rule.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
