@@ -452,4 +452,70 @@
 	\vspace{2em}
 \end{myleftlinebox}
 
+\newpage
+
+\subsection{Practice Exam}
+
+\begin{myleftlinebox}
+	Find all the asymptotes for the following function.
+	\begin{center}
+		%ref: https://vincenttam.gitlab.io/page/tikz-templates/
+		\begin{tikzpicture}[scale=0.850]
+			\draw[help lines,step=1 cm](-6.9,-4.9) grid (4.9,2.9);
+	
+			% x-axis
+			\draw [thick] [->] (-7,0)--(5,0) node[right, below] {$x$};
+			\foreach \x in {-7,...,4}
+			\draw[xshift=\x cm, thick] (0pt,-1pt)--(0pt,1pt) node[xshift=-5pt, yshift=-7pt] {$\x$};
+	
+			% y-axis
+			\draw [thick] [->] (0,-5)--(0,3) node[above, left] {$y$};
+			\foreach \y in {-4,-3,-2,-1,1,2}
+			\draw[yshift=\y cm, thick] (-1pt,0pt)--(1pt,0pt) node[left] {$\y$};
+	
+			% function plot(s)
+			\draw [domain=2:4.8, variable=\x, samples=50, smooth]
+			plot ({\x}, {sin(\x*720)/(exp(0.5*\x))+2});
+
+			\draw [domain=-1.76:2, variable=\x, samples=50, smooth]
+			plot ({\x}, {-1/(\x+2)+\x*\x*\x/2-\x+0.25});
+
+			\draw [domain=-6.6:-2.25, variable=\x, samples=50, smooth]
+			plot ({\x}, {1/(\x+2)-1});
+		\end{tikzpicture}
+	\end{center}
+	\tcblower
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Sketch a graph of $f(x)$ that is continuous and differentiable on the domain $(-\infty,0)\cup (0,\infty)$ that satisfies the following conditions. (and some bonus points if you can specify one)
+	\begin{itemize}
+		\item $f(-1)=f(1)=f(3)=0$
+		\item $\displaystyle \lim_{x\to-\infty}f(x)=0, \lim_{x\to+\infty}f(x)=-\infty$
+		\item $\displaystyle \lim_{x\to 0^-}f(x)=+\infty, \lim_{x\to 0^+}f(x)=-\infty$
+		\item $f'(-2)=f'(2)=0$
+		\item $f'(x)>0$ if $-1<x<0$ or $0<x<2$
+		\item $f'(x)<0$ if $x<-1$ or $2<x$
+		\item $f''(-3)=0$
+		\item $f''(x)>0$ if $-3<x<0$
+		\item $f''(x)<0$ if $x<-3$ or $x>0$
+	\end{itemize}
+	\tcblower
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Pick a point $(x,y)$ on function $f(x)=\frac{1}{1+(x+2)^2}$ to maximize $xy$.
+	\tcblower
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	(Chapter 3 Problem Plus 24) A hemispherical bubble is placed on a spherical bubble of radius 1. A smaller hemispherical bubble is then placed on the first one. This process is continued until n chambers, including the sphere, are formed. Use mathematical induction to prove that the maximum height of any bubble tower with n chambers is $1+\sqrt{n}$.
+	\tcblower
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Find function $f(x)$ with $f'(x)=3x^2+2x+1$ and the line $y=x$ is tangent to the graph of $f$.
+	\tcblower
+\end{myleftlinebox}
+
 \end{document}
