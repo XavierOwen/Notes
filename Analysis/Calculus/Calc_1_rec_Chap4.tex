@@ -106,9 +106,9 @@
 		Then $g(x)$ is continuous on $[a,b]$ and differentiable on $(a,b)$. $g'(x)=f(x)$. In short,
 		\[\frac{\dif}{\dif x}\int_a^x f(t)\dif t=f(x)\]
 	\end{theorem}
-	With this theorem, we can calculate $\int_a^b f(t)\dif t=g(b)-g(a)=\given{g(x)}_a^b$
+	With this theorem, we can calculate $\displaystyle\int_a^b f(t)\dif t=g(b)-g(a)=\given{g(x)}_a^b$
 	\begin{theorem}
-		Assume $f$ is continuous on $[a,b]$, and have continuous antiderivative $F$. If $f$ is Riemann integrable on $[a,b]$, then $\int_a^b f(t)\dif t=g(b)-g(a)$.
+		Assume $f$ is continuous on $[a,b]$, and have continuous antiderivative $F$. If $f$ is Riemann integrable on $[a,b]$, then $\displaystyle\int_a^b f(t)\dif t=g(b)-g(a)$.
 	\end{theorem}
 \end{myleftlinebox}
 
@@ -124,9 +124,9 @@
 	\tcblower
 	Except those appeared in antidifferentiation formula in Chapter 3, we also have
 	\begin{itemize}
-		\item $\int \csc^2 x\dif x = \int \frac{1}{\sin^2 x} \dif x = -\frac{1}{\tan x}+C=-\cot x +C$
-		\item $\int \sec x\tan x\dif x = \int \frac{\sin x}{\cos^2 x}\dif x = \frac{1}{\cos x}+C = \sec x + C$
-		\item $\int \csc x\cot x\dif x = \int \frac{\cos x}{\sin^2 x}\dif x = -\frac{1}{\sin x}+C = -\csc x + C$
+		\item $\displaystyle\int \csc^2 x\dif x = \int \frac{1}{\sin^2 x} \dif x = -\frac{1}{\tan x}+C=-\cot x +C$
+		\item $\displaystyle\int \sec x\tan x\dif x = \int \frac{\sin x}{\cos^2 x}\dif x = \frac{1}{\cos x}+C = \sec x + C$
+		\item $\displaystyle\int \csc x\cot x\dif x = \int \frac{\cos x}{\sin^2 x}\dif x = -\frac{1}{\sin x}+C = -\csc x + C$
 	\end{itemize}
 \end{myleftlinebox}
 
@@ -135,6 +135,37 @@
 	\tcblower
 	When a quantity $F(x)$ changes, the final value $F(b)$ equals the initial value $F(a)$ plus the integral of the rate of change $F(x)'$.
 	\[F(b) = F(a)+\int_a^b F'(x)\dif x\]
+\end{myleftlinebox}
+
+\subsection{The Substitution Rule}
+
+\begin{myleftlinebox}
+	Integration by Substitution (Change of Variables)
+	\tcblower
+	If $F'(x)=f(x)$, and assume $u=g(x)$ is differentiable whose range is an interval $I$ where $f$ is integrable, then
+	\begin{equation*}
+		\begin{split}
+			\int  f(g(x))g'(x)\dif x&=\int f(g(x))\dif g(x) =\int f(u)\dif u=F(u)\\
+			&= \int \frac{\dif}{\dif x}\Pare{F(g(x))}\dif x=\int \dif F(g(x))=F(g(x))
+		\end{split}
+	\end{equation*}
+	For definite integral, we have
+	\begin{equation*}
+		\begin{split}
+			\int_a^b  f(g(x))g'(x)\dif x&=\int_{g(a)}^{g(b)} f(g(x))\dif g(x) =\int_{g(a)}^{g(b)}  f(u)\dif u =F(g(b))-F(g(a))\\
+			&= \int_a^b \frac{\dif}{\dif x}\Pare{F(g(x))}\dif x=\int_{F(g(a))}^{F(g(b))} \dif F(g(x))
+		\end{split}
+	\end{equation*}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	integrals of symmetric functions
+	\tcblower
+	Suppose $f$ is integrable on $[-a,a]$ then
+	\begin{itemize}
+		\item if $f$ is even, then $\displaystyle \int_{-a}^0 f(x)\dif x=\int_0^a f(x)\dif x$
+		\item if $f$ is odd, then $\displaystyle \int_{-a}^0 f(x)\dif x=-\int_0^a f(x)\dif x$
+	\end{itemize}
 \end{myleftlinebox}
 
 \subsection{Exercises}
@@ -149,6 +180,11 @@
 	Find the four corners of each polygon and discuss why they lead to the same answer.
 	\tcblower
 	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Use the approximating rectangles $R_n$ using the right end point to show that
+	\[\int_a^b f(x) \dif x = \int_{a-c}^{b-c} f(x+c)\dif x\]
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
@@ -191,6 +227,12 @@
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
+	Evaluate $\displaystyle \lim_{x\to 3}\frac{x}{x-3}\int_3^x f(t)\dif t$, assuming the limit and integral exist.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
 	Find the general indefinite integral of the following functions. $\frac{\sin(2x)}{\sin x}$, $(1-x^2)^2$, $\abs{x}$
 	\tcblower
 	\vspace{2em}
@@ -198,6 +240,58 @@
 
 \begin{myleftlinebox}
 	The inverse trigonometric functions, especially, $\arcsin, \arctan$, and $\arcsec$ appear to be quite useful sometimes. Find their derivatives using implicit differentiation and chain rule.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Use the fact that $\int \frac{1}{x}\dif x=\ln\abs{x}+C$ and $\frac{\dif}{\dif x}e^x=e^x$ to evaluate the following integrals. $\int_1^2 \frac{1}{2+\sqrt{3x}}\dif x$, $\int \sec(x)\dif x$, $\int_0^1 x \exp\Pare{-\frac{x^2}{2}}\dif x$, $\int \frac{\sin(\pi/x)}{x^2}\dif x$, $\int_0^1 (2x-3)^4 \dif x$, $\int \frac{\sqrt{1+\sqrt{2x}}}{\sqrt{3x}}\dif 4x$, $\int x^n(x^{n+1}-b)^k\dif x$ where $b,k$ are any real number, $\int \sin(x)((\cos x)^2-1)^2\dif x$, $\int x\sin^2(x)+x^2\sin(x)\cos(x) \dif x$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	(Chapter 4 Problem Plus 10) Find
+	\[\frac{\dif^2}{\dif x^2} \int_0^x \int_1^{\sin t} \sqrt{1+u^4} \dif u\dif t\]
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Given that $\int f(x)\dif x=x\sin(x)\cos(x)$, find $\int xf(x^2)\dif x$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+
+\begin{myleftlinebox}
+	If $a$ and $b$ are positive numbers, $c$ is any real number, show that
+	\[\int_0^c (f(x))^a(f(c-x))^b\dif x = \int_0^c (f(x))^b(f(c-x))^a\dif x\]
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	If $f$ is integrable, show that 
+	\[2\int_0^{\pi/2} f(\cos(x))\dif x=\int_0^\pi f(\sin(x))\dif x\]
+	Then evaluate $\int_0^{\pi/2}\cos^2(x)\dif x$ and $\int_0^{\pi/2}\sin^2(x)\dif x$.
+	\begin{remark2}
+		There's a typo in Chapter 4 Section 5 exercise 65
+	\end{remark2}
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	If $f$ is integrable on $[0,\pi]$, show that 
+	\[\int_0^\pi x f(\sin(x))\dif x = \frac{\pi}{2}\int_0^\pi f(\sin(x))\dif x\]
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	(Chapter 4 Problem Plus 13) Prove that if $f$ is integrable, then 
+	\[\int_0^x f(u)(x-u)\dif u = \int_0^x \int_0^u f(t)\dif t\dif u\]
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}

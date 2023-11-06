@@ -201,6 +201,7 @@
 \newtheorem{example}[theorem]{Example}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark2}{Remark}
 \newtheorem{question}[theorem]{Question}
 \newtheorem{problem}[theorem]{Problem}
 \newtheorem{NB}[theorem]{Nota Bene}
@@ -209,7 +210,9 @@
 \numberwithin{theorem}{section}
 %\renewcommand{\labelitemi}{ {\small $\rhd$}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\usepackage{csquotes}
+%cite paper title with biblatex
+\newcommand{\citeWTitle}[1]{{\footnotesize\citetitle*{#1}}, \cite{#1}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \definecolor{Red}{rgb}{0.9,0,0.0}
 \definecolor{Blue}{rgb}{0,0.0,1.0}
