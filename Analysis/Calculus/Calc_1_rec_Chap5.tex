@@ -13,9 +13,45 @@
 	\[A = \int_c^d \abs{h(y)-l(y)}\dif y\]
 \end{myleftlinebox}
 
+\subsection{Volumes}
+\begin{myleftlinebox}
+	definition of Volume
+	\tcblower
+	Let $S$ be a solid that lies between $x=a$ and $x=b$. If the cross-sectional area of $S$ in the plane $P_x$ through $x$ and perpendicular to the $x$-axis, is $A(x)$, where $A$ is a continuous function, then the volume of $S$ can be defined by
+	\[V = \lim_{n\to\infty} \sum_{i=1}^n A(x_i^*)\Delta x=\int_a^b A(x)\dif x\]
+	Alternatively, if the solid lies between $y=c$ and $y=d$ and the cross-sectional area perpendicular to the $y$-axis is $B(y)$ and $B$ is continuous, then we have \[V = \int_c^d B(y)\dif y.\]
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	formula for the volumes of solids of revolution
+	\tcblower
+	For an area bounded by $f(x)<g(x)$ and $x=a$, $x=b$, the volume of the solid obtained by revolving this area about the $x$-axis is
+	\[\int_a^b \pi \Pare{g^2(x)-f^2(x)}\dif x.\]
+	Similarly, for an area bounded by $f(y)<g(y)$ and $y=c$, $y=d$, the volume of the solid obtained by revolving this area about the $y$-axis is
+	\[\int_c^d \pi \Pare{g^2(y)-f^2(y)}\dif y.\]
+\end{myleftlinebox}
+
 \subsection{Exercises}
 \begin{myleftlinebox}
 	Find the area of the triangle enclosed by $y=x$, $y=2x$ and $y=2-x$ using integration, both on $x$ axis and on $y$ axis.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Consider the area under the function $y=4-x^2$ from $x=0$ to $x=2$. Find the volumes of the solids obtained by revolving it around $x$-axis and $y$-axis.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Consider the area bounded by $y=1/x$, $y=2x$ and $y=3$. Find the volumes of the solids obtained by revolving it around $x$-axis and $y$-axis.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Now you have the tool for the volumes, and in fact, it can also be used to find the surface areas. Derive the formula of the surface area of a unit ball is 3 dimension.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}

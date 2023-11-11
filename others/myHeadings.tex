@@ -212,7 +212,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{csquotes}
 %cite paper title with biblatex
-\newcommand{\citeWTitle}[1]{{\footnotesize\citetitle*{#1}}, \cite{#1}}
+\newcommand{\citeWTitle}[1]{{\footnotesize\citetitle*{#1}} \cite{#1}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \definecolor{Red}{rgb}{0.9,0,0.0}
 \definecolor{Blue}{rgb}{0,0.0,1.0}
@@ -431,6 +431,7 @@
 \def\bfPsi{\boldsymbol{\Psi}}
 \def\bfOmega{\boldsymbol{\Omega}}
 \def\bfSigma{\boldsymbol{\Sigma}}
+\def\bfLambda{\boldsymbol{\Lambda}}
 
 
 %%%%%%%%%%%%%%%%%% Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -441,6 +442,7 @@
 %%%%%%%%%%%%%%%%%%   Nonstandard notations  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\pd}[1]{\partial_{#1}}      % partial derivative
 \newcommand{\1}{\mathbbm{1}}            % preferable way of writing indicator function
+\newcommand{\bfone}{\boldsymbol{1}}
 \newcommand{\set}[1]{\{#1\}}            % set: {xyz} to be used for inline formulas
 \newcommand{\Set}[1]{\left\{#1\right\}} % set: {xyz} to be used for separate (not inline) formulas
 \renewcommand{\mid}{\,|\,}              % mid bar with small spaces before and after: x | y
@@ -456,7 +458,8 @@
 \newcommand{\Tran}[1]{{#1}^\top}
 \newcommand{\bsde}{BS$\Delta$E}         % BS\DeltaE
 \newcommand{\bsdes}{BS$\Delta$Es}       % BS\DeltaE
-\newcommand{\ow}{\text{otherwise}}
+\newcommand{\ow}{\text{otherwise }}
+\newcommand{\iftext}{\text{if }}
 \newcommand{\imblies}{\Longleftarrow}
 \newcommand{\Exp}[1]{\mathrm{E}\left[ #1 \right]}
 \newcommand{\Var}[1]{\mathrm{Var}\left[ #1 \right]}
@@ -482,9 +485,9 @@
 \DeclareMathOperator*{\rank}{rank\,} % argmax
 \DeclareMathOperator*{\KL}{KL} % KL divergence
 \DeclareMathOperator*{\Proj}{Proj} % Projection
-\DeclareMathOperator{\Std}{\mathrm{Std}} % \std for Standard deviation
-\DeclareMathOperator{\sgn}{\mathrm{sgn}} % sign of a variable
-\DeclareMathOperator{\tr}{\mathrm{trace}} % matrix trace
+\DeclareMathOperator{\Std}{Std} % \std for Standard deviation
+\DeclareMathOperator{\sgn}{sgn} % sign of a variable
+\DeclareMathOperator{\tr}{trace} % matrix trace
 % trigonometric and hyperbolic functions
 \DeclareMathOperator{\sech}{sech}
 \DeclareMathOperator{\csch}{csch}
