@@ -43,7 +43,7 @@
 	If $f$ is a function for $a\leq x\leq b$, then the definite integral of $f$ from $a$ to $b$ is
 	\[\int_a^b f(x)\dif x = \lim_{n\to\infty} \sum_{i=1}^n f(x_i^*)\Delta x,\]
 	provided that this limit exists and gives the same value for all possible choices of sample points. And we call $f$ \emph{integrable} on $[a,b]$.\\
-	For this integral, we call $f$ the integrand, $a$ the lower limit and $b$ the upper limit of integration. 
+	For this integral, we call $f(x)$ the integrand, $a$ the lower limit and $b$ the upper limit of integration. 
 	\begin{remark}
 		The rigorous definition of this integral (Riemann integral) is 
 		\[\int_a^b f(x)\dif x = \lim_{\max_i \Delta x_i\to 0} \sum_{i=1}^n f(x_i^*)\Delta x_i\]
@@ -108,7 +108,7 @@
 	\end{theorem}
 	With this theorem, we can calculate $\displaystyle\int_a^b f(t)\dif t=g(b)-g(a)=\given{g(x)}_a^b$
 	\begin{theorem}
-		Assume $f$ is continuous on $[a,b]$, and have continuous antiderivative $F$. If $f$ is Riemann integrable on $[a,b]$, then $\displaystyle\int_a^b f(t)\dif t=g(b)-g(a)$.
+		Assume $f$ is on $[a,b]$, and have continuous antiderivative $F$. If $f$ is Riemann integrable on $[a,b]$, then $\displaystyle\int_a^b f(t)\dif t=F(b)-F(a)$.
 	\end{theorem}
 \end{myleftlinebox}
 
@@ -185,6 +185,8 @@
 \begin{myleftlinebox}
 	Use the approximating rectangles $R_n$ using the right end point to show that
 	\[\int_a^b f(x) \dif x = \int_{a-c}^{b-c} f(x+c)\dif x\]
+	\tcblower
+	\vspace{2em}
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
@@ -200,13 +202,14 @@
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	Find $\int_a^b kx+b\dif x$ and $\int_a^b x^2\dif x$, then prove $\int_0^{\pi/2} x\sin x\leq \frac{\pi^2}{8}$
+	Find $\int_a^b kx+c\dif x$ and $\int_a^b x^2\dif x$, then prove 
+	$$\int_0^{\pi/2} x\sin x \dif x\leq \frac{\pi^2}{8}$$
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
 
 \begin{myleftlinebox}
-	Evaluate the integrals: $\int_{0}^{x}\cos(\theta)\dif \theta$, $\int_{-1}^1 x^2\sin(x) \dif x$
+	Evaluate the integrals: $\int_{0}^{x}\cos(\theta)\dif \theta$, $\int_{x}^{0}\sin(\theta)\dif \theta$, $\int_{-1}^1 x^2\sin(x) \dif x$
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}
