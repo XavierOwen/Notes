@@ -29,6 +29,48 @@
 	\[\int_a^b \pi \Pare{g^2(x)-f^2(x)}\dif x.\]
 	Similarly, for an area bounded by $f(y)<g(y)$ and $y=c$, $y=d$, the volume of the solid obtained by revolving this area about the $y$-axis is
 	\[\int_c^d \pi \Pare{g^2(y)-f^2(y)}\dif y.\]
+\end{myleftlinebox}\
+
+\subsection{Volumes by Cylindrical Shells}
+\begin{myleftlinebox}
+	the method of cylindrical shells
+	\tcblower
+	The volume of a cylinder shell is $V=\pi(r_2^2-r_1^2)h=2\pi rh\Delta r$ where $r=\frac{r_1+r_2}{2}$ is the average radius of the shell, $\Delta r=r_2-r_1$ is the thickness of the shell.
+
+	And with this we can derive that the volume of the solid obtained by rotating the area bounded by $y=0$, $y=f(x)$, $x=a$ and $x=b$, around $y$-axis, is
+	\[V=\int_a^b 2\pi xf(x) \dif x\]
+
+	However if the region is more easily expressed by left and right boundaries $x=g_1(y)$ and $x=g_2(y)$, the method of disks is preferable. The volume of a disk is 
+	\[V = \int_{g(a)}^{g(b)} \pi(g_1(y)^2-g_2(y)^2)\dif y\]
+\end{myleftlinebox}
+
+\subsection{Work}
+\begin{myleftlinebox}
+	Work
+	\tcblower
+	Work is the energy transferred to or from an object via the application of force along a displacement.
+	In classical mechanics, we define force to be the time derivative of the moment, namely,
+	\[\bfF = \frac{\dif}{\dif t} (m\bfv)\]
+	And work
+	\[W = \int_{t_1}^{t_2} \bfF\cdot \bfv \dif t\]
+	Here $m$ is the mass of an object, a scalar; $\bfv$ is its velocity, a vector; $t$ is time, a scalar; $\bfF$ is also a vector, $\cdot$ is vector doc product.
+\end{myleftlinebox}
+
+\subsection{Average Value of a Function}
+\begin{myleftlinebox}
+	average value of a function on the interval
+	\tcblower
+	we define the average value of $f$ on $[a,b]$ as
+	\[\frac{1}{b-a}\int_a^b f(x)\dif x\]
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	The Mean Value Theorem for Integrals
+	\tcblower
+	\begin{theorem}
+		If $f$ is continuous on $[a,b]$, then $\exists c\in[a,b]$ such that
+		\[f(c) = \frac{1}{b-a}\int_a^b f(x)\dif x\]
+	\end{theorem}
 \end{myleftlinebox}
 
 \subsection{Exercises}
@@ -52,6 +94,42 @@
 
 \begin{myleftlinebox}
 	Now you have the tool for the volumes, and in fact, it can also be used to find the surface areas. Derive the formula of the surface area of a unit ball is 3 dimension.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Consider the area bounded by $y=x$, $y=\sqrt{x}$, $x=0$ and $x=1$. Find the volume and the surface area of solid obtained by revolving this area around $y=x$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Consider the area bounded by $y=\sqrt{x}$, $y=x^2$, $x=0$ and $x=1$. Find the volume of the solid obtained by revolving this area abound $y=-1$ using method of cylinder shells and method of disks.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Consider the area bounded by $y=x$, $y=x^2$, $x=0.5$ and $x=1$. Find the volumes of the solids obtained by revolving this area abound $y=-1$, $y=2$, $x=-1$ and $x=2$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Consider an object of mass $m$ with a constant force $\bfF$ applied to it. It's initial speed is $v_0$ at $t_0$. Find its velocity at $t_1$ and work done by $\bfF$.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	A ball of \SI{1}{kg} is dropped at \SI{100}{m} above the ground. Suppose the gravitational constant is\SI{10}{m/s^2}. Find the average speed during the whole falling time, then find the average speed starting from the time when the ball is at the height of \SI{50}{m} above the ground, to the time when the ball is at the ground.
+	\tcblower
+	\vspace{2em}
+\end{myleftlinebox}
+
+\begin{myleftlinebox}
+	Prove the Mean Value Theorem for Integrals using the Mean Value Theorem.
 	\tcblower
 	\vspace{2em}
 \end{myleftlinebox}

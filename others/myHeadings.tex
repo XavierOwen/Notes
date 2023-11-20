@@ -21,7 +21,6 @@
 %\usepackage{dsfont}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% The ulem package provides various types of underlining that can
 %%% stretch between words and be broken across lines. Convenient for editing. \sout{xxxx}
@@ -36,14 +35,12 @@
 %\usepackage{cancel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %This packages adds support of handling eps images to package graphics
 %or graphicx with option pdftex. If an eps image is detected, epstopdf is
 %automatically called to convert it to pdf format.
 \usepackage{epstopdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % various features for using graphics, including subfigure, captions, subcaptions etc.
@@ -53,7 +50,6 @@
 \usepackage{subcaption}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This package improves the interface for defining floating objects such
 % as figures and tables in LaTeX.
@@ -62,12 +58,10 @@
 %\restylefloat{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%% use for diagonals in the table's cells
 %\usepackage{slashbox}  %Removed by Ares
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This package gives the enumerate environment an optional argument
@@ -76,7 +70,6 @@
 \usepackage{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %selectively in/exclude pieces of text: the user can determine new comment versions,
 %and each is controlled separately. Special comments can be determined where the
@@ -84,7 +77,6 @@
 % http://get-software.net/macros/latex/contrib/comment/comment.pdf
 %\usepackage{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% To display the labels used in a tex file in the dvi file (for example, if a theorem is labelled with the \label command) use the package
@@ -107,7 +99,6 @@
 %\definecolor{labelkey}{rgb}{0,0,1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % It extends the functionality of all the LATEX cross-referencing commands (including the table of contents, bibliographies etc) to produce \special commands which a driver can turn into hypertext links; it also provides new commands to allow the user to write ad hoc hypertext links, including those to external documents and URLs.
 % http://www.tug.org/applications/hyperref/manual.html
@@ -120,10 +111,10 @@
 \tcbuselibrary{breakable}
 \tcbuselibrary{skins}
 \tcbset{my left line/.style={
-          enhanced, frame hidden, borderline west = {0.5pt}{0pt}{black}, % specify border
-          opacityframe=0, opacityback=0,opacityfill=0, % color
-          arc = 0mm, left skip=1em, % border
-          left = 1mm,top=0mm,bottom=0mm,boxsep=1mm,middle=1mm, % text and border
+    enhanced, frame hidden, borderline west = {0.5pt}{0pt}{black}, % specify border
+    opacityframe=0, opacityback=0,opacityfill=0, % color
+    arc = 0mm, left skip=1em, % border
+    left = 1mm,top=0mm,bottom=0mm,boxsep=1mm,middle=1mm, % text and border
 }}
 
 \newtcbox{\mybox}[1][]{my left line, #1}
@@ -134,7 +125,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[utf8]{inputenc}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % a good looking way to format urls
 % http://mirror.its.uidaho.edu/pub/tex-archive/help/Catalogue/entries/url.html
@@ -143,7 +133,6 @@
 \makeatletter\def\url@leostyle{%
 \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\scriptsize\ttfamily}}} \makeatother\urlstyle{leo}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% The present package defines the environment mdframed which automatically deals with page breaks in framed text.
@@ -170,7 +159,6 @@
 %% or use GEOMETRY package
 \usepackage[margin=1.0in, letterpaper]{geometry}
 %\def\baselinestretch{1.1}
-
 
 %%%%%%%%%%%%% OR USE EXACT DIMENSIONS %
 %\setlength{\textwidth}{6.5in}     %%
@@ -314,7 +302,6 @@
 \def\sY{\mathscr{Y}}
 \def\sZ{\mathscr{Z}}
 
-
 %%%% \mathsf for Matrices
 \def\mA{\mathsf{A}}
 \def\mB{\mathsf{B}}
@@ -342,7 +329,6 @@
 \def\mX{\mathsf{X}}
 \def\mY{\mathsf{Y}}
 \def\mZ{\mathsf{Z}}
-
 
 %%%% \mathbf for Matrices or vectors
 \def\bfB{\boldsymbol{B}}
@@ -433,7 +419,6 @@
 \def\bfSigma{\boldsymbol{\Sigma}}
 \def\bfLambda{\boldsymbol{\Lambda}}
 
-
 %%%%%%%%%%%%%%%%%% Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\wt}{\widetilde}
 \newcommand{\wh}{\widehat}
@@ -521,5 +506,3 @@
 %\bibliography{D:/_research/latex/lib_igor/igor_bib_mathfinance}
 % help on how to use several bit files \bibliography{videogames,comics,interface,theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
