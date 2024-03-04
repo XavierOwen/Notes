@@ -491,9 +491,6 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# others
-others
-
 # vscode
 .vscode
 
