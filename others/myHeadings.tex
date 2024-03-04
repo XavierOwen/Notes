@@ -4,8 +4,6 @@
 \usepackage{amsthm, amsmath, amssymb, amsfonts, graphicx, epsfig}
 %\graphicspath{ {D:/Notes/others/assets/} }
 
-\usepackage{algorithm, algpseudocode}
-
 \allowdisplaybreaks
 \usepackage{setspace}
 %\usepackage{accents}
@@ -169,6 +167,32 @@
 %\setlength{\headheight}{0in}      %%
 %\setlength{\headsep}{.3in}         %%
 %\setlength{\footskip}{.5in}       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+\lstset{style=mystyle}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \hfuzz=5.002 pt % suppress overfull box warning
@@ -449,6 +473,7 @@
 \newcommand{\Exp}[1]{\mathrm{E}\left[ #1 \right]}
 \newcommand{\Var}[1]{\mathrm{Var}\left[ #1 \right]}
 \newcommand{\Cov}[1]{\mathrm{Cov}\left[ #1 \right]}
+\newcommand{\med}[1]{\mathrm{median}\left[ #1 \right]}
 \newcommand{\Bspace}{\;\;\;\;}
 \newcommand{\dif}{\,\mathrm{d}}        % used for differential, same as in commath.sty
 
@@ -473,6 +498,7 @@
 \DeclareMathOperator{\Std}{Std} % \std for Standard deviation
 \DeclareMathOperator{\sgn}{sgn} % sign of a variable
 \DeclareMathOperator{\tr}{trace} % matrix trace
+\DeclareMathOperator{\VarH}{Var}
 % trigonometric and hyperbolic functions
 \DeclareMathOperator{\sech}{sech}
 \DeclareMathOperator{\csch}{csch}
