@@ -238,6 +238,9 @@
 \newcommand{\trb}[1]{\begin{color}[rgb]{0.98, 0.0, 0.98}{TRB: #1} \end{color}}
 \newcommand{\ti}[1]{\begin{color}[rgb]{1.00,0.00,0.00}{TI: #1} \end{color}}
 \newcommand{\Red}[1]{\textcolor{Red}{#1}}
+%https://tex.stackexchange.com/questions/42726/align-but-show-one-equation-number-at-the-end/42728#42728
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -452,6 +455,7 @@
 \newcommand{\pd}[1]{\partial_{#1}}      % partial derivative
 \newcommand{\1}{\mathbbm{1}}            % preferable way of writing indicator function
 \newcommand{\bfone}{\boldsymbol{1}}
+\newcommand{\bfzero}{\boldsymbol{0}}
 \newcommand{\set}[1]{\{#1\}}            % set: {xyz} to be used for inline formulas
 \newcommand{\Set}[1]{\left\{#1\right\}} % set: {xyz} to be used for separate (not inline) formulas
 \renewcommand{\mid}{\,|\,}              % mid bar with small spaces before and after: x | y
